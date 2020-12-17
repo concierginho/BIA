@@ -10,11 +10,20 @@ namespace BIA
    {
       FileManager::FileManager(std::string& rootPath) : _rootPath(rootPath)
       {
+         InitializeComponents();
          ScanDirectory();
       }
       
       FileManager::~FileManager()
       {
+      }
+
+      void FileManager::InitializeComponents()
+      {
+         _hasVerticalPattern = std::regex("(.*vertical$)", std::regex_constants::icase);
+         _hasHorizontalPattern = std::regex("(.*horizontal$)", std::regex_constants::icase);
+         _verticalAssociation = std::regex("(.*vertical.*)", std::regex_constants::icase);
+         _horizontalAssociation = std::regex("(.*horizontal.*)", std::regex_constants::icase);
       }
 
       void FileManager::ScanDirectory()
@@ -40,10 +49,7 @@ namespace BIA
 
       void FileManager::ScanSubDirectories()
       {
-         std::regex hasVerticalPattern("(.*vertical$)", std::regex_constants::icase);
-         std::regex hasHorizontalPattern("(.*horizontal$)", std::regex_constants::icase);
-         std::regex verticalAssociation("(.*vertical.*)", std::regex_constants::icase);
-         std::regex horizontalAssociation("(.*horizontal.*)", std::regex_constants::icase);
+
 
          for (auto const& rootSubDir : _rootDirectories)
          {
@@ -62,28 +68,35 @@ namespace BIA
                {
                   std::string fileName = subItem.path().filename().string();
 
-                  if (std::regex_match(fileName, horizontalAssociation))
+                  if (std::regex_match(fileName, _horizontalAssociation))
                      horizontalAssociatedItems.push_back(subItemPath);
-                  else if (std::regex_match(fileName, verticalAssociation))
+                  else if (std::regex_match(fileName, _verticalAssociation))
                      verticalAssociatedItems.push_back(subItemPath);
                }
                else
                {
-                  if (std::regex_match(subItemPath, hasHorizontalPattern))
+                  if (std::regex_match(subItemPath, _hasHorizontalPattern))
                      hasHorizontal = true;
-                  if (std::regex_match(subItemPath, hasVerticalPattern))
+                  if (std::regex_match(subItemPath, _hasVerticalPattern))
                      hasVertical = true;
                }
             }
             
             std::filesystem::path verticalFolderPath(rootSubDirPath + "\\Vertical");
             std::filesystem::path horizontalFolderPath(rootSubDirPath + "\\Horizontal");
+            
+            try
+            {
+               if (!hasVertical)
+                  std::filesystem::create_directories(verticalFolderPath);
 
-            if (!hasVertical)
-               std::filesystem::create_directories(verticalFolderPath);
-
-            if (!hasHorizontal)
-               std::filesystem::create_directories(horizontalFolderPath);
+               if (!hasHorizontal)
+                  std::filesystem::create_directories(horizontalFolderPath);
+            }
+            catch (const std::exception& exception)
+            {
+               std::cout << exception.what() << std::endl;;
+            }
 
             for (auto const& horizontalAssociatedItem : horizontalAssociatedItems)
             {
@@ -94,9 +107,9 @@ namespace BIA
                   std::filesystem::path newPath(horizontalFolderPath.string() + "\\" + filename);
                   std::filesystem::rename(oldPath, newPath);
                }
-               catch (const std::exception& dupa)
+               catch (const std::exception& exception)
                {
-                  std::cout << dupa.what() << std::endl;
+                  std::cout << exception.what() << std::endl;
                }
             }
 
@@ -109,9 +122,9 @@ namespace BIA
                   std::filesystem::path newPath(verticalFolderPath.string() + "\\" + filename);
                   std::filesystem::rename(oldPath, newPath);
                }
-               catch (const std::exception& dupa)
+               catch (const std::exception& exception)
                {
-                  std::cout << dupa.what() << std::endl;
+                  std::cout << exception.what() << std::endl;
                }
             }
          }
