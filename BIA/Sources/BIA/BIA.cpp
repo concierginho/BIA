@@ -1,5 +1,5 @@
-#include "../Public/BIA.h"
-#include "FileManager.h"
+#include "../../Public/BIA.h"
+#include "../FileManagement/FileManager.h"
 
 namespace BIA
 {

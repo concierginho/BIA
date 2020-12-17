@@ -12,10 +12,11 @@ namespace BIA
       {
       private:
          std::string& _rootPath;
-         std::vector<std::string> _rootFiles;
-         std::vector<std::string> _validDirectories;
+         std::vector<std::filesystem::path> _rootFiles;
+         std::vector<std::filesystem::path> _rootDirectories;
 
          void ScanDirectory();
+         void ScanSubDirectories();
       public:
          std::string& GetRootPath() const;
          void SetRootPath(std::string& rootPath);
