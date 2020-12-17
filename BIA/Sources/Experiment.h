@@ -4,8 +4,6 @@
 
 namespace BIA
 {
-   namespace FileManagement
-   {
       class ExperimentDirectory
       {
       private:
@@ -39,5 +37,4 @@ namespace BIA
          explicit ExperimentDirectory();
          ~ExperimentDirectory();
       };
-   }
 }
