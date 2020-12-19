@@ -8,7 +8,7 @@
 
 namespace Logger
 {
-   void ConsoleLogger::Log(std::string message)
+   void ConsoleLogger::Log(const std::string& message)
    {
       auto in_time_t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
       tm timeinfo;

@@ -2,8 +2,17 @@
 
 namespace Logger
 {
-   void FileLogger::Log(std::string message)
+   void FileLogger::Log(const std::string& message)
    {
       message;
+   }
+
+   FileLogger::FileLogger()
+   {
+   }
+
+   FileLogger::~FileLogger()
+   {
+
    }
 }

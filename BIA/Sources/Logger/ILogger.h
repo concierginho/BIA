@@ -7,6 +7,6 @@ namespace Logger
    class ILogger
    {
    public:
-      virtual void Log(std::string) = 0;
+      virtual void Log(const std::string&) = 0;
    };
 }

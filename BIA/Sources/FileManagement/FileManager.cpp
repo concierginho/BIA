@@ -31,16 +31,14 @@ namespace BIA
       }
 
       /// <summary>
-      /// #Define _TIME_MEASUREMENT_ sprawia, ze funckja zmierzy ile czasu zajelo skanowanie glownego folderu.
       /// Funkcja przechodzi przez kazdy plik/katalog w glowym folderze i wszystkie foldery kwalifikuje jako
       /// osobne eksperymenty (zrodla zdjec).
       /// </summary>
       void FileManager::ScanDirectory()
       {
 #ifdef _LOGGING_
-         logger->Log("Scanning directory...");
-#endif
-#ifdef _TIME_MEASUREMENT_
+         std::string msg = "Scanning directory...";
+         logger->Log(msg);
          auto start = std::chrono::steady_clock::now();
 #endif
          for (const auto& rootItem : std::filesystem::directory_iterator(_rootPath))
@@ -52,10 +50,11 @@ namespace BIA
          
          if (_rootDirectories.size() > 0)
             ScanSubDirectories();
-#ifdef _TIME_MEASUREMENT_
+#ifdef _LOGGING_
          auto end = std::chrono::steady_clock::now();
          auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-         std::cout << "scanning root file: " << time << "ms" << std::endl;
+         msg = "Scanning directories took: " + std::to_string(time) + "ms.";
+         logger->Log(msg);
 #endif
       }
 
@@ -125,11 +124,19 @@ namespace BIA
                std::string filename = path.filename().string();
                std::filesystem::path newPath(newDirectory.string() + "\\" + filename);
                std::filesystem::rename(oldPath, newPath);
+#ifdef _LOGGING_
+               std::string msg = "Moved " + oldPath.string() + " to " + newPath.string() + ".";
+               logger->Log(msg);
+#endif 
             }
          }
          catch (std::exception e)
          {
-            std::cout << e.what();
+#ifdef _LOGGING_
+            std::string msg0 = "Exception thrown: ";
+            std::string msg1 = e.what();
+            logger->Log(msg0 + msg1);
+#endif
          }
       }
 
@@ -138,10 +145,17 @@ namespace BIA
          try
          {
             std::filesystem::create_directories(path);
+#ifdef _LOGGING_
+            logger->Log("Created new directory: " + path.string());
+#endif 
          }
          catch (std::exception e)
          {
-            std::cout << e.what();
+#ifdef _LOGGING_
+            std::string msg0 = "Exception thrown: ";
+            std::string msg1 = e.what();
+            logger->Log(msg0 + msg1);
+#endif
          }
       }
       

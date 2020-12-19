@@ -6,6 +6,9 @@ namespace Logger
 {
    class FileLogger : public ILogger
    {
-      void Log(std::string) override;
+   public:
+      void Log(const std::string&) override;
+      FileLogger();
+      ~FileLogger();
    };
 }
