@@ -4,12 +4,17 @@
     <ClCompile Include="Sources\Experiment.cpp" />
     <ClCompile Include="Sources\BIA\BIA.cpp" />
     <ClCompile Include="Sources\FileManagement\FileManager.cpp" />
+    <ClCompile Include="Sources\Logger\ConsoleLogger.cpp" />
+    <ClCompile Include="Sources\Logger\FileLogger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Public\BIA.h" />
     <ClInclude Include="Sources\Keys.h" />
     <ClInclude Include="Sources\Experiment.h" />
     <ClInclude Include="Sources\FileManagement\FileManager.h" />
+    <ClInclude Include="Sources\Logger\ILogger.h" />
+    <ClInclude Include="Sources\Logger\ConsoleLogger.h" />
+    <ClInclude Include="Sources\Logger\FileLogger.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

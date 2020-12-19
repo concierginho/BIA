@@ -1,5 +1,7 @@
 #include "../../Public/BIA.h"
 #include "../FileManagement/FileManager.h"
+#include "../Logger/ConsoleLogger.h"
+#include "../Logger/FileLogger.h"
 
 namespace BIA
 {
@@ -14,7 +16,15 @@ namespace BIA
 
    void BIA::InitializeComponents()
    {
-      _fileManager = new FileManagement::FileManager(_rootPath);
+      Logger::ILogger* logger = nullptr;
+#ifdef _LOGGING_
+   #ifdef _FILE_LOGGING_
+      logger = new Logger::FileLogger();
+   #else
+      logger = new Logger::ConsoleLogger();
+   #endif
+#endif
+      _fileManager = new FileManagement::FileManager(_rootPath, logger);
    }
 
    std::string& BIA::GetRootPath() const

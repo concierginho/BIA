@@ -8,10 +8,14 @@ namespace BIA
 {
    namespace FileManagement
    {
-      FileManager::FileManager(std::string& rootPath) : _rootPath(rootPath)
+      FileManager::FileManager(std::string& rootPath, Logger::ILogger* logger = nullptr) : _rootPath(rootPath)
       {
+#ifdef _LOGGING_
+         this->logger = logger;
+#endif
          InitializeComponents();
          ScanDirectory();
+
       }
       
       FileManager::~FileManager()
@@ -26,8 +30,16 @@ namespace BIA
          _horizontalAssociation = std::regex("(.*horizontal.*)", std::regex_constants::icase);
       }
 
+      /// <summary>
+      /// #Define _TIME_MEASUREMENT_ sprawia, ze funckja zmierzy ile czasu zajelo skanowanie glownego folderu.
+      /// Funkcja przechodzi przez kazdy plik/katalog w glowym folderze i wszystkie foldery kwalifikuje jako
+      /// osobne eksperymenty (zrodla zdjec).
+      /// </summary>
       void FileManager::ScanDirectory()
       {
+#ifdef _LOGGING_
+         logger->Log("Scanning directory...");
+#endif
 #ifdef _TIME_MEASUREMENT_
          auto start = std::chrono::steady_clock::now();
 #endif
@@ -47,21 +59,22 @@ namespace BIA
 #endif
       }
 
+      /// <summary>
+      /// Funkcja sprawdza kazdy z folderow zlokalizowanych w glownym katalogu.
+      /// Sprawdza czy folder o nazwie "Vertical" oraz "Horizontal" istnieja, a nastepnie szuka plikow ktore w swojej nazwie maja
+      /// wlasnie te slowa. Na tej podstawie pliki przenoszone sa do odpowiednich folderow.
+      /// </summary>
       void FileManager::ScanSubDirectories()
       {
-
-
-         for (auto const& rootSubDir : _rootDirectories)
+         for (auto const& folder : _rootDirectories)
          {
             bool hasVertical = false;
             bool hasHorizontal = false;
-
             std::vector<std::filesystem::path> verticalAssociatedItems;
             std::vector<std::filesystem::path> horizontalAssociatedItems;
+            std::string subDirectoryPath = folder.string();
 
-            std::string rootSubDirPath = rootSubDir.string();
-
-            for (auto const& subItem : std::filesystem::directory_iterator(rootSubDir.string()))
+            for (auto const& subItem : std::filesystem::directory_iterator(folder.string()))
             {
                std::string subItemPath = subItem.path().string();
                if (!subItem.is_directory())
@@ -82,51 +95,53 @@ namespace BIA
                }
             }
             
-            std::filesystem::path verticalFolderPath(rootSubDirPath + "\\Vertical");
-            std::filesystem::path horizontalFolderPath(rootSubDirPath + "\\Horizontal");
+            std::filesystem::path verticalFolderPath(subDirectoryPath + "\\Vertical");
+            std::filesystem::path horizontalFolderPath(subDirectoryPath + "\\Horizontal");
             
-            try
+            if (!hasVertical)
             {
-               if (!hasVertical)
-                  std::filesystem::create_directories(verticalFolderPath);
+               CreateNewDirectory(verticalFolderPath);
+            }
+            if (!hasHorizontal)
+            {
+               CreateNewDirectory(horizontalFolderPath);
+            }
+            MoveItemsToNewDirectory(verticalFolderPath, verticalAssociatedItems);
+            MoveItemsToNewDirectory(horizontalFolderPath, horizontalAssociatedItems);
+         }
+      }
 
-               if (!hasHorizontal)
-                  std::filesystem::create_directories(horizontalFolderPath);
-            }
-            catch (const std::exception& exception)
+      /// <summary>
+      /// Funkcja odpowiedzialna jest za przeniesienie wszystkich elementow zawartych w wektorze "source" z ich starej lokalizacji
+      /// Do folderu przekazanego w argumencie "newDirectory".
+      /// </summary>
+      void FileManager::MoveItemsToNewDirectory(std::filesystem::path& newDirectory, std::vector<std::filesystem::path>& source)
+      {
+         try
+         {
+            for (const auto& path : source)
             {
-               std::cout << exception.what() << std::endl;;
+               std::filesystem::path oldPath = path;
+               std::string filename = path.filename().string();
+               std::filesystem::path newPath(newDirectory.string() + "\\" + filename);
+               std::filesystem::rename(oldPath, newPath);
             }
+         }
+         catch (std::exception e)
+         {
+            std::cout << e.what();
+         }
+      }
 
-            for (auto const& horizontalAssociatedItem : horizontalAssociatedItems)
-            {
-               try
-               {
-                  std::filesystem::path oldPath = horizontalAssociatedItem;
-                  std::string filename = horizontalAssociatedItem.filename().string();
-                  std::filesystem::path newPath(horizontalFolderPath.string() + "\\" + filename);
-                  std::filesystem::rename(oldPath, newPath);
-               }
-               catch (const std::exception& exception)
-               {
-                  std::cout << exception.what() << std::endl;
-               }
-            }
-
-            for (auto const& verticalAssociatedItem : verticalAssociatedItems)
-            {
-               try
-               {
-                  std::filesystem::path oldPath = verticalAssociatedItem;
-                  std::string filename = verticalAssociatedItem.filename().string();
-                  std::filesystem::path newPath(verticalFolderPath.string() + "\\" + filename);
-                  std::filesystem::rename(oldPath, newPath);
-               }
-               catch (const std::exception& exception)
-               {
-                  std::cout << exception.what() << std::endl;
-               }
-            }
+      void FileManager::CreateNewDirectory(std::filesystem::path& path)
+      {
+         try
+         {
+            std::filesystem::create_directories(path);
+         }
+         catch (std::exception e)
+         {
+            std::cout << e.what();
          }
       }
       
