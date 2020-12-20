@@ -10,12 +10,15 @@ namespace BIA
    {
       FileManager::FileManager(std::string& rootPath, Logger::ILogger* logger = nullptr) : _rootPath(rootPath)
       {
+#ifndef _LOGGING_
+         this->logger = logger = nullptr;
+#endif
+
 #ifdef _LOGGING_
          this->logger = logger;
 #endif
          InitializeComponents();
          ScanDirectory();
-
       }
       
       FileManager::~FileManager()
