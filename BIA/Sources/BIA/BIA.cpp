@@ -1,4 +1,5 @@
 #include "../../Public/BIA.h"
+#include "../Experiment/ExperimentManager.h"
 #include "../FileManagement/FileManager.h"
 #include "../Logger/ConsoleLogger.h"
 #include "../Logger/FileLogger.h"
@@ -24,6 +25,7 @@ namespace BIA
       logger = new Logger::ConsoleLogger();
    #endif
 #endif
+      _experimentManager = new Experiment::ExperimentManager(logger);
       _fileManager = new FileManagement::FileManager(_rootPath, logger);
    }
 
@@ -39,6 +41,11 @@ namespace BIA
    
    FileManagement::FileManager* BIA::GetFileManager() const
    {
-      return nullptr;
+      return _fileManager;
+   }
+   
+   Experiment::ExperimentManager* BIA::GetExperimentManager() const
+   {
+      return _experimentManager;
    }
 }

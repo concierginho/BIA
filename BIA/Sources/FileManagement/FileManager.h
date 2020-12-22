@@ -29,7 +29,7 @@ namespace BIA
          void ScanSubDirectories();
          void InitializeComponents();
 
-         Logger::ILogger* logger;
+         Logger::ILogger* _logger;
       public:
          std::string& GetRootPath() const;
          void SetRootPath(std::string& rootPath);

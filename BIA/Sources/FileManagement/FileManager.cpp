@@ -1,8 +1,9 @@
-#include "FileManager.h"
 #include <vector>
 #include <iostream>
 #include <chrono>
 #include <regex>
+
+#include "FileManager.h"
 
 namespace BIA
 {
@@ -11,11 +12,9 @@ namespace BIA
       FileManager::FileManager(std::string& rootPath, Logger::ILogger* logger = nullptr) : _rootPath(rootPath)
       {
 #ifndef _LOGGING_
-         this->logger = logger = nullptr;
-#endif
-
-#ifdef _LOGGING_
-         this->logger = logger;
+         this->_logger = logger = nullptr;
+#else
+         this->_logger = logger;
 #endif
          InitializeComponents();
          ScanDirectory();
@@ -23,6 +22,7 @@ namespace BIA
       
       FileManager::~FileManager()
       {
+         _logger = nullptr;
       }
 
       void FileManager::InitializeComponents()
@@ -41,7 +41,7 @@ namespace BIA
       {
 #ifdef _LOGGING_
          std::string msg = "Scanning directory...";
-         logger->Log(msg);
+         _logger->Log(msg);
          auto start = std::chrono::steady_clock::now();
 #endif
          for (const auto& rootItem : std::filesystem::directory_iterator(_rootPath))
@@ -57,7 +57,7 @@ namespace BIA
          auto end = std::chrono::steady_clock::now();
          auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
          msg = "Scanning directories took: " + std::to_string(time) + "ms.";
-         logger->Log(msg);
+         _logger->Log(msg);
 #endif
       }
 
@@ -96,10 +96,10 @@ namespace BIA
                      hasVertical = true;
                }
             }
-            
+
             std::filesystem::path verticalFolderPath(subDirectoryPath + "\\Vertical");
             std::filesystem::path horizontalFolderPath(subDirectoryPath + "\\Horizontal");
-            
+
             if (!hasVertical)
             {
                CreateNewDirectory(verticalFolderPath);
@@ -108,6 +108,7 @@ namespace BIA
             {
                CreateNewDirectory(horizontalFolderPath);
             }
+
             MoveItemsToNewDirectory(verticalFolderPath, verticalAssociatedItems);
             MoveItemsToNewDirectory(horizontalFolderPath, horizontalAssociatedItems);
          }
@@ -129,7 +130,7 @@ namespace BIA
                std::filesystem::rename(oldPath, newPath);
 #ifdef _LOGGING_
                std::string msg = "Moved " + oldPath.string() + " to " + newPath.string() + ".";
-               logger->Log(msg);
+               _logger->Log(msg);
 #endif 
             }
          }
@@ -138,7 +139,7 @@ namespace BIA
 #ifdef _LOGGING_
             std::string msg0 = "Exception thrown: ";
             std::string msg1 = e.what();
-            logger->Log(msg0 + msg1);
+            _logger->Log(msg0 + msg1);
 #endif
          }
       }
@@ -149,7 +150,7 @@ namespace BIA
          {
             std::filesystem::create_directories(path);
 #ifdef _LOGGING_
-            logger->Log("Created new directory: " + path.string());
+            _logger->Log("Created new directory: " + path.string());
 #endif 
          }
          catch (std::exception e)
@@ -157,7 +158,7 @@ namespace BIA
 #ifdef _LOGGING_
             std::string msg0 = "Exception thrown: ";
             std::string msg1 = e.what();
-            logger->Log(msg0 + msg1);
+            _logger->Log(msg0 + msg1);
 #endif
          }
       }
