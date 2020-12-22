@@ -1,0 +1,30 @@
+\babel@toc {polish}{}
+\contentsline {section}{\numberline {1}Wstęp}{3}{}%
+\contentsline {section}{\numberline {2}Cele i założenia}{4}{}%
+\contentsline {subsection}{\numberline {2.1}Cel główny}{4}{}%
+\contentsline {subsection}{\numberline {2.2}Cel poboczny}{4}{}%
+\contentsline {subsection}{\numberline {2.3}Założenia}{4}{}%
+\contentsline {subsection}{\numberline {2.4}Podstawowe funkcje biblioteki}{4}{}%
+\contentsline {subsection}{\numberline {2.5}Podstawowe funkcje aplikacji okienkowej}{5}{}%
+\contentsline {subsection}{\numberline {2.6}Rekomendacje}{5}{}%
+\contentsline {section}{\numberline {3}Część teoretyczna}{6}{}%
+\contentsline {subsection}{\numberline {3.1}Adhezja}{6}{}%
+\contentsline {subsection}{\numberline {3.2}Rozszerzenie TIFF}{6}{}%
+\contentsline {subsection}{\numberline {3.3}Binaryzacja}{6}{}%
+\contentsline {subsection}{\numberline {3.4}Element Strukturalny}{6}{}%
+\contentsline {subsection}{\numberline {3.5}Sąsiedztwo}{8}{}%
+\contentsline {subsection}{\numberline {3.6}Erozja}{9}{}%
+\contentsline {subsection}{\numberline {3.7}Dylatacja}{10}{}%
+\contentsline {subsection}{\numberline {3.8}Otwarcie morfologiczne}{11}{}%
+\contentsline {subsection}{\numberline {3.9}Zamknięcie morfologiczne}{11}{}%
+\contentsline {subsection}{\numberline {3.10}Korekcja Gamma}{12}{}%
+\contentsline {section}{\numberline {4}Część Praktyczna}{13}{}%
+\contentsline {subsection}{\numberline {4.1}Wykorzystane oprogramowanie}{13}{}%
+\contentsline {subsection}{\numberline {4.2}Diagram UML aplikacji}{13}{}%
+\contentsline {subsection}{\numberline {4.3}Omówienie implementacji}{13}{}%
+\contentsline {subsection}{\numberline {4.4}Omówienie interfejsu}{13}{}%
+\contentsline {subsection}{\numberline {4.5}Listing kodu}{13}{}%
+\contentsline {section}{\numberline {5}Wyniki}{14}{}%
+\contentsline {section}{\numberline {6}Wnioski}{14}{}%
+\contentsline {section}{\numberline {7}Podsumowanie}{15}{}%
+\contentsline {section}{\numberline {8}Bibliografia}{16}{}%

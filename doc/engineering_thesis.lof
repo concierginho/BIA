@@ -1,0 +1,20 @@
+\babel@toc {polish}{}
+\contentsline {figure}{\numberline {1}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem m w środku. Wszystkie piksele elementu strukturalnego posiadają wartość równą 1. \relax }}{7}{}%
+\contentsline {figure}{\numberline {2}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku. Lewy dolny, lewy górny, prawy dolny oraz prawy górny piksel posiada wartość 0. \relax }}{7}{}%
+\contentsline {figure}{\numberline {3}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w lewym dolnym rogu. Lewy górny, prawy górny oraz prawy dolny piksel posiada wartość 0. \relax }}{8}{}%
+\contentsline {figure}{\numberline {4}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku. Lewy środkowy, prawy środkowy, dolny środkowy oraz górny środkowy piksel posiada wartość 0. \relax }}{8}{}%
+\contentsline {figure}{\numberline {5}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w dolnym środkowym pikselu. Lewy dolny, lewy środkowy, środkowy oraz prawy dolny piksel mają wartość równą 0. \relax }}{8}{}%
+\contentsline {figure}{\numberline {6}{\ignorespaces (\textit {Opracowanie własne}) Sąsiedztwa\relax }}{9}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Sąsiedztwo Moore'a}}}{9}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Sąsiedztwo Von Neumanna}}}{9}{}%
+\contentsline {figure}{\numberline {7}{\ignorespaces (\textit {Opracowanie własne}) Erozja (Czerwonym kolorem zaznaczono piksele, które zmieniły wartości z 1 na 0) \relax }}{9}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Element strukturalny użyty w operacji}}}{9}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Stan przed erozją elementem strukturalnym}}}{9}{}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Stan po erozji elementem strukturalnym}}}{9}{}%
+\contentsline {figure}{\numberline {8}{\ignorespaces (\textit {Opracowanie własne}) Dylatacja (Zielonym kolorem zaznaczono piksele, które zmieniły wartości z 0 na 1)\relax }}{10}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Element strukturalny użyty w operacji}}}{10}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Stan przed dylatacją elementem strukturalnym}}}{10}{}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Stan po dylatacji elementem strukturalnym}}}{10}{}%
+\contentsline {figure}{\numberline {9}{\ignorespaces (\textit {Źródło: https://pl.wikipedia.org}) Przykład z elementem strukturalnym \(3 \times 3\) z punktem centralnym na środku. Jak możemy zauważyć, pojedyncze piksele (nie posiadające sąsiadów z wartością 1 zostały usunięte. Następnie reszta obiektów zostaje odbudowana.\relax }}{11}{}%
+\contentsline {figure}{\numberline {10}{\ignorespaces (\textit {Źródło: https://pl.wikipedia.org}) Przykład z elementem strukturalnym \(3 \times 3\) z punktem centralnym na środku. Jak możemy zauważyć, piskele, które wcześniej były odłączone od wiekszego obiektu ale leżały niedaleko teraz stanowią integralną jego cześć, a dwa większe obiekty połączyły się.\relax }}{12}{}%
+\contentsline {figure}{\numberline {11}{\ignorespaces (\textit {Źródło: http://www.algorytm.org}) Od lewej: \(\gamma > 1\) obraz przyciemniony, \(\gamma = 1\) brak zmian, \(\gamma < 1\) obraz zostaje rozjasniony.\relax }}{12}{}%

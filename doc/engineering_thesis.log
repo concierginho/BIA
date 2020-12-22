@@ -1,0 +1,465 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.18)  22 DEC 2020 18:06
+entering extended mode
+**"d:/university/engineering thesis/doc/engineering_thesis.tex"
+("d:/university/engineering thesis/doc/engineering_thesis.tex"
+LaTeX2e <2020-10-01> patch level 1
+L3 programming layer <2020-10-05> xparse <2020-03-03> (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
+(C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+)
+\c@part=\count175
+\c@section=\count176
+\c@subsection=\count177
+\c@subsubsection=\count178
+\c@paragraph=\count179
+\c@subparagraph=\count180
+\c@figure=\count181
+\c@table=\count182
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+Package: inputenc 2020/08/01 v1.3d Input encoding file
+\inpenc@prehook=\toks15
+\inpenc@posthook=\toks16
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2020/10/06 3.50 The Babel package
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.def
+File: babel.def 2020/10/06 3.50 Babel common definitions
+\babel@savecnt=\count183
+\U@D=\dimen139
+\l@babelnohyphens=\language79
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
+\bbl@readstream=\read2
+)
+\bbl@dirlevel=\count184
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of babel
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/babel-polish\polish.ldf
+Language: polish 2005/03/31 v1.2l Polish support from the babel system
+Package babel Info: Making " an active character on input line 83.
+\pl@left=\dimen140
+\pl@down=\dimen141
+\pl@right=\dimen142
+\pl@temp=\dimen143
+)) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/ragged2e\ragged2e.sty
+Package: ragged2e 2019/07/28 v2.2 ragged2e Package (MS)
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/ms\everysel.sty
+Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
+)
+\CenteringLeftskip=\skip49
+\RaggedLeftLeftskip=\skip50
+\RaggedRightLeftskip=\skip51
+\CenteringRightskip=\skip52
+\RaggedLeftRightskip=\skip53
+\RaggedRightRightskip=\skip54
+\CenteringParfillskip=\skip55
+\RaggedLeftParfillskip=\skip56
+\RaggedRightParfillskip=\skip57
+\JustifyingParfillskip=\skip58
+\CenteringParindent=\skip59
+\RaggedLeftParindent=\skip60
+\RaggedRightParindent=\skip61
+\JustifyingParindent=\skip62
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/blindtext\blindtext.sty
+Package: blindtext 2012/01/06 V2.0 blindtext-Package
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/tools\xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+\c@blindtext=\count185
+\c@Blindtext=\count186
+\c@blind@countparstart=\count187
+\blind@countxx=\count188
+\blindtext@numBlindtext=\count189
+\blind@countyy=\count190
+\c@blindlist=\count191
+\c@blindlistlevel=\count192
+\c@blindlist@level=\count193
+\blind@listitem=\count194
+\c@blind@listcount=\count195
+\c@blind@levelcount=\count196
+\blind@mathformula=\count197
+\blind@Mathformula=\count198
+\c@blind@randomcount=\count199
+\c@blind@randommax=\count266
+\c@blind@pangramcount=\count267
+\c@blind@pangrammax=\count268
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen144
+\Gin@req@width=\dimen145
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+\Gm@cnth=\count269
+\Gm@cntv=\count270
+\c@Gm@tempcnt=\count271
+\Gm@bindingoffset=\dimen146
+\Gm@wd@mp=\dimen147
+\Gm@odd@mp=\dimen148
+\Gm@even@mp=\dimen149
+\Gm@layoutwidth=\dimen150
+\Gm@layoutheight=\dimen151
+\Gm@layouthoffset=\dimen152
+\Gm@layoutvoffset=\dimen153
+\Gm@dimlist=\toks18
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/tabulary\tabulary.sty
+Package: tabulary 2014/06/11 v0.10 tabulary package (DPC)
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
+\col@sep=\dimen154
+\ar@mcellbox=\box47
+\extrarowheight=\dimen155
+\NC@list=\toks19
+\extratabsurround=\skip63
+\backup@length=\skip64
+\ar@cellbox=\box48
+)
+\TY@count=\count272
+\TY@linewidth=\dimen156
+\tymin=\dimen157
+\tymax=\dimen158
+\TY@tablewidth=\dimen159
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip65
+\enit@outerparindent=\dimen160
+\enit@toks=\toks20
+\enit@inbox=\box49
+\enit@count@id=\count273
+\enitdp@description=\count274
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/subfig\subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen161
+\captionmargin@=\dimen162
+\captionwidth=\dimen163
+\caption@tempdima=\dimen164
+\caption@indent=\dimen165
+\caption@parindent=\dimen166
+\caption@hangindent=\dimen167
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count275
+\c@continuedfloat=\count276
+)
+\c@KVtest=\count277
+\sf@farskip=\skip66
+\sf@captopadj=\dimen168
+\sf@capskip=\skip67
+\sf@nearskip=\skip68
+\c@subfigure=\count278
+\c@subfigure@save=\count279
+\c@lofdepth=\count280
+\c@subtable=\count281
+\c@subtable@save=\count282
+\c@lotdepth=\count283
+\sf@top=\skip69
+\sf@bottom=\skip70
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count284
+\float@exts=\toks21
+\float@box=\box50
+\@float@everytoks=\toks22
+\@floatcapt=\box51
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/easylist\easylist.sty
+Package: easylist 2014/01/11 v.1.4 Numbered items with a single command.
+\el@CounterTotal=\count285
+\el@Scratch=\count286
+\el@ControlCounter=\count287
+\el@CounterLevel=\count288
+\c@List1=\count289
+\c@List2=\count290
+\c@List3=\count291
+\c@List4=\count292
+\c@List5=\count293
+\c@List6=\count294
+\c@List7=\count295
+\c@List8=\count296
+\c@List9=\count297
+\c@List10=\count298
+\el@ProgressiveDimension=\dimen169
+\el@CounterBox=\box52
+\el@ControlBox=\box53
+\el@TotalMargin=\dimen170
+\el@LeftMove=\dimen171
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
+File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
+\l__kernel_color_stack_int=\count299
+\l__pdf_internal_box=\box54
+) ("d:/university\engineering thesis\doc\engineering_thesis.aux")
+\openout1 = `engineering_thesis.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+ ABD: EverySelectfont initializing macros
+
+LaTeX Warning: Command \selectfont   has changed.
+               Check if current package is valid.
+
+LaTeX Info: Redefining \selectfont on input line 21.
+(C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count300
+\scratchdimen=\dimen172
+\scratchbox=\box55
+\nofMPsegments=\count301
+\nofMParguments=\count302
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count303
+\MPscratchDim=\dimen173
+\MPnumerator=\count304
+\makeMPintoPDFobject=\count305
+\everyMPtoPDFconversion=\toks24
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/generic/kvsetkeys\kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)) (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
+)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(85.35826pt, 443.57848pt, 85.35826pt)
+* v-part:(T,H,B)=(42.67912pt, 709.61174pt, 42.67912pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=443.57848pt
+* \textheight=709.61174pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
+* \topmargin=-66.59087pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
+("d:/university\engineering thesis\doc\title_page.tex"
+<./images//logo.png, id=1, 919.93687pt x 389.20406pt>
+File: ./images//logo.png Graphic file (type png)
+<use ./images//logo.png>
+Package pdftex.def Info: ./images//logo.png  used on input line 17.
+(pdftex.def)             Requested size: 443.57848pt x 187.671pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 57.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 57.
+ [1
+
+{C:/Users/konra/AppData/Local/MiKTeX/pdftex/config/pdftex.map} <./images//logo.png>])
+
+Package tabulary Warning: No suitable columns! on input line 56.
+
+
+Overfull \hbox (14.28758pt too wide) in paragraph at lines 56--58
+ [] 
+ []
+
+[1] ("d:/university\engineering thesis\doc\engineering_thesis.toc")
+\tf@toc=\write3
+\openout3 = `engineering_thesis.toc'.
+
+ [2] [3] [4] [5]
+<./images//element_strukturalny_1.png, id=28, 150.5625pt x 150.5625pt>
+File: ./images//element_strukturalny_1.png Graphic file (type png)
+<use ./images//element_strukturalny_1.png>
+Package pdftex.def Info: ./images//element_strukturalny_1.png  used on input line 251.
+(pdftex.def)             Requested size: 120.45044pt x 120.45474pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 256.
+ [6]
+<./images//element_strukturalny_2.png, id=36, 150.5625pt x 150.5625pt>
+File: ./images//element_strukturalny_2.png Graphic file (type png)
+<use ./images//element_strukturalny_2.png>
+Package pdftex.def Info: ./images//element_strukturalny_2.png  used on input line 261.
+(pdftex.def)             Requested size: 120.45044pt x 120.45474pt.
+<./images//element_strukturalny_3.png, id=37, 150.5625pt x 150.5625pt>
+File: ./images//element_strukturalny_3.png Graphic file (type png)
+<use ./images//element_strukturalny_3.png>
+Package pdftex.def Info: ./images//element_strukturalny_3.png  used on input line 271.
+(pdftex.def)             Requested size: 120.45044pt x 120.45474pt.
+<./images//element_strukturalny_4.png, id=38, 150.5625pt x 150.5625pt>
+File: ./images//element_strukturalny_4.png Graphic file (type png)
+<use ./images//element_strukturalny_4.png>
+Package pdftex.def Info: ./images//element_strukturalny_4.png  used on input line 281.
+(pdftex.def)             Requested size: 120.45044pt x 120.45474pt.
+ [7 <./images//element_strukturalny_1.png> <./images//element_strukturalny_2.png>]
+<./images//element_strukturalny_5.png, id=47, 150.5625pt x 150.5625pt>
+File: ./images//element_strukturalny_5.png Graphic file (type png)
+<use ./images//element_strukturalny_5.png>
+Package pdftex.def Info: ./images//element_strukturalny_5.png  used on input line 291.
+(pdftex.def)             Requested size: 120.45044pt x 120.45474pt.
+File: ./images//element_strukturalny_1.png Graphic file (type png)
+<use ./images//element_strukturalny_1.png>
+Package pdftex.def Info: ./images//element_strukturalny_1.png  used on input line 308.
+(pdftex.def)             Requested size: 142.26378pt x 142.27771pt.
+File: ./images//element_strukturalny_2.png Graphic file (type png)
+<use ./images//element_strukturalny_2.png>
+Package pdftex.def Info: ./images//element_strukturalny_2.png  used on input line 310.
+(pdftex.def)             Requested size: 142.26378pt x 142.27771pt.
+ [8 <./images//element_strukturalny_3.png> <./images//element_strukturalny_4.png> <./images//element_strukturalny_5.png>]
+File: ./images//element_strukturalny_1.png Graphic file (type png)
+<use ./images//element_strukturalny_1.png>
+Package pdftex.def Info: ./images//element_strukturalny_1.png  used on input line 325.
+(pdftex.def)             Requested size: 142.26378pt x 142.27771pt.
+<./images//przed_erozja.png, id=54, 487.06969pt x 487.06969pt>
+File: ./images//przed_erozja.png Graphic file (type png)
+<use ./images//przed_erozja.png>
+Package pdftex.def Info: ./images//przed_erozja.png  used on input line 327.
+(pdftex.def)             Requested size: 142.26378pt x 142.26477pt.
+<./images//po_erozji.png, id=55, 487.06969pt x 487.06969pt>
+File: ./images//po_erozji.png Graphic file (type png)
+<use ./images//po_erozji.png>
+Package pdftex.def Info: ./images//po_erozji.png  used on input line 329.
+(pdftex.def)             Requested size: 142.26378pt x 142.26477pt.
+File: ./images//element_strukturalny_1.png Graphic file (type png)
+<use ./images//element_strukturalny_1.png>
+Package pdftex.def Info: ./images//element_strukturalny_1.png  used on input line 346.
+(pdftex.def)             Requested size: 142.26378pt x 142.27771pt.
+<./images//przed_dylatacja.png, id=56, 487.06969pt x 487.8225pt>
+File: ./images//przed_dylatacja.png Graphic file (type png)
+<use ./images//przed_dylatacja.png>
+Package pdftex.def Info: ./images//przed_dylatacja.png  used on input line 348.
+(pdftex.def)             Requested size: 142.26378pt x 142.48466pt.
+<./images//po_dylatacji.png, id=57, 487.06969pt x 487.06969pt>
+File: ./images//po_dylatacji.png Graphic file (type png)
+<use ./images//po_dylatacji.png>
+Package pdftex.def Info: ./images//po_dylatacji.png  used on input line 350.
+(pdftex.def)             Requested size: 142.26378pt x 142.26477pt.
+ [9 <./images//przed_erozja.png> <./images//po_erozji.png>] [10 <./images//przed_dylatacja.png> <./images//po_dylatacji.png>]
+<./images//otwarcie_przyklad.png, id=70, 601.4972pt x 148.30406pt>
+File: ./images//otwarcie_przyklad.png Graphic file (type png)
+<use ./images//otwarcie_przyklad.png>
+Package pdftex.def Info: ./images//otwarcie_przyklad.png  used on input line 399.
+(pdftex.def)             Requested size: 401.50146pt x 98.9966pt.
+<./images//zamkniecie_przyklad.png, id=71, 601.4972pt x 148.30406pt>
+File: ./images//zamkniecie_przyklad.png Graphic file (type png)
+<use ./images//zamkniecie_przyklad.png>
+Package pdftex.def Info: ./images//zamkniecie_przyklad.png  used on input line 413.
+(pdftex.def)             Requested size: 401.50146pt x 98.9966pt.
+ [11 <./images//otwarcie_przyklad.png>]
+<./images//korekcja_gamma_przyklad.jpg, id=76, 490.83376pt x 151.56625pt>
+File: ./images//korekcja_gamma_przyklad.jpg Graphic file (type jpg)
+<use ./images//korekcja_gamma_przyklad.jpg>
+Package pdftex.def Info: ./images//korekcja_gamma_przyklad.jpg  used on input line 430.
+(pdftex.def)             Requested size: 401.51265pt x 120.45296pt.
+ [12 <./images//zamkniecie_przyklad.png> <./images//korekcja_gamma_przyklad.jpg>] [13] [14] [15]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 457.
+ (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+Underfull \hbox (badness 10000) in paragraph at lines 459--461
+[]\T1/cmr/m/it/10 Cyforwe prze-twa-rza-nie ob-ra-zów bi-nar-nych $\T1/cmtt/m/n/10 https : / / pl . wikipedia . org / wiki / Cyfrowe _
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 468--472
+[]\T1/cmr/m/n/10 Microsoft Docs \T1/cmr/m/it/10 MSBu-ild $\T1/cmtt/m/n/10 https : / / docs . microsoft . com / en-[]us / visualstudio / msbuild /
+ []
+
+[16] ("d:/university\engineering thesis\doc\engineering_thesis.lof")
+\tf@lof=\write4
+\openout4 = `engineering_thesis.lof'.
+
+ [17] ("d:/university\engineering thesis\doc\engineering_thesis.aux") ) 
+Here is how much of TeX's memory you used:
+ 5934 strings out of 480236
+ 96059 string characters out of 2880557
+ 407390 words of memory out of 3000000
+ 22382 multiletter control sequences out of 15000+200000
+ 543425 words of font info for 43 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 64i,10n,70p,526b,368s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on "d:/university\engineering thesis\doc\engineering_thesis.pdf" (18 pages, 401743 bytes).
+PDF statistics:
+ 569 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+
