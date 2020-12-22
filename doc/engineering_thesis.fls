@@ -1,7 +1,7 @@
-PWD d:\university\engineering thesis\doc
+PWD d:\university\engineering thesis\BIA\doc
 INPUT C:\Users\konra\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT d:\university\engineering thesis\doc\engineering_thesis.tex
-OUTPUT d:\university\engineering thesis\doc\engineering_thesis.log
+INPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.tex
+OUTPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.log
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
@@ -264,10 +264,10 @@ INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
-INPUT d:\university\engineering thesis\doc\engineering_thesis.aux
-INPUT d:\university\engineering thesis\doc\engineering_thesis.aux
-INPUT d:\university\engineering thesis\doc\engineering_thesis.aux
-OUTPUT d:\university\engineering thesis\doc\engineering_thesis.aux
+INPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.aux
+INPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.aux
+INPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.aux
+OUTPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.aux
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -344,16 +344,16 @@ INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\generic\pdftexcmds\pdftex
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\generic\pdftexcmds\pdftexcmds.sty
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\generic\pdftexcmds\pdftexcmds.sty
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\generic\pdftexcmds\pdftexcmds.sty
-INPUT d:\university\engineering thesis\doc\title_page.tex
-INPUT d:\university\engineering thesis\doc\title_page.tex
-INPUT d:\university\engineering thesis\doc\title_page.tex
-INPUT d:\university\engineering thesis\doc\title_page.tex
+INPUT d:\university\engineering thesis\BIA\doc\title_page.tex
+INPUT d:\university\engineering thesis\BIA\doc\title_page.tex
+INPUT d:\university\engineering thesis\BIA\doc\title_page.tex
+INPUT d:\university\engineering thesis\BIA\doc\title_page.tex
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm1728.tfm
 INPUT .\images\\logo.png
 INPUT .\images\\logo.png
 INPUT images\\logo.png
 INPUT .\images\\logo.png
-OUTPUT d:\university\engineering thesis\doc\engineering_thesis.pdf
+OUTPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.pdf
 INPUT .\images\\logo.png
 INPUT .\images\\logo.png
 INPUT .\images\\logo.png
@@ -363,10 +363,10 @@ INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi12.tfm
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
 INPUT C:\Users\konra\AppData\Local\MiKTeX\pdftex\config\pdftex.map
-INPUT d:\university\engineering thesis\doc\engineering_thesis.toc
-INPUT d:\university\engineering thesis\doc\engineering_thesis.toc
-INPUT d:\university\engineering thesis\doc\engineering_thesis.toc
-OUTPUT d:\university\engineering thesis\doc\engineering_thesis.toc
+INPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.toc
+INPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.toc
+INPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.toc
+OUTPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.toc
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm1200.tfm
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecbx1200.tfm
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecti1440.tfm
@@ -477,11 +477,11 @@ INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
 INPUT C:\Users\konra\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt1000.tfm
-INPUT d:\university\engineering thesis\doc\engineering_thesis.lof
-INPUT d:\university\engineering thesis\doc\engineering_thesis.lof
-INPUT d:\university\engineering thesis\doc\engineering_thesis.lof
-OUTPUT d:\university\engineering thesis\doc\engineering_thesis.lof
-INPUT d:\university\engineering thesis\doc\engineering_thesis.aux
+INPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.lof
+INPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.lof
+INPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.lof
+OUTPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.lof
+INPUT d:\university\engineering thesis\BIA\doc\engineering_thesis.aux
 INPUT C:\Users\konra\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk
 INPUT C:\Users\konra\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk
 INPUT C:\Users\konra\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0800.pk

@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.18)  22 DEC 2020 18:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.18)  22 DEC 2020 23:17
 entering extended mode
-**"d:/university/engineering thesis/doc/engineering_thesis.tex"
-("d:/university/engineering thesis/doc/engineering_thesis.tex"
+**"d:/university/engineering thesis/BIA/doc/engineering_thesis.tex"
+("d:/university/engineering thesis/BIA/doc/engineering_thesis.tex"
 LaTeX2e <2020-10-01> patch level 1
 L3 programming layer <2020-10-05> xparse <2020-03-03> (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
@@ -221,7 +221,7 @@ Package: easylist 2014/01/11 v.1.4 Numbered items with a single command.
 File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
 \l__kernel_color_stack_int=\count299
 \l__pdf_internal_box=\box54
-) ("d:/university\engineering thesis\doc\engineering_thesis.aux")
+) ("d:/university\engineering thesis\BIA\doc\engineering_thesis.aux")
 \openout1 = `engineering_thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
@@ -320,7 +320,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-("d:/university\engineering thesis\doc\title_page.tex"
+("d:/university\engineering thesis\BIA\doc\title_page.tex"
 <./images//logo.png, id=1, 919.93687pt x 389.20406pt>
 File: ./images//logo.png Graphic file (type png)
 <use ./images//logo.png>
@@ -341,7 +341,7 @@ Overfull \hbox (14.28758pt too wide) in paragraph at lines 56--58
  [] 
  []
 
-[1] ("d:/university\engineering thesis\doc\engineering_thesis.toc")
+[1] ("d:/university\engineering thesis\BIA\doc\engineering_thesis.toc")
 \tf@toc=\write3
 \openout3 = `engineering_thesis.toc'.
 
@@ -443,21 +443,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 468--472
 []\T1/cmr/m/n/10 Microsoft Docs \T1/cmr/m/it/10 MSBu-ild $\T1/cmtt/m/n/10 https : / / docs . microsoft . com / en-[]us / visualstudio / msbuild /
  []
 
-[16] ("d:/university\engineering thesis\doc\engineering_thesis.lof")
+[16] ("d:/university\engineering thesis\BIA\doc\engineering_thesis.lof")
 \tf@lof=\write4
 \openout4 = `engineering_thesis.lof'.
 
- [17] ("d:/university\engineering thesis\doc\engineering_thesis.aux") ) 
+ [17] ("d:/university\engineering thesis\BIA\doc\engineering_thesis.aux") ) 
 Here is how much of TeX's memory you used:
  5934 strings out of 480236
- 96059 string characters out of 2880557
+ 96123 string characters out of 2880557
  407390 words of memory out of 3000000
  22382 multiletter control sequences out of 15000+200000
  543425 words of font info for 43 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,10n,70p,526b,368s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 64i,10n,70p,530b,368s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on "d:/university\engineering thesis\doc\engineering_thesis.pdf" (18 pages, 401743 bytes).
+Output written on "d:/university\engineering thesis\BIA\doc\engineering_thesis.pdf" (18 pages, 401754 bytes).
 PDF statistics:
  569 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
