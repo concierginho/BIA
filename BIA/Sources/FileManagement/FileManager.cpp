@@ -4,6 +4,7 @@
 #include <regex>
 
 #include "FileManager.h"
+#include "../Experiment/ExperimentManager.h"
 
 namespace BIA
 {
@@ -23,6 +24,11 @@ namespace BIA
       FileManager::~FileManager()
       {
          _logger = nullptr;
+      }
+
+      Experiment::ExperimentManager* FileManager::GetExperimentManager()
+      {
+         return _experimentManager; 
       }
 
       void FileManager::InitializeComponents()

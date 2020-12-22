@@ -9,6 +9,10 @@
 
 namespace BIA
 {
+   namespace Experiment
+   {
+      class ExperimentManager;
+   }
    namespace FileManagement
    {
       class FileManager
@@ -30,9 +34,12 @@ namespace BIA
          void InitializeComponents();
 
          Logger::ILogger* _logger;
+         Experiment::ExperimentManager* _experimentManager;
       public:
          std::string& GetRootPath() const;
          void SetRootPath(std::string& rootPath);
+
+         Experiment::ExperimentManager* GetExperimentManager();
 
          FileManager(std::string&, Logger::ILogger*);
          ~FileManager();
