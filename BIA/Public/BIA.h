@@ -24,8 +24,9 @@ namespace BIA
 
       void InitializeComponents();
    public:
+      void PrepareProcess();
+
       std::string& GetRootPath() const;
-      void SetRootPath(std::string& rootPath);
       FileManagement::FileManager* GetFileManager() const;
       Experiment::ExperimentManager* GetExperimentManager() const;
 

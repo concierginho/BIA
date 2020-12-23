@@ -18,6 +18,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
    hPrevInstance;
 
    auto bia = new BIA::BIA("D:\\university\\engineering thesis\\obrazy-komora-prom-przeplywu");
+   bia->PrepareProcess();
    auto mainWindow = gcnew MainWindow();
    auto mainWindowVM = gcnew MainWindowVM();
    mainWindow->DataContext = mainWindowVM;
@@ -35,6 +36,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 int main()
 {
    auto bia = new BIA::BIA("D:\\university\\engineering thesis\\obrazy-komora-prom-przeplywu");
+   bia->PrepareProcess();
    return 0;
 }
 #endif

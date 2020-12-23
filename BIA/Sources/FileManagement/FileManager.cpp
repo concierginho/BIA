@@ -10,15 +10,15 @@ namespace BIA
 {
    namespace FileManagement
    {
-      FileManager::FileManager(std::string& rootPath, Logger::ILogger* logger = nullptr) : _rootPath(rootPath)
+      FileManager::FileManager(const std::string& rootPath, Logger::ILogger* logger = nullptr)
       {
 #ifndef _LOGGING_
          this->_logger = logger = nullptr;
 #else
          this->_logger = logger;
 #endif
+         _rootPath = rootPath;
          InitializeComponents();
-         ScanDirectory();
       }
       
       FileManager::~FileManager()
@@ -28,7 +28,7 @@ namespace BIA
 
       Experiment::ExperimentManager* FileManager::GetExperimentManager()
       {
-         return _experimentManager; 
+         return _experimentManager;
       }
 
       void FileManager::InitializeComponents()
@@ -56,7 +56,7 @@ namespace BIA
                _rootDirectories.push_back(rootItem.path());
             _rootFiles.push_back(rootItem.path());
          }
-         
+
          if (_rootDirectories.size() > 0)
             ScanSubDirectories();
 #ifdef _LOGGING_
@@ -169,12 +169,12 @@ namespace BIA
          }
       }
       
-      std::string& FileManager::GetRootPath() const
+      std::string FileManager::GetRootPath() const
       {
          return _rootPath;
       }
       
-      void FileManager::SetRootPath(std::string& rootPath)
+      void FileManager::SetRootPath(std::string rootPath)
       {
          _rootPath = rootPath;
       }

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ExperimentDirectory.h"
-
 #include <vector>
+
+#include "../FileManagement/ExperimentDirectory.h"
 
 namespace Logger
 {
@@ -16,12 +16,10 @@ namespace BIA
       class ExperimentManager
       {
       private:
+         std::vector<FileManagement::ExperimentDirectory> _experiments;
+
          Logger::ILogger* _logger;
       public:
-         std::vector<std::vector<ExperimentDirectory>> _experiments;
-
-         void AddExperiment(std::vector<ExperimentDirectory>&);
-
          ExperimentManager(Logger::ILogger* logger);
          ~ExperimentManager();
       };

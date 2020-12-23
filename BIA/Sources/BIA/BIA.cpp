@@ -29,16 +29,16 @@ namespace BIA
       _fileManager = new FileManagement::FileManager(_rootPath, logger);
    }
 
+   void BIA::PrepareProcess()
+   {
+      _fileManager->ScanDirectory();
+   }
+
    std::string& BIA::GetRootPath() const
    {
       return _rootPath;
    }
 
-   void BIA::SetRootPath(std::string& rootPath)
-   {
-      _rootPath = rootPath;
-   }
-   
    FileManagement::FileManager* BIA::GetFileManager() const
    {
       return _fileManager;

@@ -13,6 +13,7 @@ namespace BIA
    {
       class ExperimentManager;
    }
+
    namespace FileManagement
    {
       class FileManager
@@ -23,25 +24,26 @@ namespace BIA
          std::regex _verticalAssociation;
          std::regex _horizontalAssociation;
 
-         std::string& _rootPath;
+         std::string _rootPath;
          std::vector<std::filesystem::path> _rootFiles;
          std::vector<std::filesystem::path> _rootDirectories;
 
          void CreateNewDirectory(std::filesystem::path&);
          void MoveItemsToNewDirectory(std::filesystem::path&, std::vector<std::filesystem::path>&);
-         void ScanDirectory();
          void ScanSubDirectories();
          void InitializeComponents();
 
          Logger::ILogger* _logger;
          Experiment::ExperimentManager* _experimentManager;
       public:
-         std::string& GetRootPath() const;
-         void SetRootPath(std::string& rootPath);
+         void ScanDirectory();
+ 
+         std::string GetRootPath() const;
+         void SetRootPath(std::string rootPath);
 
          Experiment::ExperimentManager* GetExperimentManager();
 
-         FileManager(std::string&, Logger::ILogger*);
+         FileManager(const std::string&, Logger::ILogger*);
          ~FileManager();
       };
    }

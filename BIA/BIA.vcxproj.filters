@@ -5,8 +5,10 @@
     <ClCompile Include="Sources\FileManagement\FileManager.cpp" />
     <ClCompile Include="Sources\Logger\ConsoleLogger.cpp" />
     <ClCompile Include="Sources\Logger\FileLogger.cpp" />
-    <ClCompile Include="Sources\Experiment\ExperimentDirectory.cpp" />
     <ClCompile Include="Sources\Experiment\ExperimentManager.cpp" />
+    <ClCompile Include="Sources\FileManagement\SubExperimentDirectory.cpp" />
+    <ClCompile Include="Sources\FileManagement\ExperimentDirectory.cpp" />
+    <ClCompile Include="Sources\Image\Image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Public\BIA.h" />
@@ -15,8 +17,10 @@
     <ClInclude Include="Sources\Logger\ILogger.h" />
     <ClInclude Include="Sources\Logger\ConsoleLogger.h" />
     <ClInclude Include="Sources\Logger\FileLogger.h" />
-    <ClInclude Include="Sources\Experiment\ExperimentDirectory.h" />
     <ClInclude Include="Sources\Experiment\ExperimentManager.h" />
+    <ClInclude Include="Sources\FileManagement\SubExperimentDirectory.h" />
+    <ClInclude Include="Sources\FileManagement\ExperimentDirectory.h" />
+    <ClInclude Include="Sources\Image\Image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
