@@ -46,10 +46,11 @@ namespace BIA
       void FileManager::ScanDirectory()
       {
 #ifdef _LOGGING_
-         std::string msg = "Scanning directory...";
+         std::string msg = "Scanning directory has been started.";
          _logger->Log(msg);
          auto start = std::chrono::steady_clock::now();
 #endif
+
          for (const auto& rootItem : std::filesystem::directory_iterator(_rootPath))
          {
             if (rootItem.is_directory())
@@ -59,10 +60,11 @@ namespace BIA
 
          if (_rootDirectories.size() > 0)
             ScanSubDirectories();
+
 #ifdef _LOGGING_
          auto end = std::chrono::steady_clock::now();
          auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-         msg = "Scanning directories took: " + std::to_string(time) + "ms.";
+         msg = "Scanning directory has ended and took : " + std::to_string(time) + "ms.";
          _logger->Log(msg);
 #endif
       }
