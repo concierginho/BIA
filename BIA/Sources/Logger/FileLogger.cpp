@@ -13,6 +13,5 @@ namespace Logger
 
    FileLogger::~FileLogger()
    {
-
    }
 }

@@ -25,6 +25,6 @@
 \contentsline {subsection}{\numberline {4.4}Omówienie interfejsu}{13}{}%
 \contentsline {subsection}{\numberline {4.5}Listing kodu}{13}{}%
 \contentsline {section}{\numberline {5}Wyniki i dyskusja}{14}{}%
-\contentsline {section}{\numberline {6}Wnioski}{14}{}%
-\contentsline {section}{\numberline {7}Podsumowanie}{15}{}%
-\contentsline {section}{\numberline {8}Bibliografia}{16}{}%
+\contentsline {section}{\numberline {6}Wnioski}{15}{}%
+\contentsline {section}{\numberline {7}Podsumowanie}{16}{}%
+\contentsline {section}{\numberline {8}Bibliografia}{17}{}%

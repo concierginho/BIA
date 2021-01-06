@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.18)  3 JAN 2021 15:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.18)  6 JAN 2021 09:50
 entering extended mode
 **"d:/university/engineering thesis/BIA/doc/engineering_thesis.tex"
 ("d:/university/engineering thesis/BIA/doc/engineering_thesis.tex"
@@ -339,11 +339,7 @@ Overfull \hbox (14.28758pt too wide) in paragraph at lines 58--60
 \tf@toc=\write3
 \openout3 = `engineering_thesis.toc'.
 
- [2] [3] [4] [5]
-
-LaTeX Warning: Citation `digitalimageprocessing' on page 6 undefined on input line 234.
-
-[6]
+ [2] [3] [4] [5] [6]
 <./images//element_strukturalny_1.png, id=35, 150.5625pt x 150.5625pt>
 File: ./images//element_strukturalny_1.png Graphic file (type png)
 <use ./images//element_strukturalny_1.png>
@@ -441,46 +437,42 @@ File: ./images//zamkniecie-morfologiczne-stan-po-erozji.png Graphic file (type p
 <use ./images//zamkniecie-morfologiczne-stan-po-erozji.png>
 Package pdftex.def Info: ./images//zamkniecie-morfologiczne-stan-po-erozji.png  used on input line 459.
 (pdftex.def)             Requested size: 199.16928pt x 114.22536pt.
- [12 <./images//zamkniecie-morfologiczne-stan-poczatkowy.png> <./images//zamkniecie-morfologiczne-stan-po-dylatacji.png> <./images//zamkniecie-morfologiczne-stan-po-erozji.png>] [13] [14] [15]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 497.
+ [12 <./images//zamkniecie-morfologiczne-stan-poczatkowy.png> <./images//zamkniecie-morfologiczne-stan-po-dylatacji.png> <./images//zamkniecie-morfologiczne-stan-po-erozji.png>] [13] [14] [15] [16]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 498.
  (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-Underfull \hbox (badness 3364) in paragraph at lines 494--498
+Underfull \hbox (badness 3364) in paragraph at lines 495--499
 []\T1/cmr/m/n/10 05/12/2020 Mi-cro-soft Docs \T1/cmr/m/it/10 MSBu-ild $\T1/cmtt/m/n/10 https : / / docs . microsoft . com / en-[]us / visualstudio /
  []
 
 
-Underfull \hbox (badness 1253) in paragraph at lines 499--502
+Underfull \hbox (badness 1253) in paragraph at lines 500--503
 []\T1/cmr/m/n/10 30/12/2020 \T1/cmr/m/it/10 Wi-ki-pe-dia $\T1/cmtt/m/n/10 https : / / en . wikipedia . org / wiki / Adhesion# : ~ : text = Adhesion % 20is %
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 511--513
+Underfull \hbox (badness 10000) in paragraph at lines 512--514
 []\T1/cmr/m/it/10 Cyforwe prze-twa-rza-nie ob-ra-zów bi-nar-nych $\T1/cmtt/m/n/10 https : / / pl . wikipedia . org / wiki / Cyfrowe _
  []
 
-[16] ("d:/university\engineering thesis\BIA\doc\engineering_thesis.lof")
+[17] ("d:/university\engineering thesis\BIA\doc\engineering_thesis.lof")
 \tf@lof=\write4
 \openout4 = `engineering_thesis.lof'.
 
- [17] ("d:/university\engineering thesis\BIA\doc\engineering_thesis.aux")
-
-LaTeX Warning: There were undefined references.
-
- ) 
+ [18] ("d:/university\engineering thesis\BIA\doc\engineering_thesis.aux") ) 
 Here is how much of TeX's memory you used:
  6002 strings out of 480236
  95218 string characters out of 2880557
- 408709 words of memory out of 3000000
+ 409709 words of memory out of 3000000
  22469 multiletter control sequences out of 15000+200000
  544111 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,11n,70p,492b,428s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on "d:/university\engineering thesis\BIA\doc\engineering_thesis.pdf" (18 pages, 367215 bytes).
+Output written on "d:/university\engineering thesis\BIA\doc\engineering_thesis.pdf" (19 pages, 367229 bytes).
 PDF statistics:
- 581 PDF objects out of 1000 (max. 8388607)
+ 585 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

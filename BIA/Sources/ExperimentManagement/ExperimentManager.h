@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "../FileManagement/ExperimentDirectory.h"
+#include "ExperimentDirectory.h"
 
 namespace Logger
 {
@@ -11,12 +11,12 @@ namespace Logger
 
 namespace BIA
 {
-   namespace Experiment
+   namespace ExperimentManagement
    {
       class ExperimentManager
       {
       private:
-         std::vector<FileManagement::ExperimentDirectory> _experiments;
+         std::vector<ExperimentDirectory> _experiments;
 
          Logger::ILogger* _logger;
       public:

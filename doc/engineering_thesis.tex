@@ -231,7 +231,7 @@
             Teraz wystarczy zastosować to dla każdego piksela w obrazie wejściowym i naszym obrazem wyjściowym staje się obraz o tym samym rozmiarze
             z zaznaczonym na czarno obszarem, gdzie macierze RGB miały wartości \(czerwony > 150\) i \(zielony > 200\) i \(niebieski < 122\).
             Tak więc, gdy dokonamy już binaryzacji jesteśmy gotowi do kolejnych działań.
-            Takich jak na przykład etykietowanie, erozja, dylatacja, otwarcie, zamkniecie czy innego rodzaju operacje morfologiczne. \cite{digitalimageprocessing}
+            Takich jak na przykład etykietowanie, erozja, dylatacja, otwarcie, zamkniecie czy innego rodzaju operacje morfologiczne. \cite{Digital Image Processing Second Edition}
         }
         \subsection{Element Strukturalny}
         {
@@ -257,7 +257,7 @@
             \includegraphics[width=90px]{element_strukturalny_1.png}
             \caption
             {
-                (\textit{Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem m w środku.
+                (\textit{Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku.
                 Wszystkie piksele elementu strukturalnego posiadają wartość równą 1.
             }
             \label{elst:one}
@@ -349,7 +349,7 @@
             \subfloat[\centering Stan po erozji elementem strukturalnym]{{\includegraphics[width=90px]{po_erozji.png}}}
             \caption
             {
-                (\textit{Opracowanie własne}) Erozja (Czerwonym kolorem zaznaczono piksele, które zmieniły wartości z 1 na 0)
+                (\textit{Opracowanie własne}) Erozja (Fioletowym kolorem zaznaczono punkt centralny elementu strukturalnego, natomiast czerwonym piksele, które zmieniły wartości z 1 na 0).
             }
             \label{erozja}
         \end{figure}
@@ -374,7 +374,7 @@
             \subfloat[\centering Stan po dylatacji elementem strukturalnym]{{\includegraphics[width=90px]{po_dylatacji.png}}}
             \caption
             {
-                (\textit{Opracowanie własne}) Dylatacja (Zielonym kolorem zaznaczono piksele, które zmieniły wartości z 0 na 1)
+                (\textit{Opracowanie własne}) Dylatacja (Fioletowym kolorem zaznaczono punkt centralny elementu strukturalnego, natomiast zielonym piksele, które zmieniły wartości z 0 na 1)
             }
             \label{dylatacja}
         \end{figure}
@@ -419,7 +419,7 @@
             \quad
             Otwarcie morfologiczne - jest równoważne dwom następującym po sobie operacjom na obrazie: erozji, a następnie dylatacji.
             Operacja ta pozwala usunąć małe elementy, tak zwany szum i następnie odbudować te obiekty, które ucierpiały na skutek erozji.
-            Dzięki temu uzyskujemy czysty obraz, pozbawiony drobnego szumu.
+            Dzięki temu uzyskujemy czysty obraz, pozbawiony drobnych obiektów.
             Jak możemy zauważyć na Rysunku \ref{otwarciemorfologiczne}, pojedyncze piksele (nie posiadające sąsiadów z wartością 1 zostały usunięte.
             Następnie reszta obiektów zostaje odbudowana.
         }
@@ -484,6 +484,7 @@
         \subsection{Listing kodu}
     \newpage
     \section{Wyniki i dyskusja}
+    \newpage
     \section{Wnioski}
     \newpage
     \section{Podsumowanie}

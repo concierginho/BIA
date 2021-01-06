@@ -3,7 +3,7 @@
 
 namespace BIA
 {
-   namespace Experiment
+   namespace ExperimentManagement
    {
       ExperimentManager::ExperimentManager(Logger::ILogger* logger)
       {

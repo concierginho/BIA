@@ -25,6 +25,7 @@ namespace BIA
          std::regex _horizontalAssociation;
 
          std::string _rootPath;
+         std::string _logPath;
          std::vector<std::filesystem::path> _rootFiles;
          std::vector<std::filesystem::path> _rootDirectories;
 
@@ -32,14 +33,18 @@ namespace BIA
          void MoveItemsToNewDirectory(std::filesystem::path&, std::vector<std::filesystem::path>&);
          void ScanSubDirectories();
          void InitializeComponents();
+         void CreateLogDirectory();
 
-         Logger::ILogger* _logger;
-         Experiment::ExperimentManager* _experimentManager;
+         Logger::ILogger* _logger = nullptr;
+         Experiment::ExperimentManager* _experimentManager = nullptr;
       public:
          void ScanDirectory();
  
          std::string GetRootPath() const;
          void SetRootPath(std::string rootPath);
+
+         std::string GetLogPath() const;
+         void SetLogPath(std::string logPath);
 
          Experiment::ExperimentManager* GetExperimentManager();
 

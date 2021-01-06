@@ -35,26 +35,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Image\Image.cpp" />
-    <ClCompile Include="Sources\FileManagement\ExperimentDirectory.cpp" />
-    <ClCompile Include="Sources\Experiment\ExperimentManager.cpp" />
+    <ClCompile Include="Sources\ExperimentManagement\ExperimentDirectory.cpp" />
+    <ClCompile Include="Sources\ExperimentManagement\ExperimentManager.cpp" />
     <ClCompile Include="Sources\Logger\ConsoleLogger.cpp" />
     <ClCompile Include="Sources\Logger\FileLogger.cpp" />
     <ClCompile Include="Sources\FileManagement\FileManager.cpp" />
     <ClCompile Include="Sources\BIA\BIA.cpp" />
-    <ClCompile Include="Sources\FileManagement\SubExperimentDirectory.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\Image\Image.h" />
-    <ClInclude Include="Sources\FileManagement\ExperimentDirectory.h" />
-    <ClInclude Include="Sources\Experiment\ExperimentManager.h" />
+    <ClInclude Include="Sources\ExperimentManagement\ExperimentDirectory.h" />
+    <ClInclude Include="Sources\ExperimentManagement\ExperimentManager.h" />
     <ClInclude Include="Sources\Logger\ConsoleLogger.h" />
     <ClInclude Include="Sources\Logger\FileLogger.h" />
     <ClInclude Include="Sources\FileManagement\FileManager.h" />
     <ClInclude Include="Public\BIA.h" />
     <ClInclude Include="Sources\Keys.h" />
     <ClInclude Include="Sources\Logger\ILogger.h" />
-    <ClInclude Include="Sources\FileManagement\SubExperimentDirectory.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

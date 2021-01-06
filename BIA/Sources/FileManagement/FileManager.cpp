@@ -4,7 +4,6 @@
 #include <regex>
 
 #include "FileManager.h"
-#include "../Experiment/ExperimentManager.h"
 
 namespace BIA
 {
@@ -24,6 +23,7 @@ namespace BIA
       FileManager::~FileManager()
       {
          _logger = nullptr;
+         _experimentManager = nullptr;
       }
 
       Experiment::ExperimentManager* FileManager::GetExperimentManager()
@@ -37,6 +37,13 @@ namespace BIA
          _hasHorizontalPattern = std::regex("(.*horizontal$)", std::regex_constants::icase);
          _verticalAssociation = std::regex("(.*vertical.*)", std::regex_constants::icase);
          _horizontalAssociation = std::regex("(.*horizontal.*)", std::regex_constants::icase);
+         _logPath = std::string(_rootPath + "\\" + "log");
+      }
+
+      void FileManager::CreateLogDirectory()
+      {
+         auto logPath = std::filesystem::path(_logPath);
+         CreateNewDirectory(logPath);
       }
 
       /// <summary>
@@ -50,16 +57,17 @@ namespace BIA
          _logger->Log(msg);
          auto start = std::chrono::steady_clock::now();
 #endif
-
          for (const auto& rootItem : std::filesystem::directory_iterator(_rootPath))
          {
-            if (rootItem.is_directory())
+            if (rootItem.is_directory() && rootItem.path().filename() != "log")
                _rootDirectories.push_back(rootItem.path());
             _rootFiles.push_back(rootItem.path());
          }
 
          if (_rootDirectories.size() > 0)
             ScanSubDirectories();
+
+         CreateLogDirectory();
 
 #ifdef _LOGGING_
          auto end = std::chrono::steady_clock::now();
@@ -152,6 +160,9 @@ namespace BIA
          }
       }
 
+      /// <summary>
+      /// Funkcja tworzy nowy folder we wskazanej lokalizacji.
+      /// </summary>
       void FileManager::CreateNewDirectory(std::filesystem::path& path)
       {
          try
@@ -179,6 +190,16 @@ namespace BIA
       void FileManager::SetRootPath(std::string rootPath)
       {
          _rootPath = rootPath;
+      }
+
+      std::string FileManager::GetLogPath() const
+      {
+         return _logPath;
+      }
+
+      void FileManager::SetLogPath(std::string logPath)
+      {
+         _logPath = logPath;
       }
    }
 }

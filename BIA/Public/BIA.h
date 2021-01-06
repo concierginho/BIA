@@ -10,7 +10,7 @@ namespace BIA
       class FileManager;
    }
    
-   namespace Experiment
+   namespace ExperimentManagement
    {
       class ExperimentManager;
    }
@@ -20,7 +20,7 @@ namespace BIA
    private:
       std::string& _rootPath;
       FileManagement::FileManager* _fileManager;
-      Experiment::ExperimentManager* _experimentManager;
+      ExperimentManagement::ExperimentManager* _experimentManager;
 
       void InitializeComponents();
    public:
@@ -28,7 +28,7 @@ namespace BIA
 
       std::string& GetRootPath() const;
       FileManagement::FileManager* GetFileManager() const;
-      Experiment::ExperimentManager* GetExperimentManager() const;
+      ExperimentManagement::ExperimentManager* GetExperimentManager() const;
 
       BIA(std::string rootPath);
       ~BIA();
