@@ -39,13 +39,15 @@ namespace BIA
 #endif
       _fileManager = new FileManagement::FileManager(_rootPath, _logger);
       _experimentManager = new ExperimentManagement::ExperimentManager(_fileManager, _logger);
-      _imageManager = new ImageManagement::ImageManager(_logger);
+      _imageManager = new ImageManagement::ImageManager(_fileManager, _experimentManager, _logger);
    }
 
    void BIA::PrepareProcess()
    {
       _fileManager->ScanDirectory();
       _experimentManager->PrepareExperiments();
+      _imageManager->ScanImages();
+      _imageManager->PrepareImageDirectories();
    }
 
    std::string& BIA::GetRootPath() const

@@ -22,6 +22,8 @@ namespace BIA
          ~ExperimentManager();
 
          void PrepareExperiments();
+         void PopulateExperimentsContnent();
+         const std::vector<ExperimentDirectory>& GetExperiments() const;
       };
    }
 }

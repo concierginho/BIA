@@ -12,12 +12,21 @@ namespace BIA
       {
       private:
          std::filesystem::path _path;
+         std::vector<std::filesystem::path> _horizontalDirectoryFiles;
+         std::vector<std::filesystem::path> _verticalDirectoryFiles;
       public:
+         void AddHorizontalDirectoryContent(std::filesystem::path&);
+         void AddVerticalDirectoryContent(std::filesystem::path&);
+
          std::filesystem::path GetPath() const;
          std::filesystem::path GetVerticalDirectoryPath() const;
          std::filesystem::path GetHorizontalDirectoryPath() const;
+         std::filesystem::path GetVerticalSettingsPath() const;
+         std::filesystem::path GetHorizontalSettingsPath() const;
          std::filesystem::path GetVerticalExperimentPathById(int) const;
          std::filesystem::path GetHorizontalExperimentPathById(int) const;
+         std::filesystem::path GetVerticalExperimentSettingsPathById(int) const;
+         std::filesystem::path GetHorizontalExperimentSettingsPathById(int) const;
 
          explicit ExperimentDirectory(std::filesystem::path);
          ~ExperimentDirectory();

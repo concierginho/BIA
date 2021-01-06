@@ -35,6 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\ImageManagement\ImageManager.cpp" />
     <ClCompile Include="Sources\ExperimentManagement\ExperimentDirectory.cpp" />
     <ClCompile Include="Sources\ExperimentManagement\ExperimentManager.cpp" />
     <ClCompile Include="Sources\Logger\ConsoleLogger.cpp" />
@@ -43,6 +44,7 @@
     <ClCompile Include="Sources\BIA\BIA.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\ImageManagement\ImageManager.h" />
     <ClInclude Include="Sources\ExperimentManagement\ExperimentDirectory.h" />
     <ClInclude Include="Sources\ExperimentManagement\ExperimentManager.h" />
     <ClInclude Include="Sources\Logger\ConsoleLogger.h" />
