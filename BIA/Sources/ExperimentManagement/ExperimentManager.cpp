@@ -6,7 +6,7 @@ namespace BIA
 {
    namespace ExperimentManagement
    {
-      ExperimentManager::ExperimentManager(Logger::ILogger* logger, FileManagement::FileManager* fileManager)
+      ExperimentManager::ExperimentManager(FileManagement::FileManager* fileManager, Logging::ILogger* logger)
       {
          _logger = logger;
          _fileManager = fileManager;
@@ -14,6 +14,8 @@ namespace BIA
 
       ExperimentManager::~ExperimentManager()
       {
+         _logger = nullptr;
+         _fileManager = nullptr;
       }
 
       void ExperimentManager::PrepareExperiments()

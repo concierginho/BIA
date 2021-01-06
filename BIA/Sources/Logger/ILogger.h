@@ -2,11 +2,15 @@
 
 #include <string>
 
-namespace Logger
+namespace BIA
 {
-   class ILogger
+   namespace Logging
    {
-   public:
-      virtual void Log(const std::stringstream&) = 0;
-   };
+      class ILogger
+      {
+      public:
+         virtual void Log(const std::stringstream&) = 0;
+         virtual ~ILogger() {};
+      };
+   }
 }

@@ -3,24 +3,20 @@
 
 #include <string>
 
+#include "../Sources/FileManagement/FileManager.h"
+#include "../Sources/ExperimentManagement/ExperimentManager.h"
+#include "../Sources/ImageManagement/ImageManager.h"
+
 namespace BIA
 {
-   namespace FileManagement
-   {
-      class FileManager;
-   }
-   
-   namespace ExperimentManagement
-   {
-      class ExperimentManager;
-   }
-
    class BIA
    {
    private:
       std::string& _rootPath;
+      Logging::ILogger* _logger;
       FileManagement::FileManager* _fileManager;
       ExperimentManagement::ExperimentManager* _experimentManager;
+      ImageManagement::ImageManager* _imageManager;
 
       void InitializeComponents();
    public:
@@ -29,6 +25,7 @@ namespace BIA
       std::string& GetRootPath() const;
       FileManagement::FileManager* GetFileManager() const;
       ExperimentManagement::ExperimentManager* GetExperimentManager() const;
+      ImageManagement::ImageManager* GetImageManager() const;
 
       BIA(std::string rootPath);
       ~BIA();

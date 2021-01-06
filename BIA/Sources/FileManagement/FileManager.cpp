@@ -10,7 +10,7 @@ namespace BIA
 {
    namespace FileManagement
    {
-      FileManager::FileManager(const std::string& rootPath, Logger::ILogger* logger = nullptr)
+      FileManager::FileManager(const std::string& rootPath, Logging::ILogger* logger = nullptr)
       {
 #ifndef _LOGGING_
          this->_logger = logger = nullptr;

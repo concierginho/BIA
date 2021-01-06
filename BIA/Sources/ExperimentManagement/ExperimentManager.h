@@ -15,10 +15,10 @@ namespace BIA
       private:
          std::vector<ExperimentDirectory> _experiments;
 
-         Logger::ILogger* _logger;
-         FileManagement::FileManager* _fileManager;
+         Logging::ILogger* _logger = nullptr;
+         FileManagement::FileManager* _fileManager = nullptr;
       public:
-         ExperimentManager(Logger::ILogger*, FileManagement::FileManager*);
+         ExperimentManager(FileManagement::FileManager*, Logging::ILogger*);
          ~ExperimentManager();
 
          void PrepareExperiments();

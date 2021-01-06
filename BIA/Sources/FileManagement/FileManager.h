@@ -30,7 +30,7 @@ namespace BIA
          void InitializeComponents();
          void CreateLogDirectory();
 
-         Logger::ILogger* _logger = nullptr;
+         Logging::ILogger* _logger = nullptr;
       public:
          void ScanDirectory();
  
@@ -43,7 +43,7 @@ namespace BIA
          const std::vector<std::filesystem::path>& GetExperimentDirectories() const;
          const std::vector<std::filesystem::path>& GetRootFiles() const;
 
-         FileManager(const std::string&, Logger::ILogger*);
+         FileManager(const std::string&, Logging::ILogger*);
          ~FileManager();
       };
    }

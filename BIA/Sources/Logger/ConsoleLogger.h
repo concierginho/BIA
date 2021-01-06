@@ -2,13 +2,16 @@
 
 #include "ILogger.h"
 
-namespace Logger
+namespace BIA
 {
-   class ConsoleLogger : public ILogger
+   namespace Logging
    {
-   public:
-       void Log(const std::stringstream&) override;
-       ConsoleLogger();
-       ~ConsoleLogger();
-   };
+      class ConsoleLogger : public ILogger
+      {
+      public:
+         void Log(const std::stringstream&) override;
+         ConsoleLogger();
+         virtual ~ConsoleLogger();
+      };
+   }
 }

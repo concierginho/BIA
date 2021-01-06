@@ -37,6 +37,7 @@ int main()
 {
    auto bia = new BIA::BIA("D:\\university\\engineering thesis\\obrazy-komora-prom-przeplywu");
    bia->PrepareProcess();
+   delete bia;
    return 0;
 }
 #endif
