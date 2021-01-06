@@ -2,6 +2,7 @@
 #include <iostream>
 #include <chrono>
 #include <regex>
+#include <sstream>
 
 #include "FileManager.h"
 
@@ -47,7 +48,8 @@ namespace BIA
       void FileManager::ScanDirectory()
       {
 #ifdef _LOGGING_
-         std::string msg = "Scanning directory has been started.";
+         std::stringstream msg;
+         msg << "Scanning directory has been started.";
          _logger->Log(msg);
          auto start = std::chrono::steady_clock::now();
 #endif
@@ -64,9 +66,10 @@ namespace BIA
          CreateLogDirectory();
 
 #ifdef _LOGGING_
+         msg.clear();
          auto end = std::chrono::steady_clock::now();
          auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-         msg = "Scanning directory has ended and took : " + std::to_string(time) + "ms.";
+         msg << "Scanning directory has ended and took : " << time << "ms.";
          _logger->Log(msg);
 #endif
       }
@@ -130,6 +133,9 @@ namespace BIA
       /// </summary>
       void FileManager::MoveItemsToNewDirectory(std::filesystem::path& newDirectory, std::vector<std::filesystem::path>& source)
       {
+#ifdef _LOGGING_
+         std::stringstream msg;
+#endif
          try
          {
             for (const auto& path : source)
@@ -139,7 +145,8 @@ namespace BIA
                std::filesystem::path newPath(newDirectory.string() + "\\" + filename);
                std::filesystem::rename(oldPath, newPath);
 #ifdef _LOGGING_
-               std::string msg = "Moved " + oldPath.string() + " to " + newPath.string() + ".";
+               msg.clear();
+               msg << "Moved " << oldPath.string()  << " to " << newPath.string() << ".";
                _logger->Log(msg);
 #endif 
             }
@@ -147,9 +154,9 @@ namespace BIA
          catch (std::exception e)
          {
 #ifdef _LOGGING_
-            std::string msg0 = "Exception thrown: ";
-            std::string msg1 = e.what();
-            _logger->Log(msg0 + msg1);
+            msg.clear();
+            msg << "Exception thrown: " << e.what();
+            _logger->Log(msg);
 #endif
          }
       }
@@ -159,6 +166,9 @@ namespace BIA
       /// </summary>
       void FileManager::CreateNewDirectory(std::filesystem::path& path)
       {
+#ifdef _LOGGING_
+         std::stringstream msg;
+#endif
          if (std::filesystem::exists(path))
             return;
 
@@ -166,15 +176,17 @@ namespace BIA
          {
             std::filesystem::create_directories(path);
 #ifdef _LOGGING_
-            _logger->Log("Created new directory: " + path.string());
+            msg.clear();
+            msg << "Created new directory" << path.string();
+            _logger->Log(msg);
 #endif 
          }
          catch (std::exception e)
          {
 #ifdef _LOGGING_
-            std::string msg0 = "Exception thrown: ";
-            std::string msg1 = e.what();
-            _logger->Log(msg0 + msg1);
+            msg.clear();
+            msg << "Exception thrown: " << e.what();
+            _logger->Log(msg);
 #endif
          }
       }

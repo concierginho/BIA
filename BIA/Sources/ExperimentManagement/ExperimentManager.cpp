@@ -1,5 +1,7 @@
 #include "ExperimentManager.h"
 
+#include <sstream>
+
 namespace BIA
 {
    namespace ExperimentManagement
@@ -17,7 +19,8 @@ namespace BIA
       void ExperimentManager::PrepareExperiments()
       {
 #ifdef _LOGGING_
-         std::string msg = "Preparing experiments has been started.";
+         std::stringstream msg;
+         msg << "Preparing experiments has been started.";
          _logger->Log(msg);
          auto start = std::chrono::steady_clock::now();
 #endif
@@ -29,9 +32,10 @@ namespace BIA
          }
 
 #ifdef _LOGGING_
+         msg.clear();
          auto end = std::chrono::steady_clock::now();
          auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-         msg = "Preparing experiments has ended and took : " + std::to_string(time) + "ms.";
+         msg << "Preparing experiments has ended and took : " << time << "ms.";
          _logger->Log(msg);
 #endif
       }
