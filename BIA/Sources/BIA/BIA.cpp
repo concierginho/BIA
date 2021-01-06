@@ -25,13 +25,14 @@ namespace BIA
       logger = new Logger::ConsoleLogger();
    #endif
 #endif
-      _experimentManager = new ExperimentManagement::ExperimentManager(logger);
       _fileManager = new FileManagement::FileManager(_rootPath, logger);
+      _experimentManager = new ExperimentManagement::ExperimentManager(logger, _fileManager);
    }
 
    void BIA::PrepareProcess()
    {
       _fileManager->ScanDirectory();
+      _experimentManager->PrepareExperiments();
    }
 
    std::string& BIA::GetRootPath() const

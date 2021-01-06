@@ -3,11 +3,8 @@
 #include <vector>
 
 #include "ExperimentDirectory.h"
-
-namespace Logger
-{
-   class ILogger;
-}
+#include "../Logger/ILogger.h"
+#include "../FileManagement/FileManager.h"
 
 namespace BIA
 {
@@ -19,9 +16,12 @@ namespace BIA
          std::vector<ExperimentDirectory> _experiments;
 
          Logger::ILogger* _logger;
+         FileManagement::FileManager* _fileManager;
       public:
-         ExperimentManager(Logger::ILogger* logger);
+         ExperimentManager(Logger::ILogger*, FileManagement::FileManager*);
          ~ExperimentManager();
+
+         void PrepareExperiments();
       };
    }
 }

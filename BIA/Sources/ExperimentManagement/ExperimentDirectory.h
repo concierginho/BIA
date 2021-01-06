@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <string>
+#include <filesystem>
 
 namespace BIA
 {
@@ -10,19 +11,15 @@ namespace BIA
       class ExperimentDirectory
       {
       private:
-         std::string _verticalDirectoryPath;
-         std::string _horizontalDirectoryPath;
+         std::filesystem::path _path;
       public:
-         void SetVerticalDirectoryPath(std::string);
-         std::string GetVerticalDirectoryPath() const;
+         std::filesystem::path GetPath() const;
+         std::filesystem::path GetVerticalDirectoryPath() const;
+         std::filesystem::path GetHorizontalDirectoryPath() const;
+         std::filesystem::path GetVerticalExperimentPathById(int) const;
+         std::filesystem::path GetHorizontalExperimentPathById(int) const;
 
-         void SetHorizontalDirectoryPath(std::string);
-         std::string GetHorizontalDirectoryPath() const;
-
-         std::string GetVerticalExperimentById(int) const;
-         std::string GetHorizontalExperimentById(int) const;
-
-         ExperimentDirectory();
+         explicit ExperimentDirectory(std::filesystem::path);
          ~ExperimentDirectory();
       };
    }

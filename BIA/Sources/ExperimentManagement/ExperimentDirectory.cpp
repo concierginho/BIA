@@ -1,44 +1,51 @@
 #include "ExperimentDirectory.h"
 
+#include <sstream>
+
 namespace BIA
 {
    namespace ExperimentManagement
    {
-      ExperimentDirectory::ExperimentDirectory()
+      ExperimentDirectory::ExperimentDirectory(std::filesystem::path path)
       {
+         _path = path;
       }
 
       ExperimentDirectory::~ExperimentDirectory()
       {
       }
 
-      void ExperimentDirectory::SetVerticalDirectoryPath(std::string verticalDirectoryPath)
+      std::filesystem::path ExperimentDirectory::GetPath() const
       {
-         _verticalDirectoryPath = verticalDirectoryPath;
+         return _path;
       }
 
-      std::string ExperimentDirectory::GetVerticalDirectoryPath() const
+      std::filesystem::path ExperimentDirectory::GetVerticalDirectoryPath() const
       {
-         return _verticalDirectoryPath;
+         std::stringstream verticalDirectory;
+         verticalDirectory << _path << "\\Horizontal";
+         return std::filesystem::path(verticalDirectory.str());
       }
 
-      void ExperimentDirectory::SetHorizontalDirectoryPath(std::string horizontalDirectoryPath)
+      std::filesystem::path ExperimentDirectory::GetHorizontalDirectoryPath() const
       {
-         _horizontalDirectoryPath = horizontalDirectoryPath;
+         std::stringstream horizontalDirectory;
+         horizontalDirectory << _path << "\\Vertical";
+         return std::filesystem::path(horizontalDirectory.str());
       }
 
-      std::string ExperimentDirectory::GetHorizontalExperimentById(int id) const
+      std::filesystem::path ExperimentDirectory::GetHorizontalExperimentPathById(int id) const
       {
-         std::string experimentPath = _horizontalDirectoryPath;
-         experimentPath += "\\" + id;
-         return experimentPath;
+         std::stringstream horizontalExperiment;
+         horizontalExperiment << GetHorizontalDirectoryPath() << "\\" << id;
+         return std::filesystem::path(horizontalExperiment.str());
       }
 
-      std::string ExperimentDirectory::GetVerticalExperimentById(int id) const
+      std::filesystem::path ExperimentDirectory::GetVerticalExperimentPathById(int id) const
       {
-         std::string experimentPath = _verticalDirectoryPath;
-         experimentPath += "\\" + id;
-         return experimentPath;
+         std::stringstream verticalExperiment;
+         verticalExperiment << GetVerticalDirectoryPath() << "\\" << id;
+         return std::filesystem::path(verticalExperiment.str());
       }
    }
 }

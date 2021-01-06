@@ -23,12 +23,6 @@ namespace BIA
       FileManager::~FileManager()
       {
          _logger = nullptr;
-         _experimentManager = nullptr;
-      }
-
-      Experiment::ExperimentManager* FileManager::GetExperimentManager()
-      {
-         return _experimentManager;
       }
 
       void FileManager::InitializeComponents()
@@ -60,11 +54,11 @@ namespace BIA
          for (const auto& rootItem : std::filesystem::directory_iterator(_rootPath))
          {
             if (rootItem.is_directory() && rootItem.path().filename() != "log")
-               _rootDirectories.push_back(rootItem.path());
+               _experimentDirectories.push_back(rootItem.path());
             _rootFiles.push_back(rootItem.path());
          }
 
-         if (_rootDirectories.size() > 0)
+         if (_experimentDirectories.size() > 0)
             ScanSubDirectories();
 
          CreateLogDirectory();
@@ -84,7 +78,7 @@ namespace BIA
       /// </summary>
       void FileManager::ScanSubDirectories()
       {
-         for (auto const& folder : _rootDirectories)
+         for (auto const& folder : _experimentDirectories)
          {
             bool hasVertical = false;
             bool hasHorizontal = false;
@@ -165,6 +159,9 @@ namespace BIA
       /// </summary>
       void FileManager::CreateNewDirectory(std::filesystem::path& path)
       {
+         if (std::filesystem::exists(path))
+            return;
+
          try
          {
             std::filesystem::create_directories(path);
@@ -200,6 +197,16 @@ namespace BIA
       void FileManager::SetLogPath(std::string logPath)
       {
          _logPath = logPath;
+      }
+
+      const std::vector<std::filesystem::path>& FileManager::GetExperimentDirectories() const
+      {
+         return _experimentDirectories;
+      }
+
+      const std::vector<std::filesystem::path>& FileManager::GetRootFiles() const
+      {
+         return _rootFiles;
       }
    }
 }

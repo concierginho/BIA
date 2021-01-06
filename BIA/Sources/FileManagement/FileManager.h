@@ -9,11 +9,6 @@
 
 namespace BIA
 {
-   namespace Experiment
-   {
-      class ExperimentManager;
-   }
-
    namespace FileManagement
    {
       class FileManager
@@ -27,7 +22,7 @@ namespace BIA
          std::string _rootPath;
          std::string _logPath;
          std::vector<std::filesystem::path> _rootFiles;
-         std::vector<std::filesystem::path> _rootDirectories;
+         std::vector<std::filesystem::path> _experimentDirectories;
 
          void CreateNewDirectory(std::filesystem::path&);
          void MoveItemsToNewDirectory(std::filesystem::path&, std::vector<std::filesystem::path>&);
@@ -36,17 +31,17 @@ namespace BIA
          void CreateLogDirectory();
 
          Logger::ILogger* _logger = nullptr;
-         Experiment::ExperimentManager* _experimentManager = nullptr;
       public:
          void ScanDirectory();
  
          std::string GetRootPath() const;
-         void SetRootPath(std::string rootPath);
+         void SetRootPath(std::string);
 
          std::string GetLogPath() const;
-         void SetLogPath(std::string logPath);
+         void SetLogPath(std::string);
 
-         Experiment::ExperimentManager* GetExperimentManager();
+         const std::vector<std::filesystem::path>& GetExperimentDirectories() const;
+         const std::vector<std::filesystem::path>& GetRootFiles() const;
 
          FileManager(const std::string&, Logger::ILogger*);
          ~FileManager();

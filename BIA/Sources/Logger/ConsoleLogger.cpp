@@ -15,10 +15,17 @@ namespace Logger
 
       localtime_s(&timeinfo, &in_time_t);
 
-      printf("%d.%d.%d -- %d.%d.%d: ", timeinfo.tm_mday, timeinfo.tm_mon + 1,
-         1900 + timeinfo.tm_year, timeinfo.tm_hour, timeinfo.tm_min,
-         timeinfo.tm_sec);
-      std::cout << message << std::endl;
+      std::stringstream _msg;
+
+      _msg << std::setw(2) << std::setfill('0') << timeinfo.tm_mday << "."
+         << std::setw(2) << std::setfill('0') << timeinfo.tm_mon + 1 << "."
+         << 1900 + timeinfo.tm_year << " -- "
+         << std::setw(2) << std::setfill('0') << timeinfo.tm_hour << ":"
+         << std::setw(2) << std::setfill('0') << timeinfo.tm_min << ":"
+         << std::setw(2) << std::setfill('0') << timeinfo.tm_sec << " -- "
+         << message;
+
+      std::cout << _msg.str() << std::endl;
    }
 
    ConsoleLogger::ConsoleLogger()
