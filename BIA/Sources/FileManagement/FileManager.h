@@ -5,10 +5,13 @@
 #include <filesystem>
 #include <regex>
 
-#include "../Logger/ILogger.h"
-
 namespace BIA
 {
+   namespace Management
+   {
+      class Manager;
+   }
+
    namespace FileManagement
    {
       class FileManager
@@ -18,6 +21,7 @@ namespace BIA
          std::regex _hasHorizontalPattern;
          std::regex _verticalAssociation;
          std::regex _horizontalAssociation;
+         std::regex _endingWithTif;
 
          std::string _rootPath;
          std::string _logPath;
@@ -30,6 +34,7 @@ namespace BIA
          void InitializeComponents();
          void CreateLogDirectory();
 
+         Management::Manager* _manager = nullptr;
          Logging::ILogger* _logger = nullptr;
       public:
          void ScanDirectory();
@@ -43,7 +48,7 @@ namespace BIA
          const std::vector<std::filesystem::path>& GetExperimentDirectories() const;
          const std::vector<std::filesystem::path>& GetRootFiles() const;
 
-         FileManager(const std::string&, Logging::ILogger*);
+         FileManager(Management::Manager*, const std::string&);
          ~FileManager();
       };
    }

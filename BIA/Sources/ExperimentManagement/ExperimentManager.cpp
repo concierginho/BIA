@@ -1,32 +1,32 @@
-#include "ExperimentManager.h"
-
 #include <sstream>
+
+#include "../Common/Manager.h"
 
 namespace BIA
 {
    namespace ExperimentManagement
    {
-      ExperimentManager::ExperimentManager(FileManagement::FileManager* fileManager, Logging::ILogger* logger)
+      ExperimentManager::ExperimentManager(Management::Manager* manager)
       {
-         _logger = logger;
-         _fileManager = fileManager;
+         _manager = manager;
+         _logger = _manager->GetLogger();
       }
 
       ExperimentManager::~ExperimentManager()
       {
+         _manager = nullptr;
          _logger = nullptr;
-         _fileManager = nullptr;
       }
 
-      void ExperimentManager::PrepareExperiments()
+      void ExperimentManager::PrepareExperimentDirectories()
       {
 #ifdef _LOGGING_
          std::stringstream msg;
-         msg << "Preparing experiments has been started.";
+         msg << "Preparing experiments directories has been started.";
          _logger->Log(msg);
          auto start = std::chrono::steady_clock::now();
 #endif
-         auto experimentDirectories = _fileManager->GetExperimentDirectories();
+         auto experimentDirectories = _manager->GetFileManager()->GetExperimentDirectories();
 
          for (const auto& experiment : experimentDirectories)
          {
@@ -39,7 +39,7 @@ namespace BIA
          msg.clear();
          auto end = std::chrono::steady_clock::now();
          auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-         msg << "Preparing experiments has ended and took : " << time << "ms.";
+         msg << "Preparing experiments directories has ended and took : " << time << "ms.";
          _logger->Log(msg);
 #endif
       }

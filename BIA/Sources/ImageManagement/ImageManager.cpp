@@ -1,26 +1,24 @@
-#include "ImageManager.h"
+#include "../Common/Manager.h"
 
 namespace BIA
 {
    namespace ImageManagement
    {
-      ImageManager::ImageManager(FileManagement::FileManager* fileManager, ExperimentManagement::ExperimentManager* experimentManager, Logging::ILogger* logger)
+      ImageManager::ImageManager(Management::Manager* manager)
       {
-         _fileManager = fileManager;
-         _experimentManager = experimentManager;
-         _logger = logger;
+         _manager = manager;
+         _logger = _manager->GetLogger();
       }
 
       ImageManager::~ImageManager()
       {
-         _fileManager = nullptr;
-         _experimentManager = nullptr;
+         _manager = nullptr;
          _logger = nullptr;
       }
       
       void ImageManager::PrepareImageDirectories()
       {
-         auto experiments = _experimentManager->GetExperiments();
+         auto experiments = _manager->GetExperimentManager()->GetExperiments();
 
          for (const auto& experiment : experiments)
          {

@@ -14,6 +14,9 @@ namespace BIA
          std::filesystem::path _path;
          std::vector<std::filesystem::path> _horizontalDirectoryFiles;
          std::vector<std::filesystem::path> _verticalDirectoryFiles;
+
+         std::filesystem::path _horizontalImage;
+         std::filesystem::path _verticalImage;
       public:
          void AddHorizontalDirectoryContent(std::filesystem::path&);
          void AddVerticalDirectoryContent(std::filesystem::path&);

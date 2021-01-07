@@ -3,11 +3,13 @@
 #include <vector>
 
 #include "ExperimentDirectory.h"
-#include "../Logger/ILogger.h"
-#include "../FileManagement/FileManager.h"
 
 namespace BIA
 {
+   namespace Management
+   {
+      class Manager;
+   }
    namespace ExperimentManagement
    {
       class ExperimentManager
@@ -15,15 +17,15 @@ namespace BIA
       private:
          std::vector<ExperimentDirectory> _experiments;
 
+         Management::Manager* _manager = nullptr;
          Logging::ILogger* _logger = nullptr;
-         FileManagement::FileManager* _fileManager = nullptr;
       public:
-         ExperimentManager(FileManagement::FileManager*, Logging::ILogger*);
-         ~ExperimentManager();
-
-         void PrepareExperiments();
+         void PrepareExperimentDirectories();
          void PopulateExperimentsContnent();
          const std::vector<ExperimentDirectory>& GetExperiments() const;
+
+         ExperimentManager(Management::Manager*);
+         ~ExperimentManager();
       };
    }
 }

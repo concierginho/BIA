@@ -1,8 +1,7 @@
 #include "../../Public/BIA.h"
-#include "../ExperimentManagement/ExperimentManager.h"
-#include "../FileManagement/FileManager.h"
-#include "../Logger/ConsoleLogger.h"
-#include "../Logger/FileLogger.h"
+
+#include "../Logging/ConsoleLogger.h"
+#include "../Logging/FileLogger.h"
 
 #define _FILE_LOGGING_
 
@@ -15,58 +14,37 @@ namespace BIA
 
    BIA::~BIA()
    {
-      delete _logger;
-      _logger = nullptr;
-
-      delete _fileManager;
-      _fileManager = nullptr;
-
-      delete _experimentManager;
-      _experimentManager = nullptr;
-
-      delete _imageManager;
-      _imageManager = nullptr;
+      if (_manager != nullptr)
+         delete _manager;
+      _manager = nullptr;
    }
 
    void BIA::InitializeComponents()
    {
+      _manager = new Management::Manager();
+
 #ifdef _LOGGING_
    #ifdef _FILE_LOGGING_
-      _logger = new Logging::FileLogger(_rootPath);
+      _manager->SetLogger(new Logging::FileLogger(_rootPath));
    #else
-      _logger = new Logging::ConsoleLogger();
+      _manager->SetLogger(new Logging::ConsoleLogger());
    #endif
 #endif
-      _fileManager = new FileManagement::FileManager(_rootPath, _logger);
-      _experimentManager = new ExperimentManagement::ExperimentManager(_fileManager, _logger);
-      _imageManager = new ImageManagement::ImageManager(_fileManager, _experimentManager, _logger);
+      _manager->SetFileManager(new FileManagement::FileManager(_manager, _rootPath));
+      _manager->SetExperimentManager(new ExperimentManagement::ExperimentManager(_manager));
+      _manager->SetImageManager(new ImageManagement::ImageManager(_manager));
    }
 
    void BIA::PrepareProcess()
    {
-      _fileManager->ScanDirectory();
-      _experimentManager->PrepareExperiments();
-      _imageManager->ScanImages();
-      _imageManager->PrepareImageDirectories();
+      _manager->GetFileManager()->ScanDirectory();
+      _manager->GetExperimentManager()->PrepareExperimentDirectories();
+      _manager->GetImageManager()->ScanImages();
+      _manager->GetImageManager()->PrepareImageDirectories();
    }
 
    std::string& BIA::GetRootPath() const
    {
       return _rootPath;
-   }
-
-   FileManagement::FileManager* BIA::GetFileManager() const
-   {
-      return _fileManager;
-   }
-
-   ExperimentManagement::ExperimentManager* BIA::GetExperimentManager() const
-   {
-      return _experimentManager;
-   }
-
-   ImageManagement::ImageManager* BIA::GetImageManager() const
-   {
-      return _imageManager;
    }
 }

@@ -4,20 +4,18 @@
 #include <regex>
 #include <sstream>
 
-#include "FileManager.h"
+#include "../Common/Manager.h"
 
 namespace BIA
 {
    namespace FileManagement
    {
-      FileManager::FileManager(const std::string& rootPath, Logging::ILogger* logger = nullptr)
+      FileManager::FileManager(Management::Manager* manager, const std::string& rootPath)
       {
-#ifndef _LOGGING_
-         this->_logger = logger = nullptr;
-#else
-         this->_logger = logger;
-#endif
+         _manager = manager;
          _rootPath = rootPath;
+         _logger = _manager->GetLogger();
+
          InitializeComponents();
       }
       
@@ -32,6 +30,7 @@ namespace BIA
          _hasHorizontalPattern = std::regex("(.*horizontal$)", std::regex_constants::icase);
          _verticalAssociation = std::regex("(.*vertical.*)", std::regex_constants::icase);
          _horizontalAssociation = std::regex("(.*horizontal.*)", std::regex_constants::icase);
+         _endingWithTif = std::regex("(.*\\.tif$)");
          _logPath = std::string(_rootPath + "\\" + "log");
       }
 
@@ -60,10 +59,10 @@ namespace BIA
             _rootFiles.push_back(rootItem.path());
          }
 
-         if (_experimentDirectories.size() > 0)
-            ScanSubDirectories();
+         //if (_experimentDirectories.size() > 0)
+         //   ScanSubDirectories();
 
-         CreateLogDirectory();
+         //CreateLogDirectory();
 
 #ifdef _LOGGING_
          msg.clear();
