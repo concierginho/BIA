@@ -10,6 +10,7 @@ namespace BIA
       {
       public:
          virtual void Log(const std::stringstream&) = 0;
+         virtual void Prepare() = 0;
          virtual ~ILogger() {};
       };
    }

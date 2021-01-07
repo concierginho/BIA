@@ -4,11 +4,15 @@
 
 namespace BIA
 {
-   namespace ExperimentManagement
+   namespace Models
    {
+      int ExperimentDirectory::NextId = 0;
+
       ExperimentDirectory::ExperimentDirectory(std::filesystem::path path)
       {
          _path = path;
+         ID = NextId;
+         NextId++;
       }
 
       ExperimentDirectory::~ExperimentDirectory()

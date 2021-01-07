@@ -5,21 +5,28 @@
 #include <iostream>
 
 #include "ILogger.h"
-#include "../FileManagement/FileManager.h"
 
 namespace BIA
 {
+   namespace Management
+   {
+      class Manager;
+   }
+
    namespace Logging
    {
       class FileLogger : public ILogger
       {
       private:
-         std::string _rootPath;
-         std::filesystem::path _logPath;
+         std::filesystem::path _rootDirectoryPath;
+         std::filesystem::path _logDirectoryPath;
+         std::filesystem::path _logFilePath;
          std::ofstream _logFile;
       public:
          void Log(const std::stringstream&) override;
-         void SetLogPath(const std::filesystem::path&);
+         void Prepare() override;
+         void SetLogDirectoryPath(const std::filesystem::path&);
+         void CreateLogDirectory();
          void CreateLogFile();
 
          FileLogger(std::string);

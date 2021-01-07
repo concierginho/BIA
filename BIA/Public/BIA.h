@@ -3,21 +3,23 @@
 
 #include <string>
 
-#include "../Sources/Common/Manager.h"
-
 namespace BIA
 {
+   namespace Management
+   {
+      class Manager;
+   }
+
    class BIA
    {
    private:
-      Management::Manager* _manager;
       std::string& _rootPath;
+      Management::Manager* _manager;
 
       void InitializeComponents();
    public:
       void PrepareProcess();
-
-      std::string& GetRootPath() const;
+      std::string& GetRootPath() const;\
 
       BIA(std::string rootPath);
       ~BIA();

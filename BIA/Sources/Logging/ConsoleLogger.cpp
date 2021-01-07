@@ -30,6 +30,10 @@ namespace BIA
          std::cout << _msg.str() << std::endl;
       }
 
+      void ConsoleLogger::Prepare()
+      {
+      }
+
       ConsoleLogger::ConsoleLogger()
       {
       }

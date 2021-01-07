@@ -1,15 +1,15 @@
 #include <sstream>
 
-#include "../Common/Manager.h"
+#include "../Manager.h"
 
 namespace BIA
 {
-   namespace ExperimentManagement
+   namespace Management::Experiment
    {
       ExperimentManager::ExperimentManager(Management::Manager* manager)
       {
          _manager = manager;
-         _logger = _manager->GetLogger();
+         _logger = _manager->Logger;
       }
 
       ExperimentManager::~ExperimentManager()
@@ -22,24 +22,25 @@ namespace BIA
       {
 #ifdef _LOGGING_
          std::stringstream msg;
+         msg.str(std::string());
          msg << "Preparing experiments directories has been started.";
          _logger->Log(msg);
          auto start = std::chrono::steady_clock::now();
 #endif
-         auto experimentDirectories = _manager->GetFileManager()->GetExperimentDirectories();
+         auto& experimentDirectories = _manager->FileManager->GetExperimentDirectories();
 
          for (const auto& experiment : experimentDirectories)
          {
-            _experiments.push_back(ExperimentDirectory(experiment));
+            _experiments.push_back(Models::ExperimentDirectory(experiment));
          }
 
-         PopulateExperimentsContnent();
+         //PopulateExperimentsContnent();
 
 #ifdef _LOGGING_
-         msg.clear();
+         msg.str(std::string());
          auto end = std::chrono::steady_clock::now();
          auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-         msg << "Preparing experiments directories has ended and took : " << time << "ms.";
+         msg << "Preparing experiments directories has ended and took: " << time << "ms.";
          _logger->Log(msg);
 #endif
       }
@@ -65,7 +66,7 @@ namespace BIA
          }
       }
       
-      const std::vector<ExperimentDirectory>& ExperimentManager::GetExperiments() const
+      std::vector<Models::ExperimentDirectory>& ExperimentManager::GetExperiments()
       {
          return _experiments;
       }

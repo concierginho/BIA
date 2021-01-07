@@ -6,7 +6,7 @@
 
 namespace BIA
 {
-   namespace ExperimentManagement
+   namespace Models
    {
       class ExperimentDirectory
       {
@@ -17,6 +17,8 @@ namespace BIA
 
          std::filesystem::path _horizontalImage;
          std::filesystem::path _verticalImage;
+
+         int ID;
       public:
          void AddHorizontalDirectoryContent(std::filesystem::path&);
          void AddVerticalDirectoryContent(std::filesystem::path&);
@@ -30,6 +32,8 @@ namespace BIA
          std::filesystem::path GetHorizontalExperimentPathById(int) const;
          std::filesystem::path GetVerticalExperimentSettingsPathById(int) const;
          std::filesystem::path GetHorizontalExperimentSettingsPathById(int) const;
+
+         static int NextId;
 
          explicit ExperimentDirectory(std::filesystem::path);
          ~ExperimentDirectory();

@@ -4,17 +4,17 @@
 #include <regex>
 #include <sstream>
 
-#include "../Common/Manager.h"
+#include "../Manager.h"
 
 namespace BIA
 {
-   namespace FileManagement
+   namespace Management::File
    {
       FileManager::FileManager(Management::Manager* manager, const std::string& rootPath)
       {
          _manager = manager;
          _rootPath = rootPath;
-         _logger = _manager->GetLogger();
+         _logger = _manager->Logger;
 
          InitializeComponents();
       }
@@ -30,14 +30,8 @@ namespace BIA
          _hasHorizontalPattern = std::regex("(.*horizontal$)", std::regex_constants::icase);
          _verticalAssociation = std::regex("(.*vertical.*)", std::regex_constants::icase);
          _horizontalAssociation = std::regex("(.*horizontal.*)", std::regex_constants::icase);
-         _endingWithTif = std::regex("(.*\\.tif$)");
-         _logPath = std::string(_rootPath + "\\" + "log");
-      }
-
-      void FileManager::CreateLogDirectory()
-      {
-         auto logPath = std::filesystem::path(_logPath);
-         CreateNewDirectory(logPath);
+         _tif = std::regex("(.*\\.tif$)");
+         _settingsJson = std::regex("(.*settings\\.json$)");
       }
 
       /// <summary>
@@ -48,6 +42,7 @@ namespace BIA
       {
 #ifdef _LOGGING_
          std::stringstream msg;
+         msg.str(std::string());
          msg << "Scanning directory has been started.";
          _logger->Log(msg);
          auto start = std::chrono::steady_clock::now();
@@ -59,16 +54,11 @@ namespace BIA
             _rootFiles.push_back(rootItem.path());
          }
 
-         //if (_experimentDirectories.size() > 0)
-         //   ScanSubDirectories();
-
-         //CreateLogDirectory();
-
 #ifdef _LOGGING_
-         msg.clear();
+         msg.str(std::string());
          auto end = std::chrono::steady_clock::now();
          auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-         msg << "Scanning directory has ended and took : " << time << "ms.";
+         msg << "Scanning directory has ended and took: " << time << "ms.";
          _logger->Log(msg);
 #endif
       }
@@ -78,8 +68,14 @@ namespace BIA
       /// Sprawdza czy folder o nazwie "Vertical" oraz "Horizontal" istnieja, a nastepnie szuka plikow ktore w swojej nazwie maja
       /// wlasnie te slowa. Na tej podstawie pliki przenoszone sa do odpowiednich folderow.
       /// </summary>
-      void FileManager::ScanSubDirectories()
+      void FileManager::ScanExperimentDirectories()
       {
+#ifdef _LOGGING_
+         std::stringstream msg;
+#endif
+         if (_experimentDirectories.size() == 0)
+            return;
+
          for (auto const& folder : _experimentDirectories)
          {
             bool hasVertical = false;
@@ -114,10 +110,20 @@ namespace BIA
 
             if (!hasVertical)
             {
+#ifdef _LOGGING_
+               msg.str(std::string());
+               msg << "'Vertical' folder is missing.";
+               _logger->Log(msg);
+#endif
                CreateNewDirectory(verticalFolderPath);
             }
             if (!hasHorizontal)
             {
+#ifdef _LOGGING_
+               msg.str(std::string());
+               msg << "'Horizontal' folder is missing.";
+               _logger->Log(msg);
+#endif
                CreateNewDirectory(horizontalFolderPath);
             }
 
@@ -144,8 +150,8 @@ namespace BIA
                std::filesystem::path newPath(newDirectory.string() + "\\" + filename);
                std::filesystem::rename(oldPath, newPath);
 #ifdef _LOGGING_
-               msg.clear();
-               msg << "Moved " << oldPath.string()  << " to " << newPath.string() << ".";
+               msg.str(std::string());
+               msg << "Moved: " << oldPath.string() << "\nTo: " << newPath.string() << ".";
                _logger->Log(msg);
 #endif 
             }
@@ -153,7 +159,7 @@ namespace BIA
          catch (std::exception e)
          {
 #ifdef _LOGGING_
-            msg.clear();
+            msg.str(std::string());
             msg << "Exception thrown: " << e.what();
             _logger->Log(msg);
 #endif
@@ -175,15 +181,15 @@ namespace BIA
          {
             std::filesystem::create_directories(path);
 #ifdef _LOGGING_
-            msg.clear();
-            msg << "Created new directory" << path.string();
+            msg.str(std::string());
+            msg << "Created new directory: " << path.string();
             _logger->Log(msg);
 #endif 
          }
          catch (std::exception e)
          {
 #ifdef _LOGGING_
-            msg.clear();
+            msg.str(std::string());
             msg << "Exception thrown: " << e.what();
             _logger->Log(msg);
 #endif
@@ -198,16 +204,6 @@ namespace BIA
       void FileManager::SetRootPath(std::string rootPath)
       {
          _rootPath = rootPath;
-      }
-
-      std::string FileManager::GetLogPath() const
-      {
-         return _logPath;
-      }
-
-      void FileManager::SetLogPath(std::string logPath)
-      {
-         _logPath = logPath;
       }
 
       const std::vector<std::filesystem::path>& FileManager::GetExperimentDirectories() const

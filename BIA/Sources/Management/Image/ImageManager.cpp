@@ -1,13 +1,13 @@
-#include "../Common/Manager.h"
+#include "../Manager.h"
 
 namespace BIA
 {
-   namespace ImageManagement
+   namespace Management::Image
    {
       ImageManager::ImageManager(Management::Manager* manager)
       {
          _manager = manager;
-         _logger = _manager->GetLogger();
+         _logger = _manager->Logger;
       }
 
       ImageManager::~ImageManager()
@@ -18,7 +18,8 @@ namespace BIA
       
       void ImageManager::PrepareImageDirectories()
       {
-         auto experiments = _manager->GetExperimentManager()->GetExperiments();
+         auto& experiments = _manager->ExperimentManager->GetExperiments();
+
 
          for (const auto& experiment : experiments)
          {
@@ -28,7 +29,6 @@ namespace BIA
       }
 
       void ImageManager::ScanImages()
-      {
-      }
+      {      }
    }
 }

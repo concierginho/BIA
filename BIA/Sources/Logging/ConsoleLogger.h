@@ -10,6 +10,7 @@ namespace BIA
       {
       public:
          void Log(const std::stringstream&) override;
+         void Prepare() override;
          ConsoleLogger();
          virtual ~ConsoleLogger();
       };

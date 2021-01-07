@@ -16,23 +16,36 @@ namespace BIA
 
          std::stringstream _msg;
 
-         _msg << std::setw(2) << std::setfill('0') << timeinfo.tm_mday << "."
+         _msg << "\n"
+            << std::setw(2) << std::setfill('0') << timeinfo.tm_mday << "."
             << std::setw(2) << std::setfill('0') << timeinfo.tm_mon + 1 << "."
             << 1900 + timeinfo.tm_year << " -- "
             << std::setw(2) << std::setfill('0') << timeinfo.tm_hour << ":"
             << std::setw(2) << std::setfill('0') << timeinfo.tm_min << ":"
-            << std::setw(2) << std::setfill('0') << timeinfo.tm_sec << " -- "
-            << message.str() << std::endl;
+            << std::setw(2) << std::setfill('0') << timeinfo.tm_sec << "\n"
+            << message.str();
 
          _logFile << _msg.str();
       }
 
-      void FileLogger::SetLogPath(const std::filesystem::path& logPath)
+      void FileLogger::Prepare()
       {
-         _logPath = logPath;
-
+         CreateLogDirectory();
          CreateLogFile();
-         _logFile.open(_logPath, std::ios::in);
+
+         _logFile.open(_logFilePath.string(), std::ios::in);
+         _logFile << "Blood Image Analyser, AGH 2021";
+      }
+
+      void FileLogger::SetLogDirectoryPath(const std::filesystem::path& logDirectoryPath)
+      {
+         _logDirectoryPath = logDirectoryPath;
+      }
+
+      void FileLogger::CreateLogDirectory()
+      {
+         if(!std::filesystem::exists(_logDirectoryPath))
+            std::filesystem::create_directory(_logDirectoryPath);
       }
 
       void FileLogger::CreateLogFile()
@@ -42,30 +55,27 @@ namespace BIA
 
          localtime_s(&timeinfo, &in_time_t);
 
-         std::stringstream filename;
+         std::stringstream logFilePath;
+         std::stringstream logFilename;
 
-         filename << "on-"
+         logFilename << "on-"
             << std::setw(2) << std::setfill('0') << timeinfo.tm_mday << "-"
             << std::setw(2) << std::setfill('0') << timeinfo.tm_mon + 1 << "-"
             << 1900 + timeinfo.tm_year << "-at-"
             << std::setw(2) << std::setfill('0') << timeinfo.tm_hour << "-"
             << std::setw(2) << std::setfill('0') << timeinfo.tm_min << "-"
-            << std::setw(2) << std::setfill('0') << timeinfo.tm_sec;
+            << std::setw(2) << std::setfill('0') << timeinfo.tm_sec << ".txt";
+         logFilePath << _logDirectoryPath.string() << "\\" << logFilename.str();
 
-         std::stringstream logFile;
-         logFile << _logPath.string() << "\\log\\" << filename.str() << ".txt";
-
-         _logPath = std::filesystem::path(logFile.str());
-
-         if (std::filesystem::exists(_logPath))
-            return;
-
-         std::ofstream file{ _logPath.string() };
+         _logFilePath = std::filesystem::path(logFilePath.str());
+         std::ofstream logFile{ _logFilePath.string() };
       }
 
       FileLogger::FileLogger(std::string rootPath)
       {
-         SetLogPath(std::filesystem::path(rootPath));
+         std::stringstream logDirectoryPath;
+         logDirectoryPath << rootPath << "\\log";
+         SetLogDirectoryPath(std::filesystem::path(logDirectoryPath.str()));
       }
 
       FileLogger::~FileLogger()
