@@ -11,7 +11,7 @@ namespace BIA
       ExperimentDirectory::ExperimentDirectory(std::filesystem::path path)
       {
          _path = path;
-         ID = NextId;
+         Id = NextId;
          NextId++;
       }
 
@@ -19,14 +19,29 @@ namespace BIA
       {
       }
 
-      void ExperimentDirectory::AddHorizontalDirectoryContent(std::filesystem::path& horizontalDirectoryContent)
+      int ExperimentDirectory::GetId() const
       {
-         _horizontalDirectoryFiles.push_back(horizontalDirectoryContent);
+         return Id;
       }
 
       void ExperimentDirectory::AddVerticalDirectoryContent(std::filesystem::path& verticalDirectoryContent)
       {
          _verticalDirectoryFiles.push_back(verticalDirectoryContent);
+      }
+
+      void ExperimentDirectory::AddHorizontalDirectoryContent(std::filesystem::path& horizontalDirectoryContent)
+      {
+         _horizontalDirectoryFiles.push_back(horizontalDirectoryContent);
+      }
+
+      void ExperimentDirectory::SetVerticalImagePath(std::filesystem::path& verticalImagePath)
+      {
+         _verticalImagePath = verticalImagePath;
+      }
+
+      void ExperimentDirectory::SetHorizontalImagePath(std::filesystem::path& horizontalImagePath)
+      {
+         _horizontalImagePath = horizontalImagePath;
       }
 
       std::filesystem::path ExperimentDirectory::GetPath() const
@@ -37,57 +52,81 @@ namespace BIA
       std::filesystem::path ExperimentDirectory::GetVerticalDirectoryPath() const
       {
          std::stringstream verticalDirectory;
-         verticalDirectory << _path.string() << "\\Horizontal";
+         verticalDirectory << _path.string() << "\\Vertical";
          return std::filesystem::path(verticalDirectory.str());
       }
 
       std::filesystem::path ExperimentDirectory::GetHorizontalDirectoryPath() const
       {
          std::stringstream horizontalDirectory;
-         horizontalDirectory << _path.string() << "\\Vertical";
+         horizontalDirectory << _path.string() << "\\Horizontal";
          return std::filesystem::path(horizontalDirectory.str());
       }
 
       std::filesystem::path ExperimentDirectory::GetVerticalSettingsPath() const
       {
          std::stringstream verticalSettings;
-         verticalSettings << GetVerticalDirectoryPath() << "\\settings.json";
+         verticalSettings << GetVerticalDirectoryPath().string() << "\\settings.json";
          return std::filesystem::path(verticalSettings.str());
       }
 
       std::filesystem::path ExperimentDirectory::GetHorizontalSettingsPath() const
       {
          std::stringstream horizontalSettings;
-         horizontalSettings << GetHorizontalDirectoryPath() << "\\settings.json";
+         horizontalSettings << GetHorizontalDirectoryPath().string() << "\\settings.json";
          return std::filesystem::path(horizontalSettings.str());
       }
 
       std::filesystem::path ExperimentDirectory::GetHorizontalExperimentPathById(int id) const
       {
          std::stringstream horizontalExperiment;
-         horizontalExperiment << GetHorizontalDirectoryPath() << "\\" << id;
+         horizontalExperiment << GetHorizontalDirectoryPath().string() << "\\" << id;
          return std::filesystem::path(horizontalExperiment.str());
       }
 
       std::filesystem::path ExperimentDirectory::GetVerticalExperimentSettingsPathById(int id) const
       {
          std::stringstream settingsPath;
-         settingsPath << GetVerticalExperimentPathById(id) << "\\settings.json";
+         settingsPath << GetVerticalExperimentPathById(id).string() << "\\settings.json";
          return std::filesystem::path(settingsPath.str());
       }
 
       std::filesystem::path ExperimentDirectory::GetHorizontalExperimentSettingsPathById(int id) const
       {
          std::stringstream settingsPath;
-         settingsPath << GetHorizontalExperimentPathById(id) << "\\settings.json";
+         settingsPath << GetHorizontalExperimentPathById(id).string() << "\\settings.json";
          return std::filesystem::path(settingsPath.str());
+      }
+
+      std::filesystem::path ExperimentDirectory::GetVerticalResultsPath() const
+      {
+         std::stringstream resultsPath;
+         resultsPath << GetVerticalDirectoryPath().string() << "\\results.json";
+         return std::filesystem::path(resultsPath.str());
+      }
+
+      std::filesystem::path ExperimentDirectory::GetHorizontalResultsPath() const
+      {
+         std::stringstream resultsPath;
+         resultsPath << GetHorizontalDirectoryPath().string() << "\\results.json";
+         return std::filesystem::path(resultsPath.str());
       }
 
       std::filesystem::path ExperimentDirectory::GetVerticalExperimentPathById(int id) const
       {
          std::stringstream verticalExperiment;
-         verticalExperiment << GetVerticalDirectoryPath() << "\\" << id;
+         verticalExperiment << GetVerticalDirectoryPath().string() << "\\" << id;
          return std::filesystem::path(verticalExperiment.str());
+      }
+
+      std::filesystem::path ExperimentDirectory::GetVerticalImagePath() const
+      {
+         return _verticalImagePath;
+      }
+
+      std::filesystem::path ExperimentDirectory::GetHorizontalImagePath() const
+      {
+         return _horizontalImagePath;
       }
    }
 }

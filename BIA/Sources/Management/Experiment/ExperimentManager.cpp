@@ -34,8 +34,6 @@ namespace BIA
             _experiments.push_back(Models::ExperimentDirectory(experiment));
          }
 
-         //PopulateExperimentsContnent();
-
 #ifdef _LOGGING_
          msg.str(std::string());
          auto end = std::chrono::steady_clock::now();

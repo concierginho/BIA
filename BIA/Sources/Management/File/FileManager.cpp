@@ -3,6 +3,7 @@
 #include <chrono>
 #include <regex>
 #include <sstream>
+#include <fstream>
 
 #include "../Manager.h"
 
@@ -30,8 +31,9 @@ namespace BIA
          _hasHorizontalPattern = std::regex("(.*horizontal$)", std::regex_constants::icase);
          _verticalAssociation = std::regex("(.*vertical.*)", std::regex_constants::icase);
          _horizontalAssociation = std::regex("(.*horizontal.*)", std::regex_constants::icase);
-         _tif = std::regex("(.*\\.tif$)");
-         _settingsJson = std::regex("(.*settings\\.json$)");
+         _tif = std::regex("(.*tif$)");
+         _settings = std::regex("(.*settings\\.json$)");
+         _results = std::regex("(.*results\\.json$)");
       }
 
       /// <summary>
@@ -66,7 +68,8 @@ namespace BIA
       /// <summary>
       /// Funkcja sprawdza kazdy z folderow zlokalizowanych w glownym katalogu.
       /// Sprawdza czy folder o nazwie "Vertical" oraz "Horizontal" istnieja, a nastepnie szuka plikow ktore w swojej nazwie maja
-      /// wlasnie te slowa. Na tej podstawie pliki przenoszone sa do odpowiednich folderow.
+      /// wlasnie te slowa. Jezli takie pliki nie sa odnalezione - zostaja stworzone.
+      /// Na podstawie tego, czy dana nazwa pliku zawiera w sobie slowa 'Vertical' lub 'Horizontal' pliki przenoszone sa do odpowiedniej lokalizacji.
       /// </summary>
       void FileManager::ScanExperimentDirectories()
       {
@@ -76,24 +79,26 @@ namespace BIA
          if (_experimentDirectories.size() == 0)
             return;
 
-         for (auto const& folder : _experimentDirectories)
+         auto& _experiments = _manager->ExperimentManager->GetExperiments();
+
+         for (auto const& experiment : _experiments)
          {
             bool hasVertical = false;
             bool hasHorizontal = false;
             std::vector<std::filesystem::path> verticalAssociatedItems;
             std::vector<std::filesystem::path> horizontalAssociatedItems;
-            std::string subDirectoryPath = folder.string();
+            std::string subDirectoryPath = experiment.GetPath().string();
 
-            for (auto const& subItem : std::filesystem::directory_iterator(folder.string()))
+            for (auto const& subItem : std::filesystem::directory_iterator(experiment.GetPath().string()))
             {
                std::string subItemPath = subItem.path().string();
                if (!subItem.is_directory())
                {
-                  std::string fileName = subItem.path().filename().string();
+                  std::string filename = subItem.path().filename().string();
 
-                  if (std::regex_match(fileName, _horizontalAssociation))
+                  if (std::regex_match(filename, _horizontalAssociation))
                      horizontalAssociatedItems.push_back(subItemPath);
-                  else if (std::regex_match(fileName, _verticalAssociation))
+                  else if (std::regex_match(filename, _verticalAssociation))
                      verticalAssociatedItems.push_back(subItemPath);
                }
                else
@@ -112,7 +117,7 @@ namespace BIA
             {
 #ifdef _LOGGING_
                msg.str(std::string());
-               msg << "'Vertical' folder is missing.";
+               msg << "Experiment Id " << experiment.GetId() << " / Missing 'Vertical' directory.";
                _logger->Log(msg);
 #endif
                CreateNewDirectory(verticalFolderPath);
@@ -130,6 +135,131 @@ namespace BIA
             MoveItemsToNewDirectory(verticalFolderPath, verticalAssociatedItems);
             MoveItemsToNewDirectory(horizontalFolderPath, horizontalAssociatedItems);
          }
+      }
+
+      /// <summary>
+      /// Funckja odpowiedzialna jest za skanowanie plikow zawartych w folderach horizontal oraz vertical.
+      /// Skanowanie tych plikow odbywa sie po przeniesieniu i uporzadkowaniu plikow przez funkcje 
+      /// PrepareExperimentDirectories() nalezacej do klasy ExperimentManager.
+      /// </summary>
+      void FileManager::ScanHorizontalAndVerticalDirectories()
+      {
+#ifdef _LOGGING_
+         std::stringstream msg;
+         msg.str(std::string());
+         msg << "Scanning horizontal and vertical directories has been started.";
+         _logger->Log(msg);
+         auto start = std::chrono::steady_clock::now();
+#endif
+         auto& experiments = _manager->ExperimentManager->GetExperiments();
+
+         for (auto& experiment : experiments)
+         {
+            bool hasSettingsJson = false;
+            bool hasResultsJson = false;
+
+            for (auto const& item : std::filesystem::directory_iterator(experiment.GetHorizontalDirectoryPath().string()))
+            {
+               std::string filename = item.path().filename().string();
+               std::string fileExt = item.path().extension().string();
+               if (std::regex_match(filename, _settings))
+                  hasSettingsJson = true;
+               else if (std::regex_match(filename, _results))
+                  hasResultsJson = true;
+               else if (std::regex_match(fileExt, _tif))
+               {
+                  std::filesystem::path itemPath = item.path();
+                  experiment.SetHorizontalImagePath(itemPath);
+               }
+            }
+
+            if (hasSettingsJson == false)
+            {
+#ifdef _LOGGING_
+               msg.str(std::string());
+               msg << "Horizontal directory / Experiment Id " << experiment.GetId() << " / Missing 'settings.json' file.";
+               _logger->Log(msg);
+#endif
+               auto path = experiment.GetHorizontalSettingsPath();
+               CreateNewFile(path);
+            }
+
+            if (hasResultsJson == false)
+            {
+#ifdef _LOGGING_
+               msg.str(std::string());
+               msg << "Horizontal directory / Experiment Id " << experiment.GetId() << " / Missing 'results.json' file.";
+               _logger->Log(msg);
+#endif
+               auto path = experiment.GetHorizontalResultsPath();
+               CreateNewFile(path);
+            }
+
+            hasSettingsJson = false;
+            hasResultsJson = false;
+
+            for (auto const& item : std::filesystem::directory_iterator(experiment.GetVerticalDirectoryPath().string()))
+            {
+               std::string filename = item.path().filename().string();
+               std::string fileExt = item.path().extension().string();
+               if (std::regex_match(filename, _settings))
+                  hasSettingsJson = true;
+               else if (std::regex_match(filename, _results))
+                  hasResultsJson = true;
+               else if (std::regex_match(fileExt, _tif))
+               {
+                  std::filesystem::path itemPath = item.path();
+                  experiment.SetVerticalImagePath(itemPath);
+               }
+            }
+
+            if (!hasSettingsJson)
+            {
+#ifdef _LOGGING_
+               msg.str(std::string());
+               msg << "Vertical directory / Experiment Id " << experiment.GetId() << " / Missing 'settings.json' file.";
+               _logger->Log(msg);
+#endif
+               auto path = experiment.GetHorizontalSettingsPath();
+               CreateNewFile(path);
+            }
+
+            if (!hasResultsJson)
+            {
+#ifdef _LOGGING_
+               msg.str(std::string());
+               msg << "Vertical directory / Experiment Id " << experiment.GetId() << " / Missing 'results.json' file.";
+               _logger->Log(msg);
+#endif
+               auto path = experiment.GetHorizontalResultsPath();
+               CreateNewFile(path);
+            }
+
+            if (experiment.GetHorizontalImagePath().empty())
+            {
+#ifdef _LOGGING_
+               msg.str(std::string());
+               msg << "Horizontal directory / Experiment Id " << experiment.GetId() << " / Missing image file with extension '*.tif'";
+               _logger->Log(msg);
+#endif
+            }
+
+            if (experiment.GetVerticalImagePath().empty())
+            {
+#ifdef _LOGGING_
+               msg.str(std::string());
+               msg << "Vertical directory / Experiment Id " << experiment.GetId() << " / Missing image file with extension '*.tif'";
+               _logger->Log(msg);
+#endif
+            }
+         }
+#ifdef _LOGGING_
+         msg.str(std::string());
+         auto end = std::chrono::steady_clock::now();
+         auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+         msg << "Scanning horizontal and vertical directories has ended and took: " << time << "ms.";
+         _logger->Log(msg);
+#endif
       }
 
       /// <summary>
@@ -183,6 +313,33 @@ namespace BIA
 #ifdef _LOGGING_
             msg.str(std::string());
             msg << "Created new directory: " << path.string();
+            _logger->Log(msg);
+#endif 
+         }
+         catch (std::exception e)
+         {
+#ifdef _LOGGING_
+            msg.str(std::string());
+            msg << "Exception thrown: " << e.what();
+            _logger->Log(msg);
+#endif
+         }
+      }
+
+      void FileManager::CreateNewFile(std::filesystem::path& path)
+      {
+#ifdef _LOGGING_
+         std::stringstream msg;
+#endif
+         if (std::filesystem::exists(path))
+            return;
+
+         try
+         {
+            std::ofstream file{ path.string() };
+#ifdef _LOGGING_
+            msg.str(std::string());
+            msg << "Created new file: " << path.string();
             _logger->Log(msg);
 #endif 
          }

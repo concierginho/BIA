@@ -43,6 +43,7 @@ namespace BIA
       _manager->FileManager->ScanDirectory();
       _manager->ExperimentManager->PrepareExperimentDirectories();
       _manager->FileManager->ScanExperimentDirectories();
+      _manager->FileManager->ScanHorizontalAndVerticalDirectories();
       _manager->ImageManager->ScanImages();
       _manager->ImageManager->PrepareImageDirectories();
    }

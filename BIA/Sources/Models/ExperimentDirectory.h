@@ -15,13 +15,17 @@ namespace BIA
          std::vector<std::filesystem::path> _horizontalDirectoryFiles;
          std::vector<std::filesystem::path> _verticalDirectoryFiles;
 
-         std::filesystem::path _horizontalImage;
-         std::filesystem::path _verticalImage;
+         std::filesystem::path _horizontalImagePath;
+         std::filesystem::path _verticalImagePath;
 
-         int ID;
+         int Id;
       public:
-         void AddHorizontalDirectoryContent(std::filesystem::path&);
+         int GetId() const;
+
          void AddVerticalDirectoryContent(std::filesystem::path&);
+         void AddHorizontalDirectoryContent(std::filesystem::path&);
+         void SetVerticalImagePath(std::filesystem::path&);
+         void SetHorizontalImagePath(std::filesystem::path&);
 
          std::filesystem::path GetPath() const;
          std::filesystem::path GetVerticalDirectoryPath() const;
@@ -32,6 +36,10 @@ namespace BIA
          std::filesystem::path GetHorizontalExperimentPathById(int) const;
          std::filesystem::path GetVerticalExperimentSettingsPathById(int) const;
          std::filesystem::path GetHorizontalExperimentSettingsPathById(int) const;
+         std::filesystem::path GetVerticalResultsPath() const;
+         std::filesystem::path GetHorizontalResultsPath() const;
+         std::filesystem::path GetVerticalImagePath() const;
+         std::filesystem::path GetHorizontalImagePath() const;
 
          static int NextId;
 
