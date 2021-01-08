@@ -34,7 +34,18 @@ namespace BIA
          CreateLogFile();
 
          _logFile.open(_logFilePath.string(), std::ios::in);
-         _logFile << "Blood Image Analyser, AGH 2021";
+         std::stringstream msg;
+         msg << "############################\n"
+            << "### BLOOD IMAGE ANALYSER ###\n"
+            << "###       AGH 2021       ###\n"
+#ifdef _DEBUG
+            << "###     DEBUG VERSION    ###\n"
+#endif
+#ifdef NDEBUG
+            << "###    RELEASE VERSION   ###\n"
+#endif
+            << "############################\n";
+            _logFile << msg.str();
       }
 
       void FileLogger::SetLogDirectoryPath(const std::filesystem::path& logDirectoryPath)
@@ -57,6 +68,12 @@ namespace BIA
 
          std::stringstream logFilePath;
          std::stringstream logFilename;
+
+#ifdef _DEBUG
+         logFilename << "debug-";
+#elif NDEBUG
+         logFilename << "release-";
+#endif
 
          logFilename << "on-"
             << std::setw(2) << std::setfill('0') << timeinfo.tm_mday << "-"

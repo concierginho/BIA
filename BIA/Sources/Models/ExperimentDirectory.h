@@ -18,6 +18,13 @@ namespace BIA
          std::filesystem::path _horizontalImagePath;
          std::filesystem::path _verticalImagePath;
 
+         bool _hasVerticalImage;
+         bool _hasHorizontalImage;
+         bool _hasVerticalSettingsJson;
+         bool _hasHorizontalSettingsJson;
+         bool _hasVerticalResultsJson;
+         bool _hasHorizontalResultsJson;
+
          int Id;
       public:
          int GetId() const;
@@ -26,6 +33,12 @@ namespace BIA
          void AddHorizontalDirectoryContent(std::filesystem::path&);
          void SetVerticalImagePath(std::filesystem::path&);
          void SetHorizontalImagePath(std::filesystem::path&);
+         void SetHasVerticalImage(bool);
+         void SetHasHorizontalImage(bool);
+         void SetHasVerticalSettingsJson(bool);
+         void SetHasHorizontalSettingsJson(bool);
+         void SetHasVerticalResultsJson(bool);
+         void SetHasHorizontalResultsJson(bool);
 
          std::filesystem::path GetPath() const;
          std::filesystem::path GetVerticalDirectoryPath() const;
@@ -40,6 +53,13 @@ namespace BIA
          std::filesystem::path GetHorizontalResultsPath() const;
          std::filesystem::path GetVerticalImagePath() const;
          std::filesystem::path GetHorizontalImagePath() const;
+
+         bool HasVerticalImage() const;
+         bool HasHorizontalImage() const;
+         bool HasVerticalSettingsJson() const;
+         bool HasHorizontalSettingsJson() const;
+         bool HasVerticalResultsJson() const;
+         bool HasHorizontalResultsJson() const;
 
          static int NextId;
 

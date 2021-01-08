@@ -67,9 +67,11 @@ namespace BIA
 
       /// <summary>
       /// Funkcja sprawdza kazdy z folderow zlokalizowanych w glownym katalogu.
-      /// Sprawdza czy folder o nazwie "Vertical" oraz "Horizontal" istnieja, a nastepnie szuka plikow ktore w swojej nazwie maja
+      /// Sprawdza czy folder o nazwie "Vertical" oraz "Horizontal" istnieja, 
+      /// a nastepnie szuka plikow ktore w swojej nazwie maja
       /// wlasnie te slowa. Jezli takie pliki nie sa odnalezione - zostaja stworzone.
-      /// Na podstawie tego, czy dana nazwa pliku zawiera w sobie slowa 'Vertical' lub 'Horizontal' pliki przenoszone sa do odpowiedniej lokalizacji.
+      /// Na podstawie tego, czy dana nazwa pliku zawiera w sobie slowa 'Vertical' 
+      /// lub 'Horizontal' pliki przenoszone sa do odpowiedniej lokalizacji.
       /// </summary>
       void FileManager::ScanExperimentDirectories()
       {
@@ -155,25 +157,26 @@ namespace BIA
 
          for (auto& experiment : experiments)
          {
-            bool hasSettingsJson = false;
-            bool hasResultsJson = false;
-
             for (auto const& item : std::filesystem::directory_iterator(experiment.GetHorizontalDirectoryPath().string()))
             {
+               if (item.is_directory())
+                  continue;
+
                std::string filename = item.path().filename().string();
                std::string fileExt = item.path().extension().string();
                if (std::regex_match(filename, _settings))
-                  hasSettingsJson = true;
+                  experiment.SetHasHorizontalSettingsJson(true);
                else if (std::regex_match(filename, _results))
-                  hasResultsJson = true;
+                  experiment.SetHasHorizontalResultsJson(true);
                else if (std::regex_match(fileExt, _tif))
                {
                   std::filesystem::path itemPath = item.path();
                   experiment.SetHorizontalImagePath(itemPath);
+                  experiment.SetHasHorizontalImage(true);
                }
             }
 
-            if (hasSettingsJson == false)
+            if (experiment.HasHorizontalSettingsJson() == false)
             {
 #ifdef _LOGGING_
                msg.str(std::string());
@@ -184,7 +187,7 @@ namespace BIA
                CreateNewFile(path);
             }
 
-            if (hasResultsJson == false)
+            if (experiment.HasHorizontalResultsJson() == false)
             {
 #ifdef _LOGGING_
                msg.str(std::string());
@@ -195,25 +198,23 @@ namespace BIA
                CreateNewFile(path);
             }
 
-            hasSettingsJson = false;
-            hasResultsJson = false;
-
             for (auto const& item : std::filesystem::directory_iterator(experiment.GetVerticalDirectoryPath().string()))
             {
                std::string filename = item.path().filename().string();
                std::string fileExt = item.path().extension().string();
                if (std::regex_match(filename, _settings))
-                  hasSettingsJson = true;
+                  experiment.SetHasVerticalSettingsJson(true);
                else if (std::regex_match(filename, _results))
-                  hasResultsJson = true;
+                  experiment.SetHasVerticalResultsJson(true);
                else if (std::regex_match(fileExt, _tif))
                {
                   std::filesystem::path itemPath = item.path();
                   experiment.SetVerticalImagePath(itemPath);
+                  experiment.SetHasVerticalImage(true);
                }
             }
 
-            if (!hasSettingsJson)
+            if (experiment.HasVerticalSettingsJson() == false)
             {
 #ifdef _LOGGING_
                msg.str(std::string());
@@ -224,7 +225,7 @@ namespace BIA
                CreateNewFile(path);
             }
 
-            if (!hasResultsJson)
+            if (experiment.HasVerticalResultsJson() == false)
             {
 #ifdef _LOGGING_
                msg.str(std::string());

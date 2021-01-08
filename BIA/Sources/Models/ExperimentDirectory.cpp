@@ -13,6 +13,13 @@ namespace BIA
          _path = path;
          Id = NextId;
          NextId++;
+
+         _hasVerticalImage = false;
+         _hasHorizontalImage = false;
+         _hasVerticalSettingsJson = false;
+         _hasHorizontalSettingsJson = false;
+         _hasVerticalResultsJson = false;
+         _hasHorizontalResultsJson = false;
       }
 
       ExperimentDirectory::~ExperimentDirectory()
@@ -42,6 +49,36 @@ namespace BIA
       void ExperimentDirectory::SetHorizontalImagePath(std::filesystem::path& horizontalImagePath)
       {
          _horizontalImagePath = horizontalImagePath;
+      }
+
+      void ExperimentDirectory::SetHasVerticalImage(bool value)
+      {
+         _hasVerticalImage = value;
+      }
+
+      void ExperimentDirectory::SetHasHorizontalImage(bool value)
+      {
+         _hasHorizontalImage = value;
+      }
+
+      void ExperimentDirectory::SetHasVerticalSettingsJson(bool value)
+      {
+         _hasVerticalSettingsJson = value;
+      }
+
+      void ExperimentDirectory::SetHasHorizontalSettingsJson(bool value)
+      {
+         _hasHorizontalSettingsJson = value;
+      }
+
+      void ExperimentDirectory::SetHasVerticalResultsJson(bool value)
+      {
+         _hasVerticalResultsJson = value;
+      }
+
+      void ExperimentDirectory::SetHasHorizontalResultsJson(bool value)
+      {
+         _hasHorizontalResultsJson = value;
       }
 
       std::filesystem::path ExperimentDirectory::GetPath() const
@@ -127,6 +164,36 @@ namespace BIA
       std::filesystem::path ExperimentDirectory::GetHorizontalImagePath() const
       {
          return _horizontalImagePath;
+      }
+
+      bool ExperimentDirectory::HasVerticalImage() const
+      {
+         return _hasVerticalImage;
+      }
+      
+      bool ExperimentDirectory::HasHorizontalImage() const
+      {
+         return _hasHorizontalImage;
+      }
+
+      bool ExperimentDirectory::HasVerticalSettingsJson() const
+      {
+         return _hasVerticalSettingsJson;
+      }
+
+      bool ExperimentDirectory::HasHorizontalSettingsJson() const
+      {
+         return _hasHorizontalSettingsJson;
+      }
+
+      bool ExperimentDirectory::HasVerticalResultsJson() const
+      {
+         return _hasVerticalResultsJson;
+      }
+
+      bool ExperimentDirectory::HasHorizontalResultsJson() const
+      {
+         return _hasHorizontalResultsJson;
       }
    }
 }
