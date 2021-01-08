@@ -11,10 +11,12 @@ namespace BIA
       class ExperimentDirectory
       {
       private:
-         std::filesystem::path _path;
+         std::string _name;
+
          std::vector<std::filesystem::path> _horizontalDirectoryFiles;
          std::vector<std::filesystem::path> _verticalDirectoryFiles;
-
+         
+         std::filesystem::path _path;
          std::filesystem::path _horizontalImagePath;
          std::filesystem::path _verticalImagePath;
 
@@ -39,6 +41,9 @@ namespace BIA
          void SetHasHorizontalSettingsJson(bool);
          void SetHasVerticalResultsJson(bool);
          void SetHasHorizontalResultsJson(bool);
+         
+         void SetExperimentName(std::string);
+         std::string GetExperimentName() const;
 
          std::filesystem::path GetPath() const;
          std::filesystem::path GetVerticalDirectoryPath() const;
@@ -49,6 +54,8 @@ namespace BIA
          std::filesystem::path GetHorizontalExperimentPathById(int) const;
          std::filesystem::path GetVerticalExperimentSettingsPathById(int) const;
          std::filesystem::path GetHorizontalExperimentSettingsPathById(int) const;
+         std::filesystem::path GetVerticalExperimentResultsPathById(int) const;
+         std::filesystem::path GetHorizontalExperimentResultsPathById(int) const;
          std::filesystem::path GetVerticalResultsPath() const;
          std::filesystem::path GetHorizontalResultsPath() const;
          std::filesystem::path GetVerticalImagePath() const;

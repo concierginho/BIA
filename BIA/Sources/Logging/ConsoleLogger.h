@@ -9,7 +9,7 @@ namespace BIA
       class ConsoleLogger : public ILogger
       {
       public:
-         void Log(const std::stringstream&) override;
+         void Log(const std::stringstream&, Source) override;
          void Prepare() override;
          ConsoleLogger();
          virtual ~ConsoleLogger();

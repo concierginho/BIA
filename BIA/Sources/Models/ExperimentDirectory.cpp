@@ -81,6 +81,16 @@ namespace BIA
          _hasHorizontalResultsJson = value;
       }
 
+      void ExperimentDirectory::SetExperimentName(std::string name)
+      {
+         _name = name;
+      }
+
+      std::string ExperimentDirectory::GetExperimentName() const
+      {
+         return _name;
+      }
+
       std::filesystem::path ExperimentDirectory::GetPath() const
       {
          return _path;
@@ -133,6 +143,20 @@ namespace BIA
          std::stringstream settingsPath;
          settingsPath << GetHorizontalExperimentPathById(id).string() << "\\settings.json";
          return std::filesystem::path(settingsPath.str());
+      }
+
+      std::filesystem::path ExperimentDirectory::GetVerticalExperimentResultsPathById(int id) const
+      {
+         std::stringstream resultsPath;
+         resultsPath << GetVerticalExperimentPathById(id).string() << "\\results.json";
+         return std::filesystem::path(resultsPath.str());
+      }
+
+      std::filesystem::path ExperimentDirectory::GetHorizontalExperimentResultsPathById(int id) const
+      {
+         std::stringstream resultsPath;
+         resultsPath << GetHorizontalExperimentPathById(id).string() << "\\resulsts.json";
+         return std::filesystem::path(resultsPath.str());
       }
 
       std::filesystem::path ExperimentDirectory::GetVerticalResultsPath() const

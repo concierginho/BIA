@@ -24,14 +24,16 @@ namespace BIA
          std::stringstream msg;
          msg.str(std::string());
          msg << "Preparing experiments directories has been started.";
-         _logger->Log(msg);
+         _logger->Log(msg, Logging::Source::EXPERIMENT_MANAGER);
          auto start = std::chrono::steady_clock::now();
 #endif
          auto& experimentDirectories = _manager->FileManager->GetExperimentDirectories();
 
          for (const auto& experiment : experimentDirectories)
          {
-            _experiments.push_back(Models::ExperimentDirectory(experiment));
+            Models::ExperimentDirectory experimentDirectory(experiment);
+            experimentDirectory.SetExperimentName(experiment.filename().string());
+            _experiments.push_back(experimentDirectory);
          }
 
 #ifdef _LOGGING_
@@ -39,7 +41,7 @@ namespace BIA
          auto end = std::chrono::steady_clock::now();
          auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
          msg << "Preparing experiments directories has ended and took: " << time << "ms.";
-         _logger->Log(msg);
+         _logger->Log(msg, Logging::Source::EXPERIMENT_MANAGER);
 #endif
       }
 

@@ -32,8 +32,6 @@ namespace BIA
             std::vector<std::filesystem::path> _rootFiles;
             std::vector<std::filesystem::path> _experimentDirectories;
 
-            void CreateNewDirectory(std::filesystem::path&);
-            void CreateNewFile(std::filesystem::path&);
             void MoveItemsToNewDirectory(std::filesystem::path&, std::vector<std::filesystem::path>&);
             void InitializeComponents();
 
@@ -43,6 +41,10 @@ namespace BIA
             void ScanDirectory();
             void ScanExperimentDirectories();
             void ScanHorizontalAndVerticalDirectories();
+            void CreateNewDirectory(std::filesystem::path&);
+            void CreateNewFile(std::filesystem::path&);
+
+            bool Exists(std::filesystem::path&) const;
 
             std::string GetRootPath() const;
             void SetRootPath(std::string);
