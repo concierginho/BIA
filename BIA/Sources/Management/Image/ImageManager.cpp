@@ -1,4 +1,5 @@
 #include "../Manager.h"
+#include "tiffio.h"
 
 namespace BIA
 {
@@ -15,20 +16,26 @@ namespace BIA
          _manager = nullptr;
          _logger = nullptr;
       }
-      
-      void ImageManager::PrepareImageDirectories()
+
+      void ImageManager::SplitMainImages()
       {
          auto& experiments = _manager->ExperimentManager->GetExperiments();
 
-
-         for (const auto& experiment : experiments)
+         for (auto& experiment : experiments)
          {
-            //for(int i = )
-            experiment;
+            if (experiment.HasVerticalImage())
+            {
+               std::string verticalDirectoryPath = experiment.GetVerticalImagePath().string();
+               const char* cpath = verticalDirectoryPath.c_str();
+               TIFF* verticalTiffImage = TIFFOpen(cpath, "r");
+               TIFFClose(verticalTiffImage);
+            }
+
+            if (experiment.HasHorizontalImage())
+            {
+
+            }
          }
       }
-
-      void ImageManager::ScanImages()
-      {      }
    }
 }

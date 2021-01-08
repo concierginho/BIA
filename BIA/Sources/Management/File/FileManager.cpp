@@ -221,7 +221,7 @@ namespace BIA
                msg << "Vertical directory / Experiment Id " << experiment.GetId() << " / Missing 'settings.json' file.";
                _logger->Log(msg);
 #endif
-               auto path = experiment.GetHorizontalSettingsPath();
+               auto path = experiment.GetVerticalSettingsPath();
                CreateNewFile(path);
             }
 
@@ -232,7 +232,7 @@ namespace BIA
                msg << "Vertical directory / Experiment Id " << experiment.GetId() << " / Missing 'results.json' file.";
                _logger->Log(msg);
 #endif
-               auto path = experiment.GetHorizontalResultsPath();
+               auto path = experiment.GetVerticalResultsPath();
                CreateNewFile(path);
             }
 

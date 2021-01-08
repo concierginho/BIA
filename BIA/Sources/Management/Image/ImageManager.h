@@ -13,8 +13,7 @@ namespace BIA
             ImageManager(Management::Manager*);
             ~ImageManager();
 
-            void PrepareImageDirectories();
-            void ScanImages();
+            void SplitMainImages();
          private:
             Management::Manager* _manager = nullptr;
             Logging::ILogger* _logger = nullptr;

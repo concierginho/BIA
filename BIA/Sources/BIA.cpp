@@ -39,13 +39,13 @@ namespace BIA
 
    void BIA::PrepareProcess()
    {
-      _manager->Logger->Prepare();
+      if(_manager->Logger != nullptr)
+         _manager->Logger->Prepare();
       _manager->FileManager->ScanDirectory();
       _manager->ExperimentManager->PrepareExperimentDirectories();
       _manager->FileManager->ScanExperimentDirectories();
       _manager->FileManager->ScanHorizontalAndVerticalDirectories();
-      _manager->ImageManager->ScanImages();
-      _manager->ImageManager->PrepareImageDirectories();
+      _manager->ImageManager->SplitMainImages();
    }
 
    std::string& BIA::GetRootPath() const
