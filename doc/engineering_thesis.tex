@@ -14,6 +14,7 @@
 \usepackage{float}
 \usepackage[ampersand]{easylist}
 \usepackage{xcolor}
+\usepackage{sectsty}
 
 %\usepackage{showframe}
 
@@ -22,6 +23,10 @@
 
 \begin{document}
 \input{title_page.tex}
+
+\sectionfont{\LARGE}
+\subsectionfont{\Large}
+\subsubsectionfont{\large}
 
 \setstretch{2.5}
     \newpage
@@ -191,16 +196,17 @@
 
     \newpage
     \section{Część teoretyczna}
-        \subsection{Adhezja}
+        \subsection{Adhezja komórek}
         {
-            \label{sec:adhezja}
+            \label{sec:adhezja-komorek}
             \Large
             \justifying
             \quad
-            Adhezja - z łac. \textit{adhaesio}, czyli przyleganie.
-            Jest to tendencja cząsteczek substancji (na przykład cząsteczek krwi) do przylegania do siebie nawzajem oraz powierzchni, na której się znajdują.
-            Adhezja jest powodowana przez wiele sił: siłę napięcia powierzchniowego, siłę wiązań chemicznych, siłę van der Waals'a czy siłę elektrostatyczną.
-            W kontekscie tej pracy adhezja oznacza jak wiele komórek zdołało utrzymać się na próbówce, na tej podstawie ją oceniamy - im więcej komórek zdołało się utrzymać na próbowce, tym większa adhezja \cite{adhezja}.
+            Adhezja komórek - to proces, w którym komórki za pomocą cząsteczek znajdujących się w błonie komórkowej, oddziałują między sobą, co umożliwa ich przyleganie.
+            Interakcja między komórkami zachodzi dzięki białkom błony należącymi do grupy cząsteczek adhezyjnych CAMs \textit{cell-adhesion molecules} (w tym kadheryny, selektyny, integryny, nadrodzina immunoglobulin), umożliwia tworzenie połączeń miedzykomórkowych i ich przyleganie
+            \cite{Molecular Biology of the Cell. 4th edition}.
+            Adhezja, z łac. \textit {adhaesio} oznacza \textit{przyleganie} \cite{adhezja}, w kontekscie tej pracy mówimy o większej adhezji, gdy więcej komórek znajduje się na obrazie.
+            Analogicznie mniejsza adhezja oznacza mniejszą ilość komórek.
         }
         \subsection{Rozszerzenie TIFF}
         {
@@ -311,6 +317,7 @@
             \label{elst:five}
         \end{figure}
 
+        \newpage
         \subsection{Sąsiedztwo}
         {
             \label{sec:sasiedztwo}
@@ -477,7 +484,72 @@
         }
     \newpage
     \section{Część Praktyczna}
+
         \subsection{Wykorzystane oprogramowanie}
+        \subsubsection{Gimp 2.10.22}
+        {
+            \label{sec:gimp}
+            \Large
+            \justifying
+            \quad
+            Gimp 2.10.22 - Program służący do tworzenia i edycji grafiki rastrowej \cite{Program GIMP}.
+            Program został wykorzystany do przygotowania wszystkich grafik znajdujących się w pracy oznaczonych słowami \emph{``opracowanie własne''}.
+        }
+        \subsubsection{LibTIFF 4.2.0}
+        {
+            \label{sec:LibTIFF}
+            \Large
+            \justifying
+            \quad
+            LibTIFF 4.2.0 - Biblioteka służąca do manipulacji obrazami typu TIFF \cite{Biblioteka LibTIFF}, typ ten dokładniej został opisany w rozdziale \ref{sec:rozszerzenie-tiff}.
+            Biblioteka została wybrana, ponieważ pozwala w łatwy sposób odczytywać informacje zapisane w obrazach.
+            Napisana jest w języku C, więc w łatwy sposób można wykorzystać ją w programach pisanych w języku C++.
+            Chcąc wykorzystać ją w programie pisanym w języku C++ opartym o MSBuild należy najpierw ręcznie zbudować tę bibliotekę przy użyciu narzędzia \textit{nmake} oraz \textit{Command Prompt for Visual Studio 2019} \cite{Building LibTiff}.
+            Następnie w programie \textit{Visual Studio 2019} należy dodać scieżkę do folderu, do którego biblioteka została zbudowana.
+            Przykładowo ``D:/tiff-4.2.0/libtiff''.
+        }
+        \subsubsection{Visual Studio 2019}
+        {
+            \label{sec:VisualStudio2019}
+            \Large
+            \justifying
+            \quad
+            Visual Studio 2019 - Doskonały program do pisania oprogramowania wykorzystując technologie pochodzące od firmy \emph{Microsoft} \cite{VS2019}.
+            W Visual Studio 2019 jak nigdzie indziej można z powodzeniem łączyć języki C++ oraz C\# za pomocą C++/CLI.
+            Dzięki takim możliwościom, można z powodzeniem tworzyć oprogramowanie składające się z wielu mniejszych programów napisanych w różnych językach.
+            Dla przykładu: tworzymy bibliotekę napisaną w C++, ponieważ zależy nam na tym, aby operacje wykonywały się bardzo szybko,
+            tworzymy interfejs użytkownika napisany w C\#, ponieważ robi się to w prosty i szybki sposób. Następnie całość łączymy wykorzystując C++/CLI.
+            Wynikiem takiego działania będzie program łączący w sobie C++ oraz C\#.
+        }
+        \newpage
+        \subsubsection{\LaTeX}
+        {
+            \label{sec:LaTeX}
+            \Large
+            \justifying
+            \LaTeX - Wysokiej jakości system tworzenia dokumentów, ułatwiający ten proces \cite{LaTeX}.
+            Dzięki \LaTeX proces tworzenia spisu treści, spisu grafik czy bibliografii jest automatyzowany.
+            Odwołania do konkretnych rozdziałów, podrozdziałów czy źródeł to kwestia wywołania funkcji \emph{cite} lub \emph{ref}.
+            Jest standardem publikacji dokumentów naukowych i technicznych.
+        }
+        \subsubsection{Visual Studio Code}
+        {
+            \label{sec:VisualStudioCode}
+            \Large
+            \justifying
+            \quad
+            Visual Studio Code - Uniwersalny edytor z ogromną bazą rozszerzeń, dostępny na każdej z platform \emph{Windows}, \emph{Linux} oraz \emph{MacOS}, umożliwiający tworzenie oprogramowania niemal w każdym języku \cite{VSCode}.
+            W swojej pracy wykorzystałem \emph{Visual Studio Code} jako edytor tekstowy plików z rozszerzeniem \emph{tex}, które następnie były budowane przez program \LaTeX (\ref{sec:LaTeX}).
+        }
+        \subsubsection{.NET Framework 4.7.2}
+        {
+            \label{sec:.NETFramework 4.7.2}
+            \Large
+            \justifying
+            \quad
+            .NET Framework 4.7.2 - 
+        }
+
         \subsection{Diagram UML aplikacji}
         \subsection{Omówienie implementacji}
         \subsection{Omówienie interfejsu}
@@ -491,26 +563,78 @@
     \newpage
     \section{Bibliografia}
     \begin{thebibliography}{9}
+
         \bibitem{msdocsmsbuild}
-        05/12/2020
+        Stan na dzień 05/12/2020\\
         Microsoft Docs
         \textit{MSBuild}
         \url{https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2019}
+
+        \bibitem{Molecular Biology of the Cell. 4th edition}
+        Alberts B, Johnson A, Lewis J
+        \textit{Molecular Biology of the Cell. 4th edition}
+        New York, Garland Science, 2002
+
         \bibitem{adhezja}
-        30/12/2020
+        Stan na dzień 30/12/2020\\
         \textit{Wikipedia}
         \url{https://en.wikipedia.org/wiki/Adhesion#:~:text=Adhesion%20is%20the%20tendency%20of,be%20divided%20into%20several%20types}
+
         \bibitem{Encyclopedia of Graphics File Formats: The Complete Reference}
         James D. Murray, William VanRyper
         \textit{Encyclopedia of Graphics File Formats: The Complete Reference}
         O'Reilly Media, Second Edition, 1996
+
         \bibitem{Digital Image Processing Second Edition}
         Rafael C. Gonzalez, Richard E. Woods
         \textit{Digital Image Processing Second Edition}
         Prentice Hall, Upper Saddle River, New Jersey 2002 
+
         \bibitem{aipocwiki}
+        Stan na dzień 30/12/2020 
         \textit{Cyforwe przetwarzanie obrazów binarnych}
         \url{https://pl.wikipedia.org/wiki/Cyfrowe_przetwarzanie_obraz%C3%B3w_binarnych}
+
+        \bibitem{LibTIFF tutorial}
+        Stan na dzień 09/01/2021 
+        \textit{LibTIFF - Tutorial}
+        \url{https://research.cs.wisc.edu/graphics/Courses/638-f1999/libtiff_tutorial.htm}
+    
+        \bibitem{Program GIMP}
+        Stan na dzień 10/01/2021 
+        \textit{Program GIMP}
+        \url{https://www.gimp.org/}
+
+        \bibitem{Biblioteka LibTIFF}
+        Stan na dzień 30/12/2020 
+        \textit{Biblioteka LibTIFF}
+        \url{http://www.libtiff.org/}
+
+        \bibitem{Building LibTiff}
+        Stan na dzień 09/01/2021 
+        \textit{LibTIFF - Building the Software Distribution}
+        \url{https://libtiff.gitlab.io/libtiff/build.html}
+
+        \bibitem{VS2019}
+        Stan na dzień 10/01/2021 
+        \textit{Program Visual Studio 2019}
+        \url{https://visualstudio.microsoft.com/vs/}
+
+        \bibitem{LaTeX}
+        Stan na dzień 10/01/2021 
+        \LaTeX 
+        \url{https://www.latex-project.org/}
+
+        \bibitem{VSCode}
+        Stan na dzień 10/01/2021 
+        \textit{Program Visual Studio Code}
+        \url{https://code.visualstudio.com/}
+
+        \bibitem{.NET Framework}
+        Stan na dzień 09/01/2021 
+        \textit{What is .NET Framework?}
+        \url{https://dotnet.microsoft.com/learn/dotnet/what-is-dotnet-framework}
+
     \end{thebibliography}
     \newpage
     \listoffigures

@@ -1,25 +1,25 @@
 \babel@toc {polish}{}
-\contentsline {figure}{\numberline {1}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku. Wszystkie piksele elementu strukturalnego posiadają wartość równą 1. \relax }}{7}{}%
-\contentsline {figure}{\numberline {2}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku. Lewy dolny, lewy górny, prawy dolny oraz prawy górny piksel posiada wartość 0. \relax }}{7}{}%
-\contentsline {figure}{\numberline {3}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w lewym dolnym rogu. Lewy górny, prawy górny oraz prawy dolny piksel posiada wartość 0. \relax }}{8}{}%
-\contentsline {figure}{\numberline {4}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku. Lewy środkowy, prawy środkowy, dolny środkowy oraz górny środkowy piksel posiada wartość 0. \relax }}{8}{}%
-\contentsline {figure}{\numberline {5}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w dolnym środkowym pikselu. Lewy dolny, lewy środkowy, środkowy oraz prawy dolny piksel mają wartość równą 0. \relax }}{8}{}%
-\contentsline {figure}{\numberline {6}{\ignorespaces (\textit {Opracowanie własne}) Sąsiedztwa\relax }}{8}{}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Sąsiedztwo Moore'a}}}{8}{}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Sąsiedztwo Von Neumanna}}}{8}{}%
-\contentsline {figure}{\numberline {7}{\ignorespaces (\textit {Opracowanie własne}) Erozja (Fioletowym kolorem zaznaczono punkt centralny elementu strukturalnego, natomiast czerwonym piksele, które zmieniły wartości z 1 na 0). \relax }}{9}{}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Element strukturalny użyty w operacji}}}{9}{}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Stan przed erozją elementem strukturalnym}}}{9}{}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Stan po erozji elementem strukturalnym}}}{9}{}%
-\contentsline {figure}{\numberline {8}{\ignorespaces (\textit {Opracowanie własne}) Dylatacja (Fioletowym kolorem zaznaczono punkt centralny elementu strukturalnego, natomiast zielonym piksele, które zmieniły wartości z 0 na 1) \relax }}{9}{}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Element strukturalny użyty w operacji}}}{9}{}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Stan przed dylatacją elementem strukturalnym}}}{9}{}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Stan po dylatacji elementem strukturalnym}}}{9}{}%
-\contentsline {figure}{\numberline {9}{\ignorespaces (\textit {Opracowanie własne}) Otwarcie morfologiczne z wykorzystaniem elementu strukturalnego z Rysunku \ref {elst:one} (czerwonym kolorem zaznaczono piksele, które zmieniły wartości z 1 na 0, natomiast zielonym kolorem oznaczono te piksele, które zmieniły wartości z 0 na 1). \relax }}{11}{}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Stan początkowy}}}{11}{}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Stan po erozji}}}{11}{}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Stan po dylatacji obrazu z podpunktu \textit {b}}}}{11}{}%
-\contentsline {figure}{\numberline {10}{\ignorespaces (\textit {Opracowanie własne}) Zamknięcie morfologiczne z wykorzystaniem elementu strukturalnego z Rysunku \ref {elst:one} (czerwonym kolorem zaznaczono piksele, które zmieniły wartości z 1 na 0, natomiast zielonym kolorem oznaczono te piksele, które zmieniły wartości z 0 na 1). \relax }}{12}{}%
+\contentsline {figure}{\numberline {1}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku. Wszystkie piksele elementu strukturalnego posiadają wartość równą 1. \relax }}{8}{}%
+\contentsline {figure}{\numberline {2}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku. Lewy dolny, lewy górny, prawy dolny oraz prawy górny piksel posiada wartość 0. \relax }}{8}{}%
+\contentsline {figure}{\numberline {3}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w lewym dolnym rogu. Lewy górny, prawy górny oraz prawy dolny piksel posiada wartość 0. \relax }}{9}{}%
+\contentsline {figure}{\numberline {4}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku. Lewy środkowy, prawy środkowy, dolny środkowy oraz górny środkowy piksel posiada wartość 0. \relax }}{9}{}%
+\contentsline {figure}{\numberline {5}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w dolnym środkowym pikselu. Lewy dolny, lewy środkowy, środkowy oraz prawy dolny piksel mają wartość równą 0. \relax }}{9}{}%
+\contentsline {figure}{\numberline {6}{\ignorespaces (\textit {Opracowanie własne}) Sąsiedztwa\relax }}{10}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Sąsiedztwo Moore'a}}}{10}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Sąsiedztwo Von Neumanna}}}{10}{}%
+\contentsline {figure}{\numberline {7}{\ignorespaces (\textit {Opracowanie własne}) Erozja (Fioletowym kolorem zaznaczono punkt centralny elementu strukturalnego, natomiast czerwonym piksele, które zmieniły wartości z 1 na 0). \relax }}{10}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Element strukturalny użyty w operacji}}}{10}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Stan przed erozją elementem strukturalnym}}}{10}{}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Stan po erozji elementem strukturalnym}}}{10}{}%
+\contentsline {figure}{\numberline {8}{\ignorespaces (\textit {Opracowanie własne}) Dylatacja (Fioletowym kolorem zaznaczono punkt centralny elementu strukturalnego, natomiast zielonym piksele, które zmieniły wartości z 0 na 1) \relax }}{11}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Element strukturalny użyty w operacji}}}{11}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Stan przed dylatacją elementem strukturalnym}}}{11}{}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Stan po dylatacji elementem strukturalnym}}}{11}{}%
+\contentsline {figure}{\numberline {9}{\ignorespaces (\textit {Opracowanie własne}) Otwarcie morfologiczne z wykorzystaniem elementu strukturalnego z Rysunku \ref {elst:one} (czerwonym kolorem zaznaczono piksele, które zmieniły wartości z 1 na 0, natomiast zielonym kolorem oznaczono te piksele, które zmieniły wartości z 0 na 1). \relax }}{12}{}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Stan początkowy}}}{12}{}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Stan po dylatacji}}}{12}{}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Stan po erozji obrazu z podpunktu \textit {b}}}}{12}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Stan po erozji}}}{12}{}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Stan po dylatacji obrazu z podpunktu \textit {b}}}}{12}{}%
+\contentsline {figure}{\numberline {10}{\ignorespaces (\textit {Opracowanie własne}) Zamknięcie morfologiczne z wykorzystaniem elementu strukturalnego z Rysunku \ref {elst:one} (czerwonym kolorem zaznaczono piksele, które zmieniły wartości z 1 na 0, natomiast zielonym kolorem oznaczono te piksele, które zmieniły wartości z 0 na 1). \relax }}{13}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Stan początkowy}}}{13}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Stan po dylatacji}}}{13}{}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Stan po erozji obrazu z podpunktu \textit {b}}}}{13}{}%
