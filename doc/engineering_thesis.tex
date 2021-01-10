@@ -492,7 +492,7 @@
             \Large
             \justifying
             \quad
-            Gimp 2.10.22 - Program służący do tworzenia i edycji grafiki rastrowej \cite{Program GIMP}.
+            Gimp 2.10.22 - program służący do tworzenia i edycji grafiki rastrowej \cite{Program GIMP}.
             Program został wykorzystany do przygotowania wszystkich grafik znajdujących się w pracy oznaczonych słowami \emph{``opracowanie własne''}.
         }
         \subsubsection{LibTIFF 4.2.0}
@@ -501,11 +501,11 @@
             \Large
             \justifying
             \quad
-            LibTIFF 4.2.0 - Biblioteka służąca do manipulacji obrazami typu TIFF \cite{Biblioteka LibTIFF}, typ ten dokładniej został opisany w rozdziale \ref{sec:rozszerzenie-tiff}.
+            LibTIFF 4.2.0 - biblioteka służąca do manipulacji obrazami typu TIFF \cite{Biblioteka LibTIFF}, typ ten dokładniej został opisany w rozdziale \ref{sec:rozszerzenie-tiff}.
             Biblioteka została wybrana, ponieważ pozwala w łatwy sposób odczytywać informacje zapisane w obrazach.
             Napisana jest w języku C, więc w łatwy sposób można wykorzystać ją w programach pisanych w języku C++.
-            Chcąc wykorzystać ją w programie pisanym w języku C++ opartym o MSBuild należy najpierw ręcznie zbudować tę bibliotekę przy użyciu narzędzia \textit{nmake} oraz \textit{Command Prompt for Visual Studio 2019} \cite{Building LibTiff}.
-            Następnie w programie \textit{Visual Studio 2019} należy dodać scieżkę do folderu, do którego biblioteka została zbudowana.
+            Chcąc wykorzystać ją w programie pisanym w języku C++ opartym o MSBuild, należy najpierw ręcznie zbudować tę bibliotekę przy użyciu narzędzia \textit{nmake} oraz \textit{Command Prompt for Visual Studio 2019} \cite{Building LibTiff}.
+            W związku z powyższym, w programie \textit{Visual Studio 2019} trzeba dodać ścieżkę do miejsca, w którym znajduje się zbudowana przez nas biblioteka.
             Przykładowo ``D:/tiff-4.2.0/libtiff''.
         }
         \subsubsection{Visual Studio 2019}
@@ -514,11 +514,12 @@
             \Large
             \justifying
             \quad
-            Visual Studio 2019 - Doskonały program do pisania oprogramowania wykorzystując technologie pochodzące od firmy \emph{Microsoft} \cite{VS2019}.
+            Visual Studio 2019 - doskonały program do pisania oprogramowania wykorzystując technologie pochodzące od firmy \emph{Microsoft} \cite{VS2019}.
             W Visual Studio 2019 jak nigdzie indziej można z powodzeniem łączyć języki C++ oraz C\# za pomocą C++/CLI.
-            Dzięki takim możliwościom, można z powodzeniem tworzyć oprogramowanie składające się z wielu mniejszych programów napisanych w różnych językach.
-            Dla przykładu: tworzymy bibliotekę napisaną w C++, ponieważ zależy nam na tym, aby operacje wykonywały się bardzo szybko,
-            tworzymy interfejs użytkownika napisany w C\#, ponieważ robi się to w prosty i szybki sposób. Następnie całość łączymy wykorzystując C++/CLI.
+            Dzięki takim możliwościom, można z powodzeniem tworzyć oprogramowanie składające się z wielu mniejszych programów, które napisane są w różnych językach.
+            Dla przykładu: tworzymy bibliotekę napisaną w C++, ponieważ zależy nam na tym, aby operacje wykonywały się bardzo szybko.
+            Interfejs użytkownika napisany w C\#, ponieważ robi się to w prosty i szybki sposób.
+            Następnie, całość łączymy wykorzystując C++/CLI.
             Wynikiem takiego działania będzie program łączący w sobie C++ oraz C\#.
         }
         \newpage
@@ -527,8 +528,8 @@
             \label{sec:LaTeX}
             \Large
             \justifying
-            \LaTeX - Wysokiej jakości system tworzenia dokumentów, ułatwiający ten proces \cite{LaTeX}.
-            Dzięki \LaTeX proces tworzenia spisu treści, spisu grafik czy bibliografii jest automatyzowany.
+            \LaTeX - wysokiej jakości system służący do tworzenia dokumentów w przystępny sposób \cite{LaTeX}.
+            Dzięki \LaTeX, proces tworzenia spisu treści, spisu grafik czy bibliografii jest automatyzowany.
             Odwołania do konkretnych rozdziałów, podrozdziałów czy źródeł to kwestia wywołania funkcji \emph{cite} lub \emph{ref}.
             Jest standardem publikacji dokumentów naukowych i technicznych.
         }
@@ -538,8 +539,8 @@
             \Large
             \justifying
             \quad
-            Visual Studio Code - Uniwersalny edytor z ogromną bazą rozszerzeń, dostępny na każdej z platform \emph{Windows}, \emph{Linux} oraz \emph{MacOS}, umożliwiający tworzenie oprogramowania niemal w każdym języku \cite{VSCode}.
-            W swojej pracy wykorzystałem \emph{Visual Studio Code} jako edytor tekstowy plików z rozszerzeniem \emph{tex}, które następnie były budowane przez program \LaTeX (\ref{sec:LaTeX}).
+            Visual Studio Code - uniwersalny edytor z ogromną bazą rozszerzeń, dostępny na każdej z platform \emph{Windows}, \emph{Linux} oraz \emph{MacOS}, umożliwiający tworzenie oprogramowania niemal w każdym języku \cite{VSCode}.
+            W swojej pracy wykorzystałem \emph{Visual Studio Code} jako edytor tekstowy plików z rozszerzeniem \emph{tex}, które następnie były wykorzystywane przez program \LaTeX (\ref{sec:LaTeX}).
         }
         \subsubsection{.NET Framework 4.7.2}
         {
