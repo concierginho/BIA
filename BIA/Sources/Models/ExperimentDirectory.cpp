@@ -190,6 +190,20 @@ namespace BIA
          return _horizontalImagePath;
       }
 
+      std::filesystem::path ExperimentDirectory::GetVerticalImagePathById(int id) const
+      {
+         std::stringstream imagePath;
+         imagePath << GetVerticalDirectoryPath().string() << "\\" << id << "\\" << id << "-" << _name << ".tif";
+         return imagePath.str();
+      }
+
+      std::filesystem::path ExperimentDirectory::GetHorizontalImagePathById(int id) const
+      {
+         std::stringstream imagePath;
+         imagePath << GetHorizontalDirectoryPath().string() << "\\" << id << "\\" << id << "-" << _name << ".tif";
+         return imagePath.str();
+      }
+
       bool ExperimentDirectory::HasVerticalImage() const
       {
          return _hasVerticalImage;

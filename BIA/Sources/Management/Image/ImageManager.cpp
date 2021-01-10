@@ -1,7 +1,8 @@
 #include <sstream>
 
 #include "../Manager.h"
-#include "tiffio.h"
+
+using namespace BIA::Logging;
 
 namespace BIA
 {
@@ -19,109 +20,145 @@ namespace BIA
          _logger = nullptr;
       }
 
+      void ImageManager::ReadTagsFromImage(TIFF* image)
+      {
+         TIFFGetField(image, TIFFTAG_IMAGEWIDTH, &PartImage::ParentImageWidth);
+         TIFFGetField(image, TIFFTAG_IMAGELENGTH, &PartImage::ParentImageLength);
+         TIFFGetField(image, TIFFTAG_BITSPERSAMPLE, &PartImage::BitsPerSample);
+         TIFFGetField(image, TIFFTAG_SAMPLESPERPIXEL, &PartImage::SamplesPerPixel);
+         PartImage::ScanlineSize = TIFFScanlineSize(image);
+//todo:
+//#ifdef _LOGGING_
+//         _logger->Message /*"Experiment Id " << experiment.GetId() << " /*/ << " Image information: width " <<  << " px, height " << imagelength
+//            << " px, bits per sample " << bitspersample << ", samples per pixel " << samplesperpixel << ", scanline size " << scanlinesize;
+//         _logger->Log(Logging::Source::IMAGE_MANAGER);
+//#endif
+      }
+
+      bool ImageManager::OpenParentTIFFImageForReading(TIFF** tiff, std::filesystem::path path)
+      {
+         std::string pathStr = path.string();
+         const char* c_path = pathStr.c_str();
+#ifdef _LOGGING_
+         _logger->Message << " Opening '*.tif' image with path " << path.string() << ".";
+         _logger->Log(Logging::Source::IMAGE_MANAGER);
+#endif
+         *tiff = TIFFOpen(c_path, "r");
+
+         if (*tiff != nullptr)
+         {
+#if _LOGGING_
+            _logger->Message << " Successful file opening on path " << path.string() << ".";
+            _logger->Log(Logging::Source::IMAGE_MANAGER);
+#endif
+            return true;
+         }
+         return false;
+      }
+
       void ImageManager::SplitMainImages()
       {
-#ifdef _LOGGING_
-         std::stringstream msg;
-#endif
          auto& experiments = _manager->ExperimentManager->GetExperiments();
 
          for (auto& experiment : experiments)
          {
             if (experiment.HasVerticalImage())
             {
-               std::string verticalDirectoryPath = experiment.GetVerticalImagePath().string();
-               const char* cpath = verticalDirectoryPath.c_str();
-#ifdef _LOGGING_
-               msg.str(std::string());
-               msg << "Experiment Id " << experiment.GetId() << " / Opening '*.tif' image with path " << verticalDirectoryPath << ".";
-               _logger->Log(msg, Logging::Source::IMAGE_MANAGER);
-#endif
-               TIFF* verticalTiffImage = TIFFOpen(cpath, "r");
-               if (verticalTiffImage != nullptr)
+               TIFF* verticalTIFFParentImage = nullptr;
+
+               if (OpenParentTIFFImageForReading(&verticalTIFFParentImage, experiment.GetVerticalImagePath()))
                {
-#if _LOGGING_
-                  msg.str(std::string());
-                  msg << "Experiment Id " << experiment.GetId() << " / Successful file opening on path " << verticalDirectoryPath << ".";
-                  _logger->Log(msg, Logging::Source::IMAGE_MANAGER);
-#endif
-                  uint32 width, height;
-                  size_t npixels;
-                  uint32* raster;
+                  ReadTagsFromImage(verticalTIFFParentImage);
 
-                  TIFFGetField(verticalTiffImage, TIFFTAG_IMAGEWIDTH, &width);
-                  TIFFGetField(verticalTiffImage, TIFFTAG_IMAGELENGTH, &height);
-
-#ifdef _LOGGING_
-                  msg.str(std::string());
-                  msg << "Experiment Id " << experiment.GetId() << " / Image information: width " << width << " px, height " << height << " px.";
-                  _logger->Log(msg, Logging::Source::IMAGE_MANAGER);
-#endif
-                  npixels = width * height;
-#ifdef _LOGGING_
-                  msg.str(std::string());
-                  msg << "Experiment Id " << experiment.GetId() << " / Allocationg memory for " << npixels << " fields of type 'uint32'.";
-                  _logger->Log(msg, Logging::Source::MEMORY_MANAGEMENT);
-#endif
-                  raster = (uint32*)_TIFFmalloc(npixels * sizeof(uint32));
-
-                  if (raster != nullptr)
+                  for (int i = 0; i < 40; i++)
                   {
-                     if (TIFFReadRGBAImage(verticalTiffImage, width, height, raster, 0))
+                     std::filesystem::path directoryPath = experiment.GetVerticalExperimentPathById(i);
+                     std::filesystem::path settingsPath = experiment.GetVerticalExperimentSettingsPathById(i);
+                     std::filesystem::path resultsPath = experiment.GetVerticalExperimentResultsPathById(i);
+
+                     if (!_manager->FileManager->Exists(directoryPath))
                      {
 #ifdef _LOGGING_
-                        msg.str(std::string());
-                        msg << "Experiment Id " << experiment.GetId() << " / Successful reading file as RGBA Image.";
-                        _logger->Log(msg, Logging::Source::IMAGE_MANAGER);
+                        
+                        _logger->Message << "Experiment Id " << experiment.GetId() << " / Missing directory " << directoryPath.string();
+                        _logger->Log(Logging::Source::IMAGE_MANAGER);
 #endif
-                        for (int i = 0; i < 40; i++)
-                        {
-                           std::filesystem::path directoryPath = experiment.GetVerticalExperimentPathById(i);
-                           std::filesystem::path settingsPath = experiment.GetVerticalExperimentSettingsPathById(i);
-                           std::filesystem::path resultsPath = experiment.GetVerticalExperimentResultsPathById(i);
-
-                           if (!_manager->FileManager->Exists(directoryPath))
-                           {
-#ifdef _LOGGING_
-                              msg.str(std::string());
-                              msg << "Experiment Id " << experiment.GetId() << " / Missing directory " << directoryPath.string();
-                              _logger->Log(msg, Logging::Source::IMAGE_MANAGER);
-#endif
-                              _manager->FileManager->CreateNewDirectory(directoryPath);
-                           }
-
-                           if (!_manager->FileManager->Exists(settingsPath))
-                           {
-#ifdef _LOGGING_
-                              msg.str(std::string());
-                              msg << "Experiment Id " << experiment.GetId() << " / Missing file " << settingsPath.string();
-                              _logger->Log(msg, Logging::Source::IMAGE_MANAGER);
-#endif
-                              _manager->FileManager->CreateNewFile(settingsPath);
-                           }
-
-                           if (!_manager->FileManager->Exists(resultsPath))
-                           {
-#ifdef _LOGGING_
-                              msg.str(std::string());
-                              msg << "Experiment Id " << experiment.GetId() << " / Missing file " << resultsPath.string();
-                              _logger->Log(msg, Logging::Source::IMAGE_MANAGER);
-#endif
-                              _manager->FileManager->CreateNewFile(resultsPath);
-                           }
-
-
-                        }
+                        _manager->FileManager->CreateNewDirectory(directoryPath);
                      }
-                     _TIFFfree(raster);
+
+                     if (!_manager->FileManager->Exists(settingsPath))
+                     {
 #ifdef _LOGGING_
-                     msg.str(std::string());
-                     msg << "Experiment Id " << experiment.GetId() << " / Releasing memory.";
-                     _logger->Log(msg, Logging::Source::MEMORY_MANAGEMENT);
+                        
+                        _logger->Message << "Experiment Id " << experiment.GetId() << " / Missing file " << settingsPath.string();
+                        _logger->Log(Logging::Source::IMAGE_MANAGER);
 #endif
+                        _manager->FileManager->CreateNewFile(settingsPath);
+                     }
+
+                     if (!_manager->FileManager->Exists(resultsPath))
+                     {
+#ifdef _LOGGING_
+                        
+                        _logger->Message << "Experiment Id " << experiment.GetId() << " / Missing file " << resultsPath.string();
+                        _logger->Log(Logging::Source::IMAGE_MANAGER);
+#endif
+                        _manager->FileManager->CreateNewFile(resultsPath);
+                     }
+
+                     std::string verticalPartImagePath = experiment.GetVerticalImagePathById(i).string();
+                     const char* c_verticalPathImagePath = verticalPartImagePath.c_str();
+
+                     TIFF* verticalTIFFPartImage = TIFFOpen(c_verticalPathImagePath, "w");
+
+                     TIFFSetField(verticalTIFFPartImage, TIFFTAG_IMAGEWIDTH, 1024);
+                     TIFFSetField(verticalTIFFPartImage, TIFFTAG_IMAGELENGTH, 1024);
+                     TIFFSetField(verticalTIFFPartImage, TIFFTAG_RESOLUTIONUNIT, 2);
+                     TIFFSetField(verticalTIFFPartImage, TIFFTAG_SAMPLESPERPIXEL, 1);
+                     TIFFSetField(verticalTIFFPartImage, TIFFTAG_BITSPERSAMPLE, 16);
+                     TIFFSetField(verticalTIFFPartImage, TIFFTAG_ORIENTATION, ORIENTATION_TOPLEFT);
+                     TIFFSetField(verticalTIFFPartImage, TIFFTAG_PLANARCONFIG, PLANARCONFIG_CONTIG);
+                     TIFFSetField(verticalTIFFPartImage, TIFFTAG_COMPRESSION, COMPRESSION_NONE);
+
+                     tdata_t destinationbuffer = nullptr;
+                     tdata_t sourcebuffer = nullptr;
+
+                     uint32 linebytes = PartImage::ScanlineSize;
+
+                     destinationbuffer = _TIFFmalloc(linebytes);
+                     sourcebuffer = _TIFFmalloc(linebytes);
+#ifdef _LOGGING_
+                     
+                     _logger->Message << "Allocating " << 2 * linebytes << " bytes for image copying operation.";
+                     _logger->Log(Logging::Source::MEMORY_MANAGEMENT);
+#endif
+                     TIFFSetField(verticalTIFFPartImage, TIFFTAG_ROWSPERSTRIP, TIFFDefaultStripSize(verticalTIFFPartImage, linebytes));
+                     
+                     uint32 row;
+                     for (row = 0; row < PartImage::ParentImageLength; row++)
+                     {
+                        TIFFReadScanline(verticalTIFFParentImage, sourcebuffer, row);
+                        memcpy(destinationbuffer, sourcebuffer, linebytes);
+                        if (TIFFWriteScanline(verticalTIFFPartImage, destinationbuffer, row, 0) < 0)
+                           break;
+
+                        if (row == 1023)
+                           break;
+                     }
+                     TIFFClose(verticalTIFFPartImage);
+
+                     _TIFFfree(destinationbuffer);
+                     _TIFFfree(sourcebuffer);
+
+                     break;
                   }
                }
-               TIFFClose(verticalTiffImage);
+#ifdef _LOGGING_
+                     
+                     _logger->Message << "Experiment Id " << experiment.GetId() << " / Releasing memory.";
+                     _logger->Log(Logging::Source::MEMORY_MANAGEMENT);
+#endif
+               TIFFClose(verticalTIFFParentImage);
 #ifdef _LOGGING_
 #endif
             }
@@ -132,5 +169,6 @@ namespace BIA
             }
          }
       }
+
    }
 }

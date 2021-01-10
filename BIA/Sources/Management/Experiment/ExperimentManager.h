@@ -20,7 +20,6 @@ namespace BIA
             Logging::ILogger* _logger = nullptr;
          public:
             void PrepareExperimentDirectories();
-            void PopulateExperimentsContnent();
             std::vector<Models::ExperimentDirectory>& GetExperiments();
 
             ExperimentManager(Management::Manager*);

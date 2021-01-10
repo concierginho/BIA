@@ -60,6 +60,8 @@ namespace BIA
          std::filesystem::path GetHorizontalResultsPath() const;
          std::filesystem::path GetVerticalImagePath() const;
          std::filesystem::path GetHorizontalImagePath() const;
+         std::filesystem::path GetVerticalImagePathById(int) const;
+         std::filesystem::path GetHorizontalImagePathById(int) const;
 
          bool HasVerticalImage() const;
          bool HasHorizontalImage() const;

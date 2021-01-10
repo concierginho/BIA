@@ -10,7 +10,7 @@ namespace BIA
 {
    namespace Logging
    {
-      void ConsoleLogger::Log(const std::stringstream& message, Source source)
+      void ConsoleLogger::Log(Source source)
       {
          auto in_time_t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
          tm timeinfo;
@@ -45,9 +45,10 @@ namespace BIA
             << std::setw(2) << std::setfill('0') << timeinfo.tm_hour << ":"
             << std::setw(2) << std::setfill('0') << timeinfo.tm_min << ":"
             << std::setw(2) << std::setfill('0') << timeinfo.tm_sec << " -- "
-            << message.str();
+            << Message.str();
 
          std::cout << _msg.str() << std::endl;
+         Flush();
       }
 
       void ConsoleLogger::Prepare()
@@ -56,10 +57,16 @@ namespace BIA
 
       ConsoleLogger::ConsoleLogger()
       {
+         Message.str(std::string());
       }
 
       ConsoleLogger::~ConsoleLogger()
       {
+      }
+
+      void ConsoleLogger::Flush()
+      {
+         Message.str(std::string());
       }
    }
 

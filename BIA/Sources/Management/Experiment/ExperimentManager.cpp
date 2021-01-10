@@ -2,6 +2,8 @@
 
 #include "../Manager.h"
 
+using namespace BIA::Logging;
+
 namespace BIA
 {
    namespace Management::Experiment
@@ -21,10 +23,8 @@ namespace BIA
       void ExperimentManager::PrepareExperimentDirectories()
       {
 #ifdef _LOGGING_
-         std::stringstream msg;
-         msg.str(std::string());
-         msg << "Preparing experiments directories has been started.";
-         _logger->Log(msg, Logging::Source::EXPERIMENT_MANAGER);
+         _logger->Message << "Preparing experiments directories has been started.";
+         _logger->Log(Source::EXPERIMENT_MANAGER);
          auto start = std::chrono::steady_clock::now();
 #endif
          auto& experimentDirectories = _manager->FileManager->GetExperimentDirectories();
@@ -37,35 +37,13 @@ namespace BIA
          }
 
 #ifdef _LOGGING_
-         msg.str(std::string());
          auto end = std::chrono::steady_clock::now();
          auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-         msg << "Preparing experiments directories has ended and took: " << time << "ms.";
-         _logger->Log(msg, Logging::Source::EXPERIMENT_MANAGER);
+         _logger->Message << "Preparing experiments directories has ended and took: " << time << "ms.";
+         _logger->Log(Source::EXPERIMENT_MANAGER);
 #endif
       }
 
-      void ExperimentManager::PopulateExperimentsContnent()
-      {
-         for (auto& experiment : _experiments)
-         {
-            auto horizontalDir = experiment.GetHorizontalDirectoryPath();
-            auto verticalDir = experiment.GetVerticalDirectoryPath();
-
-            for (auto const& horizontalContent : std::filesystem::directory_iterator(horizontalDir.string()))
-            {
-               std::filesystem::path contentPath = horizontalContent.path();
-               experiment.AddHorizontalDirectoryContent(contentPath);
-            }
-
-            for (auto const& verticalContent : std::filesystem::directory_iterator(verticalDir.string()))
-            {
-               std::filesystem::path contentPath = verticalContent.path();
-               experiment.AddVerticalDirectoryContent(contentPath);
-            }
-         }
-      }
-      
       std::vector<Models::ExperimentDirectory>& ExperimentManager::GetExperiments()
       {
          return _experiments;

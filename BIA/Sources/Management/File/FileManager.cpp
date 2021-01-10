@@ -7,6 +7,8 @@
 
 #include "../Manager.h"
 
+using namespace BIA::Logging;
+
 namespace BIA
 {
    namespace Management::File
@@ -43,10 +45,8 @@ namespace BIA
       void FileManager::ScanDirectory()
       {
 #ifdef _LOGGING_
-         std::stringstream msg;
-         msg.str(std::string());
-         msg << "Scanning directory has been started.";
-         _logger->Log(msg, Logging::Source::FILE_MANAGER);
+         _logger->Message << "Scanning directory has been started.";
+         _logger->Log(Source::FILE_MANAGER);
          auto start = std::chrono::steady_clock::now();
 #endif
          for (const auto& rootItem : std::filesystem::directory_iterator(_rootPath))
@@ -57,11 +57,11 @@ namespace BIA
          }
 
 #ifdef _LOGGING_
-         msg.str(std::string());
+         
          auto end = std::chrono::steady_clock::now();
          auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-         msg << "Scanning directory has ended and took: " << time << "ms.";
-         _logger->Log(msg, Logging::Source::FILE_MANAGER);
+         _logger->Message << "Scanning directory has ended and took: " << time << "ms.";
+         _logger->Log(Source::FILE_MANAGER);
 #endif
       }
 
@@ -75,9 +75,6 @@ namespace BIA
       /// </summary>
       void FileManager::ScanExperimentDirectories()
       {
-#ifdef _LOGGING_
-         std::stringstream msg;
-#endif
          if (_experimentDirectories.size() == 0)
             return;
 
@@ -118,18 +115,18 @@ namespace BIA
             if (!hasVertical)
             {
 #ifdef _LOGGING_
-               msg.str(std::string());
-               msg << "Experiment Id " << experiment.GetId() << " / Missing 'Vertical' directory.";
-               _logger->Log(msg, Logging::Source::FILE_MANAGER);
+               
+               _logger->Message << "Experiment Id " << experiment.GetId() << " / Missing 'Vertical' directory.";
+               _logger->Log(Source::FILE_MANAGER);
 #endif
                CreateNewDirectory(verticalFolderPath);
             }
             if (!hasHorizontal)
             {
 #ifdef _LOGGING_
-               msg.str(std::string());
-               msg << "'Horizontal' folder is missing.";
-               _logger->Log(msg, Logging::Source::FILE_MANAGER);
+               
+               _logger->Message << "'Horizontal' folder is missing.";
+               _logger->Log(Source::FILE_MANAGER);
 #endif
                CreateNewDirectory(horizontalFolderPath);
             }
@@ -147,10 +144,8 @@ namespace BIA
       void FileManager::ScanHorizontalAndVerticalDirectories()
       {
 #ifdef _LOGGING_
-         std::stringstream msg;
-         msg.str(std::string());
-         msg << "Scanning horizontal and vertical directories has been started.";
-         _logger->Log(msg, Logging::Source::FILE_MANAGER);
+         _logger->Message << "Scanning horizontal and vertical directories has been started.";
+         _logger->Log(Source::FILE_MANAGER);
          auto start = std::chrono::steady_clock::now();
 #endif
          auto& experiments = _manager->ExperimentManager->GetExperiments();
@@ -179,9 +174,8 @@ namespace BIA
             if (experiment.HasHorizontalSettingsJson() == false)
             {
 #ifdef _LOGGING_
-               msg.str(std::string());
-               msg << "Horizontal directory / Experiment Id " << experiment.GetId() << " / Missing 'settings.json' file.";
-               _logger->Log(msg, Logging::Source::FILE_MANAGER);
+               _logger->Message << "Horizontal directory / Experiment Id " << experiment.GetId() << " / Missing 'settings.json' file.";
+               _logger->Log(Source::FILE_MANAGER);
 #endif
                auto path = experiment.GetHorizontalSettingsPath();
                CreateNewFile(path);
@@ -190,9 +184,9 @@ namespace BIA
             if (experiment.HasHorizontalResultsJson() == false)
             {
 #ifdef _LOGGING_
-               msg.str(std::string());
-               msg << "Horizontal directory / Experiment Id " << experiment.GetId() << " / Missing 'results.json' file.";
-               _logger->Log(msg, Logging::Source::FILE_MANAGER);
+               
+               _logger->Message << "Horizontal directory / Experiment Id " << experiment.GetId() << " / Missing 'results.json' file.";
+               _logger->Log(Source::FILE_MANAGER);
 #endif
                auto path = experiment.GetHorizontalResultsPath();
                CreateNewFile(path);
@@ -217,9 +211,9 @@ namespace BIA
             if (experiment.HasVerticalSettingsJson() == false)
             {
 #ifdef _LOGGING_
-               msg.str(std::string());
-               msg << "Vertical directory / Experiment Id " << experiment.GetId() << " / Missing 'settings.json' file.";
-               _logger->Log(msg, Logging::Source::FILE_MANAGER);
+               
+               _logger->Message << "Vertical directory / Experiment Id " << experiment.GetId() << " / Missing 'settings.json' file.";
+               _logger->Log(Source::FILE_MANAGER);
 #endif
                auto path = experiment.GetVerticalSettingsPath();
                CreateNewFile(path);
@@ -228,9 +222,9 @@ namespace BIA
             if (experiment.HasVerticalResultsJson() == false)
             {
 #ifdef _LOGGING_
-               msg.str(std::string());
-               msg << "Vertical directory / Experiment Id " << experiment.GetId() << " / Missing 'results.json' file.";
-               _logger->Log(msg, Logging::Source::FILE_MANAGER);
+               
+               _logger->Message << "Vertical directory / Experiment Id " << experiment.GetId() << " / Missing 'results.json' file.";
+               _logger->Log(Source::FILE_MANAGER);
 #endif
                auto path = experiment.GetVerticalResultsPath();
                CreateNewFile(path);
@@ -239,27 +233,26 @@ namespace BIA
             if (experiment.GetHorizontalImagePath().empty())
             {
 #ifdef _LOGGING_
-               msg.str(std::string());
-               msg << "Horizontal directory / Experiment Id " << experiment.GetId() << " / Missing image file with extension '*.tif'";
-               _logger->Log(msg, Logging::Source::FILE_MANAGER);
+               
+               _logger->Message << "Horizontal directory / Experiment Id " << experiment.GetId() << " / Missing image file with extension '*.tif'";
+               _logger->Log(Source::FILE_MANAGER);
 #endif
             }
 
             if (experiment.GetVerticalImagePath().empty())
             {
 #ifdef _LOGGING_
-               msg.str(std::string());
-               msg << "Vertical directory / Experiment Id " << experiment.GetId() << " / Missing image file with extension '*.tif'";
-               _logger->Log(msg, Logging::Source::FILE_MANAGER);
+               
+               _logger->Message << "Vertical directory / Experiment Id " << experiment.GetId() << " / Missing image file with extension '*.tif'";
+               _logger->Log(Source::FILE_MANAGER);
 #endif
             }
          }
 #ifdef _LOGGING_
-         msg.str(std::string());
          auto end = std::chrono::steady_clock::now();
          auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-         msg << "Scanning horizontal and vertical directories has ended and took: " << time << "ms.";
-         _logger->Log(msg, Logging::Source::FILE_MANAGER);
+         _logger->Message << "Scanning horizontal and vertical directories has ended and took: " << time << "ms.";
+         _logger->Log(Source::FILE_MANAGER);
 #endif
       }
 
@@ -274,9 +267,6 @@ namespace BIA
       /// </summary>
       void FileManager::MoveItemsToNewDirectory(std::filesystem::path& newDirectory, std::vector<std::filesystem::path>& source)
       {
-#ifdef _LOGGING_
-         std::stringstream msg;
-#endif
          try
          {
             for (const auto& path : source)
@@ -286,18 +276,18 @@ namespace BIA
                std::filesystem::path newPath(newDirectory.string() + "\\" + filename);
                std::filesystem::rename(oldPath, newPath);
 #ifdef _LOGGING_
-               msg.str(std::string());
-               msg << "Moved: " << oldPath.string() << "\nTo: " << newPath.string() << ".";
-               _logger->Log(msg, Logging::Source::FILE_MANAGER);
+               
+               _logger->Message << "Moved: " << oldPath.string() << "\nTo: " << newPath.string() << ".";
+               _logger->Log(Source::FILE_MANAGER);
 #endif 
             }
          }
          catch (std::exception e)
          {
 #ifdef _LOGGING_
-            msg.str(std::string());
-            msg << "Exception thrown: " << e.what();
-            _logger->Log(msg, Logging::Source::FILE_MANAGER);
+            
+            _logger->Message << "Exception thrown: " << e.what();
+            _logger->Log(Source::FILE_MANAGER);
 #endif
          }
       }
@@ -307,9 +297,6 @@ namespace BIA
       /// </summary>
       void FileManager::CreateNewDirectory(std::filesystem::path& path)
       {
-#ifdef _LOGGING_
-         std::stringstream msg;
-#endif
          if (std::filesystem::exists(path))
             return;
 
@@ -317,26 +304,23 @@ namespace BIA
          {
             std::filesystem::create_directories(path);
 #ifdef _LOGGING_
-            msg.str(std::string());
-            msg << "Created new directory: " << path.string();
-            _logger->Log(msg, Logging::Source::FILE_MANAGER);
+            
+            _logger->Message << "Created new directory: " << path.string();
+            _logger->Log(Source::FILE_MANAGER);
 #endif 
          }
          catch (std::exception e)
          {
 #ifdef _LOGGING_
-            msg.str(std::string());
-            msg << "Exception thrown: " << e.what();
-            _logger->Log(msg, Logging::Source::FILE_MANAGER);
+            
+            _logger->Message << "Exception thrown: " << e.what();
+            _logger->Log(Source::FILE_MANAGER);
 #endif
          }
       }
 
       void FileManager::CreateNewFile(std::filesystem::path& path)
       {
-#ifdef _LOGGING_
-         std::stringstream msg;
-#endif
          if (std::filesystem::exists(path))
             return;
 
@@ -344,17 +328,17 @@ namespace BIA
          {
             std::ofstream file{ path.string() };
 #ifdef _LOGGING_
-            msg.str(std::string());
-            msg << "Created new file: " << path.string();
-            _logger->Log(msg, Logging::Source::FILE_MANAGER);
+            
+            _logger->Message << "Created new file: " << path.string();
+            _logger->Log(Source::FILE_MANAGER);
 #endif 
          }
          catch (std::exception e)
          {
 #ifdef _LOGGING_
-            msg.str(std::string());
-            msg << "Exception thrown: " << e.what();
-            _logger->Log(msg, Logging::Source::FILE_MANAGER);
+            
+            _logger->Message << "Exception thrown: " << e.what();
+            _logger->Log(Source::FILE_MANAGER);
 #endif
          }
       }

@@ -7,7 +7,14 @@ namespace BIA
 {
    namespace Logging
    {
-      void FileLogger::Log(const std::stringstream& message, Source source)
+      std::stringstream FileLogger::Message;
+
+      void FileLogger::Flush()
+      {
+         Message.str(std::string());
+      }
+
+      void FileLogger::Log(Source source)
       {
          auto in_time_t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
          tm timeinfo;
@@ -42,9 +49,10 @@ namespace BIA
             << std::setw(2) << std::setfill('0') << timeinfo.tm_hour << ":"
             << std::setw(2) << std::setfill('0') << timeinfo.tm_min << ":"
             << std::setw(2) << std::setfill('0') << timeinfo.tm_sec << "\n"
-            << message.str();
+            << Message.str();
 
          _logFile << _msg.str();
+         Flush();
       }
 
       void FileLogger::Prepare()
@@ -112,6 +120,8 @@ namespace BIA
          std::stringstream logDirectoryPath;
          logDirectoryPath << rootPath << "\\log";
          SetLogDirectoryPath(std::filesystem::path(logDirectoryPath.str()));
+
+         Message.str(std::string());
       }
 
       FileLogger::~FileLogger()

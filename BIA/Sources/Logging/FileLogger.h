@@ -23,7 +23,9 @@ namespace BIA
          std::filesystem::path _logFilePath;
          std::ofstream _logFile;
       public:
-         void Log(const std::stringstream&, Source) override;
+         void Flush() override;
+
+         void Log(Source) override;
          void Prepare() override;
          void SetLogDirectoryPath(const std::filesystem::path&);
          void CreateLogDirectory();

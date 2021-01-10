@@ -18,7 +18,10 @@ namespace BIA
       class ILogger
       {
       public:
-         virtual void Log(const std::stringstream&, Source) = 0;
+         static std::stringstream Message;
+
+         virtual void Log(Source) = 0;
+         virtual void Flush() = 0;
          virtual void Prepare() = 0;
          virtual ~ILogger() {};
       };

@@ -9,6 +9,7 @@
     <ClCompile Include="Sources\Models\ExperimentDirectory.cpp" />
     <ClCompile Include="Sources\Logging\ConsoleLogger.cpp" />
     <ClCompile Include="Sources\Logging\FileLogger.cpp" />
+    <ClCompile Include="Sources\Management\Image\PartImage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Public\BIA.h" />
@@ -20,6 +21,7 @@
     <ClInclude Include="Sources\Logging\ConsoleLogger.h" />
     <ClInclude Include="Sources\Logging\FileLogger.h" />
     <ClInclude Include="Sources\Logging\ILogger.h" />
+    <ClInclude Include="Sources\Management\Image\PartImage.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
