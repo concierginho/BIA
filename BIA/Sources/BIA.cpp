@@ -1,14 +1,15 @@
 #include "../Public/BIA.h"
 #include "Logging/FileLogger.h"
 #include "Logging/ConsoleLogger.h"
-#include "Management/Manager.h"
+#include "File/FileManager.h"
+#include "Experiment/ExperimentManager.h"
+#include "Image/ImageManager.h"
+#include "Management/Manager.h" 
 
 #define _FILE_LOGGING_
 
 namespace BIA
 {
-   using namespace Management;
-
    BIA::BIA(std::string rootPath) : _rootPath(rootPath)
    {
       InitializeComponents();

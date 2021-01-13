@@ -1,5 +1,10 @@
 #include "Manager.h"
 
+#include "../File/FileManager.h"
+#include "../Experiment/ExperimentManager.h"
+#include "../Image/ImageManager.h"
+#include "../Logging/ILogger.h"
+
 namespace BIA
 {
    namespace Management

@@ -4,7 +4,7 @@
 
 namespace BIA
 {
-   namespace Models
+   namespace Experiment
    {
       int ExperimentDirectory::NextId = 0;
 

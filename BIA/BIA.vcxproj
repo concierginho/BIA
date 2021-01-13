@@ -35,25 +35,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Management\Image\PartImage.cpp" />
+    <ClCompile Include="Sources\Experiment\Experiment.cpp" />
+    <ClCompile Include="Sources\Experiment\PartExperiment.cpp" />
+    <ClCompile Include="Sources\Image\PartImage.cpp" />
     <ClCompile Include="Sources\Management\Manager.cpp" />
-    <ClCompile Include="Sources\Management\Image\ImageManager.cpp" />
-    <ClCompile Include="Sources\Models\ExperimentDirectory.cpp" />
-    <ClCompile Include="Sources\Management\Experiment\ExperimentManager.cpp" />
+    <ClCompile Include="Sources\Image\ImageManager.cpp" />
+    <ClCompile Include="Sources\Experiment\ExperimentDirectory.cpp" />
+    <ClCompile Include="Sources\Experiment\ExperimentManager.cpp" />
     <ClCompile Include="Sources\Logging\ConsoleLogger.cpp" />
     <ClCompile Include="Sources\Logging\FileLogger.cpp" />
-    <ClCompile Include="Sources\Management\File\FileManager.cpp" />
+    <ClCompile Include="Sources\File\FileManager.cpp" />
     <ClCompile Include="Sources\BIA.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\Management\Image\PartImage.h" />
+    <ClInclude Include="Sources\Experiment\Experiment.h" />
+    <ClInclude Include="Sources\Experiment\ExperimentDirectory.h" />
+    <ClInclude Include="Sources\Experiment\PartExperiment.h" />
+    <ClInclude Include="Sources\Image\PartImage.h" />
     <ClInclude Include="Sources\Management\Manager.h" />
-    <ClInclude Include="Sources\Management\Image\ImageManager.h" />
-    <ClInclude Include="Sources\Models\ExperimentDirectory.h" />
-    <ClInclude Include="Sources\Management\Experiment\ExperimentManager.h" />
+    <ClInclude Include="Sources\Image\ImageManager.h" />
+    <ClInclude Include="Sources\Experiment\ExperimentManager.h" />
     <ClInclude Include="Sources\Logging\ConsoleLogger.h" />
     <ClInclude Include="Sources\Logging\FileLogger.h" />
-    <ClInclude Include="Sources\Management\File\FileManager.h" />
+    <ClInclude Include="Sources\File\FileManager.h" />
     <ClInclude Include="Public\BIA.h" />
     <ClInclude Include="Sources\Logging\ILogger.h" />
   </ItemGroup>
