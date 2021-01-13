@@ -6,13 +6,16 @@ BIA.UI/obj
 
 BIA/Debug
 BIA/Release
+
 BIA/x64
 BIA/x86
 
 Debug/
 Release/
 
+build/
 packages/
+third-party/*
 
 x64/
 x86/

@@ -191,7 +191,7 @@
             \Large
             \justifying
             \quad
-            Użytkownikom oprogramowania rekomenduje sie wykorzystywanie biblioteki na systemie operacyjnym Windows 10 w projektach budowanych z wykorzystaniem MSBuild (Microsoft Build Engine) w konfiguracji 32-bitowej. \cite{msdocsmsbuild}
+            Użytkownikom oprogramowania rekomenduje sie wykorzystywanie biblioteki na systemie operacyjnym Windows 10 w projektach budowanych z wykorzystaniem MSBuild (Microsoft Build Engine) w konfiguracji 32 lub 64-bitowej \cite{msdocsmsbuild}.
         }
 
     \newpage
@@ -221,7 +221,7 @@
             Dzięki temu, że przechowywane dane nie tracą jakości, TIFF jest używany do archiwizacji zdjęć, ponieważ w przeciwieństwie do rozszerzenia JPEG,
             TIFF może być zmieniany i zapisywany wielokrotnie bez utraty jakości obrazu.
             Rozszerzenie to niesie ze sobą możliwość pracy zarówno wykorzystując kolory z palety RGB czy też monochromatyczne.
-            Jest to bardzo użyteczny format, szczególnie w kontekscie analizy i przetwarzania obrazów cyfrowych. \cite{Encyclopedia of Graphics File Formats: The Complete Reference}
+            Jest to bardzo użyteczny format, szczególnie w kontekscie analizy i przetwarzania obrazów cyfrowych \cite{Encyclopedia of Graphics File Formats: The Complete Reference}.
         }
         \subsection{Binaryzacja}
         {
@@ -237,10 +237,11 @@
             Teraz wystarczy zastosować to dla każdego piksela w obrazie wejściowym i naszym obrazem wyjściowym staje się obraz o tym samym rozmiarze
             z zaznaczonym na czarno obszarem, gdzie macierze RGB miały wartości \(czerwony > 150\) i \(zielony > 200\) i \(niebieski < 122\).
             Tak więc, gdy dokonamy już binaryzacji jesteśmy gotowi do kolejnych działań.
-            Takich jak na przykład etykietowanie, erozja, dylatacja, otwarcie, zamkniecie czy innego rodzaju operacje morfologiczne. \cite{Digital Image Processing Second Edition}
+            Takich jak na przykład etykietowanie, erozja, dylatacja, otwarcie, zamkniecie czy innego rodzaju operacje morfologiczne \cite{Digital Image Processing Second Edition}.
         }
         \subsection{Element Strukturalny}
         {
+            BRAK CITE
             \label{sec:element-strukturalny}
             \Large
             \justifying
@@ -320,6 +321,7 @@
         \newpage
         \subsection{Sąsiedztwo}
         {
+            BRAK CITE
             \label{sec:sasiedztwo}
             \Large
             \justifying
@@ -338,6 +340,7 @@
 
         \subsection{Erozja}
         {
+            BRAK CITE
             \label{sec:erozja}
             \Large
             \justifying
@@ -363,6 +366,7 @@
 
         \subsection{Dylatacja}
         {
+            BRAK CITE
             \label{sec:dylatacja}
             \Large
             \justifying
@@ -420,6 +424,7 @@
         \newpage
         \subsection{Otwarcie morfologiczne}
         {
+            BRAK CITE
             \label{sec:otwarcie-morfologiczne}
             \Large
             \justifying
@@ -448,6 +453,7 @@
         \newpage
         \subsection{Zamknięcie morfologiczne}
         {
+            BRAK CITE
             \label{sec:zamkniecie-morfologiczne}
             \Large
             \justifying
@@ -492,9 +498,21 @@
             \Large
             \justifying
             \quad
-            Gimp 2.10.22 - program służący do tworzenia i edycji grafiki rastrowej \cite{Program GIMP}.
+            Gimp 2.10.22 - program graficzny służący do tworzenia i edycji grafiki rastrowej \cite{Program GIMP}.
             Program został wykorzystany do przygotowania wszystkich grafik znajdujących się w pracy oznaczonych słowami \emph{``opracowanie własne''}.
         }
+
+        \subsubsection{CMake 3.19.0}
+        {
+            \label{sec:cmake}
+            \Large
+            \justifying
+            \quad
+            CMake 3.19.0 - oprogramowanie, które służy do testowania, budowania oraz upakowania źródeł programu.
+            CMake Został wykorzystany do wygenerowania projektów na podstawie źródel biblioteki \emph{LibTIFF}.
+            Wyżej wymienione projekty mogą można otworzyć, a następnie zbudować za pomocą programu {Visual Studio 2019}.
+        }
+
         \subsubsection{LibTIFF 4.2.0}
         {
             \label{sec:LibTIFF}
@@ -504,9 +522,6 @@
             LibTIFF 4.2.0 - biblioteka służąca do manipulacji obrazami typu TIFF \cite{Biblioteka LibTIFF}, typ ten dokładniej został opisany w rozdziale \ref{sec:rozszerzenie-tiff}.
             Biblioteka została wybrana, ponieważ pozwala w łatwy sposób odczytywać informacje zapisane w obrazach.
             Napisana jest w języku C, więc w łatwy sposób można wykorzystać ją w programach pisanych w języku C++.
-            Chcąc wykorzystać ją w programie pisanym w języku C++ opartym o MSBuild, należy najpierw ręcznie zbudować tę bibliotekę przy użyciu narzędzia \textit{nmake} oraz \textit{Command Prompt for Visual Studio 2019} \cite{Building LibTiff}.
-            W związku z powyższym, w programie \textit{Visual Studio 2019} trzeba dodać ścieżkę do miejsca, w którym znajduje się zbudowana przez nas biblioteka.
-            Przykładowo ``D:/tiff-4.2.0/libtiff''.
         }
         \subsubsection{Visual Studio 2019}
         {
@@ -520,9 +535,8 @@
             Dla przykładu: tworzymy bibliotekę napisaną w C++, ponieważ zależy nam na tym, aby operacje wykonywały się bardzo szybko.
             Interfejs użytkownika napisany w C\#, ponieważ robi się to w prosty i szybki sposób.
             Następnie, całość łączymy wykorzystując C++/CLI.
-            Wynikiem takiego działania będzie program łączący w sobie C++ oraz C\#.
+            Wynikiem takiego działania będzie program posiadający interfejs graficzny i łączący w sobie C++ oraz C\#.
         }
-        \newpage
         \subsubsection{\LaTeX}
         {
             \label{sec:LaTeX}
@@ -550,7 +564,15 @@
             \quad
             .NET Framework 4.7.2 - 
         }
-
+        \subsection{Budowa oprogramowania}
+        {
+            \Large
+            \justifying
+            \quad
+            Chcąc wykorzystać ją w programie pisanym w języku C++ opartym o MSBuild, należy najpierw ręcznie zbudować tę bibliotekę przy użyciu narzędzia \textit{nmake} oraz \textit{Command Prompt for Visual Studio 2019} \cite{Building LibTiff}.
+            W związku z powyższym, w programie \textit{Visual Studio 2019} trzeba dodać ścieżkę do miejsca, w którym znajduje się zbudowana przez nas biblioteka.
+            Przykładowo ``D:/tiff-4.2.0/libtiff''.
+        }
         \subsection{Diagram UML aplikacji}
         \subsection{Omówienie implementacji}
         \subsection{Omówienie interfejsu}
@@ -606,6 +628,11 @@
         \textit{Program GIMP}
         \url{https://www.gimp.org/}
 
+        \bibitem{Program CMake}
+        Stan na dzień 13/01/2021
+        \textit{Program CMake}
+        \url{https://www.cmake.org/}
+
         \bibitem{Biblioteka LibTIFF}
         Stan na dzień 30/12/2020 
         \textit{Biblioteka LibTIFF}
@@ -623,7 +650,7 @@
 
         \bibitem{LaTeX}
         Stan na dzień 10/01/2021 
-        \LaTeX 
+        \LaTeX \space
         \url{https://www.latex-project.org/}
 
         \bibitem{VSCode}
