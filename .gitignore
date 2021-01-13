@@ -8,14 +8,18 @@ BIA/Debug
 BIA/Release
 
 BIA/x64
-BIA/x86
+BIA/Win32
+Win32/
 
 Debug/
 Release/
 
 build/
 packages/
+
 third-party/*
+!third-part/info.txt
+!third-part/create_required_directories
 
 x64/
 x86/
