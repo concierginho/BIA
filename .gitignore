@@ -4,6 +4,9 @@ BIA.Bridge/x86
 BIA.UI/bin
 BIA.UI/obj
 
+bia.core/Win32
+bia.core/x64
+
 BIA/Debug
 BIA/Release
 

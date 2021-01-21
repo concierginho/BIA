@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Logging">
+      <UniqueIdentifier>{d9403ef9-0470-42a8-88dc-3dbddf889126}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Logging">
+      <UniqueIdentifier>{d8f46576-f44c-4627-8bef-7025f883a80f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Management">
+      <UniqueIdentifier>{cc3c834f-bfaf-48c5-81d0-e4a5b5e2c9a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Management">
+      <UniqueIdentifier>{fbf2935a-2cfb-473a-80ca-1036c7bb4562}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Management\BIAFileManager">
+      <UniqueIdentifier>{d6eb9678-1b34-4f97-b07e-e6009d489cf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Management\BIAExperimentManager">
+      <UniqueIdentifier>{7c33328d-bf3d-4155-8d0f-0f1021dd1444}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Management\BIAImageManager">
+      <UniqueIdentifier>{5ff464c9-78b0-46e5-8a46-164cdc19d62e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Management\BIALoggingManager">
+      <UniqueIdentifier>{579b3032-2d6f-4c97-960f-2dcebd4667c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Management\BIAExperimentManager">
+      <UniqueIdentifier>{741769ec-be5f-48a0-90ae-28cb455af2f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Management\BIAFileManager">
+      <UniqueIdentifier>{e22dbcd4-195d-41a9-80a9-11f93ff2ff74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Management\BIAImageManager">
+      <UniqueIdentifier>{2b9999c4-3c71-4628-9227-e9e1cc6261d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Management\BIALoggingManager">
+      <UniqueIdentifier>{d19bef6c-c86b-45fd-91d7-3019037a21d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Management\BIAManagerKeeper">
+      <UniqueIdentifier>{aff4a24b-9dbc-4482-bc6e-31a521c9d6af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Management\BIAManagerKeeper">
+      <UniqueIdentifier>{a5a622f0-34e4-4759-a32e-b796ba79f27f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ESource.h">
+      <Filter>Header Files\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="FileLogger.h">
+      <Filter>Header Files\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="ILogger.h">
+      <Filter>Header Files\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleLogger.h">
+      <Filter>Header Files\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="IExperimentManager.h">
+      <Filter>Header Files\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="IImageManager.h">
+      <Filter>Header Files\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="IFileManager.h">
+      <Filter>Header Files\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="IManager.h">
+      <Filter>Header Files\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="BIA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BIACoreExports.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ILoggingManager.h">
+      <Filter>Header Files\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="EType.h">
+      <Filter>Header Files\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="BIAImageManager.h">
+      <Filter>Header Files\Management\BIAImageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="BIAFileManager.h">
+      <Filter>Header Files\Management\BIAFileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="BIAExperimentManager.h">
+      <Filter>Header Files\Management\BIAExperimentManager</Filter>
+    </ClInclude>
+    <ClInclude Include="BIALoggingManager.h">
+      <Filter>Header Files\Management\BIALoggingManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EPattern.h">
+      <Filter>Header Files\Management\BIAFileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Experiment.h">
+      <Filter>Header Files\Management\BIAExperimentManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EAlignment.h">
+      <Filter>Header Files\Management\BIAExperimentManager</Filter>
+    </ClInclude>
+    <ClInclude Include="PartExperiment.h">
+      <Filter>Header Files\Management\BIAExperimentManager</Filter>
+    </ClInclude>
+    <ClInclude Include="BIAManagerKeeper.h">
+      <Filter>Header Files\Management\BIAManagerKeeper</Filter>
+    </ClInclude>
+    <ClInclude Include="EFileType.h">
+      <Filter>Header Files\Management\BIAFileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TIFFImage.h">
+      <Filter>Header Files\Management\BIAImageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EOperationType.h">
+      <Filter>Header Files\Management\BIAImageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TIFFImageSettings.h">
+      <Filter>Header Files\Management\BIAImageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TIFFSettingsManager.h">
+      <Filter>Header Files\Management\BIAImageManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DllEntryPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileLogger.cpp">
+      <Filter>Source Files\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleLogger.cpp">
+      <Filter>Source Files\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="BIA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BIAExperimentManager.cpp">
+      <Filter>Source Files\Management\BIAExperimentManager</Filter>
+    </ClCompile>
+    <ClCompile Include="BIAFileManager.cpp">
+      <Filter>Source Files\Management\BIAFileManager</Filter>
+    </ClCompile>
+    <ClCompile Include="BIAImageManager.cpp">
+      <Filter>Source Files\Management\BIAImageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="BIALoggingManager.cpp">
+      <Filter>Source Files\Management\BIALoggingManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Experiment.cpp">
+      <Filter>Source Files\Management\BIAExperimentManager</Filter>
+    </ClCompile>
+    <ClCompile Include="PartExperiment.cpp">
+      <Filter>Source Files\Management\BIAExperimentManager</Filter>
+    </ClCompile>
+    <ClCompile Include="BIAManagerKeeper.cpp">
+      <Filter>Source Files\Management\BIAManagerKeeper</Filter>
+    </ClCompile>
+    <ClCompile Include="TIFFImage.cpp">
+      <Filter>Source Files\Management\BIAImageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TIFFSettingsManager.cpp">
+      <Filter>Source Files\Management\BIAImageManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
