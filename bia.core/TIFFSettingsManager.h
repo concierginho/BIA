@@ -14,14 +14,12 @@ namespace BIA
 {
    class TIFFSettingsManager : public IManager
    {
-   private:
-      TIFFImageSettings _settings;
-      TIFFImageSettings _parentSettings;
    public:
       virtual void Init() override;
 
       TIFFImageSettings ReadSettings(TIFF**);
       TIFFImageSettings GetPartImageSettings(TIFFImageSettings parentSettings);
+      TIFFImageSettings GetPreviewImageSettings();
 
       void ApplySettings(TIFF**, TIFFImageSettings tiffImageSettings);
 

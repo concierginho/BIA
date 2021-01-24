@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BIA", "BIA\BIA.vcxproj", "{33AAE5FE-75A8-4E7E-B202-FC8EF215441D}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BIA.Bridge", "BIA.Bridge\BIA.Bridge.vcxproj", "{F5B163C0-480E-4313-8248-9C9BFA7E7831}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIA.UI", "BIA.UI\BIA.UI.csproj", "{39D93ADF-ADF3-4D4E-8630-56979FC34B2B}"
@@ -19,14 +17,6 @@ Global
 		release|x86 = release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{33AAE5FE-75A8-4E7E-B202-FC8EF215441D}.debug|x64.ActiveCfg = debug|x64
-		{33AAE5FE-75A8-4E7E-B202-FC8EF215441D}.debug|x64.Build.0 = debug|x64
-		{33AAE5FE-75A8-4E7E-B202-FC8EF215441D}.debug|x86.ActiveCfg = debug|Win32
-		{33AAE5FE-75A8-4E7E-B202-FC8EF215441D}.debug|x86.Build.0 = debug|Win32
-		{33AAE5FE-75A8-4E7E-B202-FC8EF215441D}.release|x64.ActiveCfg = release|x64
-		{33AAE5FE-75A8-4E7E-B202-FC8EF215441D}.release|x64.Build.0 = release|x64
-		{33AAE5FE-75A8-4E7E-B202-FC8EF215441D}.release|x86.ActiveCfg = release|Win32
-		{33AAE5FE-75A8-4E7E-B202-FC8EF215441D}.release|x86.Build.0 = release|Win32
 		{F5B163C0-480E-4313-8248-9C9BFA7E7831}.debug|x64.ActiveCfg = debug|x64
 		{F5B163C0-480E-4313-8248-9C9BFA7E7831}.debug|x64.Build.0 = debug|x64
 		{F5B163C0-480E-4313-8248-9C9BFA7E7831}.debug|x86.ActiveCfg = debug|Win32

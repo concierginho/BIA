@@ -27,8 +27,12 @@ namespace BIA
       void ReadImageSettings(TIFF*, TIFFImage*);
       void CopyHorizontalPartImageToDestinationFile(TIFF** src, TIFFImage* parentImg, TIFF** tar, TIFFImage* childImg, int id);
       void CopyVerticalPartImageToDestinationFile(TIFF** src, TIFFImage* parentImg, TIFF** tar, TIFFImage* childImg, int id);
+      void GeneratePreviews();
 
       virtual void Init() override;
+
+      void AdjustScanline(unsigned char* array, int length);
+      void BinarizeScanline(unsigned char* destination, int length, unsigned char threshold);
    };
 }
 

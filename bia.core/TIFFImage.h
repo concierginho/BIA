@@ -13,14 +13,22 @@ namespace BIA
    class TIFFImage
    {
    private:
-      fs::path _path;
+      TIFFImageSettings _settings;
+
+      fs::path _image_path;
+      fs::path _preview_path;
    public:
-      TIFFImage(fs::path);
+      void SetImagePath(fs::path image_path);
+      fs::path GetImagePath() const;
+
+      void SetPreviewImagePath(fs::path preview_path);
+      fs::path GetPreviewImagePath() const;
+
+      void SetImageSettings(TIFFImageSettings settings);
+      TIFFImageSettings& GetImageSettings();
+
+      TIFFImage();
       ~TIFFImage();
-
-      TIFFImageSettings Settings;
-
-      fs::path GetPath();
    };
 }
 

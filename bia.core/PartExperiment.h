@@ -12,18 +12,19 @@ namespace BIA
    class PartExperiment
    {
    private:
-      fs::path _path;
-      fs::path _imagePath;
+      int _id;
 
+      fs::path _path;
       std::string _name;
 
       TIFFImage* _tiffImage = nullptr;
    public:
-      int ID;
+      int GetId();
 
       void SetImagePath(fs::path imagePath);
       void SetTIFFImage(TIFFImage* tiffImage);
 
+      fs::path GetPreviewPath() const;
       fs::path GetResultsJsonPath() const;
       fs::path GetInfoJsonPath() const;
       fs::path GetRecipeJsonPath() const;
@@ -32,7 +33,7 @@ namespace BIA
 
       TIFFImage* GetTIFFImage();
 
-      explicit PartExperiment(fs::path, std::string parentName);
+      explicit PartExperiment(fs::path path, std::string parentName);
       ~PartExperiment();
    };
 }

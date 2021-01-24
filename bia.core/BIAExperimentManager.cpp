@@ -5,6 +5,9 @@
 #include <regex>
 
 #ifdef _LOGGING_
+/// <summary>
+/// Konstruktor uzywany gdy _LOGGING_ jest zdefiniowany
+/// </summary>
 BIA::BIAExperimentManager::BIAExperimentManager(std::shared_ptr<BIAFileManager> fileManager, std::shared_ptr<BIALoggingManager> loggingManager)
 {
    _fileManager = fileManager;
@@ -12,15 +15,35 @@ BIA::BIAExperimentManager::BIAExperimentManager(std::shared_ptr<BIAFileManager> 
 }
 #endif
 
+/// <summary>
+/// Konstruktor uzywany gdy _LOGGING_ nie jest zdefiniowany
+/// </summary>
+/// <param name="fileManager"></param>
 BIA::BIAExperimentManager::BIAExperimentManager(std::shared_ptr<BIAFileManager> fileManager)
 {
    _fileManager = fileManager;
 }
 
+/// <summary>
+/// Destruktor
+/// </summary>
 BIA::BIAExperimentManager::~BIAExperimentManager()
 {
 }
 
+/// <summary>
+/// Funkcja sluzaca do inicjalizacji wszystkich obiektow typu
+/// Experiment. Obiekty te przechowywane sa nastepnie w odpowiednim
+/// wektorze. Wszelkie potrzebne foldery zostaja stworzone.
+/// Nastepnie istniejace pliki zostaja przeniesione do odpowiednich
+/// folderow na podstawie swojej nazwy - pliki ze slowem "Horizontal"
+/// w nazwie zostaja przeniesione do folderu o nazwie "Horizontal",
+/// Pliki ze slowem "Vertical" do folderu o nazwie "Vertical".
+/// Nastepnie przygotowane zostaja tzw. PartExperiment'y.
+/// PartExperiment to skladowa calego eksperymentu.
+/// Kazdy eksperyment sklada sie z 40 takich obiektow.
+/// W kolejnym kroku nastepuje zlokalizowanie plikow typu 'tif'.
+/// </summary>
 void BIA::BIAExperimentManager::PrepareExperiments()
 {
 #ifdef _LOGGING_
@@ -53,6 +76,12 @@ void BIA::BIAExperimentManager::PrepareExperiments()
 #endif
 }
 
+/// <summary>
+/// Funkcja przeszukujaca wszystkie eksperymenty
+/// w poszukiwaniu obrazow typu 'tif'.
+/// Gdy takowy znajdzie - sciezka do niego 
+/// zostaje ustawiona w odpowiednim obiekcie typu PartExperiment.
+/// </summary>
 void BIA::BIAExperimentManager::LocalizeTIFFImages()
 {
    for (int i = 0; i < 2; i++)
@@ -76,6 +105,10 @@ void BIA::BIAExperimentManager::LocalizeTIFFImages()
       }
 }
 
+/// <summary>
+/// Funkcja przygotowujaca obiekty typu PartExperiment.
+/// Tworzy wszystkie potrzebne foldery i pliki.
+/// </summary>
 void BIA::BIAExperimentManager::PreparePartExperiments()
 {
 #ifdef _LOGGING_
@@ -117,6 +150,11 @@ void BIA::BIAExperimentManager::PreparePartExperiments()
 
 }
 
+/// <summary>
+/// Funkcja, ktora pozwala na klasyfikacje zawartosci poszczegolnych eksperymentow.
+/// Szuka plikow nazwanych w okreslony sposob, a nastepnie przenosi odpowiednie
+/// pliki w odpowiednie miejsca.
+/// </summary>
 void BIA::BIAExperimentManager::MoveExistingFiles()
 {
    if (_experiments.size() == 0)
@@ -141,8 +179,6 @@ void BIA::BIAExperimentManager::MoveExistingFiles()
          {
             std::string filename = item.path().filename().string();
 
-            std::regex chuj = _fileManager->GetPattern(EPattern::CONTAINS_HORIZONTAL);
-
             if (std::regex_match(filename, _fileManager->GetPattern(EPattern::CONTAINS_HORIZONTAL)))
                horizontalItems.push_back(item);
             else if (std::regex_match(filename, _fileManager->GetPattern(EPattern::CONTAINS_VERTICAL)))
@@ -160,6 +196,9 @@ void BIA::BIAExperimentManager::MoveExistingFiles()
    }
 }
 
+/// <summary>
+/// Funkcja tworzaca wszystkie potrzebne do prawidlowego dzialania programu pliki
+/// </summary>
 void BIA::BIAExperimentManager::Initialize(PartExperiment& partExperiment)
 {
    std::vector<fs::path> files;
@@ -176,16 +215,26 @@ void BIA::BIAExperimentManager::Initialize(PartExperiment& partExperiment)
       _fileManager->CreateAtPath(partExperiment.GetPreviewDirectory(), EFileType::DIRECTORY);
 }
 
+/// <summary>
+/// Funkcja zwraca smart pointer do obiektu typu BIAFileManager.
+/// </summary>
+/// <returns></returns>
 std::shared_ptr<BIA::BIAFileManager> BIA::BIAExperimentManager::GetFileManager()
 {
    return _fileManager;
 }
 
+/// <summary>
+/// Funkcja zwraca wektor z obiektami typu Experiment
+/// </summary>
 std::vector<BIA::Experiment>& BIA::BIAExperimentManager::GetExperiments()
 {
    return _experiments;
 }
 
+/// <summary>
+/// Funkcja inicjalizujaca
+/// </summary>
 void BIA::BIAExperimentManager::Init()
 {
 #ifdef _LOGGING_

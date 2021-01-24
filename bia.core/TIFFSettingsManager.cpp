@@ -36,6 +36,19 @@ BIA::TIFFImageSettings BIA::TIFFSettingsManager::GetPartImageSettings(TIFFImageS
    };
 }
 
+BIA::TIFFImageSettings BIA::TIFFSettingsManager::GetPreviewImageSettings()
+{
+   return
+   {
+      1024,
+      1024,
+      (uint32)1024,
+      8,
+      1,
+      2
+   };
+}
+
 void BIA::TIFFSettingsManager::ApplySettings(TIFF** tiff, TIFFImageSettings tiffImageSettings)
 {
    TIFFSetField(*tiff, TIFFTAG_IMAGEWIDTH, tiffImageSettings.ImageWidth);
