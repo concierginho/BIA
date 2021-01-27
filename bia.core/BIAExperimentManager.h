@@ -33,7 +33,7 @@ namespace BIA
       void LocalizeTIFFImages();
       void PreparePartExperiments();
       void MoveExistingFiles();
-      void Initialize(PartExperiment&);
+      void InitializePartExperiment(PartExperiment&);
 
       std::shared_ptr<BIAFileManager> GetFileManager();
 

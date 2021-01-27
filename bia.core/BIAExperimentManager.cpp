@@ -32,17 +32,39 @@ BIA::BIAExperimentManager::~BIAExperimentManager()
 }
 
 /// <summary>
-/// Funkcja sluzaca do inicjalizacji wszystkich obiektow typu
-/// Experiment. Obiekty te przechowywane sa nastepnie w odpowiednim
-/// wektorze. Wszelkie potrzebne foldery zostaja stworzone.
-/// Nastepnie istniejace pliki zostaja przeniesione do odpowiednich
-/// folderow na podstawie swojej nazwy - pliki ze slowem "Horizontal"
-/// w nazwie zostaja przeniesione do folderu o nazwie "Horizontal",
-/// Pliki ze slowem "Vertical" do folderu o nazwie "Vertical".
-/// Nastepnie przygotowane zostaja tzw. PartExperiment'y.
-/// PartExperiment to skladowa calego eksperymentu.
-/// Kazdy eksperyment sklada sie z 40 takich obiektow.
-/// W kolejnym kroku nastepuje zlokalizowanie plikow typu 'tif'.
+/// Cel: Inicjalizacja obiektow typu "Experiment".
+///      Obiekty tego typu przechowywane sa w wektorze.
+///      Wszystkie potrzebne katalogi zostaja stworzone
+///      wedle schematu:
+///      \root
+///         \Experiment0
+///            \Horizontal
+///               \Horizontal.tif
+///               \PartExperiment0
+///                  \PartExperiment0.tif
+///                  \results.json
+///                  \recipe.json
+///                  \info.json
+///                  \Preview
+///                     \preview.tif
+///               \PartExperiment1
+///               .
+///               .
+///               .
+///               \PartExperiment39
+///            \Vertical
+///               \Vertical.tif
+///               \PartExperiment0
+///               \PartExperiment1
+///               .
+///               .
+///               .
+///               \PartExperiment39
+///         \Experiment1
+///         .
+///         .
+///         .
+///         \Experiment39
 /// </summary>
 void BIA::BIAExperimentManager::PrepareExperiments()
 {
@@ -77,10 +99,10 @@ void BIA::BIAExperimentManager::PrepareExperiments()
 }
 
 /// <summary>
-/// Funkcja przeszukujaca wszystkie eksperymenty
-/// w poszukiwaniu obrazow typu 'tif'.
-/// Gdy takowy znajdzie - sciezka do niego 
-/// zostaje ustawiona w odpowiednim obiekcie typu PartExperiment.
+/// Cel: Lokalizacja obrazow typu 'tif'.
+///      Funkcja przechodzi przez wszystkie katalogi oraz pliki
+///      i przypisuje odpowiednie wartosci sciezek do odpowiednich
+///      eksperymentow.
 /// </summary>
 void BIA::BIAExperimentManager::LocalizeTIFFImages()
 {
@@ -106,8 +128,9 @@ void BIA::BIAExperimentManager::LocalizeTIFFImages()
 }
 
 /// <summary>
-/// Funkcja przygotowujaca obiekty typu PartExperiment.
-/// Tworzy wszystkie potrzebne foldery i pliki.
+/// Cel: Przygotowanie obiektow typu "PartExperiment".
+///      Wywolywana przez funckje "PrepareExperiments()"
+///      Stanowi jej integralna czesc.
 /// </summary>
 void BIA::BIAExperimentManager::PreparePartExperiments()
 {
@@ -151,9 +174,10 @@ void BIA::BIAExperimentManager::PreparePartExperiments()
 }
 
 /// <summary>
-/// Funkcja, ktora pozwala na klasyfikacje zawartosci poszczegolnych eksperymentow.
-/// Szuka plikow nazwanych w okreslony sposob, a nastepnie przenosi odpowiednie
-/// pliki w odpowiednie miejsca.
+/// Cel: Przenosi pliki na podstawie ich nazwy do odpowiednich lokalizacji.
+///      Przyklad: Horizontal 4.5min.tif zostanie przeniesiony do folderu
+///                o nazwie "Horizontal" wewnatrz eksperymentu gdzie zostal
+///                zlokalizowany.
 /// </summary>
 void BIA::BIAExperimentManager::MoveExistingFiles()
 {
@@ -197,9 +221,12 @@ void BIA::BIAExperimentManager::MoveExistingFiles()
 }
 
 /// <summary>
-/// Funkcja tworzaca wszystkie potrzebne do prawidlowego dzialania programu pliki
+/// Cel: Inicjalizacja czesciowego eksperymentu wskazanego
+///      w parametrze "partExperiment" oraz stworzenie
+///      odpowiednich pliku wewnatrz katalogu czesciowego eksperymentu.
 /// </summary>
-void BIA::BIAExperimentManager::Initialize(PartExperiment& partExperiment)
+/// <param name="partExperiment"></param>
+void BIA::BIAExperimentManager::InitializePartExperiment(PartExperiment& partExperiment)
 {
    std::vector<fs::path> files;
 
@@ -216,7 +243,7 @@ void BIA::BIAExperimentManager::Initialize(PartExperiment& partExperiment)
 }
 
 /// <summary>
-/// Funkcja zwraca smart pointer do obiektu typu BIAFileManager.
+/// Cel: Zwrocenie obiektu typu std::shared_ptr<BIA::BIAFileManager>.
 /// </summary>
 /// <returns></returns>
 std::shared_ptr<BIA::BIAFileManager> BIA::BIAExperimentManager::GetFileManager()
@@ -225,15 +252,16 @@ std::shared_ptr<BIA::BIAFileManager> BIA::BIAExperimentManager::GetFileManager()
 }
 
 /// <summary>
-/// Funkcja zwraca wektor z obiektami typu Experiment
+/// Cel: Zwrocenie referencji do wektora, w ktorym zapisane sa eksperymenty.
 /// </summary>
+/// <returns></returns>
 std::vector<BIA::Experiment>& BIA::BIAExperimentManager::GetExperiments()
 {
    return _experiments;
 }
 
 /// <summary>
-/// Funkcja inicjalizujaca
+/// Cel: Inicjalizacja.
 /// </summary>
 void BIA::BIAExperimentManager::Init()
 {
