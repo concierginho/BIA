@@ -20,7 +20,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
    char* path = "D:\\env\\root";
    BIA::BIA bia(path);
    bia.Init();
-   bia.StartProcess();
+   bia.Start();
+
+   System::Threading::Thread::Sleep(5000);
+
+   bia.Stop();
 
    auto mainWindow = gcnew MainWindow();
    auto mainWindowVM = gcnew MainWindowVM();

@@ -31,6 +31,15 @@ std::shared_ptr<BIA::BIAImageManager> BIA::BIAManagerKeeper::GetImageManagerAsBI
    return std::dynamic_pointer_cast<BIAImageManager>(_imageManager);
 }
 
+/// <summary>
+/// Cel: dynamiczne rzutowanie obiektu typu std::shared_ptr<IProcessManager>
+///      do typu std::shared_ptr<BIAProcessManager>
+/// </summary>
+std::shared_ptr<BIA::BIAProcessManager> BIA::BIAManagerKeeper::GetProcessManagerAsBIAProcessManager()
+{
+   return std::dynamic_pointer_cast<BIAProcessManager>(_processManager);
+}
+
 #ifdef _LOGGING_
 /// <summary>
 /// Funkcja zwraca smart pointer do obiektu typu BIALoggingManager
@@ -48,9 +57,10 @@ std::string BIA::BIAManagerKeeper::GetRootPath()
    return _rootPath;
 }
 
-BIA::BIAManagerKeeper::BIAManagerKeeper(char* rootPath)
+BIA::BIAManagerKeeper::BIAManagerKeeper(char* rootPath, BIA* bia)
 {
    _rootPath = std::string(rootPath);
+   _bia = bia;
 }
 
 BIA::BIAManagerKeeper::~BIAManagerKeeper()
@@ -83,10 +93,11 @@ void BIA::BIAManagerKeeper::Init()
    auto experimentManager = GetExperimentManagerAsBIAExperimentManager();
 
    _imageManager = std::make_shared<BIAImageManager>(experimentManager, loggingManager);
-
+   _processManager = std::make_shared<BIAProcessManager>(_bia, loggingManager);
 #else
    _experimentManager = std::make_shared<BIAExperimentManager>(GetFileManagerAsBIAFileManager());
    _imageManager = std::make_shared<BIAImageManager>();
+   _processManager = std::make_shared<BIAProcessManager>(_bia);
 #endif
 
    _managers =
@@ -96,7 +107,8 @@ void BIA::BIAManagerKeeper::Init()
 #endif
       _fileManager,
       _experimentManager,
-      _imageManager
+      _imageManager,
+      _processManager
    };
 
    for (const auto& manager : _managers)

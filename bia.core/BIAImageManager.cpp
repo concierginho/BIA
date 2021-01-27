@@ -34,7 +34,7 @@ BIA::BIAImageManager::~BIAImageManager()
 /// <summary>
 /// Funkcja dzielaca obrazy typu 'tif' na 40 mniejszych obrazow.
 /// </summary>
-void BIA::BIAImageManager::SplitImages()
+void BIA::BIAImageManager::SplitImages(std::atomic<bool>& running)
 {
 #ifdef _LOGGING_
    _loggingManager.get()->Message << "Splitting images has been started.";
@@ -48,6 +48,15 @@ void BIA::BIAImageManager::SplitImages()
 
       for (auto& experiment : _experimentManager->GetExperiments())
       {
+         if (running == false)
+         {
+#ifdef _LOGGING_
+            _loggingManager->Message << "Requesting process cancellation.";
+            _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+#endif
+            return;
+         }
+
          auto parentTIFFImage = experiment.GetTIFFImage(type);
          std::string tiffPathStr = parentTIFFImage->GetImagePath().string();
          auto c_tiffPath = tiffPathStr.c_str();
@@ -64,6 +73,7 @@ void BIA::BIAImageManager::SplitImages()
          TIFF* parentImage = TIFFOpen(c_tiffPath, "r");
          TIFFSettingsManager settingsManager = TIFFSettingsManager();
 
+         _ASSERT(parentImage);
          if (!parentImage)
          {
 #ifdef _LOGGING_
@@ -77,6 +87,15 @@ void BIA::BIAImageManager::SplitImages()
 
          for (auto& partExperiment : experiment.GetPartExperiments(type))
          {
+            if (running == false)
+            {
+#ifdef _LOGGING_
+               _loggingManager->Message << "Requesting process cancellation.";
+               _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+#endif
+               return;
+            }
+
             auto partImagePath = partExperiment.GetImagePath().string();
             auto c_partImagePath = partImagePath.c_str();
 
@@ -119,7 +138,7 @@ void BIA::BIAImageManager::SplitImages()
 #ifdef _LOGGING_
    auto end = std::chrono::steady_clock::now();
    auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-   _loggingManager.get()->Message << "Splitting images   has ended and took: " << time << "ms.";
+   _loggingManager.get()->Message << "Splitting images has ended and took: " << time << "ms.";
    _loggingManager->Log(ESource::BIA_EXPERIMENT_MANAGER);
 #endif
 }
@@ -314,25 +333,35 @@ void BIA::BIAImageManager::CopyVerticalPartImageToDestinationFile(TIFF** src, TI
 /// na podstawie zapisanej w pliku recipe.json wartosci
 /// pola 'threshold'.
 /// </summary>
-void BIA::BIAImageManager::GeneratePreviews()
+void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& running)
 {
    auto& experiments = _experimentManager->GetExperiments();
    
-   for (auto & experiment : experiments)
+   for (int i = 0; i < 2; i++)
    {
-      for (int i = 0; i < 2; i++)
+      EFolder type = (EFolder)i;
+
+      for (auto& experiment : experiments)
       {
-         EFolder type = (EFolder)i;
          auto& partExperiments = experiment.GetPartExperiments(type);
 
          for (auto& partExperiment : partExperiments)
          {
+            if (running == false)
+            {
+#ifdef _LOGGING_
+               _loggingManager->Message << "Requesting process cancellation.";
+               _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+#endif
+               return;
+            }
+
             std::string originalImagePath = partExperiment.GetImagePath().string();
             const char* c_originalImagePath = originalImagePath.c_str();
 
             std::string previewImagePath = partExperiment.GetPreviewPath().string();
             const char* c_previewImagePath = previewImagePath.c_str();
-         
+
             TIFF* originalTIFFImage = TIFFOpen(c_originalImagePath, "r");
             TIFF* previewTIFFImage = TIFFOpen(c_previewImagePath, "w");
 
@@ -348,7 +377,7 @@ void BIA::BIAImageManager::GeneratePreviews()
             settingsManager.ApplySettings(&previewTIFFImage, previewImageSettings);
 
             uint32 linebytes = previewImageSettings.ScanlineSize;
-            
+
             unsigned char* source_buffer = (unsigned char*)_TIFFmalloc(linebytes);
             unsigned char* destination_buffer = (unsigned char*)_TIFFmalloc(linebytes);
 
@@ -380,7 +409,7 @@ void BIA::BIAImageManager::GeneratePreviews()
 void BIA::BIAImageManager::Init()
 {
 #ifdef _LOGGING_
-   _loggingManager->Message << "Initializing BIAImageManager.";
+   _loggingManager->Message << "Initializing BIAImageManager...";
    _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
 #endif
 }

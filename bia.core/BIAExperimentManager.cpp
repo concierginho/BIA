@@ -238,7 +238,7 @@ std::vector<BIA::Experiment>& BIA::BIAExperimentManager::GetExperiments()
 void BIA::BIAExperimentManager::Init()
 {
 #ifdef _LOGGING_
-   _loggingManager->Message << "Initializing BIAExperimentManager.";
+   _loggingManager->Message << "Initializing BIAExperimentManager...";
    _loggingManager->Log(ESource::BIA_EXPERIMENT_MANAGER);
 #endif
 }

@@ -1,4 +1,5 @@
-﻿#include "pch.h"
+﻿
+#include "pch.h"
 #include "BIA.h"
 #include "BIAManagerKeeper.h"
 
@@ -7,37 +8,54 @@
 #endif
 #include "EAlignment.h"
 
+#include <future>
+
 /// <summary>
 /// Funkcja inicjalizujace BIAManagerKeeper'a, ktory odpowiedzialny jest
 /// za inicjalizacje glownych klas. Klasy te odpowiadaja za poszczegolne
 /// funkcjonalnosci. Np. BIAImageManager, BIAFileManager.
-/// </summary>
-void BIA::BIA::Init()
-{
-   _keeper = new BIAManagerKeeper(_rootPath);
-
-   _keeper->Init();
-}
-
-/// <summary>
-/// Funkcja rozpoczynajaca caly proces.
 /// 
 /// 1. Skanowanie zawartosci folderu podanego podczas inicjalizacji obiektu typu BIA
 /// 2. Przygotowanie eksperymentow (przez eksperyment nalezy rozumiec podkatalog
 ///    glownego katalogu).
 /// 3. Podzielenie obrazow na 40 obrazow skladowych.
-/// 4. Wygenerowanie zbinaryzowanych obrazow.
+/// </summary>
+void BIA::BIA::Init()
+{
+   _keeper = new BIAManagerKeeper(_rootPath, this);
+
+   _keeper->Init();
+
+   _keeper->GetFileManagerAsBIAFileManager()->ScanRootDirectory();
+   _keeper->GetExperimentManagerAsBIAExperimentManager()->PrepareExperiments();
+}
+
+/// <summary>
+/// Funkcja rozpoczynajaca caly proces.
+/// 
+/// 1. Binaryzacja obrazów na podstawie ustawien pobranych z pliku 'recipe.json'.
 /// </summary>
 void BIA::BIA::StartProcess()
 {
-   auto biaFileManager = _keeper->GetFileManagerAsBIAFileManager();
-   auto biaImageManager = _keeper->GetImageManagerAsBIAImageManager();
-   auto biaExperimentManager = _keeper->GetExperimentManagerAsBIAExperimentManager();
+   std::atomic<bool>& running = _keeper->GetProcessManagerAsBIAProcessManager()->Running;
 
-   biaFileManager->ScanRootDirectory();
-   biaExperimentManager->PrepareExperiments();
-   biaImageManager->SplitImages();
-   biaImageManager->GeneratePreviews();
+   _keeper->GetImageManagerAsBIAImageManager()->SplitImages(running);
+
+   if (running == false)
+      return;
+
+   _keeper->GetImageManagerAsBIAImageManager()->GeneratePreviews(running);
+
+   if (running == false)
+      return;
+}
+
+/// <summary>
+/// 
+/// </summary>
+void BIA::BIA::StopProcess()
+{
+   _keeper->GetProcessManagerAsBIAProcessManager()->Stop();
 }
 
 /// <summary>
@@ -58,9 +76,24 @@ const char* BIA::BIA::GetRootPath() const
 }
 
 /// <summary>
+/// 
+/// </summary>
+BIA::BIAManagerKeeper* BIA::BIA::GetKeeper()
+{
+   return _keeper;
+}
+
+/// <summary>
+/// 
+/// </summary>
+void BIA::BIA::SetKeeper(BIAManagerKeeper* keeper)
+{
+   _keeper = keeper;
+}
+
+/// <summary>
 /// Glowny konstruktor klasy BIA.
 /// </summary>
-/// <param name="rootPath"></param>
 BIA::BIA::BIA(char* rootPath)
 {
    _rootPath = rootPath;
@@ -79,4 +112,18 @@ BIA::BIA::~BIA()
    if (!_keeper)
       delete _keeper;
    _keeper = nullptr;
+}
+
+void BIA::BIA::Start()
+{
+   auto processManager = _keeper->GetProcessManagerAsBIAProcessManager();
+
+   processManager->Start();
+}
+
+void BIA::BIA::Stop()
+{
+   auto processManager = _keeper->GetProcessManagerAsBIAProcessManager();
+
+   processManager->Stop();
 }

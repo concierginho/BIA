@@ -76,7 +76,7 @@ void BIA::BIAFileManager::Init()
    LoadPatterns();
 
 #ifdef _LOGGING_
-   _loggingManager->Message << "Initializing BIAFileManager.";
+   _loggingManager->Message << "Initializing BIAFileManager...";
    _loggingManager->Log(ESource::BIA_FILE_MANAGER);
 #endif
 }

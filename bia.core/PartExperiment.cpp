@@ -4,7 +4,7 @@
 #include <sstream>
 
 /// <summary>
-/// Glowny konstruktor.
+/// Konstruktor
 /// </summary>
 BIA::PartExperiment::PartExperiment(fs::path path, std::string parentName)
 {
@@ -13,8 +13,8 @@ BIA::PartExperiment::PartExperiment(fs::path path, std::string parentName)
    _name = parentName + "_" + std::to_string(_id);
 
    _tiffImage = new TIFFImage();
-   _tiffImage->SetImagePath(path.string() + "\\" + _name + "\.tif");
-   _tiffImage->SetPreviewImagePath(fs::path(path.string() + "\\preview\\" + _name + "\.tif"));
+   _tiffImage->SetImagePath(path.string() + "\\" + _name + ".tif");
+   _tiffImage->SetPreviewImagePath(fs::path(path.string() + "\\preview\\" + _name + ".tif"));
 }
 
 /// <summary>

@@ -23,11 +23,12 @@ namespace BIA
 #endif
       ~BIAImageManager();
 
-      void SplitImages();
       void ReadImageSettings(TIFF*, TIFFImage*);
       void CopyHorizontalPartImageToDestinationFile(TIFF** src, TIFFImage* parentImg, TIFF** tar, TIFFImage* childImg, int id);
       void CopyVerticalPartImageToDestinationFile(TIFF** src, TIFFImage* parentImg, TIFF** tar, TIFFImage* childImg, int id);
-      void GeneratePreviews();
+
+      void GeneratePreviews(std::atomic<bool>& running);
+      void SplitImages(std::atomic<bool>& running);
 
       virtual void Init() override;
 

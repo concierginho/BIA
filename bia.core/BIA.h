@@ -13,10 +13,19 @@ namespace BIA
       explicit BIA(char*);
       ~BIA();
 
+      bool IsRunning();
+
+      void Start();
+      void Stop();
+
       void Init();
       void StartProcess();
+      void StopProcess();
       void SetRootPath(char*);
       const char* GetRootPath() const;
+
+      BIAManagerKeeper* GetKeeper();
+      void SetKeeper(BIAManagerKeeper*);
    private:
       BIAManagerKeeper* _keeper = nullptr;
       char* _rootPath = nullptr;

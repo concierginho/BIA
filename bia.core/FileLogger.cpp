@@ -6,6 +6,11 @@
 #include "FileLogger.h"
 #include "IFileManager.h"
 
+/// <summary>
+/// Konstruktor klasy FileLogger.
+/// </summary>
+/// <param name="rootPath"></param>
+/// <param name="fileManager"></param>
 BIA::FileLogger::FileLogger(std::string rootPath, std::shared_ptr<IFileManager>& fileManager)
 {
    _fileManager = fileManager;
@@ -15,12 +20,20 @@ BIA::FileLogger::FileLogger(std::string rootPath, std::shared_ptr<IFileManager>&
    _logDirPath = fs::path(logDirPath.str());
 }
 
+/// <summary>
+/// Destruktor klasy FileLogger.
+/// </summary>
 BIA::FileLogger::~FileLogger()
 {
 
    _fileManager = nullptr;
 }
 
+/// <summary>
+/// Cel: zapisanie zawartosci parametru message w pliku.
+/// </summary>
+/// <param name="source"></param>
+/// <param name="message"></param>
 void BIA::FileLogger::Log(ESource source, std::stringstream& message)
 {
    _logFileObj.open(_logFilePath, std::ios::app);
@@ -47,6 +60,9 @@ void BIA::FileLogger::Log(ESource source, std::stringstream& message)
       case ESource::BIA_IMAGE_MANAGER:
          _msg << "BIA Image Manager / ";
          break;
+      case ESource::BIA_PROCESS_MANAGER:
+         _msg << "BIA Process Manager / ";
+         break;
       case ESource::MEMORY_MANAGEMENT:
          _msg << "Memory Management / ";
          break;
@@ -67,6 +83,9 @@ void BIA::FileLogger::Log(ESource source, std::stringstream& message)
    _logFileObj.close();
 }
 
+/// <summary>
+/// Cel: Przygotowanie folderu "log" oraz pliku tekstowego, do ktorego beda trafiac logi.
+/// </summary>
 void BIA::FileLogger::Prepare()
 {
    CreateLogDirectory();
@@ -93,12 +112,19 @@ void BIA::FileLogger::Prepare()
    _logFileObj.close();
 }
 
+/// <summary>
+/// Cel: Stworzenie folderu "log" wewnatrz glownego katalogu.
+/// </summary>
 void BIA::FileLogger::CreateLogDirectory()
 {
    if (!_fileManager->ExistsAtPath(_logDirPath))
       _fileManager->CreateAtPath(_logDirPath, EFileType::DIRECTORY);
 }
 
+/// <summary>
+/// Cel: Stworzenie pliku, do ktorego trafialy beda logi.
+///      Jego nazwa wybierana jest na podstawie daty oraz czasu.
+/// </summary>
 void BIA::FileLogger::CreateLogFile()
 {
    try

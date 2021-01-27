@@ -191,6 +191,7 @@
     <ClInclude Include="BIAExperimentManager.h" />
     <ClInclude Include="BIAFileManager.h" />
     <ClInclude Include="BIAImageManager.h" />
+    <ClInclude Include="BIAProcessManager.h" />
     <ClInclude Include="ConsoleLogger.h" />
     <ClInclude Include="ESource.h" />
     <ClInclude Include="EType.h" />
@@ -203,6 +204,7 @@
     <ClInclude Include="BIAManagerKeeper.h" />
     <ClInclude Include="EFileType.h" />
     <ClInclude Include="EOperationType.h" />
+    <ClInclude Include="IProcessManager.h" />
     <ClInclude Include="TIFFImageSettings.h" />
     <ClInclude Include="IImageManager.h" />
     <ClInclude Include="IExperimentManager.h" />
@@ -221,6 +223,7 @@
     <ClCompile Include="BIAFileManager.cpp" />
     <ClCompile Include="BIAImageManager.cpp" />
     <ClCompile Include="BIALoggingManager.cpp" />
+    <ClCompile Include="BIAProcessManager.cpp" />
     <ClCompile Include="ConsoleLogger.cpp" />
     <ClCompile Include="DllEntryPoint.cpp" />
     <ClCompile Include="Experiment.cpp" />
