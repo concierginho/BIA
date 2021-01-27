@@ -8,7 +8,7 @@
 #include "BIAFileManager.h"
 
 /// <summary>
-/// Funckja wczytuje wszystkie wyrazenia regularne, ktore sa wykorzystywane
+/// Cel: Stworzenie wyrazen regularnych na uzytek BIAFileManager'a.
 /// podczas skanowania folderow.
 /// </summary>
 void BIA::BIAFileManager::LoadPatterns()
@@ -23,23 +23,25 @@ void BIA::BIAFileManager::LoadPatterns()
 }
 
 /// <summary>
-/// Funkcja zwraca sciezke do glownego katalogu jako typu std::string.
+/// Cel: Zwrocenie sciezki do katalogu glownego.
 /// </summary>
+/// <returns></returns>
 std::string BIA::BIAFileManager::GetRootPath() const
 {
    return _rootPath;
 }
 
 /// <summary>
-/// Konstruktor domyslny
+/// Domyslny konstruktor.
 /// </summary>
+/// <param name="rootPath"></param>
 BIA::BIAFileManager::BIAFileManager(std::string rootPath)
 {
    _rootPath = rootPath;
 }
 
 /// <summary>
-/// Destruktor
+/// Destruktor.
 /// </summary>
 BIA::BIAFileManager::~BIAFileManager()
 {
@@ -47,10 +49,7 @@ BIA::BIAFileManager::~BIAFileManager()
 
 #ifdef _LOGGING_
 /// <summary>
-/// Funkcja pozwala na ustawienie menadzera logowania.
-/// Jest on ustawiany za pomoca tej funkcji, poniewaz
-/// podczas inicjalizacji FileManager'a nie wiadomo
-/// jeszcze o tym czy LoggingManager bedzie wykorzystany.
+/// Konstruktor uzywany gdy _LOGGING_ jest zdefiniowane.
 /// </summary>
 /// <param name="loggingManager"></param>
 void BIA::BIAFileManager::SetLoggingManager(std::shared_ptr<BIALoggingManager> loggingManager) 
@@ -60,16 +59,17 @@ void BIA::BIAFileManager::SetLoggingManager(std::shared_ptr<BIALoggingManager> l
 #endif
 
 /// <summary>
-/// Funckja zwraca odpowiednie wyrazenie regularne na podstawie okreslonego
-/// argumentu typu EPattern.
+/// Cel: Zwrocenie wyrazenia regularnego na podstawie wybranego wzoru.
 /// </summary>
+/// <param name="pattern"></param>
+/// <returns></returns>
 std::regex BIA::BIAFileManager::GetPattern(EPattern pattern)
 {
    return _patternByType[pattern];
 }
 
 /// <summary>
-/// Funkcja inicjalizujaca wszystkie potrzebne do dzialania obiekty.
+/// Cel: Inicjalizacja.
 /// </summary>
 void BIA::BIAFileManager::Init()
 {
@@ -82,11 +82,10 @@ void BIA::BIAFileManager::Init()
 }
 
 /// <summary>
-/// Funckja odpowiada za skanowanie zawartosci glownego folderu.
-/// Kazdy folder zawarty w katalogu glownym (oprocz folderu "log")
-/// bedzie w pozniejszej fazie traktowany jako tzw. "ekseryment".
-/// Przez eksperyment nalezy rozumiec katalog, ktorym bezposrednio
-/// znajda sie conajmniej dwa obrazy pochodzace z mikroskopu
+/// Cel: Skanowanie glowengo katalogu.
+///      W kolejnej fazie kazdy folder zwarty wewnatrz
+///      katalogu glownego bedzie traktowany jako zrodlo
+///      obrazow.
 /// </summary>
 void BIA::BIAFileManager::ScanRootDirectory()
 {
@@ -99,10 +98,12 @@ void BIA::BIAFileManager::ScanRootDirectory()
 }
 
 /// <summary>
-/// Funkcja sluzy do stworzenia pliku o wskazanej sciezce
-/// Argument typu EFileType pozwala okreslic czy dana sciezka
-/// prowadzi do folderu czy tez do pliku.
+/// Cel: Stworzenie pliku/folderu o wskazanej sciezce.
+///      Argument typu EFileType pozwala okreslic czy dana sciezka
+///      prowadzi do folderu czy do pliku.
 /// </summary>
+/// <param name="path"></param>
+/// <param name="fileType"></param>
 void BIA::BIAFileManager::CreateAtPath(fs::path path, EFileType fileType)
 {
    if (ExistsAtPath(path))
@@ -154,20 +155,22 @@ void BIA::BIAFileManager::CreateAtPath(fs::path path, EFileType fileType)
 }
 
 /// <summary>
-/// Funckja sprawdza czy plik/folder o podanej sciezce istnieje.
+/// Cel: Sprawdzenie czy istnieje folder/plik o podanej sciezce.
 /// </summary>
+/// <param name="path"></param>
+/// <returns></returns>
 bool BIA::BIAFileManager::ExistsAtPath(fs::path path)
 {
    return fs::exists(path);
 }
 
 /// <summary>
-/// Funkcja sluzy do skanowania folderu.
-/// Zwraca mape skladajaca sie z dwoch wektorw
-/// 1. Wektor folderow
-/// 2. Wektor plikow
-/// znajdujacych sie we wskazanym folderze.
+/// Cel: Zwrocenie zawartosci folderu wskazanego za pomoca argument "path":
+///      1. Wektor folderow,
+///      2. Wektor plikow.
 /// </summary>
+/// <param name="path"></param>
+/// <returns></returns>
 std::unordered_map<BIA::EFileType, std::vector<fs::path>> BIA::BIAFileManager::GetDirectoryContent(fs::path path)
 {
    std::vector<fs::path> directories;
@@ -189,9 +192,12 @@ std::unordered_map<BIA::EFileType, std::vector<fs::path>> BIA::BIAFileManager::G
 }
 
 /// <summary>
-/// Funkcja pozwala na przeniesienie pojedynczego pliku/folderu
-/// do wskazanego w pierwszym argumencie miejsca docelowego.
+/// Cel: Zmiana lokalizacji pliku wskazanego za pomoca argumentu
+///      "sourceFile" do katalogu docelowego wskazanego za pomoca
+///      parametru "destDir".
 /// </summary>
+/// <param name="destDir"></param>
+/// <param name="sourceFile"></param>
 void BIA::BIAFileManager::ChangeFileLocation(fs::path& destDir, fs::path& sourceFile)
 {
    try
@@ -214,9 +220,11 @@ void BIA::BIAFileManager::ChangeFileLocation(fs::path& destDir, fs::path& source
 }
 
 /// <summary>
-/// Funkcja pozwala na przeniesienie wektoru plikow/folderow 
-/// do wskazanego w argumencie pierwszym folderu
+/// Cel: Przeniesienie wektoru plikow zapisanych w parametrze "sourceFiles"
+///      do katalogu wskazanego w parametrze "destDir".
 /// </summary>
+/// <param name="destDir"></param>
+/// <param name="sourceFiles"></param>
 void BIA::BIAFileManager::ChangeFileLocation(fs::path& destDir, std::vector<fs::path> sourceFiles)
 {
    for (auto& file : sourceFiles)
@@ -224,7 +232,7 @@ void BIA::BIAFileManager::ChangeFileLocation(fs::path& destDir, std::vector<fs::
 }
 
 /// <summary>
-/// Funkcja zwraca wektor folderow znajdujacych sie w glownym katalogu.
+/// Cel: Zwrocenie katalogow zawartych w katalogu glownym.
 /// </summary>
 std::vector<fs::path>& BIA::BIAFileManager::GetRootDirectories()
 {
@@ -232,7 +240,7 @@ std::vector<fs::path>& BIA::BIAFileManager::GetRootDirectories()
 }
 
 /// <summary>
-/// Funkcja zwraca wektor plikow znajdujach sie w glownym katalogu.
+/// Cel: Zwrocenie plikow zawartych w katalogu glownym.
 /// </summary>
 std::vector<fs::path>& BIA::BIAFileManager::GetRootFiles()
 {
