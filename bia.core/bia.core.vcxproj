@@ -203,7 +203,7 @@
     <ClInclude Include="EAlignment.h" />
     <ClInclude Include="BIAManagerKeeper.h" />
     <ClInclude Include="EFileType.h" />
-    <ClInclude Include="EOperationType.h" />
+    <ClInclude Include="Operation.h" />
     <ClInclude Include="IProcessManager.h" />
     <ClInclude Include="TIFFImageSettings.h" />
     <ClInclude Include="IImageManager.h" />

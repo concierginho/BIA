@@ -13,14 +13,12 @@ namespace BIA
       explicit BIA(char*);
       ~BIA();
 
-      bool IsRunning();
-
       void Start();
       void Stop();
 
       void Init();
-      void StartProcess();
-      void StopProcess();
+      void StartBIAProcess();
+      void StopBIAProcess();
       void SetRootPath(char*);
       const char* GetRootPath() const;
 

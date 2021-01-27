@@ -2,7 +2,6 @@
 #define _TIFF_MANAGER_
 
 #include "IManager.h"
-#include "EOperationType.h"
 #include "TIFFImageSettings.h"
 #include "tiffio.h"
 

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "BIAImageManager.h"
 #include "TIFFSettingsManager.h"
+#include "Operation.h"
 #include "tiffio.h"
 
 /// <summary>
@@ -34,7 +35,7 @@ BIA::BIAImageManager::~BIAImageManager()
 /// <summary>
 /// Funkcja dzielaca obrazy typu 'tif' na 40 mniejszych obrazow.
 /// </summary>
-void BIA::BIAImageManager::SplitImages(std::atomic<bool>& running)
+void BIA::BIAImageManager::SplitImages(std::atomic<bool>& cancelled)
 {
 #ifdef _LOGGING_
    _loggingManager.get()->Message << "Splitting images has been started.";
@@ -48,7 +49,7 @@ void BIA::BIAImageManager::SplitImages(std::atomic<bool>& running)
 
       for (auto& experiment : _experimentManager->GetExperiments())
       {
-         if (running == false)
+         if (cancelled == true)
          {
 #ifdef _LOGGING_
             _loggingManager->Message << "Requesting process cancellation.";
@@ -70,7 +71,7 @@ void BIA::BIAImageManager::SplitImages(std::atomic<bool>& running)
             return;
          }
 
-         TIFF* parentImage = TIFFOpen(c_tiffPath, "r");
+         TIFF* parentImage = TIFFOpen(c_tiffPath, Operation::READ);
          TIFFSettingsManager settingsManager = TIFFSettingsManager();
 
          _ASSERT(parentImage);
@@ -87,7 +88,7 @@ void BIA::BIAImageManager::SplitImages(std::atomic<bool>& running)
 
          for (auto& partExperiment : experiment.GetPartExperiments(type))
          {
-            if (running == false)
+            if (cancelled == true)
             {
 #ifdef _LOGGING_
                _loggingManager->Message << "Requesting process cancellation.";
@@ -104,7 +105,7 @@ void BIA::BIAImageManager::SplitImages(std::atomic<bool>& running)
 
             TIFF* partImage = nullptr;
 
-            partImage = TIFFOpen(c_partImagePath, "w");
+            partImage = TIFFOpen(c_partImagePath, Operation::WRITE);
 
             if (!partImage)
             {
@@ -174,27 +175,31 @@ void BIA::BIAImageManager::CopyHorizontalPartImageToDestinationFile(TIFF** src, 
    if (src == nullptr || parentImg == nullptr || tar == nullptr || childImg == nullptr)
    {
 #ifdef _LOGGING_
+      _ASSERT(!parentImg);
       if (parentImg == nullptr)
       {
-         _loggingManager->Message << "Parent Image was nullptr. ";
+         _loggingManager->Message << "Parent Image was nullptr.";
          _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
       }
 
+      _ASSERT(!childImg);
       if (childImg == nullptr)
       {
-         _loggingManager->Message << "Child Image was nullptr. ";
+         _loggingManager->Message << "Child Image was nullptr.";
          _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
       }
 
+      _ASSERT(!src);
       if (src == nullptr)
       {
-         _loggingManager->Message << "TIFF parent image pointer was nullptr. ";
+         _loggingManager->Message << "TIFF parent image pointer was nullptr.";
          _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
       }
 
+      _ASSERT(!tar);
       if (tar == nullptr)
       {
-         _loggingManager->Message << "TIFF child image pointer was nullptr. ";
+         _loggingManager->Message << "TIFF child image pointer was nullptr.";
          _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
       }
 #endif
@@ -238,7 +243,7 @@ void BIA::BIAImageManager::CopyHorizontalPartImageToDestinationFile(TIFF** src, 
    _TIFFfree(sourceBuffer);
 
 #ifdef _LOGGING_
-   _loggingManager->Message << "Released " << 2 * linebytes << " bytes.";
+   _loggingManager->Message << "Released " << 41 * linebytes << " bytes.";
    _loggingManager->Log(ESource::MEMORY_MANAGEMENT);
 #endif
 }
@@ -257,28 +262,28 @@ void BIA::BIAImageManager::CopyVerticalPartImageToDestinationFile(TIFF** src, TI
       _ASSERT(!parentImg);
       if (parentImg == nullptr)
       {
-         _loggingManager->Message << "Parent Image was nullptr. ";
+         _loggingManager->Message << "Parent Image was nullptr.";
          _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
       }
       
       _ASSERT(!childImg);
       if (childImg == nullptr)
       {
-         _loggingManager->Message << "Child Image was nullptr. ";
+         _loggingManager->Message << "Child Image was nullptr.";
          _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
       }
       
       _ASSERT(!src);
       if (src == nullptr)
       {
-         _loggingManager->Message << "TIFF parent image pointer was nullptr. ";
+         _loggingManager->Message << "TIFF parent image pointer was nullptr.";
          _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
       }
       
       _ASSERT(!tar);
       if (tar == nullptr)
       {
-         _loggingManager->Message << "TIFF child image pointer was nullptr. ";
+         _loggingManager->Message << "TIFF child image pointer was nullptr.";
          _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
       }
 #endif
@@ -333,7 +338,7 @@ void BIA::BIAImageManager::CopyVerticalPartImageToDestinationFile(TIFF** src, TI
 /// na podstawie zapisanej w pliku recipe.json wartosci
 /// pola 'threshold'.
 /// </summary>
-void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& running)
+void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled)
 {
    auto& experiments = _experimentManager->GetExperiments();
    
@@ -347,7 +352,7 @@ void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& running)
 
          for (auto& partExperiment : partExperiments)
          {
-            if (running == false)
+            if (cancelled == true)
             {
 #ifdef _LOGGING_
                _loggingManager->Message << "Requesting process cancellation.";
@@ -362,8 +367,8 @@ void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& running)
             std::string previewImagePath = partExperiment.GetPreviewPath().string();
             const char* c_previewImagePath = previewImagePath.c_str();
 
-            TIFF* originalTIFFImage = TIFFOpen(c_originalImagePath, "r");
-            TIFF* previewTIFFImage = TIFFOpen(c_previewImagePath, "w");
+            TIFF* originalTIFFImage = TIFFOpen(c_originalImagePath, Operation::READ);
+            TIFF* previewTIFFImage = TIFFOpen(c_previewImagePath, Operation::WRITE);
 
             if (originalTIFFImage == nullptr || previewTIFFImage == nullptr)
             {

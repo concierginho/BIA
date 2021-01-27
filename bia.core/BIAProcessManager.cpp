@@ -4,20 +4,20 @@
 
 void Routine(BIA::BIA* _bia)
 {
-   _bia->StartProcess();
+   _bia->StartBIAProcess();
 }
 
 BIA::BIAProcessManager::BIAProcessManager(BIA* bia)
 {
    _bia = bia;
-   Running = false;
+   Cancelled = false;
 }
 
 BIA::BIAProcessManager::BIAProcessManager(BIA* bia, std::shared_ptr<BIALoggingManager> loggingManager)
 {
    _bia = bia;
    _loggingManager = loggingManager;
-   Running = false;
+   Cancelled = false;
 }
 
 BIA::BIAProcessManager::~BIAProcessManager()
@@ -31,18 +31,18 @@ void BIA::BIAProcessManager::Start()
    _loggingManager->Message << "Process started.";
    _loggingManager->Log(ESource::BIA_PROCESS_MANAGER);
 #endif
-   Running = true;
+   Cancelled = false;
    _task = std::async(std::launch::async, &Routine, _bia);
 }
 
 void BIA::BIAProcessManager::Stop()
 {
+   Cancelled = true;
+   _task.get();
 #ifdef _LOGGING_
-   _loggingManager->Message << "Process cancelled.";
+   _loggingManager->Message << "Process has been cancelled.";
    _loggingManager->Log(ESource::BIA_PROCESS_MANAGER);
 #endif
-   Running = false;
-   _task.get();
 }
 
 void BIA::BIAProcessManager::Init()

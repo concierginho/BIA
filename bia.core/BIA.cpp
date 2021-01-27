@@ -35,25 +35,25 @@ void BIA::BIA::Init()
 /// 
 /// 1. Binaryzacja obrazów na podstawie ustawien pobranych z pliku 'recipe.json'.
 /// </summary>
-void BIA::BIA::StartProcess()
+void BIA::BIA::StartBIAProcess()
 {
-   std::atomic<bool>& running = _keeper->GetProcessManagerAsBIAProcessManager()->Running;
+   std::atomic<bool>& cancelled = _keeper->GetProcessManagerAsBIAProcessManager()->Cancelled;
 
-   _keeper->GetImageManagerAsBIAImageManager()->SplitImages(running);
+   _keeper->GetImageManagerAsBIAImageManager()->SplitImages(cancelled);
 
-   if (running == false)
+   if (cancelled == false)
       return;
 
-   _keeper->GetImageManagerAsBIAImageManager()->GeneratePreviews(running);
+   _keeper->GetImageManagerAsBIAImageManager()->GeneratePreviews(cancelled);
 
-   if (running == false)
+   if (cancelled == false)
       return;
 }
 
 /// <summary>
 /// 
 /// </summary>
-void BIA::BIA::StopProcess()
+void BIA::BIA::StopBIAProcess()
 {
    _keeper->GetProcessManagerAsBIAProcessManager()->Stop();
 }

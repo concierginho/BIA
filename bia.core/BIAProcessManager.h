@@ -17,7 +17,7 @@ namespace BIA
       BIA* _bia;
       std::future<void> _task;
    public:
-      std::atomic<bool> Running;
+      std::atomic<bool> Cancelled;
 
       void Start();
       void Stop();

@@ -27,8 +27,8 @@ namespace BIA
       void CopyHorizontalPartImageToDestinationFile(TIFF** src, TIFFImage* parentImg, TIFF** tar, TIFFImage* childImg, int id);
       void CopyVerticalPartImageToDestinationFile(TIFF** src, TIFFImage* parentImg, TIFF** tar, TIFFImage* childImg, int id);
 
-      void GeneratePreviews(std::atomic<bool>& running);
-      void SplitImages(std::atomic<bool>& running);
+      void GeneratePreviews(std::atomic<bool>& cancelled);
+      void SplitImages(std::atomic<bool>& cancelled);
 
       virtual void Init() override;
 

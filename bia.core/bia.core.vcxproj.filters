@@ -131,9 +131,6 @@
     <ClInclude Include="TIFFImage.h">
       <Filter>Header Files\Management\BIAImageManager</Filter>
     </ClInclude>
-    <ClInclude Include="EOperationType.h">
-      <Filter>Header Files\Management\BIAImageManager</Filter>
-    </ClInclude>
     <ClInclude Include="TIFFImageSettings.h">
       <Filter>Header Files\Management\BIAImageManager</Filter>
     </ClInclude>
@@ -145,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="IProcessManager.h">
       <Filter>Header Files\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Operation.h">
+      <Filter>Header Files\Management\BIAImageManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
