@@ -22,9 +22,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
    bia.Init();
    bia.Start();
 
-   System::Threading::Thread::Sleep(5000);
+   //System::Threading::Thread::Sleep(5000);
 
-   bia.Stop();
+   //bia.Stop();
 
    auto mainWindow = gcnew MainWindow();
    auto mainWindowVM = gcnew MainWindowVM();

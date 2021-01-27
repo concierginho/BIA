@@ -10,7 +10,6 @@
 
 #include <future>
 
-
 /// <summary>
 /// Cel: Inicjalizacja BIAManagerKeeper'a, ktory odpowiada
 ///      za wszysktie zaleznosci w bibliotece.
@@ -41,13 +40,18 @@ void BIA::BIA::StartBIAProcess()
 
    _keeper->GetImageManagerAsBIAImageManager()->SplitImages(cancelled);
 
-   if (cancelled == false)
+   if (cancelled == true)
       return;
 
    _keeper->GetImageManagerAsBIAImageManager()->GeneratePreviews(cancelled);
 
-   if (cancelled == false)
+   if (cancelled == true)
       return;
+
+#ifdef _LOGGING_
+   _keeper->GetLoggingManagerAsBIALoggingMenager()->Message << "Process has finished.";
+   _keeper->GetLoggingManagerAsBIALoggingMenager()->Log(ESource::BIA_EXPERIMENT_MANAGER);
+#endif
 }
 
 /// <summary>
@@ -105,7 +109,7 @@ BIA::BIA::BIA(char* rootPath)
 }
 
 /// <summary>
-/// Destruktor
+/// Destruktor.
 /// </summary>
 BIA::BIA::~BIA()
 {

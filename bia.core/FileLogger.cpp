@@ -51,6 +51,8 @@ void BIA::FileLogger::Log(ESource source, std::stringstream& message)
 
    switch (source)
    {
+      case ESource::BIA:
+         _msg << "BIA / ";
       case ESource::BIA_FILE_MANAGER:
          _msg << "BIA File Manager / ";
          break;

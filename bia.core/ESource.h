@@ -5,6 +5,7 @@ namespace BIA
 {
    enum class ESource
    {
+      BIA,
       BIA_FILE_MANAGER,
       BIA_EXPERIMENT_MANAGER,
       BIA_IMAGE_MANAGER,
