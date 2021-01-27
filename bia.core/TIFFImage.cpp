@@ -2,57 +2,61 @@
 #include "TIFFImage.h"
 
 /// <summary>
-/// Funckja pozwalajaca ustawic sciezke do obrazu typu 'tif'.
+/// Cel: Ustawienie sciezki do obrazu.
 /// </summary>
+/// <param name="image_path"></param>
 void BIA::TIFFImage::SetImagePath(fs::path image_path)
 {
    _image_path = image_path;
 }
 
 /// <summary>
-/// Funckja zwracajaca sciezke do obrazu typu 'tif'.
+/// Cel: Zwrocenie sciezki do obrazu.
 /// </summary>
+/// <returns></returns>
 fs::path BIA::TIFFImage::GetImagePath() const
 {
    return _image_path;
 }
 
 /// <summary>
-/// Funkcja pozwalajaca ustawic sciezke do obrazu typu 'tif'
-/// znajdujacego sie wewnatrz katalogu 'preview'.
+/// Cel: Ustawienie sciezki do podgladu obrazu.
 /// </summary>
+/// <param name="preview_path"></param>
 void BIA::TIFFImage::SetPreviewImagePath(fs::path preview_path)
 {
    _preview_path = preview_path;
 }
 
 /// <summary>
-/// Funkcja zwracajaca sciezke do obrazu typu 'tif'
-/// znajdujacego sie wewnatrz katalogu 'preview'.
+/// Cel: Zwrocenie sciezki do podgladu obrazu.
 /// </summary>
+/// <returns></returns>
 fs::path BIA::TIFFImage::GetPreviewImagePath() const
 {
    return _preview_path;
 }
 
 /// <summary>
-/// Funkcja pozwalajaca ustawic ustawienia dla danego brazu typu 'tif'.
+/// Cel: Ustawienie sciezki do ustawien.
 /// </summary>
+/// <param name="settings"></param>
 void BIA::TIFFImage::SetImageSettings(BIA::TIFFImageSettings settings)
 {
    _settings = settings;
 }
 
 /// <summary>
-/// Funkcja zwracajaca ustawienia dla danego brazu typu 'tif'.
+/// Cel: Zwrocenie referencji do ustawien.
 /// </summary>
+/// <returns></returns>
 BIA::TIFFImageSettings& BIA::TIFFImage::GetImageSettings()
 {
    return _settings;
 }
 
 /// <summary>
-/// Glowny konstruktor
+/// Domyslny konstruktor.
 /// </summary>
 BIA::TIFFImage::TIFFImage()
 {
@@ -62,7 +66,7 @@ BIA::TIFFImage::TIFFImage()
 }
 
 /// <summary>
-/// Destruktor
+/// Destruktor.
 /// </summary>
 BIA::TIFFImage::~TIFFImage()
 {

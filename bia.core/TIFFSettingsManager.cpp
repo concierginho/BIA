@@ -1,10 +1,18 @@
 #include "pch.h"
 #include "TIFFSettingsManager.h"
 
+/// <summary>
+/// Cel: Inicjalizacja.
+/// </summary>
 void BIA::TIFFSettingsManager::Init()
 {
 }
 
+/// <summary>
+/// Cel: Odczytanie ustawien zapisancyh w (otwartym wczesniej) obrazie.
+/// </summary>
+/// <param name="tiff"></param>
+/// <returns></returns>
 BIA::TIFFImageSettings BIA::TIFFSettingsManager::ReadSettings(TIFF** tiff)
 {
    TIFFImageSettings settings = { };
@@ -23,6 +31,12 @@ BIA::TIFFImageSettings BIA::TIFFSettingsManager::ReadSettings(TIFF** tiff)
    return settings;
 }
 
+/// <summary>
+/// Cel: Zwrocenie ustawien dla czesciowego obrazu na podstawie ustawien
+///      z obrazu zrodlowego.
+/// </summary>
+/// <param name="parentSettings"></param>
+/// <returns></returns>
 BIA::TIFFImageSettings BIA::TIFFSettingsManager::GetPartImageSettings(TIFFImageSettings parentSettings)
 {
    return
@@ -36,6 +50,10 @@ BIA::TIFFImageSettings BIA::TIFFSettingsManager::GetPartImageSettings(TIFFImageS
    };
 }
 
+/// <summary>
+/// Cel: Zwrocenie ustawien dla podgladu.
+/// </summary>
+/// <returns></returns>
 BIA::TIFFImageSettings BIA::TIFFSettingsManager::GetPreviewImageSettings()
 {
    return
@@ -49,6 +67,11 @@ BIA::TIFFImageSettings BIA::TIFFSettingsManager::GetPreviewImageSettings()
    };
 }
 
+/// <summary>
+/// Cel: Zapisanie ustawien w (otwartym wczesniej) obrazie.
+/// </summary>
+/// <param name="tiff"></param>
+/// <param name="tiffImageSettings"></param>
 void BIA::TIFFSettingsManager::ApplySettings(TIFF** tiff, TIFFImageSettings tiffImageSettings)
 {
    TIFFSetField(*tiff, TIFFTAG_IMAGEWIDTH, tiffImageSettings.ImageWidth);
@@ -62,10 +85,16 @@ void BIA::TIFFSettingsManager::ApplySettings(TIFF** tiff, TIFFImageSettings tiff
    TIFFSetField(*tiff, TIFFTAG_COMPRESSION, COMPRESSION_NONE);
 }
 
+/// <summary>
+/// Domyslny konstruktor.
+/// </summary>
 BIA::TIFFSettingsManager::TIFFSettingsManager()
 {
 }
 
+/// <summary>
+/// Destruktor.
+/// </summary>
 BIA::TIFFSettingsManager::~TIFFSettingsManager()
 {
 }

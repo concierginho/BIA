@@ -5,8 +5,9 @@
 #include "tiffio.h"
 
 /// <summary>
-/// Konstruktor uzywany gdy _LOGGING_ nie jest zdefiniowane.
+/// Domyslny konstruktor.
 /// </summary>
+/// <param name="experimentManager"></param>
 BIA::BIAImageManager::BIAImageManager(std::shared_ptr<BIAExperimentManager> experimentManager)
 {
    _fileManager = _experimentManager->GetFileManager();
@@ -15,8 +16,10 @@ BIA::BIAImageManager::BIAImageManager(std::shared_ptr<BIAExperimentManager> expe
 
 #ifdef _LOGGING_
 /// <summary>
-/// Konstruktor uzywany gdy _LOGGING_ jest zdefiniowany.
+/// Konstruktor uzywany gdy _LOGGING_ jest zdefiniowane.
 /// </summary>
+/// <param name="experimentManager"></param>
+/// <param name="loggingManager"></param>
 BIA::BIAImageManager::BIAImageManager(std::shared_ptr<BIAExperimentManager> experimentManager, std::shared_ptr<BIALoggingManager> loggingManager)
 {
    _fileManager = experimentManager->GetFileManager();
@@ -33,8 +36,9 @@ BIA::BIAImageManager::~BIAImageManager()
 }
 
 /// <summary>
-/// Funkcja dzielaca obrazy typu 'tif' na 40 mniejszych obrazow.
+/// Cel: Podzielenie obrazow zrodlowych na 40 o wymiarach 1024 x 1024.
 /// </summary>
+/// <param name="cancelled"></param>
 void BIA::BIAImageManager::SplitImages(std::atomic<bool>& cancelled)
 {
 #ifdef _LOGGING_
@@ -145,8 +149,10 @@ void BIA::BIAImageManager::SplitImages(std::atomic<bool>& cancelled)
 }
 
 /// <summary>
-/// Funkcja pozwalajaca na odczytanie ustawien zapisanych w pliku typu 'tif'.
+/// Cel: Odczytanie ustawien zapisanych w obrazach.
 /// </summary>
+/// <param name="tiffPtr"></param>
+/// <param name="tiffImage"></param>
 void BIA::BIAImageManager::ReadImageSettings(TIFF* tiffPtr, TIFFImage* tiffImage)
 {
    if (tiffPtr == nullptr)
@@ -165,11 +171,15 @@ void BIA::BIAImageManager::ReadImageSettings(TIFF* tiffPtr, TIFFImage* tiffImage
 }
 
 /// <summary>
-/// Funkcja sluzaca do skopiowania i zapisania odpowiedniego fragmentu
-/// obrazu zorientowanego horyzontalnie do mniejszego stanowiacego 
-/// czterdziesta czesc powierzchni obrazu, z ktorego kopiowane sa dane.
-/// Dobor danych do skopiowania odbywa sie na podstawie id.
+/// Cel: Skopiowanie wartosci pixeli z obrazu zrodlowego 
+///      zorientowanego horyzontalnie na podstawie id linii
+///      do kopii o rozmiarach 1024 x 1024.
 /// </summary>
+/// <param name="src"></param>
+/// <param name="parentImg"></param>
+/// <param name="tar"></param>
+/// <param name="childImg"></param>
+/// <param name="id"></param>
 void BIA::BIAImageManager::CopyHorizontalPartImageToDestinationFile(TIFF** src, TIFFImage* parentImg, TIFF** tar, TIFFImage* childImg, int id)
 {
    if (src == nullptr || parentImg == nullptr || tar == nullptr || childImg == nullptr)
@@ -249,11 +259,15 @@ void BIA::BIAImageManager::CopyHorizontalPartImageToDestinationFile(TIFF** src, 
 }
 
 /// <summary>
-/// Funkcja sluzaca do skopiowania i zapisania odpowiedniego fragmentu
-/// obrazu zorientowanego wertykalnie do mniejszego stanowiacego 
-/// czterdziesta czesc powierzchni obrazu, z ktorego kopiowane sa dane.
-/// Dobor danych do skopiowania odbywa sie na podstawie id.
+/// Cel: Skopiowanie wartosci pixeli z obrazu zrodlowego 
+///      zorientowanego wertykalnie na podstawie id linii
+///      do kopii o rozmiarach 1024 x 1024.
 /// </summary>
+/// <param name="src"></param>
+/// <param name="parentImg"></param>
+/// <param name="tar"></param>
+/// <param name="childImg"></param>
+/// <param name="id"></param>
 void BIA::BIAImageManager::CopyVerticalPartImageToDestinationFile(TIFF** src, TIFFImage* parentImg, TIFF** tar, TIFFImage* childImg, int id)
 {
    if (parentImg == nullptr || childImg == nullptr || src == nullptr || tar == nullptr)
@@ -334,10 +348,10 @@ void BIA::BIAImageManager::CopyVerticalPartImageToDestinationFile(TIFF** src, TI
 }
 
 /// <summary>
-/// Funkcja sluzaca do wygenerowania obrazow binarnych,
-/// na podstawie zapisanej w pliku recipe.json wartosci
-/// pola 'threshold'.
+/// Cel: Wygenerowanie zbinaryzowanych obrazow stanowiacych
+///      podglad wykonanych na obrazie operacji.
 /// </summary>
+/// <param name="cancelled"></param>
 void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled)
 {
    auto& experiments = _experimentManager->GetExperiments();
@@ -409,7 +423,7 @@ void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled)
 }
 
 /// <summary>
-/// Funkcja inicjalizujaca
+/// Cel: Inicjalizacja.
 /// </summary>
 void BIA::BIAImageManager::Init()
 {
@@ -420,11 +434,8 @@ void BIA::BIAImageManager::Init()
 }
 
 /// <summary>
-/// Funkcja sluzaca do odpowiedniego 'wyprostowania' wartosic zapisanych w tablicach znakow.
-/// Jezeli wartosc w tablicy jest ujemna to zostaje zamieninona na wartosc bezwzgledna z siebie samej.
-/// Jezeli wartosc w tablicy jest dodatnia to wartosc ta zostaje odjeta od maksymalnej wartosic (255)
-/// i nadpisana.
-/// Pozwala to 'obrocic' kolory w obrazie.
+/// Cel: Normalizacja wartosci pixeli.
+///      Jezeli wartosc pixela jest ujemna - zostaje zastapiona wartoscia bezwzgledna z tej wartosci.
 /// </summary>
 /// <param name="array"></param>
 /// <param name="length"></param>
@@ -436,16 +447,11 @@ void BIA::BIAImageManager::AdjustScanline(unsigned char* array, int length)
       unsigned char value = array[i];
       if (value < 0)
          array[i] = static_cast<unsigned char>(-1 * std::abs(array[i]));
-      else
-         array[i] = static_cast<unsigned char>(255 - value);
    }
 }
 
 /// <summary>
-/// Funkcja sluzaca do binaryzacji tablicy znakow, na podstawie
-/// zmiennej 'threshold' ustawiona zostaje albo maksymalna lub minimalna
-/// wartosc piksela
-/// Wynikiem jest tablica skladajaca sie z dwoch kolorow (czarnego lub bialego).
+/// Cel: Binaryzacja obrazu na podstawie wartosic parametru "threshold".
 /// </summary>
 void BIA::BIAImageManager::BinarizeScanline(unsigned char* buffer, int length, unsigned char threshold)
 {
@@ -455,6 +461,8 @@ void BIA::BIAImageManager::BinarizeScanline(unsigned char* buffer, int length, u
    if (threshold < white || threshold > black)
    {
 #ifdef _LOGGING_
+      _loggingManager->Message << "Threshold value was incorrect - it should be set between 0 and 255.";
+      _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
 #endif
       return;
    }
