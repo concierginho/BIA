@@ -10,15 +10,15 @@
 
 #include <future>
 
+
 /// <summary>
-/// Funkcja inicjalizujace BIAManagerKeeper'a, ktory odpowiedzialny jest
-/// za inicjalizacje glownych klas. Klasy te odpowiadaja za poszczegolne
-/// funkcjonalnosci. Np. BIAImageManager, BIAFileManager.
-/// 
-/// 1. Skanowanie zawartosci folderu podanego podczas inicjalizacji obiektu typu BIA
-/// 2. Przygotowanie eksperymentow (przez eksperyment nalezy rozumiec podkatalog
-///    glownego katalogu).
-/// 3. Podzielenie obrazow na 40 obrazow skladowych.
+/// Cel: Inicjalizacja BIAManagerKeeper'a, ktory odpowiada
+///      za wszysktie zaleznosci w bibliotece.
+///      
+///      Nastepnie zostaja pobrane informacje na temat
+///      katalogu glownego oraz przygotowane zostaja
+///      eksperymenty (podkatalogi), znajdujace sie
+///      w katalogu glownym.
 /// </summary>
 void BIA::BIA::Init()
 {
@@ -31,9 +31,9 @@ void BIA::BIA::Init()
 }
 
 /// <summary>
-/// Funkcja rozpoczynajaca caly proces.
-/// 
-/// 1. Binaryzacja obrazów na podstawie ustawien pobranych z pliku 'recipe.json'.
+/// Cel: Rozpoczecie procesu BIA.
+///      Proces uruchamiany jest w sposob asynchroniczny za pomoca BIAProcessManager'a.
+///      Funkcja jest uruchamiana przez BIAProcessManager w sposob asynchroniczny.
 /// </summary>
 void BIA::BIA::StartBIAProcess()
 {
@@ -51,7 +51,7 @@ void BIA::BIA::StartBIAProcess()
 }
 
 /// <summary>
-/// 
+/// Cel: Zatrzymanie procesu BIA.
 /// </summary>
 void BIA::BIA::StopBIAProcess()
 {
@@ -59,15 +59,16 @@ void BIA::BIA::StopBIAProcess()
 }
 
 /// <summary>
-/// Funckja pozwalajaca na ustawienie sciezki katalogu glownego.
+/// Cel: Ustawienie sciezki do katalogu glownego.
 /// </summary>
+/// <param name="rootPath"></param>
 void BIA::BIA::SetRootPath(char* rootPath)
 {
    _rootPath = rootPath;
 }
 
 /// <summary>
-/// Funkcja zwraca sciezke katalogu glownego.
+/// Cel: Zwrocenie sciezki do katalogu glownego.
 /// </summary>
 /// <returns></returns>
 const char* BIA::BIA::GetRootPath() const
@@ -76,24 +77,27 @@ const char* BIA::BIA::GetRootPath() const
 }
 
 /// <summary>
-/// 
+/// Cel: Zwrocenie wskaznika do obiektu typu BIAManagerKeeper.
 /// </summary>
+/// <returns></returns>
 BIA::BIAManagerKeeper* BIA::BIA::GetKeeper()
 {
    return _keeper;
 }
 
 /// <summary>
-/// 
+/// Cel: Ustawienie wskaznika do obiektu typu BIAManagerKeeper.
 /// </summary>
+/// <param name="keeper"></param>
 void BIA::BIA::SetKeeper(BIAManagerKeeper* keeper)
 {
    _keeper = keeper;
 }
 
 /// <summary>
-/// Glowny konstruktor klasy BIA.
+/// Domyslny konstruktor.
 /// </summary>
+/// <param name="rootPath"></param>
 BIA::BIA::BIA(char* rootPath)
 {
    _rootPath = rootPath;
@@ -114,6 +118,9 @@ BIA::BIA::~BIA()
    _keeper = nullptr;
 }
 
+/// <summary>
+/// Cel: Rozpoczecie procesu w sposob asynchroniczny.
+/// </summary>
 void BIA::BIA::Start()
 {
    auto processManager = _keeper->GetProcessManagerAsBIAProcessManager();
@@ -121,6 +128,9 @@ void BIA::BIA::Start()
    processManager->Start();
 }
 
+/// <summary>
+/// Cel: Zatrzymanie asynchronicznego procesu.
+/// </summary>
 void BIA::BIA::Stop()
 {
    auto processManager = _keeper->GetProcessManagerAsBIAProcessManager();

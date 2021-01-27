@@ -2,39 +2,40 @@
 #include "BIAManagerKeeper.h"
 
 /// <summary>
-/// Funkcja zwraca smart pointer do obiektu typu BIAFileManager
-/// std::dynamic_pointer_cast zostaje wykorzystany, poniewaz
-/// _fileManager jest przechowywany jako obiekt typu IFileManager
+/// Cel: Dynamiczne rzutowanie obiektu typu std::shared_ptr<IFileManager>
+///      do typu std::shared_ptr<BIAFileManager>.
 /// </summary>
+/// <returns></returns>
 std::shared_ptr<BIA::BIAFileManager> BIA::BIAManagerKeeper::GetFileManagerAsBIAFileManager()
 {
    return std::dynamic_pointer_cast<BIAFileManager>(_fileManager);
 }
 
 /// <summary>
-/// Funkcja zwraca smart pointer do obiektu typu BIAExperimentManager
-/// std::dynamic_pointer_cast zostaje wykrzystany, poniewaz
-/// _experimentManager jest przechowywany jako obiekt typu IExperimentManager
+/// Cel: Dynamiczne rzutowanie obiektu typu std::shared_ptr<IExperimentManager>
+///      do typu std::shared_ptr<BIAExperimentManager>.
 /// </summary>
+/// <returns></returns>
 std::shared_ptr<BIA::BIAExperimentManager> BIA::BIAManagerKeeper::GetExperimentManagerAsBIAExperimentManager()
 {
    return std::dynamic_pointer_cast<BIAExperimentManager>(_experimentManager);
 }
 
 /// <summary>
-/// Funkcja zwraca smart pointer do obiektu typu BIAImageManager
-/// std::dynamic_pointer_cast zostaje wykorzystany, poniewaz
-/// _imageManager jest przechowywany jako obiekt typu IImageManager
+/// Cel: Dynamiczne rzutowanie obiektu typu std::shared_ptr<IImageManager>
+///      do typu std::shared_ptr<BIAImageManager>.
 /// </summary>
+/// <returns></returns>
 std::shared_ptr<BIA::BIAImageManager> BIA::BIAManagerKeeper::GetImageManagerAsBIAImageManager()
 {
    return std::dynamic_pointer_cast<BIAImageManager>(_imageManager);
 }
 
 /// <summary>
-/// Cel: dynamiczne rzutowanie obiektu typu std::shared_ptr<IProcessManager>
-///      do typu std::shared_ptr<BIAProcessManager>
+/// Cel: Dynamiczne rzutowanie obiektu typu std::shared_ptr<IProcessManager>
+///      do typu std::shared_ptr<BIAProcessManager>.
 /// </summary>
+/// <returns></returns>
 std::shared_ptr<BIA::BIAProcessManager> BIA::BIAManagerKeeper::GetProcessManagerAsBIAProcessManager()
 {
    return std::dynamic_pointer_cast<BIAProcessManager>(_processManager);
@@ -42,35 +43,46 @@ std::shared_ptr<BIA::BIAProcessManager> BIA::BIAManagerKeeper::GetProcessManager
 
 #ifdef _LOGGING_
 /// <summary>
-/// Funkcja zwraca smart pointer do obiektu typu BIALoggingManager
-/// std::dynamic_pointer_cast zostaje wykorzystany, poniewaz
-/// _loggingManager jest przechowywany jako obiekt typu ILoggingManager
+/// Cel: Dynamiczne rzutowanie obiektu typu std::shared_ptr<ILoggingManager>
+///      do typu std::shared_ptr<BIALoggingManager>.
 /// </summary>
+/// <returns></returns>
 std::shared_ptr<BIA::BIALoggingManager> BIA::BIAManagerKeeper::GetLoggingManagerAsBIALoggingMenager()
 {
    return std::dynamic_pointer_cast<BIALoggingManager>(_loggingManager);
 }
 #endif
 
+/// <summary>
+/// Cel: Zwrocenie sciezki do katalogu glownego.
+/// </summary>
+/// <returns></returns>
 std::string BIA::BIAManagerKeeper::GetRootPath()
 {
    return _rootPath;
 }
 
+/// <summary>
+/// Domyslny konstruktor.
+/// </summary>
+/// <param name="rootPath"></param>
+/// <param name="bia"></param>
 BIA::BIAManagerKeeper::BIAManagerKeeper(char* rootPath, BIA* bia)
 {
    _rootPath = std::string(rootPath);
    _bia = bia;
 }
 
+/// <summary>
+/// Destruktor.
+/// </summary>
 BIA::BIAManagerKeeper::~BIAManagerKeeper()
 {
 }
 
 /// <summary>
-/// Funkcja inicjalizujace w odpowiedni sposob glowne klasy odpowiadajace
-/// za poszczegolne funkcjonalnosci. W zaleznosci od tego czy _LOGGING_
-/// zostal zdefiniowany, obiekty inicjalizowane sa w rozny sposob.
+/// Cel: Inicjalizacja wszystkich zaleznosci w zaleznosci od tego
+///      czy _LOGGING_ zostalo zdefiniowane.
 /// </summary>
 void BIA::BIAManagerKeeper::Init()
 {
