@@ -159,7 +159,7 @@ void BIA::BIAExperimentManager::PreparePartExperiments()
             PartExperiment partExperiment(partExpPath, directoryName);
 
             experiment.GetPartExperiments(folder).push_back(partExperiment);
-            Initialize(partExperiment);
+            InitializePartExperiment(partExperiment);
          }
       }
    }
