@@ -13,9 +13,8 @@
 /// <summary>
 /// Cel: Inicjalizacja BIAManagerKeeper'a, ktory odpowiada
 ///      za wszysktie zaleznosci w bibliotece.
-///      
 ///      Nastepnie zostaja pobrane informacje na temat
-///      katalogu glownego oraz przygotowane zostaja
+///      katalogu glownego, a pozniej przygotowywane sa
 ///      eksperymenty (podkatalogi), znajdujace sie
 ///      w katalogu glownym.
 /// </summary>

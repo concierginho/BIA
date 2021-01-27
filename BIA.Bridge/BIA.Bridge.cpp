@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "BIA.h"
 #include "Application.h"
+#include "MainWindowVMCLR.h"
 
 #include <Windows.h>
 #include <iostream>
@@ -17,18 +18,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 {
    hPrevInstance;
 
-   char* path = "D:\\env\\root";
-   BIA::BIA bia(path);
-   bia.Init();
-   bia.Start();
+   auto mainWindow = gcnew MainWindow();
+   auto mainWindowVM = gcnew BIA::MainWindowVMCLR();
+   mainWindow->DataContext = mainWindowVM;
 
    //System::Threading::Thread::Sleep(5000);
 
    //bia.Stop();
 
-   auto mainWindow = gcnew MainWindow();
-   auto mainWindowVM = gcnew MainWindowVM();
-   mainWindow->DataContext = mainWindowVM;
    auto application = gcnew BIA::Bridge::Application();
    
    application->SetHinstance(hInstance);

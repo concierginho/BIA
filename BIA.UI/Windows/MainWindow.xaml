@@ -6,7 +6,26 @@
         xmlns:local="clr-namespace:BIA.UI.Windows"
         mc:Ignorable="d"
         Title="BIA.UI" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+   <Window.Resources>
+      <Style TargetType="Button">
+         <Setter Property="Margin" Value="3, 3, 0, 2"/>
+      </Style>
+   </Window.Resources>
+   <Grid Margin="5">
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition/>
+         <ColumnDefinition/>
+         <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+         <RowDefinition/>
+         <RowDefinition/>
+         <RowDefinition/>
+         <RowDefinition/>
+         <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Button Grid.Column="0" Grid.Row="0" Command="{Binding InitializeBIACommand}" Content="Initialize"/>
+      <Button Grid.Column="0" Grid.Row="1" Command="{Binding StartBIAProcessCommand}" Content="Start"/>
+      <Button Grid.Column="0" Grid.Row="2" Command="{Binding StopBIAProcessCommand}" Content="Stop"/>
+   </Grid>
 </Window>
