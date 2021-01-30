@@ -3,6 +3,7 @@
 
 #include "IProcessManager.h"
 #include "BIALoggingManager.h"
+#include "EProcess.h"
 #include <future>
 
 namespace BIA
@@ -19,7 +20,7 @@ namespace BIA
    public:
       std::atomic<bool> Cancelled;
 
-      void Start();
+      void Start(EProcess);
       void Stop();
 
       virtual void Init() override;

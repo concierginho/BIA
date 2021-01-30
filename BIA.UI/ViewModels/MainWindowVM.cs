@@ -17,6 +17,7 @@ namespace BIA.UI.ViewModels
       public ICommand StartBIAProcessCommand { get; set; }
       public ICommand StopBIAProcessCommand { get; set; }
       public ICommand InitializeBIACommand { get; set; }
+      public ICommand StartOperationProcessCommand { get; set; }
       #endregion
    }
 }

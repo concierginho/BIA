@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.18)  13 JAN 2021 21:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.18)  30 JAN 2021 20:32
 entering extended mode
 **d:/dev/BIA/doc/engineering_thesis.tex
 (d:/dev/BIA/doc/engineering_thesis.tex
@@ -456,21 +456,21 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 540.
  [14]
-Overfull \hbox (2.88428pt too wide) in paragraph at lines 571--576
+Overfull \hbox (2.88428pt too wide) in paragraph at lines 579--584
 \T1/cmr/m/n/14.4 zwi¡zku z po-wy»-szym, w pro-gra-mie \T1/cmr/m/it/14.4 Vi-sual Stu-dio 2019 \T1/cmr/m/n/14.4 trzeba do-da¢ ±cie»k¦
  []
 
 [15] [16] [17] [18]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 594.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 602.
  (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 591--595
+Underfull \hbox (badness 10000) in paragraph at lines 599--603
 \T1/cmr/m/n/10 Microsoft Docs \T1/cmr/m/it/10 MSBu-ild $\T1/cmtt/m/n/10 https : / / docs . microsoft . com / en-[]us / visualstudio / msbuild /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 602--605
+Underfull \hbox (badness 10000) in paragraph at lines 610--613
 \T1/cmr/m/it/10 Wikipedia $\T1/cmtt/m/n/10 https : / / en . wikipedia . org / wiki / Adhesion# : ~ : text = Adhesion % 20is % 20the %
  []
 
@@ -480,17 +480,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 602--605
 
  [20] (d:/dev\BIA\doc\engineering_thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 6149 strings out of 480236
- 96965 string characters out of 2880557
- 414559 words of memory out of 3000000
- 22602 multiletter control sequences out of 15000+200000
+ 6150 strings out of 480236
+ 96989 string characters out of 2880557
+ 414572 words of memory out of 3000000
+ 22603 multiletter control sequences out of 15000+200000
  549944 words of font info for 57 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,11n,70p,464b,428s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0800.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on d:/dev\BIA\doc\engineering_thesis.pdf (21 pages, 407901 bytes).
+Output written on d:/dev\BIA\doc\engineering_thesis.pdf (21 pages, 409223 bytes).
 PDF statistics:
- 686 PDF objects out of 1000 (max. 8388607)
+ 690 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -17,7 +17,8 @@ namespace BIA
 
       void OnInitializeBIA(Object^);
       void OnStartBIAProcess(Object^);
-      void OnStopBIAProcess(Object^);
+      void OnStopProcess(Object^);
+      void OnStartOperationProcess(Object^);
    private:
       BIA* _bia;
    };

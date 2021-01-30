@@ -3,15 +3,8 @@
 
 namespace BIA
 {
-   class Operation
-   {
-   public:
-      static const char* READ;
-      static const char* WRITE;
-   };
+   inline constexpr const char* WRITE = "w";
+   inline constexpr const char* READ = "r";
 }
-
-const char* BIA::Operation::READ = "r";
-const char* BIA::Operation::WRITE = "w";
 
 #endif

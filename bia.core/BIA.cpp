@@ -55,9 +55,27 @@ void BIA::BIA::StartBIAProcess()
 /// <summary>
 /// Cel: Zatrzymanie procesu BIA.
 /// </summary>
-void BIA::BIA::StopBIAProcess()
+void BIA::BIA::StopProcess()
 {
    _keeper->GetProcessManagerAsBIAProcessManager()->Stop();
+}
+
+/// <summary>
+/// 
+/// </summary>
+void BIA::BIA::StartOperationProcess()
+{
+   std::atomic<bool>& cancelled = _keeper->GetProcessManagerAsBIAProcessManager()->Cancelled;
+
+   _keeper->GetImageManagerAsBIAImageManager()->PerformOperations(cancelled);
+
+   if (cancelled == true)
+      return;
+
+#ifdef _LOGGING_
+   _keeper->GetLoggingManagerAsBIALoggingMenager()->Message << "Process has finished.";
+   _keeper->GetLoggingManagerAsBIALoggingMenager()->Log(ESource::BIA_EXPERIMENT_MANAGER);
+#endif
 }
 
 /// <summary>
@@ -123,11 +141,11 @@ BIA::BIA::~BIA()
 /// <summary>
 /// Cel: Rozpoczecie procesu w sposob asynchroniczny.
 /// </summary>
-void BIA::BIA::Start()
+void BIA::BIA::Start(EProcess eprocess)
 {
    auto processManager = _keeper->GetProcessManagerAsBIAProcessManager();
 
-   processManager->Start();
+   processManager->Start(eprocess);
 }
 
 /// <summary>

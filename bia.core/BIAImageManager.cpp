@@ -3,6 +3,7 @@
 #include "TIFFSettingsManager.h"
 #include "Operation.h"
 #include "tiffio.h"
+#include "Bitmap.h"
 
 #include <nlohmann/json.hpp>
 #include <fstream>
@@ -78,7 +79,7 @@ void BIA::BIAImageManager::SplitImages(std::atomic<bool>& cancelled)
             return;
          }
 
-         TIFF* parentImage = TIFFOpen(c_tiffPath, Operation::READ);
+         TIFF* parentImage = TIFFOpen(c_tiffPath, READ);
          TIFFSettingsManager settingsManager = TIFFSettingsManager();
 
          _ASSERT(parentImage);
@@ -112,7 +113,7 @@ void BIA::BIAImageManager::SplitImages(std::atomic<bool>& cancelled)
 
             TIFF* partImage = nullptr;
 
-            partImage = TIFFOpen(c_partImagePath, Operation::WRITE);
+            partImage = TIFFOpen(c_partImagePath, WRITE);
 
             if (!partImage)
             {
@@ -149,6 +150,38 @@ void BIA::BIAImageManager::SplitImages(std::atomic<bool>& cancelled)
    _loggingManager.get()->Message << "Splitting images has ended and took: " << time << "ms.";
    _loggingManager->Log(ESource::BIA_EXPERIMENT_MANAGER);
 #endif
+}
+
+void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
+{
+   for (int i = 0; i < 2; i++)
+   {
+      EFolder folder = (EFolder)i;
+
+      for (auto& experiment : _experimentManager->GetExperiments())
+      {
+         if (cancelled == true)
+         {
+#ifdef _LOGGING_
+            _loggingManager->Message << "Requesting process cancellation.";
+            _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+#endif
+            return;
+         }
+
+         for (auto& partExperiment : experiment.GetPartExperiments(folder))
+         {
+            if (cancelled == true)
+            {
+#ifdef _LOGGING_
+               _loggingManager->Message << "Requesting process cancellation.";
+               _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+#endif
+               return;
+            }
+         }
+      }
+   }
 }
 
 /// <summary>
@@ -378,14 +411,18 @@ void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled)
                return;
             }
 
+            //Bitmap* bitmapix = new Bitmap(1024, 1024);
+            //auto path = partExperiment.GetPreviewImagePath();
+            //bitmapix->LoadFromFile(path); 
+
             std::string originalImagePath = partExperiment.GetImagePath().string();
             const char* c_originalImagePath = originalImagePath.c_str();
 
             std::string previewImagePath = partExperiment.GetPreviewImagePath().string();
             const char* c_previewImagePath = previewImagePath.c_str();
 
-            TIFF* originalTIFFImage = TIFFOpen(c_originalImagePath, Operation::READ);
-            TIFF* previewTIFFImage = TIFFOpen(c_previewImagePath, Operation::WRITE);
+            TIFF* originalTIFFImage = TIFFOpen(c_originalImagePath, READ);
+            TIFF* previewTIFFImage = TIFFOpen(c_previewImagePath, WRITE);
 
             if (originalTIFFImage == nullptr || previewTIFFImage == nullptr)
             {

@@ -207,6 +207,8 @@
     <ClInclude Include="Erosion.h" />
     <ClInclude Include="GammaCorrection.h" />
     <ClInclude Include="Closing.h" />
+    <ClInclude Include="Bitmap.h" />
+    <ClInclude Include="EProcess.h" />
     <ClInclude Include="Opening.h" />
     <ClInclude Include="IOperation.h" />
     <ClInclude Include="JsonSettings.h" />
@@ -235,6 +237,7 @@
     <ClCompile Include="BIAImageManager.cpp" />
     <ClCompile Include="BIALoggingManager.cpp" />
     <ClCompile Include="BIAProcessManager.cpp" />
+    <ClCompile Include="Bitmap.cpp" />
     <ClCompile Include="ConsoleLogger.cpp" />
     <ClCompile Include="Dilation.cpp" />
     <ClCompile Include="DllEntryPoint.cpp" />

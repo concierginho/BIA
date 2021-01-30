@@ -2,6 +2,7 @@
 #define _BIA_
 
 #include "BIACoreExports.h"
+#include "EProcess.h"
 
 namespace BIA
 {
@@ -13,12 +14,15 @@ namespace BIA
       explicit BIA(char*);
       ~BIA();
 
-      void Start();
+      void Start(EProcess);
       void Stop();
 
       void Init();
+
       void StartBIAProcess();
-      void StopBIAProcess();
+      void StopProcess();
+      void StartOperationProcess();
+
       void SetRootPath(char*);
       const char* GetRootPath() const;
 

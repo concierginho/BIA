@@ -25,7 +25,8 @@
          <RowDefinition/>
       </Grid.RowDefinitions>
       <Button Grid.Column="0" Grid.Row="0" Command="{Binding InitializeBIACommand}" Content="Initialize"/>
-      <Button Grid.Column="0" Grid.Row="1" Command="{Binding StartBIAProcessCommand}" Content="Start"/>
+      <Button Grid.Column="0" Grid.Row="1" Command="{Binding StartBIAProcessCommand}" Content="Start BIA Process"/>
+      <Button Grid.Column="0" Grid.Row="3" Command="{Binding StartOperationProcessCommand}" Content="Start Operations"/>
       <Button Grid.Column="0" Grid.Row="2" Command="{Binding StopBIAProcessCommand}" Content="Stop"/>
    </Grid>
 </Window>

@@ -3,12 +3,21 @@
 #include "BIA.h"
 
 /// <summary>
-/// Cel: Wykonanie procesu BIA w sposob asynchroniczny.
+/// Cel: Wykonanie procesu 'BIA' w sposob asynchroniczny.
 /// </summary>
 /// <param name="_bia"></param>
-void Routine(BIA::BIA* _bia)
+void BIARoutine(BIA::BIA* bia)
 {
-   _bia->StartBIAProcess();
+   bia->StartBIAProcess();
+}
+
+/// <summary>
+/// Cel: Wykonanie procesu 'Operations' w sposob asynchroniczny.
+/// </summary>
+/// <param name="bia"></param>
+void OperationsRoutine(BIA::BIA* bia)
+{
+   bia->StartOperationProcess();
 }
 
 /// <summary>
@@ -46,14 +55,24 @@ BIA::BIAProcessManager::~BIAProcessManager()
 /// <summary>
 /// Cel: Rozpoczecie funkcji "Routine()" w sposob asynchroniczny.
 /// </summary>
-void BIA::BIAProcessManager::Start()
+void BIA::BIAProcessManager::Start(EProcess process)
 {
 #ifdef _LOGGING_
    _loggingManager->Message << "Process started.";
    _loggingManager->Log(ESource::BIA_PROCESS_MANAGER);
 #endif
+
    Cancelled = false;
-   _task = std::async(std::launch::async, &Routine, _bia);
+
+   switch (process)
+   {
+      case EProcess::BIAPROCESS:
+         _task = std::async(std::launch::async, &BIARoutine, _bia);
+         break;
+      case EProcess::BIAOPERATIONS:
+         _task = std::async(std::launch::async, &OperationsRoutine, _bia);
+         break;
+   }
 }
 
 /// <summary>

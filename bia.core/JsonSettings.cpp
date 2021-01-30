@@ -4,18 +4,15 @@
 nlohmann::json BIA::JsonSettings::DefaultRecipeJson =
 R"({
    "threshold" : 200,
-   "operations" : 
-   {
+   "operations" : {
+      "LABELING" : ""
    }
 })"_json;
 
-nlohmann::json BIA::JsonSettings::DefaultResultsJson
-{
-};
-
-nlohmann::json BIA::JsonSettings::DefaultInfoJson
-{
-};
+nlohmann::json BIA::JsonSettings::DefaultResultsJson =
+R"({
+   "results" : ""
+})"_json;
 
 /// <summary>
 /// 
@@ -24,15 +21,6 @@ nlohmann::json BIA::JsonSettings::DefaultInfoJson
 nlohmann::json BIA::JsonSettings::GetDefaultRecipeJson()
 {
    return DefaultRecipeJson;
-}
-
-/// <summary>
-/// 
-/// </summary>
-/// <returns></returns>
-nlohmann::json BIA::JsonSettings::GetDefaultInfoJson()
-{
-   return DefaultInfoJson;
 }
 
 /// <summary>

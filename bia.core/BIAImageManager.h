@@ -29,6 +29,7 @@ namespace BIA
 
       void GeneratePreviews(std::atomic<bool>& cancelled);
       void SplitImages(std::atomic<bool>& cancelled);
+      void PerformOperations(std::atomic<bool>& cancelled);
 
       virtual void Init() override;
 

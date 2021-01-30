@@ -182,6 +182,12 @@
     <ClInclude Include="StructuralElement.h">
       <Filter>Header Files\Management\Operation</Filter>
     </ClInclude>
+    <ClInclude Include="Bitmap.h">
+      <Filter>Header Files\Management\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="EProcess.h">
+      <Filter>Header Files\Management\BIAProcessManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -251,6 +257,9 @@
       <Filter>Source Files\Management\Operation</Filter>
     </ClCompile>
     <ClCompile Include="StructuralElement.cpp">
+      <Filter>Source Files\Management\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="Bitmap.cpp">
       <Filter>Source Files\Management\Operation</Filter>
     </ClCompile>
   </ItemGroup>
