@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "BIAExperimentManager.h"
 #include "Experiment.h"
+#include "JsonSettings.h"
 
 #include <regex>
 
@@ -174,6 +175,38 @@ void BIA::BIAExperimentManager::PreparePartExperiments()
 }
 
 /// <summary>
+/// 
+/// </summary>
+/// <param name="path"></param>
+void BIA::BIAExperimentManager::PrepareRecipeJson(PartExperiment& partExperiment)
+{
+   fs::path recipeJsonPath = partExperiment.GetRecipeJsonPath();
+
+   if (!_fileManager->ExistsAtPath(recipeJsonPath))
+   {
+      _fileManager->CreateAtPath(recipeJsonPath, EFileType::NON_DIRECTORY);
+
+      auto defaultRecipeJson = JsonSettings::GetDefaultRecipeJson();
+
+      _fileManager->WriteToJson(recipeJsonPath, defaultRecipeJson);
+   }
+}
+
+/// <summary>
+/// 
+/// </summary>
+/// <param name=""></param>
+void BIA::BIAExperimentManager::PrepareResultsJson(PartExperiment& partExperiment)
+{
+   fs::path resultsJson = partExperiment.GetResultsJsonPath();
+
+   if (!_fileManager->ExistsAtPath(resultsJson))
+   {
+      _fileManager->CreateAtPath(resultsJson, EFileType::NON_DIRECTORY);
+   }
+}
+
+/// <summary>
 /// Cel: Przenosi pliki na podstawie ich nazwy do odpowiednich lokalizacji.
 ///      Przyklad: Horizontal 4.5min.tif zostanie przeniesiony do folderu
 ///                o nazwie "Horizontal" wewnatrz eksperymentu gdzie zostal
@@ -188,7 +221,6 @@ void BIA::BIAExperimentManager::MoveExistingFiles()
       _loggingManager->Message << "Experiments count = 0, proces terminated.";
       _loggingManager->Log(ESource::BIA_EXPERIMENT_MANAGER);
 #endif
-
       return;
    }
 
@@ -228,18 +260,8 @@ void BIA::BIAExperimentManager::MoveExistingFiles()
 /// <param name="partExperiment"></param>
 void BIA::BIAExperimentManager::InitializePartExperiment(PartExperiment& partExperiment)
 {
-   std::vector<fs::path> files;
-
-   files.push_back(partExperiment.GetInfoJsonPath());
-   files.push_back(partExperiment.GetResultsJsonPath());
-   files.push_back(partExperiment.GetRecipeJsonPath());
-
-   for (auto file : files)
-      if (!_fileManager->ExistsAtPath(file))
-         _fileManager->CreateAtPath(file, EFileType::NON_DIRECTORY);
-
-   if (!_fileManager->ExistsAtPath(partExperiment.GetPreviewDirectory()))
-      _fileManager->CreateAtPath(partExperiment.GetPreviewDirectory(), EFileType::DIRECTORY);
+   PrepareRecipeJson(partExperiment);
+   PrepareResultsJson(partExperiment);
 }
 
 /// <summary>

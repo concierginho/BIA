@@ -158,12 +158,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Application.h" />
-    <ClInclude Include="MainWindowVMCLR.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Resource.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="BIA.Bridge.cpp" />
@@ -190,6 +184,9 @@
     <ProjectReference Include="..\BIA.UI\BIA.UI.csproj">
       <Project>{39d93adf-adf3-4d4e-8630-56979fc34b2b}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MainWindowVMCLR.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

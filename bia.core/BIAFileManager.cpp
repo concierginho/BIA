@@ -6,6 +6,7 @@
 #include <sstream>
 
 #include "BIAFileManager.h"
+#include <nlohmann/json.hpp>
 
 /// <summary>
 /// Cel: Stworzenie wyrazen regularnych na uzytek BIAFileManager'a.
@@ -189,6 +190,35 @@ std::unordered_map<BIA::EFileType, std::vector<fs::path>> BIA::BIAFileManager::G
       { EFileType::DIRECTORY, directories },
       { EFileType::NON_DIRECTORY, files }
    };
+}
+
+nlohmann::json BIA::BIAFileManager::ReadFromJson(fs::path& path)
+{
+   nlohmann::json json;
+   std::ifstream i(path.string());
+   i >> json;
+
+   return json;
+}
+
+void BIA::BIAFileManager::WriteToJson(fs::path& path, nlohmann::json& json)
+{
+   if (ExistsAtPath(path) && json.empty() == false)
+   {
+      std::ofstream o;
+      try
+      {
+         o.open(path.string());
+         o << std::setw(4) << json << std::endl;
+         o.close();
+      }
+      catch (std::exception ex)
+      {
+         ex;
+#ifdef _LOGGING_
+#endif
+      }
+   }
 }
 
 /// <summary>

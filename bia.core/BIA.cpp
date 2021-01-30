@@ -1,5 +1,4 @@
-﻿
-#include "pch.h"
+﻿#include "pch.h"
 #include "BIA.h"
 #include "BIAManagerKeeper.h"
 

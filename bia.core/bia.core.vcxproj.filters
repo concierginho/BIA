@@ -57,6 +57,12 @@
     <Filter Include="Source Files\Management\BIAProcessManager">
       <UniqueIdentifier>{03f19d90-eefa-4719-bf92-2f2f7c012d4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Management\Operation">
+      <UniqueIdentifier>{4411db64-b2f0-4df5-8f10-3cddc2fb5c9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Management\Operation">
+      <UniqueIdentifier>{9c0cc68b-c958-48c1-85d2-2f8c38583a88}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -146,6 +152,36 @@
     <ClInclude Include="Operation.h">
       <Filter>Header Files\Management\BIAImageManager</Filter>
     </ClInclude>
+    <ClInclude Include="Pixel.h">
+      <Filter>Header Files\Management\BIAImageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonSettings.h">
+      <Filter>Header Files\Management\BIAImageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IOperation.h">
+      <Filter>Header Files\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Labeling.h">
+      <Filter>Header Files\Management\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="Dilation.h">
+      <Filter>Header Files\Management\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="Erosion.h">
+      <Filter>Header Files\Management\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="GammaCorrection.h">
+      <Filter>Header Files\Management\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="Opening.h">
+      <Filter>Header Files\Management\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="Closing.h">
+      <Filter>Header Files\Management\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="StructuralElement.h">
+      <Filter>Header Files\Management\Operation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -193,5 +229,32 @@
     <ClCompile Include="BIAProcessManager.cpp">
       <Filter>Source Files\Management\BIAProcessManager</Filter>
     </ClCompile>
+    <ClCompile Include="JsonSettings.cpp">
+      <Filter>Source Files\Management\BIAImageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GammaCorrection.cpp">
+      <Filter>Source Files\Management\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="Closing.cpp">
+      <Filter>Source Files\Management\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="Opening.cpp">
+      <Filter>Source Files\Management\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="Labeling.cpp">
+      <Filter>Source Files\Management\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="Dilation.cpp">
+      <Filter>Source Files\Management\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="Erosion.cpp">
+      <Filter>Source Files\Management\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="StructuralElement.cpp">
+      <Filter>Source Files\Management\Operation</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

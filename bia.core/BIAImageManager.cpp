@@ -4,6 +4,9 @@
 #include "Operation.h"
 #include "tiffio.h"
 
+#include <nlohmann/json.hpp>
+#include <fstream>
+
 /// <summary>
 /// Domyslny konstruktor.
 /// </summary>
@@ -378,7 +381,7 @@ void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled)
             std::string originalImagePath = partExperiment.GetImagePath().string();
             const char* c_originalImagePath = originalImagePath.c_str();
 
-            std::string previewImagePath = partExperiment.GetPreviewPath().string();
+            std::string previewImagePath = partExperiment.GetPreviewImagePath().string();
             const char* c_previewImagePath = previewImagePath.c_str();
 
             TIFF* originalTIFFImage = TIFFOpen(c_originalImagePath, Operation::READ);
@@ -400,13 +403,25 @@ void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled)
             unsigned char* source_buffer = (unsigned char*)_TIFFmalloc(linebytes);
             unsigned char* destination_buffer = (unsigned char*)_TIFFmalloc(linebytes);
 
+            fs::path recipeJsonPath = partExperiment.GetRecipeJsonPath();
+            auto jsonRecipe = _fileManager->ReadFromJson(recipeJsonPath);
+            if (!jsonRecipe.contains("threshold"))
+            {
+#ifdef _LOGGING_
+#endif
+               continue;
+            }
+
+
+            unsigned char threshold = static_cast<unsigned char>(jsonRecipe["threshold"]);
+
             for (uint32 i = 0; i < linebytes; i++)
             {
                TIFFReadScanline(originalTIFFImage, source_buffer, i);
 
                memcpy(destination_buffer, source_buffer, linebytes);
 
-               BinarizeScanline(destination_buffer, linebytes, static_cast<unsigned char>(200));
+               BinarizeScanline(destination_buffer, linebytes, threshold);
 
                if (TIFFWriteScanline(previewTIFFImage, destination_buffer, i) < 0)
                   break;
@@ -441,12 +456,24 @@ void BIA::BIAImageManager::Init()
 /// <param name="length"></param>
 void BIA::BIAImageManager::AdjustScanline(unsigned char* array, int length)
 {
-   #pragma omp parallel for
-   for (int i = 0; i < length; i++)
+   if (array == nullptr)
+      return;
+
+   if (array[0] < 0)
    {
-      unsigned char value = array[i];
-      if (value < 0)
-         array[i] = static_cast<unsigned char>(-1 * std::abs(array[i]));
+      #pragma omp parallel for
+      for (int i = 0; i < length; i++)
+      {
+         array[i] = static_cast<unsigned char>(std::abs(array[i]));
+      }
+   }
+   else
+   {
+      #pragma omp parallel for
+      for (int i = 0; i < length; i++)
+      {
+         array[i] = static_cast<unsigned char>(255 - array[i]);
+      }
    }
 }
 
@@ -467,12 +494,12 @@ void BIA::BIAImageManager::BinarizeScanline(unsigned char* buffer, int length, u
       return;
    }
 
-#pragma omp parallel for
+   #pragma omp parallel for
    for (int i = 0; i < length; i++)
    {
       if (buffer[i] >= threshold)
          buffer[i] = black;
-      else
+     else
          buffer[i] = white;
    }
 }

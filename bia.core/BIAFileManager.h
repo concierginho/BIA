@@ -49,7 +49,9 @@ namespace BIA
       virtual void CreateAtPath(fs::path, EFileType) override;
       virtual void ChangeFileLocation(fs::path&, fs::path&) override;
       virtual void ChangeFileLocation(fs::path&, std::vector<fs::path>) override;
+      virtual void WriteToJson(fs::path&, nlohmann::json&) override;
 
+      virtual nlohmann::json ReadFromJson(fs::path&) override;
       virtual bool ExistsAtPath(fs::path) override;
 
       virtual std::unordered_map<EFileType, std::vector<fs::path>> GetDirectoryContent(fs::path) override;

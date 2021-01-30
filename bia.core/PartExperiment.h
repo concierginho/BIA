@@ -4,6 +4,7 @@
 #include "TIFFImage.h"
 
 #include <filesystem>
+#include <nlohmann/json.hpp>
 
 namespace fs = std::filesystem;
 
@@ -24,12 +25,10 @@ namespace BIA
       void SetImagePath(fs::path imagePath);
       void SetTIFFImage(TIFFImage* tiffImage);
 
-      fs::path GetPreviewPath() const;
       fs::path GetResultsJsonPath() const;
-      fs::path GetInfoJsonPath() const;
       fs::path GetRecipeJsonPath() const;
-      fs::path GetPreviewDirectory() const;
       fs::path GetImagePath() const;
+      fs::path GetPreviewImagePath() const;
 
       TIFFImage* GetTIFFImage();
 

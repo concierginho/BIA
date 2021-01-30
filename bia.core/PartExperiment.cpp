@@ -14,7 +14,7 @@ BIA::PartExperiment::PartExperiment(fs::path path, std::string parentName)
 
    _tiffImage = new TIFFImage();
    _tiffImage->SetImagePath(path.string() + "\\" + _name + ".tif");
-   _tiffImage->SetPreviewImagePath(fs::path(path.string() + "\\preview\\" + _name + ".tif"));
+   _tiffImage->SetPreviewImagePath(fs::path(path.string() + "\\preview.tif"));
 }
 
 /// <summary>
@@ -25,31 +25,12 @@ BIA::PartExperiment::~PartExperiment()
 }
 
 /// <summary>
-/// Funkcja zwraca sciezke do obrazu wewnatrz folderu 'prewiev',
-/// ktory znajduje sie wewnatrz eksperymentu czesciowego.
-/// </summary>
-fs::path BIA::PartExperiment::GetPreviewPath() const
-{
-   return _tiffImage->GetPreviewImagePath();
-}
-
-/// <summary>
 /// Funkcja zwraca sciezke do pliku 'result.json' wewnatrz eksperymentu czesciowego.
 /// </summary>
 fs::path BIA::PartExperiment::GetResultsJsonPath() const
 {
    std::stringstream ss;
    ss << _path.string() << "\\results.json";
-   return fs::path(ss.str());
-}
-
-/// <summary>
-/// Funkcja zwraca sciezke do pliku 'info.json' wewnatrz eksperymentu czesciowego.
-/// </summary>
-fs::path BIA::PartExperiment::GetInfoJsonPath() const
-{
-   std::stringstream ss;
-   ss << _path.string() << "\\info.json";
    return fs::path(ss.str());
 }
 
@@ -64,21 +45,20 @@ fs::path BIA::PartExperiment::GetRecipeJsonPath() const
 }
 
 /// <summary>
-/// Funkcja zwraca sciezke do folderu 'preview' wewnatrz eksperymentu czesciowego.
-/// </summary>
-fs::path BIA::PartExperiment::GetPreviewDirectory() const
-{
-   std::stringstream ss;
-   ss << _path.string() << "\\preview";
-   return fs::path(ss.str());
-}
-
-/// <summary>
 /// Funkcja zwraca sciezke do obrazu wewnatrz eksperymentu czesciowego.
 /// </summary>
 fs::path BIA::PartExperiment::GetImagePath() const
 {
    return _tiffImage->GetImagePath();
+}
+
+/// <summary>
+/// 
+/// </summary>
+/// <returns></returns>
+fs::path BIA::PartExperiment::GetPreviewImagePath() const
+{
+   return _tiffImage->GetPreviewImagePath();
 }
 
 /// <summary>

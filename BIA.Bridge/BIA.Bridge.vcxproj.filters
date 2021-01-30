@@ -5,30 +5,12 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Source">
+      <UniqueIdentifier>{8be20d79-4dee-47a8-97a0-f05116a7fa54}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\MainWindow">
-      <UniqueIdentifier>{db41e888-db75-48f3-8c11-6046619ef710}</UniqueIdentifier>
+    <Filter Include="Source\MainWindow">
+      <UniqueIdentifier>{17a0b94e-4c2d-45fb-92ae-c93554bf605e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\MainWindow">
-      <UniqueIdentifier>{402c65ad-9489-4d0f-a1d7-fb1e4d224379}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainWindowVMCLR.h">
-      <Filter>Header Files\MainWindow</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BIA.Bridge.cpp">
@@ -44,7 +26,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MainWindowVMCLR.cpp">
-      <Filter>Source Files\MainWindow</Filter>
+      <Filter>Source\MainWindow</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MainWindowVMCLR.h">
+      <Filter>Source\MainWindow</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
