@@ -16,6 +16,7 @@ namespace BIA
       unsigned char* _buffer;
    public:
       void LoadFromFile(fs::path&);
+      void SaveToFile(fs::path&);
 
       int Index(int x, int y);
 

@@ -209,6 +209,7 @@
     <ClInclude Include="Closing.h" />
     <ClInclude Include="Bitmap.h" />
     <ClInclude Include="EProcess.h" />
+    <ClInclude Include="EOperation.h" />
     <ClInclude Include="Opening.h" />
     <ClInclude Include="IOperation.h" />
     <ClInclude Include="JsonSettings.h" />

@@ -10,3 +10,15 @@ std::string BIA::Labeling::ArgumentsToString()
 {
    return std::string();
 }
+
+BIA::Labeling::Labeling()
+{
+}
+
+BIA::Labeling::~Labeling()
+{
+}
+
+void BIA::Labeling::PerformOperation(Bitmap* bitmap)
+{
+}

@@ -61,7 +61,7 @@ void BIA::BIA::StopProcess()
 }
 
 /// <summary>
-/// 
+/// Cel: Uruchomienie algorytmow, ktore beda dzialac na poszczegolnych obrazach.
 /// </summary>
 void BIA::BIA::StartOperationProcess()
 {

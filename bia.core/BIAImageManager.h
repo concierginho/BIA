@@ -5,6 +5,8 @@
 #include "BIAExperimentManager.h"
 #include "BIALoggingManager.h"
 #include "tiffio.h"
+#include "EOperation.h"
+#include "IOperation.h"
 
 namespace BIA
 {
@@ -16,6 +18,7 @@ namespace BIA
 #ifdef _LOGGING_
       std::shared_ptr<BIALoggingManager> _loggingManager;
 #endif
+      std::unordered_map<EOperation, IOperation*> _operationByType;
    public:
       BIAImageManager(std::shared_ptr<BIAExperimentManager> experimentManager);
 #ifdef _LOGGING_

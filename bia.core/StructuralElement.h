@@ -9,6 +9,7 @@ namespace BIA
       int _width;
       int _length;
    public:
+      StructuralElement();
       StructuralElement(int width, int length);
    };
 }

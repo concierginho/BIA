@@ -5,6 +5,13 @@
 #include "tiffio.h"
 #include "Bitmap.h"
 
+#include "Closing.h"
+#include "Opening.h"
+#include "Dilation.h"
+#include "Erosion.h"
+#include "GammaCorrection.h"
+#include "Labeling.h"
+
 #include <nlohmann/json.hpp>
 #include <fstream>
 
@@ -179,6 +186,54 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
 #endif
                return;
             }
+
+            fs::path recipeJsonPath = partExperiment.GetRecipeJsonPath();
+            auto jsonRecipe = _fileManager->ReadFromJson(recipeJsonPath);
+            if (!jsonRecipe.contains("operations"))
+            {
+#ifdef _LOGGING_
+#endif
+               continue;
+            }
+
+            Bitmap* bitmap = new Bitmap(1024, 1024);
+            auto path = partExperiment.GetPreviewImagePath();
+            bitmap->LoadFromFile(path);
+
+            auto& operations = jsonRecipe["operations"];
+
+            if (operations.contains(_operationByType[EOperation::CLOSING]->ToString()))
+            {
+               _operationByType[EOperation::CLOSING]->PerformOperation(bitmap);
+            }
+
+            if (operations.contains(_operationByType[EOperation::DILATION]->ToString()))
+            {
+               _operationByType[EOperation::DILATION]->PerformOperation(bitmap);
+            }
+
+            if (operations.contains(_operationByType[EOperation::EROSION]->ToString()))
+            {
+               _operationByType[EOperation::EROSION]->PerformOperation(bitmap);
+            }
+
+            if (operations.contains(_operationByType[EOperation::GAMMA_CORRECTION]->ToString()))
+            {
+               _operationByType[EOperation::GAMMA_CORRECTION]->PerformOperation(bitmap);
+            }
+
+            if (operations.contains(_operationByType[EOperation::LABELING]->ToString()))
+            {
+               _operationByType[EOperation::LABELING]->PerformOperation(bitmap);
+            }
+
+            if (operations.contains(_operationByType[EOperation::OPENING]->ToString()))
+            {
+               _operationByType[EOperation::OPENING]->PerformOperation(bitmap);
+            }
+
+            bitmap->SaveToFile(path);
+            delete bitmap;
          }
       }
    }
@@ -411,10 +466,6 @@ void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled)
                return;
             }
 
-            //Bitmap* bitmapix = new Bitmap(1024, 1024);
-            //auto path = partExperiment.GetPreviewImagePath();
-            //bitmapix->LoadFromFile(path); 
-
             std::string originalImagePath = partExperiment.GetImagePath().string();
             const char* c_originalImagePath = originalImagePath.c_str();
 
@@ -483,6 +534,13 @@ void BIA::BIAImageManager::Init()
    _loggingManager->Message << "Initializing BIAImageManager...";
    _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
 #endif
+
+   _operationByType[EOperation::CLOSING] = new Closing();
+   _operationByType[EOperation::DILATION] = new Dilation();
+   _operationByType[EOperation::EROSION] = new Erosion();
+   _operationByType[EOperation::GAMMA_CORRECTION] = new GammaCorrection();
+   _operationByType[EOperation::LABELING] = new Labeling();
+   _operationByType[EOperation::OPENING] = new Opening();
 }
 
 /// <summary>

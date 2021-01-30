@@ -188,6 +188,9 @@
     <ClInclude Include="EProcess.h">
       <Filter>Header Files\Management\BIAProcessManager</Filter>
     </ClInclude>
+    <ClInclude Include="EOperation.h">
+      <Filter>Header Files\Management\BIAImageManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">

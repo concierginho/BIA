@@ -45,9 +45,7 @@ BIA::BIAExperimentManager::~BIAExperimentManager()
 ///                  \PartExperiment0.tif
 ///                  \results.json
 ///                  \recipe.json
-///                  \info.json
-///                  \Preview
-///                     \preview.tif
+///                  \preview.tif
 ///               \PartExperiment1
 ///               .
 ///               .

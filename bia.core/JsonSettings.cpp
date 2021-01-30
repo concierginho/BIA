@@ -15,7 +15,7 @@ R"({
 })"_json;
 
 /// <summary>
-/// 
+/// Cel: Zwrocenie domyslnych wartosci, ktore trafia do pliku 'recipe.json'.
 /// </summary>
 /// <returns></returns>
 nlohmann::json BIA::JsonSettings::GetDefaultRecipeJson()
@@ -24,7 +24,7 @@ nlohmann::json BIA::JsonSettings::GetDefaultRecipeJson()
 }
 
 /// <summary>
-/// 
+/// Cel: Zwrocenie domyslnych wartosci, ktore trafia do pliku 'results.json'.
 /// </summary>
 /// <returns></returns>
 nlohmann::json BIA::JsonSettings::GetDefaultResultsJson()
