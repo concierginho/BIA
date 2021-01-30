@@ -77,9 +77,6 @@
     <ClInclude Include="ILogger.h">
       <Filter>Header Files\Logging</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleLogger.h">
-      <Filter>Header Files\Logging</Filter>
-    </ClInclude>
     <ClInclude Include="IExperimentManager.h">
       <Filter>Header Files\Management</Filter>
     </ClInclude>
@@ -200,9 +197,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FileLogger.cpp">
-      <Filter>Source Files\Logging</Filter>
-    </ClCompile>
-    <ClCompile Include="ConsoleLogger.cpp">
       <Filter>Source Files\Logging</Filter>
     </ClCompile>
     <ClCompile Include="BIA.cpp">

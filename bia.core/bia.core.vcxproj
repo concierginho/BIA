@@ -193,7 +193,6 @@
     <ClInclude Include="BIAFileManager.h" />
     <ClInclude Include="BIAImageManager.h" />
     <ClInclude Include="BIAProcessManager.h" />
-    <ClInclude Include="ConsoleLogger.h" />
     <ClInclude Include="ESource.h" />
     <ClInclude Include="EType.h" />
     <ClInclude Include="Experiment.h" />
@@ -239,7 +238,6 @@
     <ClCompile Include="BIALoggingManager.cpp" />
     <ClCompile Include="BIAProcessManager.cpp" />
     <ClCompile Include="Bitmap.cpp" />
-    <ClCompile Include="ConsoleLogger.cpp" />
     <ClCompile Include="Dilation.cpp" />
     <ClCompile Include="DllEntryPoint.cpp" />
     <ClCompile Include="Erosion.cpp" />

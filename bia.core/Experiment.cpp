@@ -4,16 +4,16 @@
 #include <sstream>
 
 /// <summary>
-/// Zmienna statyczna wskazujaca nastepne id;
+/// Cel: Zmienna statyczna wskazujaca nastepne id;
 /// </summary>
 int BIA::Experiment::nextId = 0;
 
 /// <summary>
-/// Funkcja pozwalajaca na inicjializacje
-/// obiektu typu TIFFImage na podstawie
-/// sciezki do obrazu oraz folderu, w ktorym
-/// ma byc zlokalizowany (HORIZONTAL lub VERTICAL).
+/// Cel: Inicjalizacja obiektu TIFFImage na podstawie sciezki
+///      do obrazu.
 /// </summary>
+/// <param name="folder"></param>
+/// <param name="path"></param>
 void BIA::Experiment::IninitalizeTIFFImage(EFolder folder, fs::path path)
 {
    switch (folder)
@@ -31,9 +31,11 @@ void BIA::Experiment::IninitalizeTIFFImage(EFolder folder, fs::path path)
 }
 
 /// <summary>
-/// Funkcja zwraca sciezke do obrazu na podstawie
-/// folderu, w ktorym obraz jest zawarty (HORIZONTAL lub VERTICAL).
+/// Cel: Zwrocenie sciezki do obrazu na podstawie folderu,
+///      w ktorym obraz jest zawarty (HORIZONTAL lub VERTICAL).
 /// </summary>
+/// <param name="folder"></param>
+/// <returns></returns>
 fs::path BIA::Experiment::GetTIFFImagePath(EFolder folder)
 {
    switch (folder)
@@ -49,11 +51,11 @@ fs::path BIA::Experiment::GetTIFFImagePath(EFolder folder)
 }
 
 /// <summary>
-/// Funkcja zwracajaca obiekt typu TIFFImage*
-/// Na podstawie zmiennej folder, zwrocony
-/// zostanie obraz zawarty w folderze Horizontal
-/// lub Vertical.
+/// Cel: Zwrocenie obiektu typu TIFFImage na podstawie folderu,
+///      w ktorym sie znajduje (HORIZONTAL lub VERTICAL).
 /// </summary>
+/// <param name="folder"></param>
+/// <returns></returns>
 BIA::TIFFImage* BIA::Experiment::GetTIFFImage(EFolder folder)
 {
    switch (folder)
@@ -70,8 +72,7 @@ BIA::TIFFImage* BIA::Experiment::GetTIFFImage(EFolder folder)
 }
 
 /// <summary>
-/// Funkcja zwraca kolejne wolne id i ustawie zmienna statyczna
-/// nextId na kolejne id w kolejnosci
+/// Cel: Zwrocenie kolejnego id oraz inkrementacja licznika.
 /// </summary>
 int BIA::Experiment::GetNextId()
 {
@@ -81,7 +82,7 @@ int BIA::Experiment::GetNextId()
 }
 
 /// <summary>
-/// Glowny konstruktor klasy Experiment.
+/// Domyslny konstruktor.
 /// </summary>
 /// <param name="path"></param>
 BIA::Experiment::Experiment(fs::path path)
@@ -92,14 +93,14 @@ BIA::Experiment::Experiment(fs::path path)
 }
 
 /// <summary>
-/// Destruktor
+/// Destruktor.
 /// </summary>
 BIA::Experiment::~Experiment()
 {
 }
 
 /// <summary>
-/// Funkcja zwracajaca sciezke do folderu tzw. eksperymentu.
+/// Cel: Zwrocenie sciezki do folderu (eksperymentu).
 /// </summary>
 fs::path BIA::Experiment::GetPath()
 {
@@ -107,10 +108,11 @@ fs::path BIA::Experiment::GetPath()
 }
 
 /// <summary>
-/// Funkcja zwraca sciezke do folderu zawartego wewnatrz eksperymentu
-/// na podstawie argument typu EFolder sciezka prowadzi do folderu
-/// Horizontal lub Vertical
+/// Cel: Zwrocenie sciezki do folderu VERTICAL lub HORIZONTAL
+///      znajdujacego sie wewnatrz eksperymentu.
 /// </summary>
+/// <param name="folder"></param>
+/// <returns></returns>
 fs::path BIA::Experiment::GetPath(EFolder folder)
 {
    fs::path parent = GetPath();
@@ -134,8 +136,11 @@ fs::path BIA::Experiment::GetPath(EFolder folder)
 }
 
 /// <summary>
-/// Funkcja zwraca sciezke do eksperymentu czesciowego na podstawie id.
+/// Cel: Zwrocenie sciezki do eksperymentu na podstawie id.
 /// </summary>
+/// <param name="folder"></param>
+/// <param name="id"></param>
+/// <returns></returns>
 fs::path BIA::Experiment::GetPartExperimentPathById(EFolder folder, int id)
 {
    auto path = GetPath(folder);
@@ -147,16 +152,20 @@ fs::path BIA::Experiment::GetPartExperimentPathById(EFolder folder, int id)
 }
 
 /// <summary>
-/// Funkcja zwraca nazwe danego eksperymentu.
+/// Cel: Zwrocenie nazwy eksperymentu.
 /// </summary>
+/// <returns></returns>
 std::string BIA::Experiment::GetName() const
 {
    return _name;
 }
 
 /// <summary>
-/// Funkcja zwraca wektor z obiektami typu PartExperiment.
+/// Cel: Zwrocenie eksperymentow czesciowych na podstawie wartosci
+///      argumentu VERTICAL lub HORIZONTAL.
 /// </summary>
+/// <param name="alignment"></param>
+/// <returns></returns>
 std::vector<BIA::PartExperiment>& BIA::Experiment::GetPartExperiments(EFolder alignment)
 {
    switch (alignment)

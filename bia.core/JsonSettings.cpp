@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "JsonSettings.h"
 
+/// <summary>
+/// Cel: Ustawienia domyslne dla pliku 'recipe.json'
+/// </summary>
 nlohmann::json BIA::JsonSettings::DefaultRecipeJson =
 R"({
    "threshold" : 200,
@@ -9,6 +12,9 @@ R"({
    }
 })"_json;
 
+/// <summary>
+/// Cel: Ustawienia domyslne dla pliku 'results.json'
+/// </summary>
 nlohmann::json BIA::JsonSettings::DefaultResultsJson =
 R"({
    "results" : ""

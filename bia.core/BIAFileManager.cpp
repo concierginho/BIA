@@ -192,6 +192,11 @@ std::unordered_map<BIA::EFileType, std::vector<fs::path>> BIA::BIAFileManager::G
    };
 }
 
+/// <summary>
+/// Cel: Odczytanie informacji z pliku typu '.json'.
+/// </summary>
+/// <param name="path"></param>
+/// <returns></returns>
 nlohmann::json BIA::BIAFileManager::ReadFromJson(fs::path& path)
 {
    nlohmann::json json;
@@ -201,6 +206,12 @@ nlohmann::json BIA::BIAFileManager::ReadFromJson(fs::path& path)
    return json;
 }
 
+/// <summary>
+/// Cel: Zapisanie informacji zawartych w drugiej zmiennej
+///      do pliku typu '.json' wskazanego na podstawie sciezki (argument pierwszy).
+/// </summary>
+/// <param name="path"></param>
+/// <param name="json"></param>
 void BIA::BIAFileManager::WriteToJson(fs::path& path, nlohmann::json& json)
 {
    if (ExistsAtPath(path) && json.empty() == false)

@@ -7,7 +7,7 @@
 
 #ifdef _LOGGING_
 /// <summary>
-/// Konstruktor uzywany gdy _LOGGING_ jest zdefiniowany
+/// Konstruktor uzywany gdy _LOGGING_ jest zdefiniowany.
 /// </summary>
 BIA::BIAExperimentManager::BIAExperimentManager(std::shared_ptr<BIAFileManager> fileManager, std::shared_ptr<BIALoggingManager> loggingManager)
 {
@@ -17,7 +17,7 @@ BIA::BIAExperimentManager::BIAExperimentManager(std::shared_ptr<BIAFileManager> 
 #endif
 
 /// <summary>
-/// Konstruktor uzywany gdy _LOGGING_ nie jest zdefiniowany
+/// Domyslny konstruktor.
 /// </summary>
 /// <param name="fileManager"></param>
 BIA::BIAExperimentManager::BIAExperimentManager(std::shared_ptr<BIAFileManager> fileManager)
@@ -26,7 +26,7 @@ BIA::BIAExperimentManager::BIAExperimentManager(std::shared_ptr<BIAFileManager> 
 }
 
 /// <summary>
-/// Destruktor
+/// Destruktor.
 /// </summary>
 BIA::BIAExperimentManager::~BIAExperimentManager()
 {
@@ -173,7 +173,8 @@ void BIA::BIAExperimentManager::PreparePartExperiments()
 }
 
 /// <summary>
-/// 
+/// Cel: Przygotowanie pliku 'recipe.json'.
+///      Jezeli plik nie istnieje - zostaje wypelniony wartosciami domyslnymi.
 /// </summary>
 /// <param name="path"></param>
 void BIA::BIAExperimentManager::PrepareRecipeJson(PartExperiment& partExperiment)
@@ -191,7 +192,8 @@ void BIA::BIAExperimentManager::PrepareRecipeJson(PartExperiment& partExperiment
 }
 
 /// <summary>
-/// 
+/// Cel: Przygotowanie pliku 'results.json'.
+///      Jezeli plik nie istnieje - zostaje wypelniony wartosciami domyslnymi.
 /// </summary>
 /// <param name=""></param>
 void BIA::BIAExperimentManager::PrepareResultsJson(PartExperiment& partExperiment)

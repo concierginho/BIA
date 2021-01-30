@@ -7,7 +7,7 @@
 #include "IFileManager.h"
 
 /// <summary>
-/// Konstruktor klasy FileLogger.
+/// Domyslny konstruktor.
 /// </summary>
 /// <param name="rootPath"></param>
 /// <param name="fileManager"></param>
@@ -21,11 +21,10 @@ BIA::FileLogger::FileLogger(std::string rootPath, std::shared_ptr<IFileManager>&
 }
 
 /// <summary>
-/// Destruktor klasy FileLogger.
+/// Destruktor.
 /// </summary>
 BIA::FileLogger::~FileLogger()
 {
-
    _fileManager = nullptr;
 }
 

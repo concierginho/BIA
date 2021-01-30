@@ -4,7 +4,7 @@
 #include <sstream>
 
 /// <summary>
-/// Konstruktor
+/// Domyslny konstruktor.
 /// </summary>
 BIA::PartExperiment::PartExperiment(fs::path path, std::string parentName)
 {
@@ -18,14 +18,14 @@ BIA::PartExperiment::PartExperiment(fs::path path, std::string parentName)
 }
 
 /// <summary>
-/// Destruktor
+/// Destruktor.
 /// </summary>
 BIA::PartExperiment::~PartExperiment()
 {
 }
 
 /// <summary>
-/// Funkcja zwraca sciezke do pliku 'result.json' wewnatrz eksperymentu czesciowego.
+/// Cel: Zwrocenie sciezki do pliku 'results.json'.
 /// </summary>
 fs::path BIA::PartExperiment::GetResultsJsonPath() const
 {
@@ -35,7 +35,7 @@ fs::path BIA::PartExperiment::GetResultsJsonPath() const
 }
 
 /// <summary>
-/// Funkcja zwraca sciezke do pliku 'recipe.json' wewnatrz eksperymentu czesciowego.
+/// Cel: Zwrocenie sciezki do pliku 'recipe.json'.
 /// </summary>
 fs::path BIA::PartExperiment::GetRecipeJsonPath() const
 {
@@ -45,7 +45,7 @@ fs::path BIA::PartExperiment::GetRecipeJsonPath() const
 }
 
 /// <summary>
-/// Funkcja zwraca sciezke do obrazu wewnatrz eksperymentu czesciowego.
+/// Cel: Zwrocenie sciezki do obrazu nalezacego do eksperymentu czesciowego.
 /// </summary>
 fs::path BIA::PartExperiment::GetImagePath() const
 {
@@ -53,7 +53,7 @@ fs::path BIA::PartExperiment::GetImagePath() const
 }
 
 /// <summary>
-/// 
+/// Cel: Zwrocenie sciezki do podgladu obrazu nalezacego do eksperymentu czesciowego.
 /// </summary>
 /// <returns></returns>
 fs::path BIA::PartExperiment::GetPreviewImagePath() const
@@ -62,8 +62,7 @@ fs::path BIA::PartExperiment::GetPreviewImagePath() const
 }
 
 /// <summary>
-/// Funckja zwraca obiekt typu TIFFImage*, ktory przechowuje
-/// wszelkie informacje na temat danego obrazu typu 'tif'.
+/// Cel: Zwrocenie obiektu typu TIFFImage*.
 /// </summary>
 BIA::TIFFImage* BIA::PartExperiment::GetTIFFImage()
 {
@@ -71,7 +70,7 @@ BIA::TIFFImage* BIA::PartExperiment::GetTIFFImage()
 }
 
 /// <summary>
-/// Funkcja zwraca id danego eksperymentu czesciowego
+/// Cel: Zwrocenie id eksperymentu czesciowego.
 /// </summary>
 int BIA::PartExperiment::GetId()
 {
@@ -79,16 +78,18 @@ int BIA::PartExperiment::GetId()
 }
 
 /// <summary>
-/// Funkcja pozwalajaca ustawisc sciezke do obrazu.
+/// Cel: Ustawienie sciezki do obrazu czesciowego.
 /// </summary>
+/// <param name="imagePath"></param>
 void BIA::PartExperiment::SetImagePath(fs::path imagePath)
 {
    _tiffImage->SetImagePath(imagePath);
 }
 
 /// <summary>
-/// Funkcja pozwalajaca ustawic obiekt typu TIFFImage*.
+/// Cel: Ustawienie obiektu typu 'TIFFImage*'.
 /// </summary>
+/// <param name="tiffImage"></param>
 void BIA::PartExperiment::SetTIFFImage(TIFFImage* tiffImage)
 {
    _tiffImage = tiffImage;

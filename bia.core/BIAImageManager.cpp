@@ -159,6 +159,11 @@ void BIA::BIAImageManager::SplitImages(std::atomic<bool>& cancelled)
 #endif
 }
 
+/// <summary>
+/// Cel: Zastosowanie operacji zapisanych w pliku 'recipe.json'
+///      na obrazach, ktore zostaly wczesniej zbinaryzowane.
+/// </summary>
+/// <param name="cancelled"></param>
 void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
 {
    for (int i = 0; i < 2; i++)
