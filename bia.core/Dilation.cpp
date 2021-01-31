@@ -11,15 +11,6 @@ std::string BIA::Dilation::ToString()
 }
 
 /// <summary>
-/// Cel: Zwrocenie argumentow operacji jako lancuch znakow.
-/// </summary>
-/// <returns></returns>
-std::string BIA::Dilation::ArgumentsToString()
-{
-   return std::string();
-}
-
-/// <summary>
 /// Domyslny konstruktor.
 /// </summary>
 BIA::Dilation::Dilation()
@@ -41,6 +32,6 @@ BIA::Dilation::~Dilation()
 /// Cel: Wykonanie operacji na bitmapie.
 /// </summary>
 /// <param name="bitmap"></param>
-void BIA::Dilation::PerformOperation(Bitmap* bitmap)
+void BIA::Dilation::PerformOperation(Bitmap* bitmap, nlohmann::json& json)
 {
 }

@@ -95,6 +95,15 @@ void BIA::Bitmap::SaveToFile(fs::path& path)
 }
 
 /// <summary>
+/// Cel: Zwrocenie tablicy wartosci bitmapy.
+/// </summary>
+/// <returns></returns>
+unsigned char* BIA::Bitmap::GetBuffer()
+{
+   return _buffer;
+}
+
+/// <summary>
 /// Cel: Zwrocenie indeksu pixela o wskazanych wspolrzednych.
 /// </summary>
 /// <param name="x"></param>
@@ -103,4 +112,14 @@ void BIA::Bitmap::SaveToFile(fs::path& path)
 int BIA::Bitmap::Index(int x, int y)
 {
    return x + _width * y;
+}
+
+int BIA::Bitmap::Length()
+{
+   return _length;
+}
+
+int BIA::Bitmap::Width()
+{
+   return _width;
 }

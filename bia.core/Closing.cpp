@@ -11,15 +11,6 @@ std::string BIA::Closing::ToString()
 }
 
 /// <summary>
-/// Cel: Zwrocenie argumentow operacji jako lancuch znakow.
-/// </summary>
-/// <returns></returns>
-std::string BIA::Closing::ArgumentsToString()
-{
-   return std::string();
-}
-
-/// <summary>
 /// Domyslny konstruktor.
 /// </summary>
 BIA::Closing::Closing()
@@ -41,6 +32,6 @@ BIA::Closing::~Closing()
 /// Cel: Wykonanie operacji na bitmapie.
 /// </summary>
 /// <param name="bitmap"></param>
-void BIA::Closing::PerformOperation(Bitmap* bitmap)
+void BIA::Closing::PerformOperation(Bitmap* bitmap, nlohmann::json& json)
 {
 }

@@ -15,7 +15,7 @@
 \usepackage[ampersand]{easylist}
 \usepackage{xcolor}
 \usepackage{sectsty}
-
+\usepackage[font=large,labelfont=bf]{caption}
 %\usepackage{showframe}
 
 \geometry{left=3cm, right=3cm, top=1.5cm, bottom=1.5cm}
@@ -241,7 +241,6 @@
         }
         \subsection{Element Strukturalny}
         {
-            BRAK CITE
             \label{sec:element-strukturalny}
             \Large
             \justifying
@@ -256,7 +255,7 @@
             Punkt centralny punktu strukturalnego to miejsce, które przykłada się do kolejnych pikseli w obrazie binarnym.
             W zależności od operacji morfologicznej, która jest przeprowadzana.
             Pozostałe piksele przyjmują jakąś wartości \(0\) lub \(1\).
-            Przykłady elementów strukturalnych (czerwonym kolorem zaznaczono punkty centralne, szarym wartość \(1\), białym wartość \(0\)) przedstawiono na Rysunkach od \ref{elst:one} do \ref{elst:five}.
+            Przykłady elementów strukturalnych (czerwonym kolorem zaznaczono punkty centralne, szarym wartość \(1\), białym wartość \(0\)) przedstawiono na Rysunkach od \ref{elst:one} do \ref{elst:five} \cite{Digital Image Processing Second Edition}.
         }
         \begin{figure}[H]
             \captionsetup{margin=1.5cm}
@@ -321,13 +320,12 @@
         \newpage
         \subsection{Sąsiedztwo}
         {
-            BRAK CITE
             \label{sec:sasiedztwo}
             \Large
             \justifying
             \quad
             Sąsiedztwo - jest to sposób w jaki zdefiniowane jest otoczenie danego piksela.
-            Wyróżnia się dwa głowne sąsiedztwa: Moore'a (Rysunek \ref{neighbourhood}a) oraz Von Neumann'a (Rysunek \ref{neighbourhood}b).
+            Wyróżnia się dwa głowne sąsiedztwa: Moore'a (Rysunek \ref{neighbourhood}a) oraz Von Neumann'a (Rysunek \ref{neighbourhood}b) \cite{Digital Image Processing Second Edition}.
         }
         \begin{figure}[H]
             \centering
@@ -340,14 +338,13 @@
 
         \subsection{Erozja}
         {
-            BRAK CITE
             \label{sec:erozja}
             \Large
             \justifying
             \quad
             Erozja - czyli zwężanie.
             Przyłożenie elementu strukturalnego do każdego piksela \(p_{ij}\) na obrazie w celu sprawdzenia czy choć jeden piksel z sąsiedztwa \(p_{ij}\) ma wartość równą zero.
-            Jeżeli tak - punkt centralny również przyjmuje wartość 0. W przeciwnym przypadku wartość pozostaje bez zmian.
+            Jeżeli tak - punkt centralny również przyjmuje wartość 0. W przeciwnym przypadku wartość pozostaje bez zmian \cite{Digital Image Processing Second Edition}.
         }
 
         \begin{figure}[H]
@@ -366,14 +363,13 @@
 
         \subsection{Dylatacja}
         {
-            BRAK CITE
             \label{sec:dylatacja}
             \Large
             \justifying
             \quad
             Dylatacja - czyli rozszerzanie.
             Przyłożenie elementu strukturalnego do każdego piksela \(p_{ij}\) na obrazie w celu sprawdzenia czy choć jeden z pikseli z sąsiedztwa \(p_{ij}\) ma wartość równą jeden.
-            Jeżeli tak - punkt centralny również przyjmuje wartość 1. W przeciwnym wypadku wartość nie ulega zmianie.
+            Jeżeli tak - punkt centralny również przyjmuje wartość 1. W przeciwnym wypadku wartość nie ulega zmianie \cite{Digital Image Processing Second Edition}.
         }
 
         \begin{figure}[H]
@@ -424,7 +420,6 @@
         \newpage
         \subsection{Otwarcie morfologiczne}
         {
-            BRAK CITE
             \label{sec:otwarcie-morfologiczne}
             \Large
             \justifying
@@ -433,50 +428,68 @@
             Operacja ta pozwala usunąć małe elementy, tak zwany szum i następnie odbudować te obiekty, które ucierpiały na skutek erozji.
             Dzięki temu uzyskujemy czysty obraz, pozbawiony drobnych obiektów.
             Jak możemy zauważyć na Rysunku \ref{otwarciemorfologiczne}, pojedyncze piksele (nie posiadające sąsiadów z wartością 1 zostały usunięte.
-            Następnie reszta obiektów zostaje odbudowana.
+            Następnie reszta obiektów zostaje odbudowana \cite{Digital Image Processing Second Edition}.
         }
-
         \begin{figure}[H]
+            \includegraphics[width=170px]{otwarcie-morfologiczne-stan-poczatkowy.png}
             \centering
-            \subfloat[\centering Stan początkowy]{{\includegraphics[width=7cm]{otwarcie-morfologiczne-stan-poczatkowy.png}}}
-            \qquad
-            \subfloat[\centering Stan po erozji]{{\includegraphics[width=7cm]{otwarcie-morfologiczne-stan-po-erozji.png}}}
-            \qquad
-            \subfloat[\centering Stan po dylatacji obrazu z podpunktu \textit{b}]{{\includegraphics[width=7cm]{otwarcie-morfologiczne-stan-po-dylatacji.png}}}
-            \caption
-            {
-                (\textit{Opracowanie własne}) Otwarcie morfologiczne z wykorzystaniem elementu strukturalnego z Rysunku \ref{elst:one} (czerwonym kolorem zaznaczono piksele, które zmieniły wartości z 1 na 0, natomiast zielonym kolorem oznaczono te piksele, które zmieniły wartości z 0 na 1).
-            }
-            \label{otwarciemorfologiczne}
+            \captionsetup{margin=1.5cm}
+            \caption{(\textit{Opracowanie własne}) Stan początkowy}
         \end{figure}
+        \begin{figure}[H]
+            \includegraphics[width=170px]{otwarcie-morfologiczne-stan-po-erozji.png}
+            \centering
+            \captionsetup{margin=1.5cm}
+            \caption{(\textit{Opracowanie własne}) Stan po erozji}
+        \end{figure}
+        \begin{figure}[H]
+            \includegraphics[width=170px]{otwarcie-morfologiczne-stan-po-dylatacji.png}
+            \centering
+            \captionsetup{margin=1.5cm}
+            \caption{(\textit{Opracowanie własne}) Stan po dylatacji}
+        \end{figure}
+        {
+            \Large
+            \justifying
+            Otwarcie morfologiczne z wykorzystaniem elementu strukturalnego z Rysunku \ref{elst:one} (czerwonym kolorem zaznaczono piksele, które zmieniły wartości z 1 na 0, natomiast zielonym kolorem oznaczono te piksele, które zmieniły wartości z 0 na 1).
+        }
 
         \newpage
         \subsection{Zamknięcie morfologiczne}
         {
-            BRAK CITE
             \label{sec:zamkniecie-morfologiczne}
             \Large
             \justifying
             \quad
             Zamknięcie morfologiczne - jest równoważne dwom następującym po sobie operacjom na obrazie: dylatacji, a następnie erozji.
             Wykonanie dylatacji, a następnie erozji pozwala na zamknięcie (przez zamknięcie należy rozumieć wypełnienie otworu wewnątrz obiektu, tak jak pokazano na Rysunku \ref{otwarciemorfologiczne} podpunkt \textit{b}) niektórych obiektów, a następnie przywrócenie pozostałych obiektów do stanu sprzed dylatacji.
-            Jak możemy zauważyć na Rysunku \ref{zamknieciemorfologiczne}, piskele, które wcześniej były odłączone od wiekszego obiektu ale leżały niedaleko teraz stanowią integralną jego cześć, a dwa większe obiekty połączyły się.
+            Jak możemy zauważyć na Rysunku \ref{zamknieciemorfologiczne}, piskele, które wcześniej były odłączone od wiekszego obiektu ale leżały niedaleko teraz stanowią integralną jego cześć, a dwa większe obiekty połączyły się \cite{Digital Image Processing Second Edition}.
         }
 
         \begin{figure}[H]
+            \includegraphics[width=170px]{zamkniecie-morfologiczne-stan-poczatkowy.png}
             \centering
-            \subfloat[\centering Stan początkowy]{{\includegraphics[width=7cm]{zamkniecie-morfologiczne-stan-poczatkowy.png}}}
-            \qquad
-            \subfloat[\centering Stan po dylatacji]{{\includegraphics[width=7cm]{zamkniecie-morfologiczne-stan-po-dylatacji.png}}}
-            \qquad
-            \subfloat[\centering Stan po erozji obrazu z podpunktu \textit{b}]{{\includegraphics[width=7cm]{zamkniecie-morfologiczne-stan-po-erozji.png}}}
-            \caption
-            {
-                (\textit{Opracowanie własne}) Zamknięcie morfologiczne z wykorzystaniem elementu strukturalnego z Rysunku \ref{elst:one} (czerwonym kolorem zaznaczono piksele, które zmieniły wartości z 1 na 0, natomiast zielonym kolorem oznaczono te piksele, które zmieniły wartości z 0 na 1).
-            }
-            \label{zamknieciemorfologiczne}
+            \captionsetup{margin=1.5cm}
+            \caption{(\textit{Opracowanie własne}) Stan początkowy}
         \end{figure}
-
+        \begin{figure}[H]
+            \includegraphics[width=170px]{zamkniecie-morfologiczne-stan-po-dylatacji.png}
+            \centering
+            \captionsetup{margin=1.5cm}
+            \caption{(\textit{Opracowanie własne}) Stan po dylatacji}
+        \end{figure}
+        \begin{figure}[H]
+            \includegraphics[width=170px]{zamkniecie-morfologiczne-stan-po-erozji.png}
+            \centering
+            \captionsetup{margin=1.5cm}
+            \caption{(\textit{Opracowanie własne}) Stan po erozji}
+        \end{figure}
+        {
+            \Large
+            \justifying
+            Zamknięcie morfologiczne z wykorzystaniem elementu strukturalnego z Rysunku \ref{elst:one} (czerwonym kolorem zaznaczono piksele, które zmieniły wartości z 1 na 0, natomiast zielonym kolorem oznaczono te piksele, które zmieniły wartości z 0 na 1).
+        }
+        \newpage
         \subsection{Korekcja Gamma}
         {
             \label{sec:korekcja-gamma}
@@ -488,6 +501,19 @@
             Natomiast w przypadku, gdy \(\gamma > 1\) obraz zostanie przyciemniony.
             Analogicznie jest w przypadku \(\gamma < 1\) obraz zostanie rozjaśniony \cite{Digital Image Processing Second Edition}.
         }
+        \begin{figure}[H]
+            \centering
+            \subfloat[\centering Stan początkowy]{{\includegraphics[width=7cm]{GammaCorrection_Start.png}}}
+            \qquad
+            \subfloat[\centering Stan po korekcji gamma z parametrem \textit{0.85}]{{\includegraphics[width=7cm]{GammaCorrection_Rozjasnienie085.png}}}
+            \qquad
+            \subfloat[\centering Stan po korekcji gamma z parametrem \textit{1.10}]{{\includegraphics[width=7cm]{GammaCorrection_Przyciemnienie110.png}}}
+            \caption
+            {
+                (\textit{Opracowanie własne}) Przykład korekcji gamma.
+            }
+            \label{zamknieciemorfologiczne}
+        \end{figure}
     \newpage
     \section{Część Praktyczna}
 
@@ -509,8 +535,8 @@
             \justifying
             \quad
             CMake 3.19.0 - oprogramowanie, które służy do testowania, budowania oraz upakowania źródeł programu.
-            CMake Został wykorzystany do wygenerowania projektów na podstawie źródel biblioteki \emph{LibTIFF}.
-            Wyżej wymienione projekty mogą można otworzyć, a następnie zbudować za pomocą programu {Visual Studio 2019}.
+            CMake został wykorzystany do wygenerowania projektów na podstawie źródel biblioteki \emph{LibTIFF}.
+            Wyżej wymienione projekty mogą można otworzyć, a następnie zbudować za pomocą programu {Visual Studio 2019} \cite{Program CMake}.
         }
 
         \subsubsection{LibTIFF 4.2.0}
@@ -519,9 +545,9 @@
             \Large
             \justifying
             \quad
-            LibTIFF 4.2.0 - biblioteka służąca do manipulacji obrazami typu TIFF \cite{Biblioteka LibTIFF}, typ ten dokładniej został opisany w rozdziale \ref{sec:rozszerzenie-tiff}.
+            LibTIFF 4.2.0 - biblioteka służąca do manipulacji obrazami typu TIFF, typ ten dokładniej został opisany w rozdziale \ref{sec:rozszerzenie-tiff}.
             Biblioteka została wybrana, ponieważ pozwala w łatwy sposób odczytywać informacje zapisane w obrazach.
-            Napisana jest w języku C, więc w łatwy sposób można wykorzystać ją w programach pisanych w języku C++.
+            Napisana jest w języku C, więc w łatwy sposób można wykorzystać ją w programach pisanych w języku C++ \cite{Biblioteka LibTIFF}.
         }
         \subsubsection{Visual Studio 2019}
         {
@@ -562,7 +588,10 @@
             \Large
             \justifying
             \quad
-            .NET Framework 4.7.2 - 
+            .NET Framework 4.7.2 - oprogramowanie stworznone przez firme \textit{Mircosoft} pozwalające na
+            tworzenie szerokiej gamy aplikacji, które działają głownie na systemach \textit{Windows}.
+            W kontekscie tej pracy .NET Framework 4.7.2 został wykorzystany w celu uruchomienia zarówno kodu zarządzalnego (napisanego w języku C\#)
+            oraz natywnego (napisanego w języku C++) \cite{.NET Framework}.
         }
         \subsubsection{nlohmann.json 3.9.1}
         {
@@ -570,14 +599,18 @@
             \Large
             \justifying
             \quad
-            nlohmann.json 3.9.1 - 
+            nlohmann.json 3.9.1 - prosta w obsłudze biblioteka pozwalająca na tworzenie, modyfikowanie oraz odczytywanie informacji
+            z obiektów typu \textit{json} \cite{nlohmann.json 3.9.1}.
         }
         \subsection{Budowa oprogramowania}
         {
             \Large
             \justifying
             \quad
-            Chcąc wykorzystać ją w programie pisanym w języku C++ opartym o MSBuild, należy najpierw ręcznie zbudować tę bibliotekę przy użyciu narzędzia \textit{nmake} oraz \textit{Command Prompt for Visual Studio 2019} \cite{Building LibTiff}.
+            Chcąc wykorzystac bibliotekę BIA.Core w swoim projekcie, należy najpierw zbudować tę bibliotekę.
+            Kolejnym etapem jest wykorzystanie plików zawartych w katalogu, do którego biblioteka zostanie zbudowana,
+            oraz dodanie pliku ``BIA.h'' za pomocą dyrektywy \textit{\#include}.
+            wykorzystanie biblioteki LibTIFF 4.2.0 w programie pisanym w języku C++ opartym o MSBuild, należy najpierw ręcznie zbudować tę bibliotekę przy użyciu narzędzia \textit{nmake} oraz \textit{Command Prompt for Visual Studio 2019} \cite{Biblioteka LibTIFF}.
             W związku z powyższym, w programie \textit{Visual Studio 2019} trzeba dodać ścieżkę do miejsca, w którym znajduje się zbudowana przez nas biblioteka.
             Przykładowo ``D:/tiff-4.2.0/libtiff''.
         }
@@ -646,11 +679,6 @@
         \textit{Biblioteka LibTIFF}
         \url{http://www.libtiff.org/}
 
-        \bibitem{Building LibTiff}
-        Stan na dzień 09/01/2021 
-        \textit{LibTIFF - Building the Software Distribution}
-        \url{https://libtiff.gitlab.io/libtiff/build.html}
-
         \bibitem{VS2019}
         Stan na dzień 10/01/2021 
         \textit{Program Visual Studio 2019}
@@ -670,6 +698,16 @@
         Stan na dzień 09/01/2021 
         \textit{What is .NET Framework?}
         \url{https://dotnet.microsoft.com/learn/dotnet/what-is-dotnet-framework}
+
+        \bibitem{nlohmann.json 3.9.1}
+        Stan na dzień 30/01/2021
+        \textit{nlohmann.json 3.9.1}
+        \url{https://github.com/nlohmann/json}
+
+        \bibitem{Building LibTiff}
+        Stan na dzień 09/01/2021 
+        \textit{LibTIFF - Building the Software Distribution}
+        \url{https://libtiff.gitlab.io/libtiff/build.html}
 
     \end{thebibliography}
     \newpage

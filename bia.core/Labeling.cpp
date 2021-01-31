@@ -11,15 +11,6 @@ std::string BIA::Labeling::ToString()
 }
 
 /// <summary>
-/// Cel: Zwrocenie argumentow operacji jako lancuch znakow.
-/// </summary>
-/// <returns></returns>
-std::string BIA::Labeling::ArgumentsToString()
-{
-   return std::string();
-}
-
-/// <summary>
 /// Domyslny konstruktor.
 /// </summary>
 BIA::Labeling::Labeling()
@@ -37,6 +28,6 @@ BIA::Labeling::~Labeling()
 /// Cel: Wykonanie operacji na bitmapie.
 /// </summary>
 /// <param name="bitmap"></param>
-void BIA::Labeling::PerformOperation(Bitmap* bitmap)
+void BIA::Labeling::PerformOperation(Bitmap* bitmap, nlohmann::json& json)
 {
 }

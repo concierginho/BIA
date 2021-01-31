@@ -18,7 +18,11 @@ namespace BIA
       void LoadFromFile(fs::path&);
       void SaveToFile(fs::path&);
 
+      unsigned char* GetBuffer();
+
       int Index(int x, int y);
+      int Length();
+      int Width();
 
       Bitmap(int width, int length);
       ~Bitmap();

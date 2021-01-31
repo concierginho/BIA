@@ -2,6 +2,7 @@
 #define _IOPERATION_
 
 #include <string>
+#include <nlohmann/json.hpp>
 #include "Bitmap.h"
 
 namespace BIA
@@ -10,8 +11,7 @@ namespace BIA
    {
    public:
       std::string virtual ToString() = 0;
-      std::string virtual ArgumentsToString() = 0;
-      void virtual PerformOperation(Bitmap* bitmap) = 0;
+      void virtual PerformOperation(Bitmap* bitmap, nlohmann::json& json) = 0;
    };
 }
 

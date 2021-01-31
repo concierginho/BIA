@@ -155,9 +155,6 @@
     <ClInclude Include="JsonSettings.h">
       <Filter>Header Files\Management\BIAImageManager</Filter>
     </ClInclude>
-    <ClInclude Include="IOperation.h">
-      <Filter>Header Files\Management</Filter>
-    </ClInclude>
     <ClInclude Include="Labeling.h">
       <Filter>Header Files\Management\Operation</Filter>
     </ClInclude>
@@ -187,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="EOperation.h">
       <Filter>Header Files\Management\BIAImageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IOperation.h">
+      <Filter>Header Files\Management\Operation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

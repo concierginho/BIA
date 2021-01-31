@@ -202,42 +202,55 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
             }
 
             Bitmap* bitmap = new Bitmap(1024, 1024);
-            auto path = partExperiment.GetPreviewImagePath();
-            bitmap->LoadFromFile(path);
+            Bitmap* greyscaleBitmap = new Bitmap(1024, 1024);
+
+            auto binaryImagePath = partExperiment.GetPreviewImagePath();
+            auto greyscaleImagePath = partExperiment.GetImagePath();
+
+            bitmap->LoadFromFile(binaryImagePath);
+            greyscaleBitmap->LoadFromFile(greyscaleImagePath);
 
             auto& operations = jsonRecipe["operations"];
 
+            if (operations.contains(_operationByType[EOperation::GAMMA_CORRECTION]->ToString()))
+            {
+               auto& args = operations[_operationByType[EOperation::GAMMA_CORRECTION]->ToString()];
+               _operationByType[EOperation::GAMMA_CORRECTION]->PerformOperation(greyscaleBitmap, args);
+               greyscaleBitmap->SaveToFile(greyscaleImagePath);
+            }
+
             if (operations.contains(_operationByType[EOperation::CLOSING]->ToString()))
             {
-               _operationByType[EOperation::CLOSING]->PerformOperation(bitmap);
+               auto& args = operations[_operationByType[EOperation::CLOSING]->ToString()];
+               _operationByType[EOperation::CLOSING]->PerformOperation(bitmap, args);
             }
 
             if (operations.contains(_operationByType[EOperation::DILATION]->ToString()))
             {
-               _operationByType[EOperation::DILATION]->PerformOperation(bitmap);
+               auto& args = operations[_operationByType[EOperation::DILATION]->ToString()];
+               _operationByType[EOperation::DILATION]->PerformOperation(bitmap, args);
             }
 
             if (operations.contains(_operationByType[EOperation::EROSION]->ToString()))
             {
-               _operationByType[EOperation::EROSION]->PerformOperation(bitmap);
-            }
-
-            if (operations.contains(_operationByType[EOperation::GAMMA_CORRECTION]->ToString()))
-            {
-               _operationByType[EOperation::GAMMA_CORRECTION]->PerformOperation(bitmap);
+               auto& args = operations[_operationByType[EOperation::EROSION]->ToString()];
+               _operationByType[EOperation::EROSION]->PerformOperation(bitmap, args);
             }
 
             if (operations.contains(_operationByType[EOperation::LABELING]->ToString()))
             {
-               _operationByType[EOperation::LABELING]->PerformOperation(bitmap);
+               auto& args = operations[_operationByType[EOperation::LABELING]->ToString()];
+               _operationByType[EOperation::LABELING]->PerformOperation(bitmap, args);
             }
 
             if (operations.contains(_operationByType[EOperation::OPENING]->ToString()))
             {
-               _operationByType[EOperation::OPENING]->PerformOperation(bitmap);
+               auto& args = operations[_operationByType[EOperation::OPENING]->ToString()];
+               _operationByType[EOperation::OPENING]->PerformOperation(bitmap, args);
             }
 
-            bitmap->SaveToFile(path);
+            bitmap->SaveToFile(binaryImagePath);
+            delete greyscaleBitmap;
             delete bitmap;
          }
       }

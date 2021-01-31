@@ -13,8 +13,7 @@ namespace BIA
       StructuralElement* _structuralElement = nullptr;
    public:
       virtual std::string ToString() override;
-      virtual std::string ArgumentsToString() override;
-      virtual void PerformOperation(Bitmap* bitmap) override;
+      virtual void PerformOperation(Bitmap* bitmap, nlohmann::json& json) override;
 
       explicit Opening();
       ~Opening();
