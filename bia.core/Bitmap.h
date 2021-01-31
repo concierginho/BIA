@@ -3,6 +3,8 @@
 
 #include <filesystem>
 
+#include "ENeighbourhood.h"
+
 namespace fs = std::filesystem;
 
 namespace BIA
@@ -19,6 +21,7 @@ namespace BIA
       void SaveToFile(fs::path&);
 
       unsigned char* GetBuffer();
+      //std::vector<unsigned char> GetNeighbours(ENeighbourhood neighbourhood, int x, int y);
 
       int Index(int x, int y);
       int Length();

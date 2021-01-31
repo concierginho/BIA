@@ -209,6 +209,7 @@
     <ClInclude Include="Bitmap.h" />
     <ClInclude Include="EProcess.h" />
     <ClInclude Include="EOperation.h" />
+    <ClInclude Include="ENeighbourhood.h" />
     <ClInclude Include="Opening.h" />
     <ClInclude Include="IOperation.h" />
     <ClInclude Include="JsonSettings.h" />
@@ -256,6 +257,7 @@
     <ClCompile Include="Closing.cpp" />
     <ClCompile Include="Opening.cpp" />
     <ClCompile Include="Labeling.cpp" />
+    <ClCompile Include="Pixel.cpp" />
     <ClCompile Include="StructuralElement.cpp" />
     <ClCompile Include="TIFFImage.cpp" />
     <ClCompile Include="TIFFSettingsManager.cpp" />

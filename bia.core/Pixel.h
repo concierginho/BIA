@@ -3,12 +3,17 @@
 
 namespace BIA
 {
-   struct pixel
+   class Pixel
    {
+   public:
+      int index;
       int x;
       int y;
       unsigned char value;
       bool is_labeled;
+
+      Pixel();
+      Pixel(int x, int y, unsigned char value);
    };
 }
 

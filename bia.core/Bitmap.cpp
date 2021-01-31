@@ -103,6 +103,13 @@ unsigned char* BIA::Bitmap::GetBuffer()
    return _buffer;
 }
 
+//std::vector<unsigned char> BIA::Bitmap::GetNeighbours(ENeighbourhood neighbourhood, int x, int y)
+//{
+//   return std::vector<unsigned char>();
+//}
+
+
+
 /// <summary>
 /// Cel: Zwrocenie indeksu pixela o wskazanych wspolrzednych.
 /// </summary>
@@ -111,6 +118,8 @@ unsigned char* BIA::Bitmap::GetBuffer()
 /// <returns></returns>
 int BIA::Bitmap::Index(int x, int y)
 {
+   if (x < 0 || y < 0)
+      return -1;
    return x + _width * y;
 }
 
