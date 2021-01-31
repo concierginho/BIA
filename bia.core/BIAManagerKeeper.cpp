@@ -107,8 +107,13 @@ void BIA::BIAManagerKeeper::Init()
    _imageManager = std::make_shared<BIAImageManager>(experimentManager, loggingManager);
    _processManager = std::make_shared<BIAProcessManager>(_bia, loggingManager);
 #else
-   _experimentManager = std::make_shared<BIAExperimentManager>(GetFileManagerAsBIAFileManager());
-   _imageManager = std::make_shared<BIAImageManager>();
+   auto fileManager = GetFileManagerAsBIAFileManager();
+
+   _experimentManager = std::make_shared<BIAExperimentManager>(fileManager);
+   
+   auto experimentManager = GetExperimentManagerAsBIAExperimentManager();
+
+   _imageManager = std::make_shared<BIAImageManager>(experimentManager, fileManager);
    _processManager = std::make_shared<BIAProcessManager>(_bia);
 #endif
 

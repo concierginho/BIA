@@ -10,7 +10,7 @@ namespace BIA
    {
    public:
       virtual std::string ToString() override;
-      virtual void PerformOperation(Bitmap* bitmap, nlohmann::json& json) override;
+      std::unordered_map<int, std::vector<int>> PerformOperation(Bitmap* bitmap, nlohmann::json& json);
 
       static std::vector<int> GetNeighbours(Bitmap* bitmap, ENeighbourhood neighbourhood, int index, int* labels);
 

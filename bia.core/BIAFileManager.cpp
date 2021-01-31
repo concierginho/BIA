@@ -214,6 +214,11 @@ nlohmann::json BIA::BIAFileManager::ReadFromJson(fs::path& path)
 /// <param name="json"></param>
 void BIA::BIAFileManager::WriteToJson(fs::path& path, nlohmann::json& json)
 {
+   if (!ExistsAtPath(path))
+   {
+      CreateAtPath(path, EFileType::NON_DIRECTORY);
+   }
+
    if (ExistsAtPath(path) && json.empty() == false)
    {
       std::ofstream o;

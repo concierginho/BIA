@@ -28,7 +28,7 @@ BIA::Labeling::~Labeling()
 /// Cel: Wykonanie operacji na bitmapie.
 /// </summary>
 /// <param name="bitmap"></param>
-void BIA::Labeling::PerformOperation(Bitmap* bitmap, nlohmann::json& json)
+std::unordered_map<int, std::vector<int>> BIA::Labeling::PerformOperation(Bitmap* bitmap, nlohmann::json& json)
 {
    std::string arg = json.get<std::string>();
 
@@ -97,6 +97,8 @@ void BIA::Labeling::PerformOperation(Bitmap* bitmap, nlohmann::json& json)
       indexes.pop_back();
    }
    delete [] labels;
+
+   return _indexesByLabel;
 }
 
 /// <summary>

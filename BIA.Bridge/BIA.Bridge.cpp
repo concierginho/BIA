@@ -22,10 +22,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
    auto mainWindowVM = gcnew BIA::MainWindowVMCLR();
    mainWindow->DataContext = mainWindowVM;
 
-   //System::Threading::Thread::Sleep(5000);
-
-   //bia.Stop();
-
    auto application = gcnew BIA::Bridge::Application();
    
    application->SetHinstance(hInstance);

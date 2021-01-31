@@ -192,21 +192,6 @@ void BIA::BIAExperimentManager::PrepareRecipeJson(PartExperiment& partExperiment
 }
 
 /// <summary>
-/// Cel: Przygotowanie pliku 'results.json'.
-///      Jezeli plik nie istnieje - zostaje wypelniony wartosciami domyslnymi.
-/// </summary>
-/// <param name=""></param>
-void BIA::BIAExperimentManager::PrepareResultsJson(PartExperiment& partExperiment)
-{
-   fs::path resultsJson = partExperiment.GetResultsJsonPath();
-
-   if (!_fileManager->ExistsAtPath(resultsJson))
-   {
-      _fileManager->CreateAtPath(resultsJson, EFileType::NON_DIRECTORY);
-   }
-}
-
-/// <summary>
 /// Cel: Przenosi pliki na podstawie ich nazwy do odpowiednich lokalizacji.
 ///      Przyklad: Horizontal 4.5min.tif zostanie przeniesiony do folderu
 ///                o nazwie "Horizontal" wewnatrz eksperymentu gdzie zostal
@@ -261,7 +246,6 @@ void BIA::BIAExperimentManager::MoveExistingFiles()
 void BIA::BIAExperimentManager::InitializePartExperiment(PartExperiment& partExperiment)
 {
    PrepareRecipeJson(partExperiment);
-   PrepareResultsJson(partExperiment);
 }
 
 /// <summary>

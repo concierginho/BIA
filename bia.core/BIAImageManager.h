@@ -18,17 +18,17 @@ namespace BIA
 #ifdef _LOGGING_
       std::shared_ptr<BIALoggingManager> _loggingManager;
 #endif
-      std::unordered_map<EOperation, IOperation*> _operationByType;
    public:
-      BIAImageManager(std::shared_ptr<BIAExperimentManager> experimentManager);
 #ifdef _LOGGING_
       BIAImageManager(std::shared_ptr<BIAExperimentManager> experimentManager, std::shared_ptr<BIALoggingManager> loggingManager);
 #endif
+      BIAImageManager(std::shared_ptr<BIAExperimentManager> experimentManager, std::shared_ptr<BIAFileManager> fileManager);
       ~BIAImageManager();
 
       void ReadImageSettings(TIFF*, TIFFImage*);
       void CopyHorizontalPartImageToDestinationFile(TIFF** src, TIFFImage* parentImg, TIFF** tar, TIFFImage* childImg, int id);
       void CopyVerticalPartImageToDestinationFile(TIFF** src, TIFFImage* parentImg, TIFF** tar, TIFFImage* childImg, int id);
+      void SaveResultsToFile(PartExperiment& partExperiment, std::unordered_map<int, std::vector<int>> map);
 
       void GeneratePreviews(std::atomic<bool>& cancelled);
       void SplitImages(std::atomic<bool>& cancelled);

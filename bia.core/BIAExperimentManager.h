@@ -33,7 +33,6 @@ namespace BIA
       void LocalizeTIFFImages();
       void PreparePartExperiments();
       void PrepareRecipeJson(PartExperiment&);
-      void PrepareResultsJson(PartExperiment&);
       void MoveExistingFiles();
       void InitializePartExperiment(PartExperiment&);
 

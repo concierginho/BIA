@@ -11,7 +11,6 @@ namespace BIA
    {
    public:
       std::string virtual ToString() = 0;
-      void virtual PerformOperation(Bitmap* bitmap, nlohmann::json& json) = 0;
    };
 }
 

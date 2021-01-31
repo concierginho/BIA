@@ -19,9 +19,9 @@
 /// Domyslny konstruktor.
 /// </summary>
 /// <param name="experimentManager"></param>
-BIA::BIAImageManager::BIAImageManager(std::shared_ptr<BIAExperimentManager> experimentManager)
+BIA::BIAImageManager::BIAImageManager(std::shared_ptr<BIAExperimentManager> experimentManager, std::shared_ptr<BIAFileManager> fileManager)
 {
-   _fileManager = _experimentManager->GetFileManager();
+   _fileManager = fileManager;
    _experimentManager = experimentManager;
 }
 
@@ -212,44 +212,58 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
 
             auto& operations = jsonRecipe["operations"];
 
-            if (operations.contains(_operationByType[EOperation::GAMMA_CORRECTION]->ToString()))
+            for (auto& it : operations.items())
             {
-               auto& args = operations[_operationByType[EOperation::GAMMA_CORRECTION]->ToString()];
-               _operationByType[EOperation::GAMMA_CORRECTION]->PerformOperation(greyscaleBitmap, args);
-               greyscaleBitmap->SaveToFile(greyscaleImagePath);
+               std::string key = it.key();
+               std::string args = it.value();
+
+               if (key == "GAMMA_CORRECTION")
+               {
+                  auto& args = operations["GAMMA_CORRECTION"];
+                  GammaCorrection* gamma = new GammaCorrection();
+                  gamma->PerformOperation(greyscaleBitmap, args);
+                  greyscaleBitmap->SaveToFile(greyscaleImagePath);
+                  delete gamma;
+               }
+               else if (key == "CLOSING")
+               {
+                  auto& args = operations["CLOSING"];
+                  Closing* closing = new Closing();
+                  closing->PerformOperation(bitmap, args);
+                  delete closing;
+               }
+               else if (key == "DILATION")
+               {
+                  auto& args = operations["DILATION"];
+                  Dilation* dilation = new Dilation();
+                  dilation->PerformOperation(bitmap, args);
+                  delete dilation;
+               }
+               else if (key == "EROSION")
+               {
+                  auto& args = operations["EROSION"];
+                  Erosion* erosion = new Erosion();
+                  erosion->PerformOperation(bitmap, args);
+                  delete erosion;
+               }
+               else if (key == "LABELING")
+               {
+                  auto& args = operations["LABELING"];
+                  Labeling* labeling = new Labeling();
+                  auto results = labeling->PerformOperation(bitmap, args);
+                  SaveResultsToFile(partExperiment, results);
+                  delete labeling;
+               }
+               else if (key == "OPENING")
+               {
+                  auto& args = operations["OPENING"];
+                  Opening* opening = new Opening();
+                  opening->PerformOperation(bitmap, args);
+                  delete opening;
+               }
+               bitmap->SaveToFile(binaryImagePath);
             }
 
-            if (operations.contains(_operationByType[EOperation::CLOSING]->ToString()))
-            {
-               auto& args = operations[_operationByType[EOperation::CLOSING]->ToString()];
-               _operationByType[EOperation::CLOSING]->PerformOperation(bitmap, args);
-            }
-
-            if (operations.contains(_operationByType[EOperation::DILATION]->ToString()))
-            {
-               auto& args = operations[_operationByType[EOperation::DILATION]->ToString()];
-               _operationByType[EOperation::DILATION]->PerformOperation(bitmap, args);
-            }
-
-            if (operations.contains(_operationByType[EOperation::EROSION]->ToString()))
-            {
-               auto& args = operations[_operationByType[EOperation::EROSION]->ToString()];
-               _operationByType[EOperation::EROSION]->PerformOperation(bitmap, args);
-            }
-
-            if (operations.contains(_operationByType[EOperation::LABELING]->ToString()))
-            {
-               auto& args = operations[_operationByType[EOperation::LABELING]->ToString()];
-               _operationByType[EOperation::LABELING]->PerformOperation(bitmap, args);
-            }
-
-            if (operations.contains(_operationByType[EOperation::OPENING]->ToString()))
-            {
-               auto& args = operations[_operationByType[EOperation::OPENING]->ToString()];
-               _operationByType[EOperation::OPENING]->PerformOperation(bitmap, args);
-            }
-
-            bitmap->SaveToFile(binaryImagePath);
             delete greyscaleBitmap;
             delete bitmap;
          }
@@ -457,6 +471,47 @@ void BIA::BIAImageManager::CopyVerticalPartImageToDestinationFile(TIFF** src, TI
 }
 
 /// <summary>
+/// Cel: Zapisanie wynikow do pliku 'results.json'.
+/// </summary>
+/// <param name="partExperiment"></param>
+/// <param name="map"></param>
+void BIA::BIAImageManager::SaveResultsToFile(PartExperiment& partExperiment, std::unordered_map<int, std::vector<int>> map)
+{
+   auto jsonPath = partExperiment.GetResultsJsonPath();
+   nlohmann::json json;
+
+   int cells = 0;
+   int area = 0;
+
+   for (auto& it : map)
+   {
+      cells++;
+      area += it.second.size();
+
+      nlohmann::json part;
+      int label = it.first;
+      std::vector<int> indexes = it.second;
+
+      part["size"] = std::to_string(it.second.size()) + "px";
+      for (auto& idx : indexes)
+      {
+         nlohmann::json coordinates;
+         auto x = idx % 1024;
+         auto y = idx / 1024;
+         coordinates["x"] = x;
+         coordinates["y"] = y;
+         part[std::to_string(idx)] = coordinates;
+      }
+      json[std::to_string(label)] = part;
+   }
+
+   json["cells"] = cells;
+   json["area"] = std::to_string(area) + "px";
+
+   _fileManager->WriteToJson(jsonPath, json);
+}
+
+/// <summary>
 /// Cel: Wygenerowanie zbinaryzowanych obrazow stanowiacych
 ///      podglad wykonanych na obrazie operacji.
 /// </summary>
@@ -552,13 +607,6 @@ void BIA::BIAImageManager::Init()
    _loggingManager->Message << "Initializing BIAImageManager...";
    _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
 #endif
-
-   _operationByType[EOperation::CLOSING] = new Closing();
-   _operationByType[EOperation::DILATION] = new Dilation();
-   _operationByType[EOperation::EROSION] = new Erosion();
-   _operationByType[EOperation::GAMMA_CORRECTION] = new GammaCorrection();
-   _operationByType[EOperation::LABELING] = new Labeling();
-   _operationByType[EOperation::OPENING] = new Opening();
 }
 
 /// <summary>

@@ -10,7 +10,7 @@ namespace BIA
    {
    public:
       virtual std::string ToString() override;
-      virtual void PerformOperation(Bitmap* bitmap, nlohmann::json& json) override;
+      void PerformOperation(Bitmap* bitmap, nlohmann::json& json);
 
       explicit GammaCorrection();
       ~GammaCorrection();
