@@ -12,28 +12,26 @@
 \contentsline {subsection}{\numberline {3.2}Rozszerzenie TIFF}{7}{}%
 \contentsline {subsection}{\numberline {3.3}Binaryzacja}{7}{}%
 \contentsline {subsection}{\numberline {3.4}Element Strukturalny}{8}{}%
-\contentsline {subsection}{\numberline {3.5}Sąsiedztwo}{10}{}%
+\contentsline {subsection}{\numberline {3.5}Sąsiedztwo}{9}{}%
 \contentsline {subsection}{\numberline {3.6}Erozja}{10}{}%
 \contentsline {subsection}{\numberline {3.7}Dylatacja}{10}{}%
-\contentsline {subsection}{\numberline {3.8}Otwarcie morfologiczne}{12}{}%
-\contentsline {subsection}{\numberline {3.9}Zamknięcie morfologiczne}{13}{}%
-\contentsline {subsection}{\numberline {3.10}Korekcja Gamma}{14}{}%
-\contentsline {section}{\numberline {4}Część Praktyczna}{15}{}%
-\contentsline {subsection}{\numberline {4.1}Wykorzystane oprogramowanie}{15}{}%
-\contentsline {subsubsection}{\numberline {4.1.1}Gimp 2.10.22}{15}{}%
-\contentsline {subsubsection}{\numberline {4.1.2}CMake 3.19.0}{15}{}%
+\contentsline {subsection}{\numberline {3.8}Otwarcie morfologiczne}{11}{}%
+\contentsline {subsection}{\numberline {3.9}Zamknięcie morfologiczne}{12}{}%
+\contentsline {subsection}{\numberline {3.10}Korekcja Gamma}{13}{}%
+\contentsline {section}{\numberline {4}Część Praktyczna}{14}{}%
+\contentsline {subsection}{\numberline {4.1}Wykorzystane oprogramowanie}{14}{}%
+\contentsline {subsubsection}{\numberline {4.1.1}Gimp 2.10.22}{14}{}%
+\contentsline {subsubsection}{\numberline {4.1.2}CMake 3.19.0}{14}{}%
 \contentsline {subsubsection}{\numberline {4.1.3}LibTIFF 4.2.0}{15}{}%
 \contentsline {subsubsection}{\numberline {4.1.4}Visual Studio 2019}{15}{}%
-\contentsline {subsubsection}{\numberline {4.1.5}\LaTeX }{16}{}%
-\contentsline {subsubsection}{\numberline {4.1.6}Visual Studio Code}{16}{}%
+\contentsline {subsubsection}{\numberline {4.1.5}\LaTeX }{15}{}%
+\contentsline {subsubsection}{\numberline {4.1.6}Visual Studio Code}{15}{}%
 \contentsline {subsubsection}{\numberline {4.1.7}.NET Framework 4.7.2}{16}{}%
 \contentsline {subsubsection}{\numberline {4.1.8}nlohmann.json 3.9.1}{16}{}%
 \contentsline {subsection}{\numberline {4.2}Budowa oprogramowania}{16}{}%
-\contentsline {subsection}{\numberline {4.3}Diagram UML aplikacji}{17}{}%
-\contentsline {subsection}{\numberline {4.4}Omówienie implementacji}{17}{}%
-\contentsline {subsection}{\numberline {4.5}Omówienie interfejsu}{17}{}%
-\contentsline {subsection}{\numberline {4.6}Listing kodu}{17}{}%
-\contentsline {section}{\numberline {5}Wyniki i dyskusja}{18}{}%
-\contentsline {section}{\numberline {6}Wnioski}{19}{}%
-\contentsline {section}{\numberline {7}Podsumowanie}{20}{}%
-\contentsline {section}{\numberline {8}Bibliografia}{21}{}%
+\contentsline {subsection}{\numberline {4.3}\leavevmode {\color {blue}Diagramy klas}}{17}{}%
+\contentsline {subsection}{\numberline {4.4}Omówienie implementacji}{18}{}%
+\contentsline {section}{\numberline {5}Wyniki i dyskusja}{20}{}%
+\contentsline {section}{\numberline {6}Wnioski}{21}{}%
+\contentsline {section}{\numberline {7}Podsumowanie}{22}{}%
+\contentsline {section}{\numberline {8}Bibliografia}{23}{}%

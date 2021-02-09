@@ -154,8 +154,8 @@ void BIA::BIAImageManager::SplitImages(std::atomic<bool>& cancelled)
 #ifdef _LOGGING_
    auto end = std::chrono::steady_clock::now();
    auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-   _loggingManager.get()->Message << "Splitting images has ended and took: " << time << "ms.";
-   _loggingManager->Log(ESource::BIA_EXPERIMENT_MANAGER);
+   _loggingManager->Message << "Splitting images has ended and took: " << time << "ms.";
+   _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
 #endif
 }
 
@@ -197,6 +197,9 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
             if (!jsonRecipe.contains("operations"))
             {
 #ifdef _LOGGING_
+               _loggingManager->Message << "Missing object 'operations' in 'recipe.json' / " 
+                  << experiment.GetName() << " / " << partExperiment.GetId();
+               _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
 #endif
                continue;
             }
@@ -219,47 +222,119 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
 
                if (key == "GAMMA_CORRECTION")
                {
+#ifdef _LOGGING_
+                  _loggingManager->Message << "Performing GAMMA CORRECTION operation has started / " 
+                     << experiment.GetName() << " / " << partExperiment.GetId();
+                  _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+                  auto start = std::chrono::steady_clock::now();
+#endif
                   auto& args = operations["GAMMA_CORRECTION"];
                   GammaCorrection* gamma = new GammaCorrection();
                   gamma->PerformOperation(greyscaleBitmap, args);
                   greyscaleBitmap->SaveToFile(greyscaleImagePath);
                   delete gamma;
+#ifdef _LOGGING_
+                  auto end = std::chrono::steady_clock::now();
+                  auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+                  _loggingManager->Message << "Performing GAMMA CORRECTION operation has ended / " << time << "ms";
+                  _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+#endif
                }
                else if (key == "CLOSING")
                {
+#ifdef _LOGGING_
+                  _loggingManager->Message << "Performing CLOSING operation has started / " 
+                     << experiment.GetName() << " / " << partExperiment.GetId();
+                  _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+                  auto start = std::chrono::steady_clock::now();
+#endif 
                   auto& args = operations["CLOSING"];
                   Closing* closing = new Closing();
                   closing->PerformOperation(bitmap, args);
                   delete closing;
+#ifdef _LOGGING_
+                  auto end = std::chrono::steady_clock::now();
+                  auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+                  _loggingManager->Message << "Performing CLOSING operation has ended / " << time << "ms";
+                  _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+#endif
                }
                else if (key == "DILATION")
                {
+#ifdef _LOGGING_
+                  _loggingManager->Message << "Performing DILATION operation has started / " 
+                     << experiment.GetName() << " / " << partExperiment.GetId();
+                  _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+                  auto start = std::chrono::steady_clock::now();
+#endif
                   auto& args = operations["DILATION"];
                   Dilation* dilation = new Dilation();
                   dilation->PerformOperation(bitmap, args);
                   delete dilation;
+#ifdef _LOGGING_
+                  auto end = std::chrono::steady_clock::now();
+                  auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+                  _loggingManager->Message << "Performing DILATION operation has ended / " << time << "ms";
+                  _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+#endif
                }
                else if (key == "EROSION")
                {
+#ifdef _LOGGING_
+                  _loggingManager->Message << "Performing EROSION operation has started / " 
+                     << experiment.GetName() << " / " << partExperiment.GetId();
+                  _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+                  auto start = std::chrono::steady_clock::now();
+#endif
                   auto& args = operations["EROSION"];
                   Erosion* erosion = new Erosion();
                   erosion->PerformOperation(bitmap, args);
                   delete erosion;
+#ifdef _LOGGING_
+                  auto end = std::chrono::steady_clock::now();
+                  auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+                  _loggingManager->Message << "Performing EROSION operation has ended / " << time << "ms";
+                  _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+#endif
                }
                else if (key == "LABELING")
                {
+#ifdef _LOGGING_
+                  _loggingManager->Message << "Performing LABELING operation has started / " 
+                     << experiment.GetName() << " / " << partExperiment.GetId();
+                  _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+                  auto start = std::chrono::steady_clock::now();
+#endif
                   auto& args = operations["LABELING"];
                   Labeling* labeling = new Labeling();
                   auto results = labeling->PerformOperation(bitmap, args);
                   SaveResultsToFile(partExperiment, results);
                   delete labeling;
+#ifdef _LOGGING_
+                  auto end = std::chrono::steady_clock::now();
+                  auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+                  _loggingManager->Message << "Performing LABELING operation has ended / " << time << "ms";
+                  _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+#endif
                }
                else if (key == "OPENING")
                {
+#ifdef _LOGGING_
+                  _loggingManager->Message << "Performing OPENING operation has started / " 
+                     << experiment.GetName() << " / " << partExperiment.GetId();
+                  _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+                  auto start = std::chrono::steady_clock::now();
+#endif
                   auto& args = operations["OPENING"];
                   Opening* opening = new Opening();
                   opening->PerformOperation(bitmap, args);
                   delete opening;
+#ifdef _LOGGING_
+                  auto end = std::chrono::steady_clock::now();
+                  auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+                  _loggingManager->Message << "Performing OPENING operation has ended / " << time << "ms";
+                  _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+#endif
                }
                bitmap->SaveToFile(binaryImagePath);
             }
@@ -518,6 +593,12 @@ void BIA::BIAImageManager::SaveResultsToFile(PartExperiment& partExperiment, std
 /// <param name="cancelled"></param>
 void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled)
 {
+#ifdef _LOGGING_
+   _loggingManager.get()->Message << "Generating previous has been started.";
+   _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+   auto start = std::chrono::steady_clock::now();
+#endif
+
    auto& experiments = _experimentManager->GetExperiments();
    
    for (int i = 0; i < 2; i++)
@@ -569,10 +650,11 @@ void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled)
             if (!jsonRecipe.contains("threshold"))
             {
 #ifdef _LOGGING_
+               _loggingManager->Message << "Missing object 'threshold' inside 'recipe.json' / "
+                  << experiment.GetName() << " / " << partExperiment.GetId();
 #endif
                continue;
             }
-
 
             unsigned char threshold = static_cast<unsigned char>(jsonRecipe["threshold"]);
 
@@ -596,6 +678,13 @@ void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled)
          }
       }
    }
+
+#ifdef _LOGGING_
+   auto end = std::chrono::steady_clock::now();
+   auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+   _loggingManager->Message << "Generating previews has ended and took: " << time << "ms.";
+   _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
+#endif
 }
 
 /// <summary>

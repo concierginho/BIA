@@ -25,10 +25,11 @@ BIA::Labeling::~Labeling()
 }
 
 /// <summary>
-/// Cel: Wykonanie operacji na bitmapie.
+/// Cel: Odczytanie argumentow z obiektu typu json i zapisanie ich
+///      w odpowiednim typie do zmiennej _arg.
 /// </summary>
-/// <param name="bitmap"></param>
-std::unordered_map<int, std::vector<int>> BIA::Labeling::PerformOperation(Bitmap* bitmap, nlohmann::json& json)
+/// <param name="json"></param>
+void BIA::Labeling::ReadArguments(nlohmann::json& json)
 {
    std::string arg = json.get<std::string>();
 
@@ -36,6 +37,17 @@ std::unordered_map<int, std::vector<int>> BIA::Labeling::PerformOperation(Bitmap
 
    if (arg == "MOORE")
       type = ENeighbourhood::MOORE;
+
+   _arg = type;
+}
+
+/// <summary>
+/// Cel: Wykonanie operacji na bitmapie.
+/// </summary>
+/// <param name="bitmap"></param>
+std::unordered_map<int, std::vector<int>> BIA::Labeling::PerformOperation(Bitmap* bitmap, nlohmann::json& json)
+{
+   ReadArguments(json);
 
    int length = bitmap->Length(), width = bitmap->Width();
    auto* buffer = bitmap->GetBuffer();
@@ -80,7 +92,7 @@ std::unordered_map<int, std::vector<int>> BIA::Labeling::PerformOperation(Bitmap
                index = blackPixels.back();
                blackPixels.pop_back();
 
-               auto neighbours = GetNeighbours(bitmap, type, index, labels);
+               auto neighbours = GetNeighbours(bitmap, _arg, index, labels);
                for (auto neighbour : neighbours)
                {
                   if (buffer[neighbour] == 255)

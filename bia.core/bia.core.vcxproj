@@ -166,7 +166,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;BIACORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_LOGGING_;NDEBUG;BIACORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -215,7 +215,6 @@
     <ClInclude Include="JsonSettings.h" />
     <ClInclude Include="Labeling.h" />
     <ClInclude Include="Dilation.h" />
-    <ClInclude Include="Pixel.h" />
     <ClInclude Include="Operation.h" />
     <ClInclude Include="IProcessManager.h" />
     <ClInclude Include="StructuralElement.h" />
@@ -257,12 +256,12 @@
     <ClCompile Include="Closing.cpp" />
     <ClCompile Include="Opening.cpp" />
     <ClCompile Include="Labeling.cpp" />
-    <ClCompile Include="Pixel.cpp" />
     <ClCompile Include="StructuralElement.cpp" />
     <ClCompile Include="TIFFImage.cpp" />
     <ClCompile Include="TIFFSettingsManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

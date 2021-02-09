@@ -10,7 +10,8 @@ namespace BIA
    class IOperation
    {
    public:
-      std::string virtual ToString() = 0;
+      virtual std::string ToString() = 0;
+      virtual void ReadArguments(nlohmann::json& json) = 0;
    };
 }
 

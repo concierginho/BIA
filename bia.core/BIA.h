@@ -19,9 +19,8 @@ namespace BIA
 
       void Init();
 
-      void StartBIAProcess();
-      void StopProcess();
-      void StartOperationProcess();
+      void PrepareBIARoutine();
+      void OperationRoutine();
 
       void SetRootPath(char*);
       const char* GetRootPath() const;

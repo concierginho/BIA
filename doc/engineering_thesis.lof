@@ -1,27 +1,33 @@
 \babel@toc {polish}{}
-\contentsline {figure}{\numberline {1}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku. Wszystkie piksele elementu strukturalnego posiadają wartość równą 1. \relax }}{8}{}%
-\contentsline {figure}{\numberline {2}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku. Lewy dolny, lewy górny, prawy dolny oraz prawy górny piksel posiada wartość 0. \relax }}{9}{}%
-\contentsline {figure}{\numberline {3}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w lewym dolnym rogu. Lewy górny, prawy górny oraz prawy dolny piksel posiada wartość 0. \relax }}{9}{}%
-\contentsline {figure}{\numberline {4}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku. Lewy środkowy, prawy środkowy, dolny środkowy oraz górny środkowy piksel posiada wartość 0. \relax }}{9}{}%
-\contentsline {figure}{\numberline {5}{\ignorespaces (\textit {Opracowanie własne}) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w dolnym środkowym pikselu. Lewy dolny, lewy środkowy, środkowy oraz prawy dolny piksel mają wartość równą 0. \relax }}{9}{}%
-\contentsline {figure}{\numberline {6}{\ignorespaces (\textit {Opracowanie własne}) Sąsiedztwa\relax }}{10}{}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Sąsiedztwo Moore'a}}}{10}{}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Sąsiedztwo Von Neumanna}}}{10}{}%
-\contentsline {figure}{\numberline {7}{\ignorespaces (\textit {Opracowanie własne}) Erozja (Fioletowym kolorem zaznaczono punkt centralny elementu strukturalnego, natomiast czerwonym piksele, które zmieniły wartości z 1 na 0). \relax }}{10}{}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Element strukturalny użyty w operacji}}}{10}{}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Stan przed erozją elementem strukturalnym}}}{10}{}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Stan po erozji elementem strukturalnym}}}{10}{}%
-\contentsline {figure}{\numberline {8}{\ignorespaces (\textit {Opracowanie własne}) Dylatacja (Fioletowym kolorem zaznaczono punkt centralny elementu strukturalnego, natomiast zielonym piksele, które zmieniły wartości z 0 na 1) \relax }}{11}{}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Element strukturalny użyty w operacji}}}{11}{}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Stan przed dylatacją elementem strukturalnym}}}{11}{}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Stan po dylatacji elementem strukturalnym}}}{11}{}%
-\contentsline {figure}{\numberline {9}{\ignorespaces (\textit {Opracowanie własne}) Stan początkowy\relax }}{12}{}%
-\contentsline {figure}{\numberline {10}{\ignorespaces (\textit {Opracowanie własne}) Stan po erozji\relax }}{12}{}%
-\contentsline {figure}{\numberline {11}{\ignorespaces (\textit {Opracowanie własne}) Stan po dylatacji\relax }}{12}{}%
-\contentsline {figure}{\numberline {12}{\ignorespaces (\textit {Opracowanie własne}) Stan początkowy\relax }}{13}{}%
-\contentsline {figure}{\numberline {13}{\ignorespaces (\textit {Opracowanie własne}) Stan po dylatacji\relax }}{13}{}%
-\contentsline {figure}{\numberline {14}{\ignorespaces (\textit {Opracowanie własne}) Stan po erozji\relax }}{13}{}%
-\contentsline {figure}{\numberline {15}{\ignorespaces (\textit {Opracowanie własne}) Przykład korekcji gamma. \relax }}{14}{}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering Stan początkowy}}}{14}{}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering Stan po korekcji gamma z parametrem \textit {0.85}}}}{14}{}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering Stan po korekcji gamma z parametrem \textit {1.10}}}}{14}{}%
+\contentsline {figure}{\numberline {1}{\ignorespaces (\textit {Opracowanie własne}) Element Strukturalny. (a) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku. Wszystkie piksele elementu strukturalnego posiadają wartość równą 1. (b) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku. Lewy dolny, lewy górny, prawy dolny oraz prawy górny piksel posiada wartość 0. (c) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w lewym dolnym rogu. Lewy górny, prawy górny oraz prawy dolny piksel posiada wartość 0. (d) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w środku. Lewy środkowy, prawy środkowy, dolny środkowy oraz górny środkowy piksel posiada wartość 0. (e) Przykład elementu strukturalnego o rozmiarze \(3 \times 3\) z punktem centralnym w dolnym środkowym pikselu. Lewy dolny, lewy środkowy, środkowy oraz prawy dolny piksel mają wartość równą 0.\relax }}{9}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering }}}{9}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering }}}{9}{}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering }}}{9}{}%
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {\centering }}}{9}{}%
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {\centering }}}{9}{}%
+\contentsline {figure}{\numberline {2}{\ignorespaces (\textit {Opracowanie własne}) (a) Sąsiedztwo Moore'a. (b) Sąsiedztwo Von Neumann'a.\relax }}{9}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering }}}{9}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering }}}{9}{}%
+\contentsline {figure}{\numberline {3}{\ignorespaces (\textit {Opracowanie własne}) Erozja. (a) Element strukturalny użyty w operacji. (b) Stan przed erozją z wykorzystaniem elementu strukturalnego z podpunktu (a). (c) Stan po erozji z wykorzystaniem elementu strukturalnego z podpunktu (a). Granatowym kolorem zaznaczono punkt centralny elementu strukturalnego, natomiast czerwonym piksele, które zmieniły wartości z 1 na 0. \relax }}{10}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering }}}{10}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering }}}{10}{}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering }}}{10}{}%
+\contentsline {figure}{\numberline {4}{\ignorespaces (\textit {Opracowanie własne}) Dylatacja. (a) Element strukturalny użyty w operacji. (b) Stan przed dylatacją z wykorzystaniem elementu strukturalnego z podpunktu (a). (c) Stan po dylatacji z wykorzystaniem elementu strukturalnego z podpunktu (a). Granatowym kolorem zaznaczono punkt centralny elementu strukturalnego, natomiast zielonym piksele, które zmieniły wartości z 0 na 1. \relax }}{10}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering }}}{10}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering }}}{10}{}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering }}}{10}{}%
+\contentsline {figure}{\numberline {5}{\ignorespaces (\textit {Opracowanie własne}) Otwarcie Morfologiczne. (a) Stan początkowy. (b) Stan po erozji z wykorzystaniem elementu strukturalnego z rysunku \ref {elementy_strukturalne}(a). (c) Stan po dylatacji z wykorzystaniem elementu strukturalnego z rysunku \ref {elementy_strukturalne}(a). Szarym kolorem zaznaczono piksele, które posiadają wartość 1, czerwonym te, które zmieniły wartość z 1 na 0. Zielonym natomiast zaznaczone te piksele, które zmieniły wartość z 0 na 1. \relax }}{12}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering }}}{12}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering }}}{12}{}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering }}}{12}{}%
+\contentsline {figure}{\numberline {6}{\ignorespaces (\textit {Opracowanie własne}) Zamknięcie Morfologiczne. (a) Stan początkowy. (b) Stan po dylatacji z wykorzystaniem elementu strukturalnego z rysunku \ref {elementy_strukturalne}(a). (c) Stan po erozji z wykorzystaniem elementu strukturalnego z rysunku \ref {elementy_strukturalne}(a). Szarym kolorem zaznaczono piksele, które posiadają wartość 1, czerwonym te, które zmieniły wartość z 1 na 0. Zielonym natomiast zaznaczone te piksele, które zmieniły wartość z 0 na 1. \relax }}{13}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering }}}{13}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering }}}{13}{}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering }}}{13}{}%
+\contentsline {figure}{\numberline {7}{\ignorespaces (\textit {Opracowanie własne}) Korekcja Gamma. (a) Stan początkowy. (b) Stan po korekcji gamma z parametrem \textit {0.85}. (c) Stan po korekcji gamma z parametrem \textit {1.10}. \relax }}{14}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering }}}{14}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering }}}{14}{}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {\centering }}}{14}{}%
+\contentsline {figure}{\numberline {8}{\ignorespaces \leavevmode {\color {blue} (\textit {Opracowanie własne}) Diagramy klas biblioteki BIA.Core. (a) Główny diagram klas. Przedstawione na nim klasy odpowiadają za najwazniejsze funkcje biblioteki. (b) Diagram klas przedstawiający operacje, których wykonanie na obrazach umożliwia biblioteka. } \relax }}{17}{}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\centering }}}{17}{}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\centering }}}{17}{}%

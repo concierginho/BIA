@@ -32,7 +32,7 @@ void BIA::BIA::Init()
 ///      Proces uruchamiany jest w sposob asynchroniczny za pomoca BIAProcessManager'a.
 ///      Funkcja jest uruchamiana przez BIAProcessManager w sposob asynchroniczny.
 /// </summary>
-void BIA::BIA::StartBIAProcess()
+void BIA::BIA::PrepareBIARoutine()
 {
    std::atomic<bool>& cancelled = _keeper->GetProcessManagerAsBIAProcessManager()->Cancelled;
 
@@ -53,17 +53,9 @@ void BIA::BIA::StartBIAProcess()
 }
 
 /// <summary>
-/// Cel: Zatrzymanie procesu BIA.
-/// </summary>
-void BIA::BIA::StopProcess()
-{
-   _keeper->GetProcessManagerAsBIAProcessManager()->Stop();
-}
-
-/// <summary>
 /// Cel: Uruchomienie algorytmow, ktore beda dzialac na poszczegolnych obrazach.
 /// </summary>
-void BIA::BIA::StartOperationProcess()
+void BIA::BIA::OperationRoutine()
 {
    std::atomic<bool>& cancelled = _keeper->GetProcessManagerAsBIAProcessManager()->Cancelled;
 

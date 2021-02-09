@@ -8,7 +8,7 @@
 /// <param name="_bia"></param>
 void BIARoutine(BIA::BIA* bia)
 {
-   bia->StartBIAProcess();
+   bia->PrepareBIARoutine();
 }
 
 /// <summary>
@@ -17,7 +17,7 @@ void BIARoutine(BIA::BIA* bia)
 /// <param name="bia"></param>
 void OperationsRoutine(BIA::BIA* bia)
 {
-   bia->StartOperationProcess();
+   bia->OperationRoutine();
 }
 
 /// <summary>
@@ -28,6 +28,7 @@ BIA::BIAProcessManager::BIAProcessManager(BIA* bia)
 {
    _bia = bia;
    Cancelled = false;
+   Stopped = false;
 }
 
 #ifdef _LOGGING_
@@ -41,6 +42,7 @@ BIA::BIAProcessManager::BIAProcessManager(BIA* bia, std::shared_ptr<BIALoggingMa
    _bia = bia;
    _loggingManager = loggingManager;
    Cancelled = false;
+   Stopped = false;
 }
 #endif
 
@@ -53,12 +55,13 @@ BIA::BIAProcessManager::~BIAProcessManager()
 }
 
 /// <summary>
-/// Cel: Rozpoczecie funkcji "Routine()" w sposob asynchroniczny.
+/// Cel: Rozpoczecie funkcji 'BIARoutine()' lub 'OperationsRoutine()'
+///      w zaleznosci od argumentu, w sposob asynchroniczny.
 /// </summary>
 void BIA::BIAProcessManager::Start(EProcess process)
 {
 #ifdef _LOGGING_
-   _loggingManager->Message << "Process started.";
+   _loggingManager->Message << "Process started:";
    _loggingManager->Log(ESource::BIA_PROCESS_MANAGER);
 #endif
 
@@ -67,25 +70,39 @@ void BIA::BIAProcessManager::Start(EProcess process)
    switch (process)
    {
       case EProcess::BIAPROCESS:
+#ifdef _LOGGING_
+         _loggingManager->Message << " --  PREPARING PROCESS.";
+         _loggingManager->Log(ESource::BIA_PROCESS_MANAGER);
+#endif
          _task = std::async(std::launch::async, &BIARoutine, _bia);
          break;
       case EProcess::BIAOPERATIONS:
+#ifdef _LOGGING_
+         _loggingManager->Message << " -- PERFORMING OPERATIONS.";
+         _loggingManager->Log(ESource::BIA_PROCESS_MANAGER);
+#endif
          _task = std::async(std::launch::async, &OperationsRoutine, _bia);
          break;
    }
 }
 
 /// <summary>
-/// Cel: Zatrzymanie funkcji "Routine()" dzialajacej w sposob asynchroniczny.
+/// Cel: Zatrzymanie funkcji 'BIARoutine()' lub 'OperationsRoutine()'
+///      dzialajacej w sposob asynchroniczny.
 /// </summary>
 void BIA::BIAProcessManager::Stop()
 {
-   Cancelled = true;
-   _task.get();
+   if (Stopped == false)
+   {
+      Cancelled = true;
+      _task.get();
+      Stopped = true;
+
 #ifdef _LOGGING_
-   _loggingManager->Message << "Process has been cancelled.";
-   _loggingManager->Log(ESource::BIA_PROCESS_MANAGER);
+      _loggingManager->Message << "Process has been cancelled.";
+      _loggingManager->Log(ESource::BIA_PROCESS_MANAGER);
 #endif
+   }
 }
 
 /// <summary>

@@ -27,14 +27,30 @@ BIA::GammaCorrection::~GammaCorrection()
 }
 
 /// <summary>
+/// 
+/// </summary>
+/// <param name="json"></param>
+void BIA::GammaCorrection::ReadArguments(nlohmann::json& json)
+{
+   std::string strArgs = json.get<std::string>();
+   try
+   {
+      _arg = atof(strArgs.c_str());
+   }
+   catch (std::exception e)
+   {
+      e;
+   }
+}
+
+/// <summary>
 /// Cel: Wykonanie operacji na bitmapie.
 /// </summary>
 /// <param name="bitmap"></param>
 /// 
 void BIA::GammaCorrection::PerformOperation(Bitmap* bitmap, nlohmann::json& json)
 {
-   std::string strArgs = json.get<std::string>();
-   double arg = atof(strArgs.c_str());
+   ReadArguments(json);
 
    int length = bitmap->Length();
    int width = bitmap->Width();
@@ -45,7 +61,7 @@ void BIA::GammaCorrection::PerformOperation(Bitmap* bitmap, nlohmann::json& json
       for (int j = 0; j < length; j++)
       {
          int index = bitmap->Index(i, j);
-         int new_value = std::pow(buffer[index], arg);
+         int new_value = std::pow(buffer[index], _arg);
          if (new_value > 255)
             new_value = 255;
          buffer[index] = static_cast<unsigned char>(new_value);

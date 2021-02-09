@@ -19,6 +19,7 @@ namespace BIA
       std::future<void> _task;
    public:
       std::atomic<bool> Cancelled;
+      std::atomic<bool> Stopped;
 
       void Start(EProcess);
       void Stop();
