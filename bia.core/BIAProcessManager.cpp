@@ -8,7 +8,7 @@
 /// <param name="_bia"></param>
 void BIARoutine(BIA::BIA* bia)
 {
-   bia->PrepareBIARoutine();
+   bia->PrepareRoutine();
 }
 
 /// <summary>

@@ -188,6 +188,9 @@
     <ClInclude Include="ENeighbourhood.h">
       <Filter>Header Files\Management\Operation</Filter>
     </ClInclude>
+    <ClInclude Include="Keys.h">
+      <Filter>Header Files\Management</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -262,6 +265,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

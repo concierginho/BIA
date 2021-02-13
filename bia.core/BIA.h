@@ -3,10 +3,14 @@
 
 #include "BIACoreExports.h"
 #include "EProcess.h"
+#include "EOperation.h"
 
 namespace BIA
 {
    class BIAManagerKeeper;
+   class Experiment;
+   class PartExperiment;
+   class IExperimentManager;
 
    class BIACORE_API BIA
    {
@@ -16,17 +20,19 @@ namespace BIA
 
       void Start(EProcess);
       void Stop();
-
       void Init();
-
-      void PrepareBIARoutine();
+      void PrepareRoutine();
       void OperationRoutine();
+      void SetKeeper(BIAManagerKeeper*);
 
-      void SetRootPath(char*);
       const char* GetRootPath() const;
+      void SetRootPath(char*);
 
       BIAManagerKeeper* GetKeeper();
-      void SetKeeper(BIAManagerKeeper*);
+      IExperimentManager* GetExperimentManager();
+
+      Experiment* GetExperiment(const char* name);
+      PartExperiment* GetPartExperiment(const char* name, int id, bool isHorizontal);
    private:
       BIAManagerKeeper* _keeper = nullptr;
       char* _rootPath = nullptr;

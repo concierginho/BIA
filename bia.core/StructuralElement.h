@@ -5,10 +5,9 @@ namespace BIA
 {
    class StructuralElement
    {
-   private:
+   public:
       int _width;
       int _length;
-   public:
       StructuralElement();
       StructuralElement(int width, int length);
    };

@@ -18,6 +18,25 @@ BIA::Bitmap::Bitmap(int width, int length)
 }
 
 /// <summary>
+/// 
+/// </summary>
+/// <param name="bitmap"></param>
+BIA::Bitmap::Bitmap(const Bitmap* bitmap)
+{
+   _width = bitmap->_width;
+   _length = bitmap->_length;
+
+   int size = _width * _length;
+   _buffer = new unsigned char[size];
+
+   #pragma omp parallel for
+   for (int i = 0; i < size; i++)
+   {
+      _buffer[i] = bitmap->_buffer[i];
+   }
+}
+
+/// <summary>
 /// Destruktor.
 /// </summary>
 BIA::Bitmap::~Bitmap()
@@ -94,6 +113,11 @@ void BIA::Bitmap::SaveToFile(fs::path& path)
    }
 }
 
+void BIA::Bitmap::SetBuffer(unsigned char* buffer)
+{
+   _buffer = buffer;
+}
+
 /// <summary>
 /// Cel: Zwrocenie tablicy wartosci bitmapy.
 /// </summary>
@@ -102,13 +126,6 @@ unsigned char* BIA::Bitmap::GetBuffer()
 {
    return _buffer;
 }
-
-//std::vector<unsigned char> BIA::Bitmap::GetNeighbours(ENeighbourhood neighbourhood, int x, int y)
-//{
-//   return std::vector<unsigned char>();
-//}
-
-
 
 /// <summary>
 /// Cel: Zwrocenie indeksu pixela o wskazanych wspolrzednych.

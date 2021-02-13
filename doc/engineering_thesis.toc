@@ -29,7 +29,7 @@
 \contentsline {subsubsection}{\numberline {4.1.7}.NET Framework 4.7.2}{16}{}%
 \contentsline {subsubsection}{\numberline {4.1.8}nlohmann.json 3.9.1}{16}{}%
 \contentsline {subsection}{\numberline {4.2}Budowa oprogramowania}{16}{}%
-\contentsline {subsection}{\numberline {4.3}\leavevmode {\color {blue}Diagramy klas}}{17}{}%
+\contentsline {subsection}{\numberline {4.3}Diagramy klas}{17}{}%
 \contentsline {subsection}{\numberline {4.4}Omówienie implementacji}{18}{}%
 \contentsline {section}{\numberline {5}Wyniki i dyskusja}{20}{}%
 \contentsline {section}{\numberline {6}Wnioski}{21}{}%

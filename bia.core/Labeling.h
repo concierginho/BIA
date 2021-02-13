@@ -9,7 +9,7 @@ namespace BIA
    class Labeling : public IOperation
    {
    private:
-      ENeighbourhood _arg;
+      ENeighbourhood _neighbourhood;
    public:
       virtual std::string ToString() override;
       virtual void ReadArguments(nlohmann::json& json) override;

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "PartExperiment.h"
+#include "EOperation.h"
 
 #include <sstream>
 

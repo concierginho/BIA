@@ -19,15 +19,16 @@ namespace BIA
    public:
       void LoadFromFile(fs::path&);
       void SaveToFile(fs::path&);
-
+      
+      void SetBuffer(unsigned char* buffer);
       unsigned char* GetBuffer();
-      //std::vector<unsigned char> GetNeighbours(ENeighbourhood neighbourhood, int x, int y);
 
       int Index(int x, int y);
       int Length();
       int Width();
 
       Bitmap(int width, int length);
+      Bitmap(const Bitmap* bitmap);
       ~Bitmap();
    };
 }

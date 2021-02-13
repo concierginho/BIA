@@ -1,14 +1,15 @@
-#ifndef _HOLDER_
-#define _HOLDER_
+#ifndef _BIA_MANAGER_KEEPER_
+#define _BIA_MANAGER_KEEPER_
 
 #include <memory>
 
-#include "BIAFileManager.h"
-#include "BIAExperimentManager.h"
-#include "BIAImageManager.h"
-#include "BIALoggingManager.h"
-#include "BIAProcessManager.h"
 #include "BIA.h"
+
+#include "IFileManager.h"
+#include "IExperimentManager.h"
+#include "IImageManager.h"
+#include "ILoggingManager.h"
+#include "IProcessManager.h"
 
 namespace BIA
 {
@@ -28,12 +29,12 @@ namespace BIA
 
       std::string _rootPath;
 
-      std::shared_ptr<BIAFileManager> GetFileManagerAsBIAFileManager();
-      std::shared_ptr<BIAExperimentManager> GetExperimentManagerAsBIAExperimentManager();
-      std::shared_ptr<BIAImageManager> GetImageManagerAsBIAImageManager();
-      std::shared_ptr<BIAProcessManager> GetProcessManagerAsBIAProcessManager();
+      std::shared_ptr<IFileManager> GetFileManager();
+      std::shared_ptr<IExperimentManager> GetExperimentManager();
+      std::shared_ptr<IImageManager> GetImageManager();
+      std::shared_ptr<IProcessManager> GetProcessManager();
 #ifdef _LOGGING_
-      std::shared_ptr<BIALoggingManager> GetLoggingManagerAsBIALoggingMenager();
+      std::shared_ptr<ILoggingManager> GetLoggingManager();
 #endif
    public:
       std::string GetRootPath();

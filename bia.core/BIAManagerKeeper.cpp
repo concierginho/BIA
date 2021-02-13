@@ -1,57 +1,56 @@
 #include "pch.h"
 #include "BIAManagerKeeper.h"
 
+#include "BIAFileManager.h"
+#include "BIAExperimentManager.h"
+#include "BIAImageManager.h"
+#include "BIAProcessManager.h"
+#include "BIALoggingManager.h"
+
 /// <summary>
-/// Cel: Dynamiczne rzutowanie obiektu typu std::shared_ptr<IFileManager>
-///      do typu std::shared_ptr<BIAFileManager>.
+/// Cel: Zwrocenie FileManager'a.
 /// </summary>
 /// <returns></returns>
-std::shared_ptr<BIA::BIAFileManager> BIA::BIAManagerKeeper::GetFileManagerAsBIAFileManager()
+std::shared_ptr<BIA::IFileManager> BIA::BIAManagerKeeper::GetFileManager()
 {
-   return std::dynamic_pointer_cast<BIAFileManager>(_fileManager);
+   return _fileManager;
 }
 
 /// <summary>
-/// Cel: Dynamiczne rzutowanie obiektu typu std::shared_ptr<IExperimentManager>
-///      do typu std::shared_ptr<BIAExperimentManager>.
+/// Cel: Zwrocenie Experiment Manager'a.
 /// </summary>
 /// <returns></returns>
-std::shared_ptr<BIA::BIAExperimentManager> BIA::BIAManagerKeeper::GetExperimentManagerAsBIAExperimentManager()
+std::shared_ptr<BIA::IExperimentManager> BIA::BIAManagerKeeper::GetExperimentManager()
 {
-   return std::dynamic_pointer_cast<BIAExperimentManager>(_experimentManager);
+    return _experimentManager;
 }
 
 /// <summary>
-/// Cel: Dynamiczne rzutowanie obiektu typu std::shared_ptr<IImageManager>
-///      do typu std::shared_ptr<BIAImageManager>.
+/// Cel: Zwrocenie ImageManager'a.
 /// </summary>
 /// <returns></returns>
-std::shared_ptr<BIA::BIAImageManager> BIA::BIAManagerKeeper::GetImageManagerAsBIAImageManager()
+std::shared_ptr<BIA::IImageManager> BIA::BIAManagerKeeper::GetImageManager()
 {
-   return std::dynamic_pointer_cast<BIAImageManager>(_imageManager);
+    return _imageManager;
 }
 
 /// <summary>
-/// Cel: Dynamiczne rzutowanie obiektu typu std::shared_ptr<IProcessManager>
-///      do typu std::shared_ptr<BIAProcessManager>.
+/// Cel: Zwrocenie ProcessManager'a.
 /// </summary>
 /// <returns></returns>
-std::shared_ptr<BIA::BIAProcessManager> BIA::BIAManagerKeeper::GetProcessManagerAsBIAProcessManager()
+std::shared_ptr<BIA::IProcessManager> BIA::BIAManagerKeeper::GetProcessManager()
 {
-   return std::dynamic_pointer_cast<BIAProcessManager>(_processManager);
+    return _processManager;
 }
 
-#ifdef _LOGGING_
 /// <summary>
-/// Cel: Dynamiczne rzutowanie obiektu typu std::shared_ptr<ILoggingManager>
-///      do typu std::shared_ptr<BIALoggingManager>.
+/// Cel: Zwrocenie LoggingManager'a.
 /// </summary>
 /// <returns></returns>
-std::shared_ptr<BIA::BIALoggingManager> BIA::BIAManagerKeeper::GetLoggingManagerAsBIALoggingMenager()
+std::shared_ptr<BIA::ILoggingManager> BIA::BIAManagerKeeper::GetLoggingManager()
 {
-   return std::dynamic_pointer_cast<BIALoggingManager>(_loggingManager);
+   return _loggingManager;
 }
-#endif
 
 /// <summary>
 /// Cel: Zwrocenie sciezki do katalogu glownego.
@@ -95,14 +94,14 @@ void BIA::BIAManagerKeeper::Init()
    _loggingManager = std::make_shared<BIALoggingManager>(EType::ConsoleLogger, rootPath);
 #endif
 
-   auto loggingManager = GetLoggingManagerAsBIALoggingMenager();
-   auto fileManager = GetFileManagerAsBIAFileManager();
+   auto loggingManager = std::dynamic_pointer_cast<BIALoggingManager>(_loggingManager);
+   auto fileManager = std::dynamic_pointer_cast<BIAFileManager>(_fileManager);
 
    fileManager->SetLoggingManager(loggingManager);
 
    _experimentManager = std::make_shared <BIAExperimentManager>(fileManager, loggingManager);
 
-   auto experimentManager = GetExperimentManagerAsBIAExperimentManager();
+   auto experimentManager = std::dynamic_pointer_cast<BIAExperimentManager>(_experimentManager);
 
    _imageManager = std::make_shared<BIAImageManager>(experimentManager, loggingManager);
    _processManager = std::make_shared<BIAProcessManager>(_bia, loggingManager);

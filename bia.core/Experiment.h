@@ -43,6 +43,8 @@ namespace BIA
       fs::path GetTIFFImagePath(EFolder folder);
       fs::path GetPartExperimentPathById(EFolder, int);
 
+      PartExperiment* GetPartExperimentById(EFolder, int);
+
       std::string GetName() const;
 
       std::vector<PartExperiment>& GetPartExperiments(EFolder);

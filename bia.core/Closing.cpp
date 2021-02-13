@@ -1,5 +1,8 @@
 #include "pch.h"
 #include "Closing.h"
+#include "Keys.h"
+#include "Erosion.h"
+#include "Dilation.h"
 
 #include <sstream>
 
@@ -17,7 +20,6 @@ std::string BIA::Closing::ToString()
 /// </summary>
 BIA::Closing::Closing()
 {
-   _structuralElement = nullptr;
 }
 
 /// <summary>
@@ -25,9 +27,6 @@ BIA::Closing::Closing()
 /// </summary>
 BIA::Closing::~Closing()
 {
-   if (_structuralElement != nullptr)
-      delete _structuralElement;
-   _structuralElement = nullptr;
 }
 
 /// <summary>
@@ -37,25 +36,6 @@ BIA::Closing::~Closing()
 /// <param name="json"></param>
 void BIA::Closing::ReadArguments(nlohmann::json& json)
 {
-   std::stringstream arguments;
-   std::string tmp;
-   std::vector<int> arg;
-
-   arguments << json.get<std::string>();
-
-   while (std::getline(arguments, tmp, ','))
-   {
-      try
-      {
-         arg.push_back(atoi(tmp.c_str()));
-      }
-      catch (std::exception e)
-      {
-         e;
-      }
-   }
-
-   _structuralElement = new StructuralElement(arg[0], arg[1]);
 }
 
 /// <summary>
@@ -64,5 +44,9 @@ void BIA::Closing::ReadArguments(nlohmann::json& json)
 /// <param name="bitmap"></param>
 void BIA::Closing::PerformOperation(Bitmap* bitmap, nlohmann::json& json)
 {
-   ReadArguments(json);
+   Dilation* dilation = new Dilation();
+   Erosion* erosion = new Erosion();
+
+   dilation->PerformOperation(bitmap, json);
+   erosion->PerformOperation(bitmap, json);
 }

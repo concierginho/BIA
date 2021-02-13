@@ -1,5 +1,5 @@
 #ifndef _EOPERATION_
-#define _EOPERTAION_
+#define _EOPERATION_
 
 namespace BIA
 {

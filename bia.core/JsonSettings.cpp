@@ -6,18 +6,26 @@
 /// </summary>
 nlohmann::json BIA::JsonSettings::DefaultRecipeJson =
 R"({
-   "threshold" : 200,
-   "operations" : {
-      "LABELING" : ""
-   }
+   "THRESHOLD" : 200,
+   "OPERATIONS" : [
+
+   ]
 })"_json;
+
+//{
+//   "OPERATION" : {
+//      "NAME" : "LABELING",
+//         "ARGS" : "VONNEUMANN"
+//   }
+//}
+
 
 /// <summary>
 /// Cel: Ustawienia domyslne dla pliku 'results.json'
 /// </summary>
 nlohmann::json BIA::JsonSettings::DefaultResultsJson =
 R"({
-   "results" : ""
+   "RESULTS" : ""
 })"_json;
 
 /// <summary>

@@ -6,6 +6,7 @@
 #include "IExperimentManager.h"
 #include "BIAFileManager.h"
 #include "Experiment.h"
+#include "EOperation.h"
 
 #ifdef _LOGGING_
 #include "BIALoggingManager.h"
@@ -28,6 +29,12 @@ namespace BIA
 #endif
       BIAExperimentManager(std::shared_ptr<BIAFileManager>);
       ~BIAExperimentManager();
+
+      Experiment* GetExperiment(const char* name);
+
+      PartExperiment* GetPartExperiment(const char* name, int id, bool isHorizontal);
+
+      bool AddOperation(const char* name, int id, bool isHorizontal, EOperation operation, const char* args) override;
 
       void PrepareExperiments();
       void LocalizeTIFFImages();

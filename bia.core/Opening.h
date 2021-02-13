@@ -10,7 +10,6 @@ namespace BIA
    class Opening : public IOperation
    {
    private:
-      StructuralElement* _structuralElement = nullptr;
    public:
       virtual std::string ToString() override;
       virtual void ReadArguments(nlohmann::json& json) override;

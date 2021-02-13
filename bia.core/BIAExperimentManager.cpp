@@ -2,6 +2,7 @@
 #include "BIAExperimentManager.h"
 #include "Experiment.h"
 #include "JsonSettings.h"
+#include "Keys.h"
 
 #include <regex>
 
@@ -30,6 +31,89 @@ BIA::BIAExperimentManager::BIAExperimentManager(std::shared_ptr<BIAFileManager> 
 /// </summary>
 BIA::BIAExperimentManager::~BIAExperimentManager()
 {
+}
+
+/// <summary>
+/// 
+/// </summary>
+/// <param name="name"></param>
+/// <returns></returns>
+BIA::Experiment* BIA::BIAExperimentManager::GetExperiment(const char* name)
+{
+   std::string strName = name;
+   for (auto& experiment : _experiments)
+   {
+      if (experiment.GetName() == strName)
+         return &experiment;
+   }
+   return nullptr;
+}
+
+/// <summary>
+/// 
+/// </summary>
+/// <param name="name"></param>
+/// <param name="id"></param>
+/// <param name="isHorizontal"></param>
+/// <returns></returns>
+BIA::PartExperiment* BIA::BIAExperimentManager::GetPartExperiment(const char* name, int id, bool isHorizontal)
+{
+   EFolder type = EFolder::VERTICAL;
+   if (isHorizontal)
+      type = EFolder::HORIZONTAL;
+
+   return GetExperiment(name)->GetPartExperimentById(type, id);
+}
+
+/// <summary>
+/// 
+/// </summary>
+/// <param name="name"></param>
+/// <param name="id"></param>
+/// <param name="isHorizontal"></param>
+/// <param name="operation"></param>
+/// <param name="args"></param>
+/// <returns></returns>
+bool BIA::BIAExperimentManager::AddOperation(const char* name, int id, bool isHorizontal, EOperation operation, const char* args)
+{
+   auto partExperiment = GetPartExperiment(name, id, isHorizontal);
+   auto recipePath = partExperiment->GetRecipeJsonPath();
+
+   auto json = _fileManager->ReadFromJson(recipePath);
+   nlohmann::json insertOperationJson;
+   nlohmann::json operationJson;
+
+   std::string strName;
+   switch (operation)
+   {
+      case EOperation::CLOSING:
+         strName = key::closing;
+         break;
+      case EOperation::DILATION:
+         strName = key::dilation;
+         break;
+      case EOperation::EROSION:
+         strName = key::erosion;
+         break;
+      case EOperation::GAMMA_CORRECTION:
+         strName = key::gamma_correction;
+         break;
+      case EOperation::LABELING:
+         strName = key::labeling;
+         break;
+      case EOperation::OPENING:
+         strName = key::opening;
+         break;
+   }
+
+   operationJson[key::name] = strName;
+   operationJson[key::args] = args;
+   insertOperationJson[key::operation] = operationJson;
+   json[key::operations].insert(json[key::operations].end(), insertOperationJson);
+
+   _fileManager->WriteToJson(recipePath, json);
+   
+   return false;
 }
 
 /// <summary>

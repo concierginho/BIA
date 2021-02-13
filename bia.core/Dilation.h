@@ -16,6 +16,7 @@ namespace BIA
       virtual void ReadArguments(nlohmann::json& json) override;
 
       void PerformOperation(Bitmap* bitmap, nlohmann::json& json);
+      std::vector<int> GetNeighbours(int x, int y, int img_width, int img_length, Bitmap* bitmap);
 
       explicit Dilation();
       ~Dilation();

@@ -87,7 +87,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../bia.core/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\third-party\libtiff_4.2.0_win64\libtiff;../bia.core/;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -106,7 +106,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../bia.core/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\third-party\libtiff_4.2.0_win32\libtiff;../bia.core/;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -114,6 +114,7 @@
       <AdditionalDependencies>tiff.lib;bia.core.lib;</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>../third-party/libtiff_4.2.0_win32/libtiff/release;$(SolutionDir)$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <CLRImageType>ForceSafeILImage</CLRImageType>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /Y "..\third-party\libtiff_4.2.0_win32\libtiff\Release\tiff.dll" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
@@ -126,7 +127,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>../bia.core/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\third-party\libtiff_4.2.0_win32\libtiff;../bia.core/;</AdditionalIncludeDirectories>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -145,7 +146,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>../bia.core/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\third-party\libtiff_4.2.0_win64\libtiff;../bia.core/;</AdditionalIncludeDirectories>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -188,7 +189,17 @@
   <ItemGroup>
     <ClInclude Include="MainWindowVMCLR.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets" Condition="Exists('..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets'))" />
+  </Target>
 </Project>

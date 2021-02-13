@@ -4,6 +4,7 @@
 #include "Operation.h"
 #include "tiffio.h"
 #include "Bitmap.h"
+#include "Keys.h"
 
 #include "Closing.h"
 #include "Opening.h"
@@ -194,7 +195,7 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
 
             fs::path recipeJsonPath = partExperiment.GetRecipeJsonPath();
             auto jsonRecipe = _fileManager->ReadFromJson(recipeJsonPath);
-            if (!jsonRecipe.contains("operations"))
+            if (!jsonRecipe.contains(key::operations))
             {
 #ifdef _LOGGING_
                _loggingManager->Message << "Missing object 'operations' in 'recipe.json' / " 
@@ -213,14 +214,17 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
             bitmap->LoadFromFile(binaryImagePath);
             greyscaleBitmap->LoadFromFile(greyscaleImagePath);
 
-            auto& operations = jsonRecipe["operations"];
+            auto& operations = jsonRecipe[key::operations];
 
-            for (auto& it : operations.items())
+            for (const auto& item : operations.items())
             {
-               std::string key = it.key();
-               std::string args = it.value();
+               nlohmann::json operationJson = item.value()[key::operation];
+               nlohmann::json nameJson = operationJson[key::name];
+               nlohmann::json argsJson = operationJson[key::args];
 
-               if (key == "GAMMA_CORRECTION")
+               std::string name = nameJson.get<std::string>();
+
+               if (name == key::gamma_correction)
                {
 #ifdef _LOGGING_
                   _loggingManager->Message << "Performing GAMMA CORRECTION operation has started / " 
@@ -228,9 +232,8 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
                   _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
                   auto start = std::chrono::steady_clock::now();
 #endif
-                  auto& args = operations["GAMMA_CORRECTION"];
                   GammaCorrection* gamma = new GammaCorrection();
-                  gamma->PerformOperation(greyscaleBitmap, args);
+                  gamma->PerformOperation(greyscaleBitmap, argsJson);
                   greyscaleBitmap->SaveToFile(greyscaleImagePath);
                   delete gamma;
 #ifdef _LOGGING_
@@ -240,7 +243,7 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
                   _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
 #endif
                }
-               else if (key == "CLOSING")
+               else if (name == key::closing)
                {
 #ifdef _LOGGING_
                   _loggingManager->Message << "Performing CLOSING operation has started / " 
@@ -248,9 +251,8 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
                   _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
                   auto start = std::chrono::steady_clock::now();
 #endif 
-                  auto& args = operations["CLOSING"];
                   Closing* closing = new Closing();
-                  closing->PerformOperation(bitmap, args);
+                  closing->PerformOperation(bitmap, argsJson);
                   delete closing;
 #ifdef _LOGGING_
                   auto end = std::chrono::steady_clock::now();
@@ -259,7 +261,7 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
                   _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
 #endif
                }
-               else if (key == "DILATION")
+               else if (name == key::dilation)
                {
 #ifdef _LOGGING_
                   _loggingManager->Message << "Performing DILATION operation has started / " 
@@ -267,9 +269,8 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
                   _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
                   auto start = std::chrono::steady_clock::now();
 #endif
-                  auto& args = operations["DILATION"];
                   Dilation* dilation = new Dilation();
-                  dilation->PerformOperation(bitmap, args);
+                  dilation->PerformOperation(bitmap, argsJson);
                   delete dilation;
 #ifdef _LOGGING_
                   auto end = std::chrono::steady_clock::now();
@@ -278,7 +279,7 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
                   _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
 #endif
                }
-               else if (key == "EROSION")
+               else if (name == key::erosion)
                {
 #ifdef _LOGGING_
                   _loggingManager->Message << "Performing EROSION operation has started / " 
@@ -286,9 +287,8 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
                   _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
                   auto start = std::chrono::steady_clock::now();
 #endif
-                  auto& args = operations["EROSION"];
                   Erosion* erosion = new Erosion();
-                  erosion->PerformOperation(bitmap, args);
+                  erosion->PerformOperation(bitmap, argsJson);
                   delete erosion;
 #ifdef _LOGGING_
                   auto end = std::chrono::steady_clock::now();
@@ -297,7 +297,7 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
                   _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
 #endif
                }
-               else if (key == "LABELING")
+               else if (name == key::labeling)
                {
 #ifdef _LOGGING_
                   _loggingManager->Message << "Performing LABELING operation has started / " 
@@ -305,9 +305,8 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
                   _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
                   auto start = std::chrono::steady_clock::now();
 #endif
-                  auto& args = operations["LABELING"];
                   Labeling* labeling = new Labeling();
-                  auto results = labeling->PerformOperation(bitmap, args);
+                  auto results = labeling->PerformOperation(bitmap, argsJson);
                   SaveResultsToFile(partExperiment, results);
                   delete labeling;
 #ifdef _LOGGING_
@@ -317,7 +316,7 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
                   _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
 #endif
                }
-               else if (key == "OPENING")
+               else if (name == key::opening)
                {
 #ifdef _LOGGING_
                   _loggingManager->Message << "Performing OPENING operation has started / " 
@@ -325,9 +324,8 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
                   _loggingManager->Log(ESource::BIA_IMAGE_MANAGER);
                   auto start = std::chrono::steady_clock::now();
 #endif
-                  auto& args = operations["OPENING"];
                   Opening* opening = new Opening();
-                  opening->PerformOperation(bitmap, args);
+                  opening->PerformOperation(bitmap, argsJson);
                   delete opening;
 #ifdef _LOGGING_
                   auto end = std::chrono::steady_clock::now();
@@ -647,7 +645,7 @@ void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled)
 
             fs::path recipeJsonPath = partExperiment.GetRecipeJsonPath();
             auto jsonRecipe = _fileManager->ReadFromJson(recipeJsonPath);
-            if (!jsonRecipe.contains("threshold"))
+            if (!jsonRecipe.contains(key::threshold))
             {
 #ifdef _LOGGING_
                _loggingManager->Message << "Missing object 'threshold' inside 'recipe.json' / "
@@ -656,7 +654,7 @@ void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled)
                continue;
             }
 
-            unsigned char threshold = static_cast<unsigned char>(jsonRecipe["threshold"]);
+            unsigned char threshold = static_cast<unsigned char>(jsonRecipe[key::threshold]);
 
             for (uint32 i = 0; i < linebytes; i++)
             {

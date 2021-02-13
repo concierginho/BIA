@@ -1,6 +1,9 @@
 ﻿#include "pch.h"
 #include "BIA.h"
 #include "BIAManagerKeeper.h"
+#include "BIAExperimentManager.h"
+#include "BIAProcessManager.h"
+#include "BIAImageManager.h"
 
 #ifdef _LOGGING_
 #include "BIALoggingManager.h"
@@ -8,6 +11,7 @@
 #include "EAlignment.h"
 
 #include <future>
+#include <memory>
 
 /// <summary>
 /// Cel: Inicjalizacja BIAManagerKeeper'a, ktory odpowiada
@@ -23,8 +27,8 @@ void BIA::BIA::Init()
 
    _keeper->Init();
 
-   _keeper->GetFileManagerAsBIAFileManager()->ScanRootDirectory();
-   _keeper->GetExperimentManagerAsBIAExperimentManager()->PrepareExperiments();
+   std::dynamic_pointer_cast<BIAFileManager>(_keeper->GetFileManager())->ScanRootDirectory();
+   std::dynamic_pointer_cast<BIAExperimentManager>(_keeper->GetExperimentManager())->PrepareExperiments();
 }
 
 /// <summary>
@@ -32,23 +36,25 @@ void BIA::BIA::Init()
 ///      Proces uruchamiany jest w sposob asynchroniczny za pomoca BIAProcessManager'a.
 ///      Funkcja jest uruchamiana przez BIAProcessManager w sposob asynchroniczny.
 /// </summary>
-void BIA::BIA::PrepareBIARoutine()
+void BIA::BIA::PrepareRoutine()
 {
-   std::atomic<bool>& cancelled = _keeper->GetProcessManagerAsBIAProcessManager()->Cancelled;
+   std::atomic<bool>& cancelled = std::dynamic_pointer_cast<BIAProcessManager>(_keeper->GetProcessManager())->Cancelled;
+   auto biaImageManager = std::dynamic_pointer_cast<BIAImageManager>(_keeper->GetImageManager());
 
-   _keeper->GetImageManagerAsBIAImageManager()->SplitImages(cancelled);
+   biaImageManager->SplitImages(cancelled);
 
    if (cancelled == true)
       return;
 
-   _keeper->GetImageManagerAsBIAImageManager()->GeneratePreviews(cancelled);
+   biaImageManager->GeneratePreviews(cancelled);
 
    if (cancelled == true)
       return;
 
 #ifdef _LOGGING_
-   _keeper->GetLoggingManagerAsBIALoggingMenager()->Message << "Process has finished.";
-   _keeper->GetLoggingManagerAsBIALoggingMenager()->Log(ESource::BIA_EXPERIMENT_MANAGER);
+   auto biaLoggingManager = std::dynamic_pointer_cast<BIALoggingManager>(_keeper->GetLoggingManager());
+   biaLoggingManager->Message << "Process has finished.";
+   biaLoggingManager->Log(ESource::BIA_EXPERIMENT_MANAGER);
 #endif
 }
 
@@ -57,16 +63,19 @@ void BIA::BIA::PrepareBIARoutine()
 /// </summary>
 void BIA::BIA::OperationRoutine()
 {
-   std::atomic<bool>& cancelled = _keeper->GetProcessManagerAsBIAProcessManager()->Cancelled;
+   auto biaProcessManager = std::dynamic_pointer_cast<BIAProcessManager>(_keeper->GetProcessManager());
+   auto biaImageManager = std::dynamic_pointer_cast<BIAImageManager>(_keeper->GetImageManager());
+   std::atomic<bool>& cancelled = biaProcessManager->Cancelled;
 
-   _keeper->GetImageManagerAsBIAImageManager()->PerformOperations(cancelled);
+   biaImageManager->PerformOperations(cancelled);
 
    if (cancelled == true)
       return;
 
 #ifdef _LOGGING_
-   _keeper->GetLoggingManagerAsBIALoggingMenager()->Message << "Process has finished.";
-   _keeper->GetLoggingManagerAsBIALoggingMenager()->Log(ESource::BIA_EXPERIMENT_MANAGER);
+   auto biaLoggingManager = std::dynamic_pointer_cast<BIALoggingManager>(_keeper->GetLoggingManager());
+   biaLoggingManager->Message << "Process has finished.";
+   biaLoggingManager->Log(ESource::BIA_EXPERIMENT_MANAGER);
 #endif
 }
 
@@ -95,6 +104,42 @@ const char* BIA::BIA::GetRootPath() const
 BIA::BIAManagerKeeper* BIA::BIA::GetKeeper()
 {
    return _keeper;
+}
+
+BIA::IExperimentManager* BIA::BIA::GetExperimentManager()
+{
+   return _keeper->GetExperimentManager().get();
+}
+
+/// <summary>
+/// Cel: Zwrocenie wskaznika do obiektu typu Experiment na podstawie jego nazwy.
+/// </summary>
+/// <param name="name"></param>
+/// <returns></returns>
+BIA::Experiment* BIA::BIA::GetExperiment(const char* name)
+{
+   return std::dynamic_pointer_cast<BIAExperimentManager>(_keeper->GetExperimentManager())->GetExperiment(name);
+}
+
+/// <summary>
+/// Cel: Zwrocenie wskaznika do obiektu typu PartExperiment na podstawie nazwy eksperymentu,
+///      id eksperymentu czesciowego, oraz tego czy chcemy go pobrac z folderu vertical czy
+///      horizontal. 
+///   isHorizontal = true - oznacza wykorzystanie folderu horizontal.
+///   isHorizontal = false - oznacza wykorzystnaie folderu vertical.
+/// </summary>
+/// <param name="name"></param>
+/// <param name="id"></param>
+/// <param name="isHorizontal"></param>
+/// <returns></returns>
+BIA::PartExperiment* BIA::BIA::GetPartExperiment(const char* name, int id, bool isHorizontal)
+{
+   EFolder type = EFolder::HORIZONTAL;
+   if (isHorizontal)
+      type = EFolder::VERTICAL;
+
+   auto biaExperimentManager = std::dynamic_pointer_cast<BIAExperimentManager>(_keeper->GetExperimentManager());
+   return biaExperimentManager->GetExperiment(name)->GetPartExperimentById(type, id);
 }
 
 /// <summary>
@@ -135,7 +180,7 @@ BIA::BIA::~BIA()
 /// </summary>
 void BIA::BIA::Start(EProcess eprocess)
 {
-   auto processManager = _keeper->GetProcessManagerAsBIAProcessManager();
+   auto processManager = std::dynamic_pointer_cast<BIAProcessManager>(_keeper->GetProcessManager());
 
    processManager->Start(eprocess);
 }
@@ -145,7 +190,7 @@ void BIA::BIA::Start(EProcess eprocess)
 /// </summary>
 void BIA::BIA::Stop()
 {
-   auto processManager = _keeper->GetProcessManagerAsBIAProcessManager();
+   auto processManager = std::dynamic_pointer_cast<BIAProcessManager>(_keeper->GetProcessManager());
 
    processManager->Stop();
 }

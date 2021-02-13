@@ -25,8 +25,7 @@ BIA::Labeling::~Labeling()
 }
 
 /// <summary>
-/// Cel: Odczytanie argumentow z obiektu typu json i zapisanie ich
-///      w odpowiednim typie do zmiennej _arg.
+/// Cel: Odczytanie argumentow z obiektu typu json.
 /// </summary>
 /// <param name="json"></param>
 void BIA::Labeling::ReadArguments(nlohmann::json& json)
@@ -38,7 +37,7 @@ void BIA::Labeling::ReadArguments(nlohmann::json& json)
    if (arg == "MOORE")
       type = ENeighbourhood::MOORE;
 
-   _arg = type;
+   _neighbourhood = type;
 }
 
 /// <summary>
@@ -92,7 +91,7 @@ std::unordered_map<int, std::vector<int>> BIA::Labeling::PerformOperation(Bitmap
                index = blackPixels.back();
                blackPixels.pop_back();
 
-               auto neighbours = GetNeighbours(bitmap, _arg, index, labels);
+               auto neighbours = GetNeighbours(bitmap, _neighbourhood, index, labels);
                for (auto neighbour : neighbours)
                {
                   if (buffer[neighbour] == 255)

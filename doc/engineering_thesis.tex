@@ -569,7 +569,7 @@
             W związku z powyższym, w programie \textit{Visual Studio 2019} trzeba dodać ścieżkę do miejsca, w którym znajduje się zbudowana przez nas biblioteka.
             Przykładowo ``D:/tiff-4.2.0/libtiff''.
         }
-        \subsection{\textcolor{blue}{Diagramy klas}}
+        \subsection{Diagramy klas}
         \begin{figure}[H]
             \centering
             \subfloat[\centering]{{\includegraphics[width=\textwidth]{MainClassDiagram.png}}}
@@ -577,12 +577,9 @@
             \subfloat[\centering]{{\includegraphics[width=\textwidth]{OperationClassDiagram.png}}}
             \caption
             {
-                \textcolor{blue}
-                {
                 (\textit{Opracowanie własne}) Diagramy klas biblioteki BIA.Core.\\
                 (a) Główny diagram klas. Przedstawione na nim klasy odpowiadają za najwazniejsze funkcje biblioteki.\\
                 (b) Diagram klas przedstawiający operacje, których wykonanie na obrazach umożliwia biblioteka.
-                }
             }
             \label{class_diagram}
         \end{figure}
@@ -592,8 +589,19 @@
             \Large
             \justifying
             \quad
-            Główną klasą biblioteki BIA.Core jest ta o nazwie ``BIA''
-            (Rysunek \ref{class_diagram} podpunkt (a)).
+            Biblioteka, która opisywana jest w tej pracy nosi nazwę ``BIA.Core''.
+            Całe rozwiązanie składa się jeszcze z dwóch innych projektów: ``BIA.UI'' oraz ``BIA.Bridge''.
+            ``BIA.UI'' to biblioteka napisana w języku C\#, stanowiąca interfejs użytkownika. Służy do pokazania funkcjonalności biblioteki ``BIA.Core''.
+            Wspomniany wcześniej projekt ``BIA.Bridge'' stanowi połączenie (\emph{bridge} z ang. \emph{most}) między interfejsem użytkownika, a biblioteką ``BIA.Core''.
+        }
+
+        \vspace{0.5cm}
+
+        {
+            \Large
+            \justifying
+            \quad
+            Główną klasą biblioteki BIA.Core jest klasa ``BIA'' (Rysunek \ref{class_diagram} podpunkt (a)).
             Nazwa jej pochodzi od angielskich słów ``Blood Image Analyzer'', czyli ``Analizator Obrazów Krwi''.
             Głównym zadaniem klasy ``BIA'' jest zebranie wszystkich funkcjonalności biblioteki w wygodny do użycia sposób.
             Zawiera ona prywatne pole o nazwie ``\_rootPath'', które jest odpowiedzialne za przetrzymywanie ścieżki do wybranego przez nas katalogu.
@@ -609,22 +617,22 @@
             Aby poprawnie skorzystać z funkcjonalności klasy ``BIA'' należy po stworzeniu obiektu tej klasy wywołać funkcję ``Init''.
             Funkcja ta odpowiedzialna jest za utworzenie wszystkich potrzebnych obiektów, w tym inicjalizacje ``BIAManagerKeeper''.
             Gdy ``BIAManagerKeeper'' zostanie zainicjalizowany, utworzeni zostają pozostali menadżerowie.
-            Domyślny konstruktor klasy ``BIA'' przyjmuje jako parametr ścieżkę do katalogu, która naastępnie zostaje zapisana do zmiennej ``\_rootPath''.
+            Domyślny konstruktor klasy ``BIA'' przyjmuje jako parametr ścieżkę do katalogu, która następnie zostaje zapisana do zmiennej ``\_rootPath''.
             Jest to bardzo ważna rzecz, gdyż od tego zależy poprawne funkcjonowanie całej biblioteki.
-            Destruktor ``~BIA'' działa w taki sposób, że gdy zostanie wywołany to usunięte zostają wszystkie obiekty, któych używa biblioteka.
+            Destruktor ``$\sim$BIA'' działa w taki sposób, że gdy zostanie wywołany to usunięte zostają wszystkie obiekty, któych używa biblioteka.
             Zapobiega to wyciekaniu pamięci, a także jej niekontrolowanemu wykorzystaniu.
             Funkcja ``GetKeeper'' zwraca wskaźnik do obiektu ``BIAManagerKeeper''.
             ``GetRootPath'' pozwala na otrzymanie ścieżki, do głównego katalogu.
             ``OperationRoutine'' wykonuje operacje (operacje zapisywane są w pliku 
             ``recipe.json'') na każdym z obrazów.
-            ``PrepareBIARoutine'' dzieli główne obrazy na mniejsze i przygotowuje wszystkie potrzebne do późniejszej fazy pliki.
+            ``PrepareRoutine'' dzieli główne obrazy na mniejsze i przygotowuje wszystkie potrzebne do późniejszej fazy pliki.
             Obydwie powyższe metody można uruchomić w sposób asynchroniczny za pomocą ``BIAProcessManager'', nie jest to jednak przymus.
             ``SetKeeper'' pozwala na ustawienie obiektu ``BIAManagerKeeper''.
             ``SetRootPath'' pozwala na zmiane ścieżki do katalogu głównego.
-            ``Start'' odpowiada za uruchomienie odpowiedniego procesu. Jako argument przyjmuje typ wyliczeniowy o nazwie ``EProcess'', jeżeli ustalimy jego wartość na ``EProcess::BIAPROCESS'' to ``BIAProcessManager'' uruchomi asynchronicznie funkcje ``PrepareBIARoutine''. Natomiast w przypadku wartosci ``EProcess::BIAOPERATIONS'' uruchomiona zostanie funkcja ``OperationRoutine'', również w sposób asynchroniczny.
+            ``Start'' odpowiada za uruchomienie odpowiedniego procesu. Jako argument przyjmuje typ wyliczeniowy o nazwie ``EProcess'', jeżeli ustalimy jego wartość na ``EProcess::BIAPROCESS'' to ``BIAProcessManager'' uruchomi asynchronicznie funkcje ``PrepareRoutine''. Natomiast w przypadku wartosci ``EProcess::BIAOPERATIONS'' uruchomiona zostanie funkcja ``OperationRoutine'', również w sposób asynchroniczny.
             Funckja ``Stop'' pozwala na zatrzymanie operacji niezależnie od tego, którą z nich uruchomiliśmy wcześniej.
-            Pozwala to na oszczędzenie sporej ilości czasu w przypadku, gdy przewidujemy, że proces nie przyniesie pożądanych efektów i chcemy nanieść korekty.
-            Zapisana do zmiennej ``\_rootPath'' ściezka będzie postrzegana jako źródło tak zwanych ``eksperymentów''.
+            Zatrzymanie procesów pozwala na oszczędzenie sporej ilości czasu w przypadku, gdy przewidujemy, że proces nie przyniesie pożądanych efektów i chcemy nanieść korekty.
+            Zapisana do zmiennej ``\_rootPath'' ścieżka będzie postrzegana jako źródło tak zwanych ``eksperymentów''.
             Przez ``eksperyment'' należy rozumieć katalog, w którym znajdują się dwa zdjęcia pochodzące z mikroskopu.
             Zdjęcia te powinny wcześniej zostać wyeksportowane do plików o typie ``.tif'' oraz nazwane w odpowiedni sposób.
             Zdjęcie zorientowane horyzontalnie powinno zawierać w swojej naziwe słowo ``horizontal'', natomiast te zorientowane wertykalnie - ``vertical''.
@@ -632,9 +640,10 @@
             Wewnątrz eksperymentu utworzone zostaną dwa katalogi: ``Horizontal'' oraz ``Vertical''.
             W kolejnym kroku utworzone zostaje po czterdzieści katalogów wewnątrz każdego z podkatalogów eksperymentu.
             Do każdego z tych podkatalogów trafia fragment obrazu głównego, który będzie podlegał różnym operacjom.
-            Na potrzeby biblioteki dla każdego z wydzielonych obrazów utworzone zostają też pliki: ``preview.tif'', ``recipe.json'' oraz ``results.json''.
+            Na potrzeby biblioteki, dla każdego z wydzielonych obrazów utworzone zostają też pliki: ``preview.tif'', ``recipe.json'' oraz ``results.json''.
             Plik ``preview.tif'' to zbinaryzowany obraz wynikowy, ``recipe.json'' zawiera spis operacji, które mają zostać wykonane na obrazie binarnym, ``results.json'' to plik, do którego zapisywane są wyniki operacji etykietowania (labeling).
-            Etykietowanie to operacja, która pozwala na zliczanie obiektów znajdujących się na obrazie binarny w zależności od tego jaką wartość przyjmujemy jako tło. W przypadku tej biblioteki tło jest zaznaczane białym kolorem.
+            Etykietowanie to operacja, która pozwala na zliczanie obiektów znajdujących się na obrazie binarnym w zależności od tego jaką wartość przyjmujemy jako tło.
+            W przypadku tej biblioteki tło jest zaznaczane białym kolorem.
         }
 
         \vspace{0.5cm}
@@ -643,7 +652,6 @@
             \Large
             \justifying
             \quad
-            Opisanie wszystkich funkcjonalności bibliteki mija się z celem, gdyż najważniejsze funkcje składają się z niezliczonych mniejszych funkcji odpowiedzialnych za poszczególne operacje. Dlatego też warto skupić się na tym co ważne - operacjach na obrazach.
         }
     \newpage
     \section{Wyniki i dyskusja}

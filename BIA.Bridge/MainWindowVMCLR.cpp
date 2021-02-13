@@ -1,5 +1,11 @@
 #include "pch.h"
 #include "MainWindowVMCLR.h"
+#include "BIAManagerKeeper.h"
+#include "Experiment.h"
+#include "PartExperiment.h"
+#include "EOperation.h"
+
+#include <memory>
 
 using namespace System;
 using namespace BIA::UI::Common;

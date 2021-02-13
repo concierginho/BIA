@@ -151,6 +151,11 @@ fs::path BIA::Experiment::GetPartExperimentPathById(EFolder folder, int id)
    return fs::path(ss.str());
 }
 
+BIA::PartExperiment* BIA::Experiment::GetPartExperimentById(EFolder folder, int id)
+{
+   return &_partExperimentsByAlignment[folder][id];
+}
+
 /// <summary>
 /// Cel: Zwrocenie nazwy eksperymentu.
 /// </summary>
