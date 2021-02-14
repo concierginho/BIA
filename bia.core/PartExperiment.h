@@ -14,6 +14,7 @@ namespace BIA
    {
    private:
       int _id;
+      bool _isHorizontal;
 
       fs::path _path;
       std::string _name;
@@ -32,8 +33,7 @@ namespace BIA
 
       TIFFImage* GetTIFFImage();
 
-      explicit PartExperiment(fs::path path, std::string parentName);
-      ~PartExperiment();
+      explicit PartExperiment(fs::path path, std::string parentName, bool isHorizontal);
    };
 }
 

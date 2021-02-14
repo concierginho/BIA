@@ -8,17 +8,14 @@ nlohmann::json BIA::JsonSettings::DefaultRecipeJson =
 R"({
    "THRESHOLD" : 200,
    "OPERATIONS" : [
-
+   {
+      "OPERATION" : {
+         "NAME" : "LABELING",
+            "ARGS" : "VONNEUMANN"
+      }
+   }
    ]
 })"_json;
-
-//{
-//   "OPERATION" : {
-//      "NAME" : "LABELING",
-//         "ARGS" : "VONNEUMANN"
-//   }
-//}
-
 
 /// <summary>
 /// Cel: Ustawienia domyslne dla pliku 'results.json'

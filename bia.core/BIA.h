@@ -10,6 +10,7 @@ namespace BIA
    class BIAManagerKeeper;
    class Experiment;
    class PartExperiment;
+   class IProcessManager;
    class IExperimentManager;
 
    class BIACORE_API BIA
@@ -30,6 +31,7 @@ namespace BIA
 
       BIAManagerKeeper* GetKeeper();
       IExperimentManager* GetExperimentManager();
+      IProcessManager* GetProcessManager();
 
       Experiment* GetExperiment(const char* name);
       PartExperiment* GetPartExperiment(const char* name, int id, bool isHorizontal);

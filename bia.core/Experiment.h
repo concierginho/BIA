@@ -36,7 +36,6 @@ namespace BIA
       int GetNextId();
 
       explicit Experiment(fs::path);
-      ~Experiment();
 
       fs::path GetPath();
       fs::path GetPath(EFolder);

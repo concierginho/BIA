@@ -6,7 +6,7 @@
 \contentsline {subsection}{\numberline {2.3}Założenia}{5}{}%
 \contentsline {subsection}{\numberline {2.4}Podstawowe funkcje biblioteki}{6}{}%
 \contentsline {subsection}{\numberline {2.5}Podstawowe funkcje aplikacji okienkowej}{6}{}%
-\contentsline {subsection}{\numberline {2.6}Rekomendacje}{6}{}%
+\contentsline {subsection}{\numberline {2.6}Rekomendacje}{7}{}%
 \contentsline {section}{\numberline {3}Część teoretyczna}{7}{}%
 \contentsline {subsection}{\numberline {3.1}Adhezja komórek}{7}{}%
 \contentsline {subsection}{\numberline {3.2}Rozszerzenie TIFF}{7}{}%
@@ -28,6 +28,7 @@
 \contentsline {subsubsection}{\numberline {4.1.6}Visual Studio Code}{15}{}%
 \contentsline {subsubsection}{\numberline {4.1.7}.NET Framework 4.7.2}{16}{}%
 \contentsline {subsubsection}{\numberline {4.1.8}nlohmann.json 3.9.1}{16}{}%
+\contentsline {subsubsection}{\numberline {4.1.9}OpenMP 5.1}{16}{}%
 \contentsline {subsection}{\numberline {4.2}Budowa oprogramowania}{16}{}%
 \contentsline {subsection}{\numberline {4.3}Diagramy klas}{17}{}%
 \contentsline {subsection}{\numberline {4.4}Omówienie implementacji}{18}{}%

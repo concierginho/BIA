@@ -134,6 +134,7 @@
       <AdditionalDependencies>tiff.lib;bia.core.lib;</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>../third-party/libtiff_4.2.0_win32/libtiff/Release;..\bia.core\$(IntDir);</AdditionalLibraryDirectories>
+      <CLRImageType>ForceSafeILImage</CLRImageType>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /Y "..\third-party\libtiff_4.2.0_win32\libtiff\Release\tiff.dll" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>

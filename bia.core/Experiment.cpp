@@ -93,13 +93,6 @@ BIA::Experiment::Experiment(fs::path path)
 }
 
 /// <summary>
-/// Destruktor.
-/// </summary>
-BIA::Experiment::~Experiment()
-{
-}
-
-/// <summary>
 /// Cel: Zwrocenie sciezki do folderu (eksperymentu).
 /// </summary>
 fs::path BIA::Experiment::GetPath()

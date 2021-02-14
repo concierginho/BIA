@@ -176,9 +176,6 @@
     <ClInclude Include="Bitmap.h">
       <Filter>Header Files\Management\Operation</Filter>
     </ClInclude>
-    <ClInclude Include="EProcess.h">
-      <Filter>Header Files\Management\BIAProcessManager</Filter>
-    </ClInclude>
     <ClInclude Include="EOperation.h">
       <Filter>Header Files\Management\BIAImageManager</Filter>
     </ClInclude>
@@ -190,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="Keys.h">
       <Filter>Header Files\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Header Files\Management\BIAProcessManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

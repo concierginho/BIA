@@ -38,15 +38,22 @@ void BIA::BIA::Init()
 /// </summary>
 void BIA::BIA::PrepareRoutine()
 {
-   std::atomic<bool>& cancelled = std::dynamic_pointer_cast<BIAProcessManager>(_keeper->GetProcessManager())->Cancelled;
+   auto biaProcessManager = std::dynamic_pointer_cast<BIAProcessManager>(_keeper->GetProcessManager());
+
+   std::atomic<bool>& cancelled = biaProcessManager->Cancelled;
+   std::atomic<int>& biaProgress = biaProcessManager->BiaProgress;
+
+   biaProgress = 0;
+   biaProcessManager->BiaProgressCapacity = GetExperimentManager()->GetExperiments().size() * 80 * 2;
+
    auto biaImageManager = std::dynamic_pointer_cast<BIAImageManager>(_keeper->GetImageManager());
 
-   biaImageManager->SplitImages(cancelled);
+   biaImageManager->SplitImages(cancelled, biaProgress);
 
    if (cancelled == true)
       return;
 
-   biaImageManager->GeneratePreviews(cancelled);
+   biaImageManager->GeneratePreviews(cancelled, biaProgress);
 
    if (cancelled == true)
       return;
@@ -56,6 +63,7 @@ void BIA::BIA::PrepareRoutine()
    biaLoggingManager->Message << "Process has finished.";
    biaLoggingManager->Log(ESource::BIA_EXPERIMENT_MANAGER);
 #endif
+   biaProgress = 100000;
 }
 
 /// <summary>
@@ -65,9 +73,13 @@ void BIA::BIA::OperationRoutine()
 {
    auto biaProcessManager = std::dynamic_pointer_cast<BIAProcessManager>(_keeper->GetProcessManager());
    auto biaImageManager = std::dynamic_pointer_cast<BIAImageManager>(_keeper->GetImageManager());
-   std::atomic<bool>& cancelled = biaProcessManager->Cancelled;
 
-   biaImageManager->PerformOperations(cancelled);
+   std::atomic<bool>& cancelled = biaProcessManager->Cancelled;
+   std::atomic<int>& operationProgress = biaProcessManager->OperationProgress;
+
+   biaProcessManager->OperationProgressCapacity = GetExperimentManager()->GetExperiments().size() * 80;
+
+   biaImageManager->PerformOperations(cancelled, operationProgress);
 
    if (cancelled == true)
       return;
@@ -77,6 +89,7 @@ void BIA::BIA::OperationRoutine()
    biaLoggingManager->Message << "Process has finished.";
    biaLoggingManager->Log(ESource::BIA_EXPERIMENT_MANAGER);
 #endif
+   operationProgress = 100000;
 }
 
 /// <summary>
@@ -106,9 +119,22 @@ BIA::BIAManagerKeeper* BIA::BIA::GetKeeper()
    return _keeper;
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <returns></returns>
 BIA::IExperimentManager* BIA::BIA::GetExperimentManager()
 {
    return _keeper->GetExperimentManager().get();
+}
+
+/// <summary>
+/// 
+/// </summary>
+/// <returns></returns>
+BIA::IProcessManager* BIA::BIA::GetProcessManager()
+{
+   return _keeper->GetProcessManager().get();
 }
 
 /// <summary>

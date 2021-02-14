@@ -226,6 +226,9 @@ void BIA::BIAExperimentManager::PreparePartExperiments()
    for (int type = (int)EFolder::HORIZONTAL; type <= (int)EFolder::VERTICAL; type++)
    {
       auto folder = (EFolder)type;
+      bool isHorizontal = true;
+      if (folder == EFolder::VERTICAL)
+         isHorizontal = false;
 
       for (auto& experiment : _experiments)
       {
@@ -239,7 +242,7 @@ void BIA::BIAExperimentManager::PreparePartExperiments()
             if (!_fileManager->ExistsAtPath(partExpPath))
                _fileManager->CreateAtPath(partExpPath, EFileType::DIRECTORY);
 
-            PartExperiment partExperiment(partExpPath, directoryName);
+            PartExperiment partExperiment(partExpPath, directoryName, isHorizontal);
 
             experiment.GetPartExperiments(folder).push_back(partExperiment);
             InitializePartExperiment(partExperiment);
@@ -351,6 +354,45 @@ std::vector<BIA::Experiment>& BIA::BIAExperimentManager::GetExperiments()
 }
 
 /// <summary>
+/// 
+/// </summary>
+/// <param name="idx"></param>
+/// <param name="isHorizontal"></param>
+/// <returns></returns>
+std::vector<BIA::PartExperiment>& BIA::BIAExperimentManager::GetPartExperiments(int idx, bool isHorizontal)
+{
+   std::vector<PartExperiment> partExperiments;
+
+   if (idx >= 0 && idx < _experiments.size())
+   {
+      if (isHorizontal)
+         return _experiments[idx].GetPartExperiments(EFolder::HORIZONTAL);
+      else
+         return _experiments[idx].GetPartExperiments(EFolder::VERTICAL);
+   }
+   return partExperiments;
+}
+
+/// <summary>
+/// Cel: Zwrocenie nazwy eksperymentu o podanym indexie.
+/// </summary>
+/// <param name="idx"></param>
+/// <returns></returns>
+std::string BIA::BIAExperimentManager::GetExperimentName(int idx)
+{
+   return _experiments[idx].GetName().c_str();
+}
+
+/// <summary>
+/// Cel: Zwrocenie rozmiaru wektora eksperymentow.
+/// </summary>
+/// <returns></returns>
+int BIA::BIAExperimentManager::GetExperimentsSize()
+{
+   return _experiments.size();
+}
+
+/// <summary>
 /// Cel: Inicjalizacja.
 /// </summary>
 void BIA::BIAExperimentManager::Init()
@@ -359,4 +401,47 @@ void BIA::BIAExperimentManager::Init()
    _loggingManager->Message << "Initializing BIAExperimentManager...";
    _loggingManager->Log(ESource::BIA_EXPERIMENT_MANAGER);
 #endif
+}
+
+std::string BIA::BIAExperimentManager::GetPartExperimentPreviewImagePath(const char* name, int id, bool isHorizontal)
+{
+   auto experiment = GetExperiment(name);
+
+   if (experiment != nullptr)
+   {
+      EFolder type = EFolder::VERTICAL;
+      if (isHorizontal)
+         type = EFolder::HORIZONTAL;
+
+      auto partExperiment = experiment->GetPartExperimentById(type, id);
+      auto imagePath = partExperiment->GetPreviewImagePath();
+      return imagePath.string();
+   }
+
+   return std::string();
+}
+
+/// <summary>
+/// 
+/// </summary>
+/// <param name="name"></param>
+/// <param name="id"></param>
+/// <param name="isHorizontal"></param>
+/// <returns></returns>
+std::string BIA::BIAExperimentManager::GetPartExperimentImagePath(const char* name, int id, bool isHorizontal)
+{
+   auto experiment = GetExperiment(name);
+
+   if (experiment != nullptr)
+   {
+      EFolder type = EFolder::VERTICAL;
+      if (isHorizontal)
+         type = EFolder::HORIZONTAL;
+
+      auto partExperiment = experiment->GetPartExperimentById(type, id);
+      auto imagePath = partExperiment->GetImagePath();
+      return imagePath.string();
+   }
+
+   return std::string();
 }

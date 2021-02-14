@@ -44,6 +44,42 @@ BIA::BIAProcessManager::BIAProcessManager(BIA* bia, std::shared_ptr<BIALoggingMa
    Cancelled = false;
    Stopped = false;
 }
+
+/// <summary>
+/// Cel: Zwrocenie obecnego postepu operacji PreopareRoutine
+/// </summary>
+/// <returns></returns>
+std::atomic<int>& BIA::BIAProcessManager::GetBiaProgress()
+{
+   return BiaProgress;
+}
+
+/// <summary>
+/// Cel: Zwrocenie obecnego postepu operacji OperationRotuine.
+/// </summary>
+/// <returns></returns>
+std::atomic<int>& BIA::BIAProcessManager::GetOperationProgress()
+{
+   return OperationProgress;
+}
+
+/// <summary>
+/// Cel: Zwrocenie sumy operacji, ktore beda wykonywnae przez PrepareRotuine.
+/// </summary>
+/// <returns></returns>
+int BIA::BIAProcessManager::GetBiaProgressCapacity()
+{
+   return BiaProgressCapacity;
+}
+
+/// <summary>
+/// Cel: Zwrocenie sumy operacji, ktore beda wykonywane przez OperationRoutine.
+/// </summary>
+/// <returns></returns>
+int BIA::BIAProcessManager::GetOperationProgressCapacity()
+{
+   return OperationProgressCapacity;
+}
 #endif
 
 /// <summary>
@@ -66,6 +102,8 @@ void BIA::BIAProcessManager::Start(EProcess process)
 #endif
 
    Cancelled = false;
+   BiaProgress = 0;
+   OperationProgress = 0;
 
    switch (process)
    {
@@ -97,6 +135,8 @@ void BIA::BIAProcessManager::Stop()
       Cancelled = true;
       _task.get();
       Stopped = true;
+      BiaProgress = 0;
+      OperationProgress = 0;
 
 #ifdef _LOGGING_
       _loggingManager->Message << "Process has been cancelled.";

@@ -51,7 +51,7 @@ BIA::BIAImageManager::~BIAImageManager()
 /// Cel: Podzielenie obrazow zrodlowych na 40 o wymiarach 1024 x 1024.
 /// </summary>
 /// <param name="cancelled"></param>
-void BIA::BIAImageManager::SplitImages(std::atomic<bool>& cancelled)
+void BIA::BIAImageManager::SplitImages(std::atomic<bool>& cancelled, std::atomic<int>& biaProgress)
 {
 #ifdef _LOGGING_
    _loggingManager.get()->Message << "Splitting images has been started.";
@@ -104,6 +104,7 @@ void BIA::BIAImageManager::SplitImages(std::atomic<bool>& cancelled)
 
          for (auto& partExperiment : experiment.GetPartExperiments(type))
          {
+            biaProgress++;
             if (cancelled == true)
             {
 #ifdef _LOGGING_
@@ -165,7 +166,7 @@ void BIA::BIAImageManager::SplitImages(std::atomic<bool>& cancelled)
 ///      na obrazach, ktore zostaly wczesniej zbinaryzowane.
 /// </summary>
 /// <param name="cancelled"></param>
-void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
+void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled, std::atomic<int>& operationProgress)
 {
    for (int i = 0; i < 2; i++)
    {
@@ -184,6 +185,7 @@ void BIA::BIAImageManager::PerformOperations(std::atomic<bool>& cancelled)
 
          for (auto& partExperiment : experiment.GetPartExperiments(folder))
          {
+            operationProgress++;
             if (cancelled == true)
             {
 #ifdef _LOGGING_
@@ -589,7 +591,7 @@ void BIA::BIAImageManager::SaveResultsToFile(PartExperiment& partExperiment, std
 ///      podglad wykonanych na obrazie operacji.
 /// </summary>
 /// <param name="cancelled"></param>
-void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled)
+void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled, std::atomic<int>& biaProgress)
 {
 #ifdef _LOGGING_
    _loggingManager.get()->Message << "Generating previous has been started.";
@@ -609,6 +611,7 @@ void BIA::BIAImageManager::GeneratePreviews(std::atomic<bool>& cancelled)
 
          for (auto& partExperiment : partExperiments)
          {
+            biaProgress++;
             if (cancelled == true)
             {
 #ifdef _LOGGING_

@@ -30,9 +30,9 @@ namespace BIA
       void CopyVerticalPartImageToDestinationFile(TIFF** src, TIFFImage* parentImg, TIFF** tar, TIFFImage* childImg, int id);
       void SaveResultsToFile(PartExperiment& partExperiment, std::unordered_map<int, std::vector<int>> map);
 
-      void GeneratePreviews(std::atomic<bool>& cancelled);
-      void SplitImages(std::atomic<bool>& cancelled);
-      void PerformOperations(std::atomic<bool>& cancelled);
+      void GeneratePreviews(std::atomic<bool>& cancelled, std::atomic<int>& biaProgress);
+      void SplitImages(std::atomic<bool>& cancelled, std::atomic<int>& biaProgress);
+      void PerformOperations(std::atomic<bool>& cancelled, std::atomic<int>& operationProgress);
 
       virtual void Init() override;
 

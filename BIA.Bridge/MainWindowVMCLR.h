@@ -5,6 +5,7 @@
 
 using namespace BIA::UI::Common;
 using namespace BIA::UI::ViewModels;
+using namespace System::Timers;
 
 namespace BIA
 {
@@ -19,6 +20,11 @@ namespace BIA
       void OnStartBIAProcess(Object^);
       void OnStopProcess(Object^);
       void OnStartOperationProcess(Object^);
+      void OnShowImage(Object^);
+      void OnShowBinaryImage(Object^);
+      void LoadData() override;
+      void OnBiaTick(Object^ source, ElapsedEventArgs^ args) override;
+      void OnOperationTick(Object^ source, ElapsedEventArgs^ args) override;
    private:
       BIA* _bia;
    };

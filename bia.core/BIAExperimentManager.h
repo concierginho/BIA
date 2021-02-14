@@ -6,6 +6,7 @@
 #include "IExperimentManager.h"
 #include "BIAFileManager.h"
 #include "Experiment.h"
+#include "PartExperiment.h"
 #include "EOperation.h"
 
 #ifdef _LOGGING_
@@ -45,9 +46,16 @@ namespace BIA
 
       std::shared_ptr<BIAFileManager> GetFileManager();
 
-      std::vector<Experiment>& GetExperiments();
+      virtual std::vector<Experiment>& GetExperiments() override;
+      virtual std::vector<PartExperiment>& GetPartExperiments(int idx, bool isHorizontal) override;
+
+      virtual std::string GetExperimentName(int idx) override;
+      virtual std::string GetPartExperimentImagePath(const char* name, int id, bool isHorizontal) override;
+      virtual std::string GetPartExperimentPreviewImagePath(const char* name, int id, bool isHorizontal) override;
+      virtual int GetExperimentsSize() override;
 
       virtual void Init() override;
+
    };
 }
 

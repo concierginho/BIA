@@ -164,9 +164,16 @@
             \Large
             \quad
             \begin{enumerate}
+                \color{blue}
+                {
                 \item Analiza drzewa folderów,
                 \item Zliczanie komórek krwi na obrazach cyfrowych,
-                \item Zapis wyniku pracy algorytmu zliczającego liczbę komórek krwi w ramach eksperymentu do pliku.
+                \item Zapis wyniku pracy algorytmu zliczającego liczbę komórek krwi w ramach eksperymentu do pliku,
+                \item Uruchomienie procesu przygotowania katalogu głównego w sposób asynchroniczny,
+                \item Uruchomienie procesu przetwarzania obrazów w sposób asynchroniczny,
+                \item Logowanie wykonywanych operacji,
+                \item Personalizacja procesu przetwarzania danego obrazu przez wybranie operacji, które będą na nim wykonane.
+                }
             \end{enumerate}
         }
 
@@ -175,12 +182,14 @@
             \Large
             \quad
             \begin{enumerate}
-                \item Możliwość zmiany ustawień przetwarzania obrazów w ramach eksperymentu --> GUI,
-                \item Możliwość dostosowania parametrów dla każdego z obrazów w czasie rzeczywistym --> GUI,
-                \item Możliwość śledzenia algorytmu w czasie rzeczywistym --> GUI,
-                \item Możliwość podglądu postępu przetwarzania obrazów --> GUI,
-                \item Wyświetlanie histogramu w ramach eksperymentu --> GUI,
-                \item Możliwość wyświetlania czasu przetwarzania danego obrazu --> GUI,
+                \color{blue}
+                {
+                \item Podgląd obrazów, które powstały po podzieleniu obrazu głównego,
+                \item Podgląd obrazu, powstałego w procesie binaryzacji,
+                \item Możliwość śledzenia algorytmu przetwarzania obrazów w czasie rzeczywistym,
+                \item Możliwość śledzenia algorytmu przygotowania katalogu głownego w czasie rzeczywistym,
+                \item Możliwość zatrzymania procesów: przetwarzania obrazów oraz przygotowania katalogu głownego.
+                }
             \end{enumerate}
         }
 
@@ -193,7 +202,6 @@
             Użytkownikom oprogramowania rekomenduje sie wykorzystywanie biblioteki na systemie operacyjnym Windows 10 w projektach budowanych z wykorzystaniem MSBuild (Microsoft Build Engine) w konfiguracji 32 lub 64-bitowej \cite{msdocsmsbuild}.
         }
 
-    \newpage
     \section{Część teoretyczna}
         \subsection{Adhezja komórek}
         {
@@ -557,6 +565,21 @@
             nlohmann.json 3.9.1 - prosta w obsłudze biblioteka pozwalająca na tworzenie, modyfikowanie oraz odczytywanie informacji
             z obiektów typu \textit{json} \cite{nlohmann.json 3.9.1}.
         }
+        \subsubsection{OpenMP 5.1}
+        {
+            \label{sec:openmp}
+            {
+                \Large
+                \justifying
+                \quad
+                \color{blue}
+                {
+                OpenMP 5.1 - oprogramowanie slużące do programowania równoległego \cite{OpenMP 5.1}.
+                W bibliotece, o której traktuje ta praca, \emph{OpenMP 5.1} zostało wielokrotnie wykorzystane do zrównoleglania pętli \emph{for}.
+                Dzięki temu niektóre operacje wykonują się kilka razy szybciej.
+                }
+            }
+        }
         \subsection{Budowa oprogramowania}
         {
             \Large
@@ -629,7 +652,8 @@
             Obydwie powyższe metody można uruchomić w sposób asynchroniczny za pomocą ``BIAProcessManager'', nie jest to jednak przymus.
             ``SetKeeper'' pozwala na ustawienie obiektu ``BIAManagerKeeper''.
             ``SetRootPath'' pozwala na zmiane ścieżki do katalogu głównego.
-            ``Start'' odpowiada za uruchomienie odpowiedniego procesu. Jako argument przyjmuje typ wyliczeniowy o nazwie ``EProcess'', jeżeli ustalimy jego wartość na ``EProcess::BIAPROCESS'' to ``BIAProcessManager'' uruchomi asynchronicznie funkcje ``PrepareRoutine''. Natomiast w przypadku wartosci ``EProcess::BIAOPERATIONS'' uruchomiona zostanie funkcja ``OperationRoutine'', również w sposób asynchroniczny.
+            ``Start'' odpowiada za uruchomienie odpowiedniego procesu. Jako argument przyjmuje typ wyliczeniowy o nazwie ``EProcess'', jeżeli ustalimy jego wartość na ``EProcess::BIAPROCESS'' to ``BIAProcessManager'' uruchomi asynchronicznie funkcje ``PrepareRoutine''.
+            W przypadku wartosci ``EProcess::BIAOPERATIONS'' uruchomiona zostanie funkcja ``OperationRoutine'', również w sposób asynchroniczny.
             Funckja ``Stop'' pozwala na zatrzymanie operacji niezależnie od tego, którą z nich uruchomiliśmy wcześniej.
             Zatrzymanie procesów pozwala na oszczędzenie sporej ilości czasu w przypadku, gdy przewidujemy, że proces nie przyniesie pożądanych efektów i chcemy nanieść korekty.
             Zapisana do zmiennej ``\_rootPath'' ścieżka będzie postrzegana jako źródło tak zwanych ``eksperymentów''.
@@ -738,6 +762,11 @@
         \textit{nlohmann.json 3.9.1}
         \url{https://github.com/nlohmann/json}\\
         Stan na dzień 30/01/2021
+
+        \bibitem{OpenMP 5.1}
+        \textit{OpenMP 5.1}
+        \url{https://www.openmp.org/}\\
+        Stan na dzień 14/02/2021
 
         \bibitem{Building LibTiff}
         \textit{LibTIFF - Building the Software Distribution}
