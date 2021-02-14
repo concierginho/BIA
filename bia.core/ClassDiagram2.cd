@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BIA::FileLogger" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIABAAAAAAQAIAAABAEAAAAAgAAAAAAAAAAEIAgAA=</HashCode>
+      <FileName>FileLogger.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::ILogger" Collapsed="true">
+    <Position X="0.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAABAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ILogger.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::Erosion" Collapsed="true">
+    <Position X="3.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABCAAAABAUAAAAAAAAgAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Erosion.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::GammaCorrection" Collapsed="true">
+    <Position X="7.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAgUAAAAAAAAAAAAAAIAAAAAAAAAAAI=</HashCode>
+      <FileName>GammaCorrection.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::Closing" Collapsed="true">
+    <Position X="12.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAUAAAAAAAABAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Closing.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::Bitmap" Collapsed="true">
+    <Position X="18.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgAAAAAAAAAAgAAEDAABAAAAAABAEAAAAAEEA=</HashCode>
+      <FileName>Bitmap.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::Opening" Collapsed="true">
+    <Position X="1" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAUAAAAAAAAAAAAgACAAAAAAAAAAAA=</HashCode>
+      <FileName>Opening.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::IOperation" Collapsed="true">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IOperation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::Labeling" Collapsed="true">
+    <Position X="5.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAUAAAAAAAAgABAIAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Labeling.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::Dilation" Collapsed="true">
+    <Position X="10" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAABAAAAAgAUAAAAAAAAgAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Dilation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::StructuralElement" Collapsed="true">
+    <Position X="20.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAIAAAABAAAAAAAAAA=</HashCode>
+      <FileName>StructuralElement.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::BIAFileManager" Collapsed="true">
+    <Position X="14.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAwAAAAACAcQBAIAAAAAACCCAESBICEIAAQAA=</HashCode>
+      <FileName>BIAFileManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::BIAImageManager" Collapsed="true">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgCIQAAAAAAAaAAAAAAAAAQQAABgAFQAACAAAAAAA=</HashCode>
+      <FileName>BIAImageManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::JsonSettings" Collapsed="true">
+    <Position X="17" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAABAAAAACAAAQ=</HashCode>
+      <FileName>JsonSettings.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::TIFFImage" Collapsed="true">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAABAAgAgAAAAAAAAAIAAAAAAAAAgABIAEg=</HashCode>
+      <FileName>TIFFImage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::TIFFSettingsManager" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAGAABAAAAAAAAIAACAAAAAAA=</HashCode>
+      <FileName>TIFFSettingsManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::BIAManagerKeeper" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEQEAAAIAAKAgAAAAQAAAAgAAgAECAACQIAAAAA=</HashCode>
+      <FileName>BIAManagerKeeper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::BIALoggingManager" Collapsed="true">
+    <Position X="1" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIQAAAAAAAAIAgAAAAAAAAiIIAIAAA=</HashCode>
+      <FileName>BIALoggingManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::BIA" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEgCAAAAAASAAAIAAgAAoAAIAAKAACAJAAACA=</HashCode>
+      <FileName>BIA.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::BIAProcessManager" Collapsed="true">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAhAAABAACIQAACAAAAIAAQAAAAAAAAIIAAKYEAAAAA=</HashCode>
+      <FileName>BIAProcessManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::BIAExperimentManager" Collapsed="true">
+    <Position X="12.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAgBAIAAIBAKAQAQAQoAAAAAAAMECQAACEAAAAAA=</HashCode>
+      <FileName>BIAExperimentManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::Experiment" Collapsed="true">
+    <Position X="20.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAIAAAAICCAJAAIBBAMAAAAAACUIAAAAAAAAAABAA=</HashCode>
+      <FileName>Experiment.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::PartExperiment" Collapsed="true">
+    <Position X="18.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIKAAAAECAAAABABAgAAAAAYAEAAAAAAAAAJIAAA=</HashCode>
+      <FileName>PartExperiment.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::IProcessManager" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAABAAAAAAAAAAAAIAAAAAAAAAAAAAAAKAEAAAAA=</HashCode>
+      <FileName>IProcessManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::IImageManager" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>IImageManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::IExperimentManager" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgBAIAAAAAAAAAQAAAAAAAAAAIECAAACCAAAAAA=</HashCode>
+      <FileName>IExperimentManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::IFileManager" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAwAAAAAAAAQAAIAAAAAAABAAEABACAAAAQAA=</HashCode>
+      <FileName>IFileManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::ILoggingManager" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAQAAAACAAAAAAA=</HashCode>
+      <FileName>ILoggingManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BIA::IManager" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>IManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="BIA::TIFFImageSettings" Collapsed="true">
+    <Position X="17" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAACAwAAAAAAAAEAAAA=</HashCode>
+      <FileName>TIFFImageSettings.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="BIA::ESource" Collapsed="true">
+    <Position X="20.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAgBAAAAAAAAAAAAAAAAAAAAEEASA=</HashCode>
+      <FileName>ESource.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BIA::EType" Collapsed="true">
+    <Position X="17" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EType.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BIA::ENeighbourhood" Collapsed="true">
+    <Position X="20.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ENeighbourhood.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BIA::EPattern" Collapsed="true">
+    <Position X="18.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAABAAAAAgAAAAQCAAAAA=</HashCode>
+      <FileName>EPattern.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BIA::EFileType" Collapsed="true">
+    <Position X="17" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>EFileType.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BIA::EOperation" Collapsed="true">
+    <Position X="17" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAiAAAAgAAAAAAABAAAA=</HashCode>
+      <FileName>EOperation.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BIA::EFolder" Collapsed="true">
+    <Position X="18.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>EAlignment.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

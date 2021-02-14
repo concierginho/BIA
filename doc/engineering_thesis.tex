@@ -616,27 +616,27 @@
             Całe rozwiązanie składa się jeszcze z dwóch innych projektów: ``BIA.UI'' oraz ``BIA.Bridge''.
             ``BIA.UI'' to biblioteka napisana w języku C\#, stanowiąca interfejs użytkownika. Służy do pokazania funkcjonalności biblioteki ``BIA.Core''.
             Wspomniany wcześniej projekt ``BIA.Bridge'' stanowi połączenie (\emph{bridge} z ang. \emph{most}) między interfejsem użytkownika, a biblioteką ``BIA.Core''.
-        }
-
-        \vspace{0.5cm}
-
-        {
-            \Large
-            \justifying
-            \quad
-            Główną klasą biblioteki BIA.Core jest klasa ``BIA'' (Rysunek \ref{class_diagram} podpunkt (a)).
+            Główną klasą biblioteki ``BIA.Core'' jest klasa ``BIA'' (Rysunek \ref{class_diagram} podpunkt (a)).
             Nazwa jej pochodzi od angielskich słów ``Blood Image Analyzer'', czyli ``Analizator Obrazów Krwi''.
             Głównym zadaniem klasy ``BIA'' jest zebranie wszystkich funkcjonalności biblioteki w wygodny do użycia sposób.
             Zawiera ona prywatne pole o nazwie ``\_rootPath'', które jest odpowiedzialne za przetrzymywanie ścieżki do wybranego przez nas katalogu.
-            Posiada również wskaźnik do typu ``BIAManagerKeeper'', który ma za zadanie inicjalizację menadżerow oraz umożliwić ich późniejsze wykorzystanie.
-            Każdy z menadżerów niesie ze sobą odpowiednie funkcjonalności - w zależności od ich nazwy.
-            ``BIAImageManager'' zarzadzana obrazami.
-            ``BIAExperimentManager'' odpowiedzialny jest za ``eksperymenty''.
-            ``BIAFileManager'' pozwala na zarządzanie plikami.
-            ``BIALoggingManager'' daje możliwość wypisywania odpowiednich komunikatów do pliku.
-            ``BIAProcessManager'' sprawuje pieczę nad asynchronicznym rozpoczęciem dwóch procesów: przygotowania eksperymentów oraz przetwarzania obrazów,
-            a także nad ich przerwaniem.
-            ``TIFFSettingsManager'' pozwala na odczytanie, zmianę oraz zapisanie ustawień obrazów.
+            W bibliotece ``BIA.Core'' nazwy wszystkich interfejsów zaczynają się od litery ``I''. 
+            ``BIA'' posiada wskaźnik typu ``BIAManagerKeeper'', który zawiera w sobie klasy implementujące odpowiednie interfejsy.
+            Jest odpowiedzialny za ich inicjalizację oraz późniejsze wykorzystanie.
+            Każdy z interfejsów niesie ze sobą funkcjonalności w zależnosci od nazwy: 
+            ``IImageManager'' - zarządzanie obrazami, ``IExperimentManager'' - zarządzanie eksperymentami,
+            ``IFileManager'' - zarządzanie plikami, ``IProcessManager'' - zarządzanie asynchronicznymi procesami,
+            ``ILoggingManager'' - logowanie do pliku.
+            Każdy z menadżerów implementuje odpowiedni interfejs:
+            ``BIAImageManager'' implementuje ``IImageManager'',
+            ``BIAExperimentManager'' implementuje ``IExperimentManager'',
+            ``BIAFileManager'' implementuje ``IFileManager'',
+            ``BIAProcessManager'' implementuje ``IProcessManager'',
+            ``BIALoggingManager'' implementuje ``ILoggingManager''.
+            Klasa ``BIA'' pozwala na wykorzystanie niektórych funkcjonalnosci menadżerów poza biblioteką ``BIA.Core''.
+            Służą do tego funkcje: ``GetExperimentManager'', która zwraca wskaźnik typu ``IExperimentManager'',
+            ``GetProcessManager'', która zwraca wskaźnik typu ``IProcessManager''.
+            Z punktu widzenia użytkownika biblioteki wykorzystanie pozostałych menadżerów nie jest konieczne, ponieważ wykonują swoje operacje automatycznie - w zależności od kontekstu.
             Aby poprawnie skorzystać z funkcjonalności klasy ``BIA'' należy po stworzeniu obiektu tej klasy wywołać funkcję ``Init''.
             Funkcja ta odpowiedzialna jest za utworzenie wszystkich potrzebnych obiektów, w tym inicjalizacje ``BIAManagerKeeper''.
             Gdy ``BIAManagerKeeper'' zostanie zainicjalizowany, utworzeni zostają pozostali menadżerowie.
@@ -654,35 +654,356 @@
             ``SetRootPath'' pozwala na zmiane ścieżki do katalogu głównego.
             ``Start'' odpowiada za uruchomienie odpowiedniego procesu. Jako argument przyjmuje typ wyliczeniowy o nazwie ``EProcess'', jeżeli ustalimy jego wartość na ``EProcess::BIAPROCESS'' to ``BIAProcessManager'' uruchomi asynchronicznie funkcje ``PrepareRoutine''.
             W przypadku wartosci ``EProcess::BIAOPERATIONS'' uruchomiona zostanie funkcja ``OperationRoutine'', również w sposób asynchroniczny.
+            Funckja ``OperationsRoutine'' wykonuje operacje zapisane w pliku ``recipe.json'' dla każdego obrazu.
             Funckja ``Stop'' pozwala na zatrzymanie operacji niezależnie od tego, którą z nich uruchomiliśmy wcześniej.
             Zatrzymanie procesów pozwala na oszczędzenie sporej ilości czasu w przypadku, gdy przewidujemy, że proces nie przyniesie pożądanych efektów i chcemy nanieść korekty.
             Zapisana do zmiennej ``\_rootPath'' ścieżka będzie postrzegana jako źródło tak zwanych ``eksperymentów''.
             Przez ``eksperyment'' należy rozumieć katalog, w którym znajdują się dwa zdjęcia pochodzące z mikroskopu.
             Zdjęcia te powinny wcześniej zostać wyeksportowane do plików o typie ``.tif'' oraz nazwane w odpowiedni sposób.
             Zdjęcie zorientowane horyzontalnie powinno zawierać w swojej naziwe słowo ``horizontal'', natomiast te zorientowane wertykalnie - ``vertical''.
-            Dzięki temu obrazy zostaną zlokalizowane, odpowiednie nazwnictwo pozwoli na zastosowanie odpowiednich do danego ułożenia ustawień.
+            Dzięki temu obrazy zostaną zlokalizowane, odpowiednie nazwnictwo pozwoli na zastosowanie odpowiednich ustawień do danego ułożenia obrazu.
             Wewnątrz eksperymentu utworzone zostaną dwa katalogi: ``Horizontal'' oraz ``Vertical''.
             W kolejnym kroku utworzone zostaje po czterdzieści katalogów wewnątrz każdego z podkatalogów eksperymentu.
             Do każdego z tych podkatalogów trafia fragment obrazu głównego, który będzie podlegał różnym operacjom.
             Na potrzeby biblioteki, dla każdego z wydzielonych obrazów utworzone zostają też pliki: ``preview.tif'', ``recipe.json'' oraz ``results.json''.
-            Plik ``preview.tif'' to zbinaryzowany obraz wynikowy, ``recipe.json'' zawiera spis operacji, które mają zostać wykonane na obrazie binarnym, ``results.json'' to plik, do którego zapisywane są wyniki operacji etykietowania (labeling).
+            Plik ``preview.tif'' to zbinaryzowany obraz wynikowy, ``recipe.json'' zawiera spis operacji, które mają zostać wykonane na obrazie binarnym, ``results.json'' to plik, do którego zapisywane są wyniki operacji etykietowania (ang \emph{labeling}).
             Etykietowanie to operacja, która pozwala na zliczanie obiektów znajdujących się na obrazie binarnym w zależności od tego jaką wartość przyjmujemy jako tło.
             W przypadku tej biblioteki tło jest zaznaczane białym kolorem.
-        }
-
-        \vspace{0.5cm}
-
+            Kod źródłowy z racji swojej znaczącej objętości został umieszczony jako załącznik do tej pracy.
+            Wszystkie algorytmy są autorskie.
+            }
+            \newline\newline
+            {
+                \label{iprocessmanager}
+                \Large
+                \justifying
+                \quad
+                IProcessManager - zaimplementowany przez klase ``BIAProcessManager'' pozwala na śledzenie postępu wykonywanych operacji.
+                Opis funkcji: ``GetBiaProgress'' pozwala na otrzymanie aktualnego postępu w przygotowywaniu głównego katalogu.
+                ``GetBiaProgressCapacity'' zwraca całkowitą ilość operacji przygotowywania katalogu głownego.
+                ``GetOperationProgress'' zwraca aktualny postęp procesu przetwarzania obrazów.
+                ``GetOperationProgressCapacity'' zwraca całkowitą ilośc operacji przetwarzania obrazów.
+            }
+            \newline\newline
+            {
+                \label{iexperimentmanager}
+                \Large
+                \justifying
+                \quad
+                IExperimentManager - zaimplementowany przez klase ``BIAExperimentManager'' pozwala na wykonywanie pewnych funkcji na eksperymentach.
+                Opis funkcji: ``AddOperation'' pozwala na dodanie operacji do danego eksperymentu częściowego.
+                ``GetExperimentName'' zwraca nazwe eksperymentu na podstawie identyfikatora.
+                ``GetExperiments'' zwraca wszystkie istniejące eksperymenty.
+                ``GetExperimentsSize'' zwraca ilość eksperymentów.
+                ``GetPartExperimentImagePath'' zwraca ścieżkę do danego obrazu na podstawie nazwy eksperymentu, identyfikatora eksperymentu częsciowego oraz tego, czy obraz ten należy do folder ``Vertical'' czy ``Horizontal''.
+                ``GetPartExperimentPreviewImagePath'' podobnie jak w przypadku poprzedniej funkcji na podstawie takich samych argumentów zwraca ścieżkę do obrazu wyjściowego (powstałego po podzieleniu obrazu głównego).
+                ``GetPartExperiments'' zwraca eksperymenty częściowe na podstawie identyfikatora eksperymentu oraz przynależności do folder ``Vertical'' lub ``Horizontal''.
+            }
+        \begin{figure}[H]
+            \centering
+            \subfloat[\centering]{{\includegraphics[width=170px, height=170px]{preview.png}}}
+            \qquad
+            \subfloat[\centering]{{\includegraphics[height=170px, width=170px]{recipejson.png}}}
+            \qquad
+            \subfloat[\centering]{{\includegraphics[height=220px]{resultsjson-wholeobj.png}}}
+            \qquad
+            \subfloat[\centering]{{\includegraphics[height=170px]{resultsjson-ending.png}}}
+            \caption
+            {
+                (\textit{Opracowanie własne}) Przykłady plików.\\
+                (a) Zbinaryzowany obraz wynikowy.\\
+                (b) Przykład pliku ``recipe.json''. Tablica ``OPERATIONS'' zawiera liste operacji, które mają zostać wykonane na danym obrazie.
+                    W tym przypadku zostaną wykonane dwie operacje: Otwarcie morfologiczne (rozdział \ref{sec:otwarcie-morfologiczne}) elemntem strukturalnym o rozmiarach 3 na 3.
+                    Drugą operacją jest etykietowanie wykorzystując sąsiedztwo Vonneumann'a (rozdział \ref{sec:sasiedztwo}).
+                    Zapisana w polu ``THRESHOLD'' wartość stanowi argument operacji binaryzacji.\\
+                (c) Przykład pliku ``results.json''. Na rysunku przedstawiony jest obiekt, któremu nadano etykietę ``265''.
+                    Piksele, z których dany obiekt się zkłada mają odpowiednio indeksy ``698367'', ``699390'', ``699391'', ``700414'', ``700415''.
+                    Każdy z nich posiada współrzędne zapisane w polach ``x'' oraz ``y''.
+                    Pole ``size'' zawiera informacje o tym jaki rozmiar ma dany obiekt.\\
+                (d) Przykład zakończenia pliku ``results.json''. Pole ``area'' zawiera sume powierzchni obiektów znalezionych na obrazie,
+                    Natomiast pole ``cells'' to liczba znalezionych obiektów 
+                    (obiekty o etykietach ``96'', ``97'', ``98'', ``99'' mogą sugerować, że obiektów jest tylko 99 pomimo wartości ``cells'' 772. Należy jednak pamiętać o tym, że obiekty są zapisywane do pliku w kolejności losowej).
+                \label{przykladowepliki}
+            }
+        \end{figure}
+        \subsection{Omówienie interfejsu aplikacji okienkowej}
         {
+            \label{iexperimentmanager}
+            \Large
+            \justifying
+            \begin{figure}[H]
+                \includegraphics[width=\textwidth]{okienkowa-start.png}
+                \caption{(Opracowanie własne) Widok aplikacji okienkowej tuż po jej uruchomieniu.}
+                \label{okienkowaapkastart}
+            \end{figure}
+            \begin{figure}[H]
+                \includegraphics[width=\textwidth]{context-menu.png}
+                \caption{(Opracowanie własne) Widok aplikacji okienkowej po kliknięciu przycisku ``Initialize'' oraz wybraniu eksperymentu ``B372\_06 5 minut'' oraz kliknięciu prawym przyciskiem myszy na jeden z eksperymentów częściowych.}
+                \label{okienkowaapkacontextmenu}
+            \end{figure}
+            \begin{figure}[H]
+                \includegraphics[width=\textwidth]{okienkowa-biaa.png}
+                \caption{(Opracowanie własne) Widok aplikacji okienkowej po kliknięciu przycisku ``Prepare Process''.
+                Poniżej napisu ``Prepare Process'' można obserwować postęp tego procesu.}
+                \label{okienkowaapkabiaa}
+            \end{figure}
+            \begin{figure}[H]
+                \includegraphics[width=\textwidth]{okienkowa-oper.png}
+                \caption{(Opracowanie własne) Widok aplikacji okienkowej po kliknięciu przycisku ``Start Operations''.
+                Poniżej napisu ``Perform Operations'' można obserwować postęp tego procesu.}
+                \label{okienkowaapkaoper}
+            \end{figure}
+            \label{implementacjaokienko}
             \Large
             \justifying
             \quad
+            Jak można zauważyć na rysunkach \ref{okienkowaapkastart}, \ref{okienkowaapkacontextmenu}, \ref{okienkowaapkabiaa} oraz \ref{okienkowaapkaoper}
+            aplikacja okienkowa składa się z kilku elementów.
+            Cztery przyciski po lewej stronie odpowiadają za: ``Initialize'' inicjalizacje obiektu klasy ``BIA'' pochodzącej z biblioteki ``Bia.Core'',
+            ``Perpare Process'' uruchamia asynchronicznie proces przygotowania katalogu głównego.
+            ``Start Operations'' uruchamia asynchronicznie proces przetwarzania obrazów,
+            ``Stop'' umożliwia zatrzymanie wyżej wymienionych procesów.
+            Dwa paski postępu poniżej informują nas o postępie wykonania odpowiedniego procesu.
+            Na rysunku \ref{okienkowaapkabiaa} widać postęp w wykonaniu procesu ``Prepare Process'', z kolei na rysunku \ref{okienkowaapkaoper} postęp wykonania procesu przetwarzania obrazów.
+            Środek okna zajmuje kontrolka służąca do wyświetlania obrazów. Obraz ładowany jest w momencie gdy wybierzemy za pomocą menu kontekstowego opcje ``Show Image'' lub ``Show Binary Image'' tak jak na rysunku \ref{okienkowaapkacontextmenu}.
+            Po prawej stronie aplikacji znajduje się kontrolka o nazwie ``ComboBox'', która służy do wyboru danego eksperymentu za pomocą jego nazwy.
+            Poniżej można znaleźć dwie kontrolki o nazwie ``ListBox'', które służą do wyświetlania list elementów.
+            W kontekscie tej aplikacji wyświetlane są eksperymenty częściowe, które należą do wybranego wcześniej eksperymentu.
         }
     \newpage
     \section{Wyniki i dyskusja}
+    \subsection{Przygotowanie katalogu głównego}
+    \begin{figure}[H]
+        \centering
+        \subfloat[\centering]{{\includegraphics[height=220px]{poczatkowetreevertical.png}}}
+        \qquad
+        \subfloat[\centering]{{\includegraphics[height=220px]{poczatkowetreehorizontal.png}}}
+        \qquad
+        \subfloat[\centering]{{\includegraphics{poczatkowetree.png}}}
+        \caption
+        {
+            (\textit{Opracowanie własne}) Przykłady przygotowania katalogu głównego.\\
+            (a) Folder ``vertical'' po przeprowadzeniu procesu przygotowania katalogu głównego.\\
+            (b) Folder ``horizontal'' po przeprowadzeniu procesu przygotowania katalogu głównego.\\
+            (c) Folder główny przed uruchomienie procesu przygotowania katalogu głównego.\\
+        }
+        \label{przygotowanie katalogu glownego}
+    \end{figure}
+    {
+        \label{przygotowaniekataloguglownego}
+        \Large
+        \justifying
+        \quad
+        Na rysunku \ref{przygotowanie katalogu glownego} możemy zauważyć jak wygląda drzewo folderów po przeprowadzeniu procesu przygotowania katalogu głownego.
+        Nazwa eksperymentu to ``B372\_06 5 minut'' co możemy zauważyć na rysunku \ref{przygotowanie katalogu glownego} (b).
+        W tym eksperymencie zostały stworzone dwa foldery ``vertical'' oraz ``horizontal''.
+        W każdym z tych folderów znajduje się czterdzieści eksperymentów cześciowych noszących nazwy od 0 do 39.
+        Każdy z eksperymentów częściowych posiada pliki ``preview.tif'', ``recipe.json'' oraz obraz wynikowy (powstały z podzielenia obrazu głównego).
+        W ramach eksperymentu wyróżniamy dwa obrazy główne, w tym przypadku - ``Vertical 06.tif'' oraz ``Horizontal 06.tif''.
+        Powstają z nich obrazy wynikowe, które trafiają do poszczególnych eksperymentów częsciowych.
+        Ich przykładowe nazwy to ``vertical\_0.tif'' czy ``horizontal\_0.tif''.
+    }
+    \subsection{Przykład Binaryzacji}
+    \begin{figure}[H]
+        \centering
+        \subfloat[\centering]{{\includegraphics[width=150px, height=150px]{horizontal_0.png}}}
+        \qquad
+        \subfloat[\centering]{{\includegraphics[width=150px, height=150px]{preview.png}}}
+        \caption
+        {
+            (\textit{Opracowanie własne}) Przykład operacji binaryzacji.\\
+            (a) Obraz wynikowy (powstały po podzieleniu obrazu głównego)\\
+            (b) Obraz powstały w wyniku procesu binaryzacji obrazu wynikowego.
+            Parametr binaryzacji odczytywany jest z pliku ``recipe.json'', który zapisany jest w sposób jaki pokazano na rysunku \ref{przykladowepliki}(b).
+        }
+    \end{figure}
+    \subsection{Przykład Otwarcia}
+    \begin{figure}[H]
+        \centering
+        \subfloat[\centering]{{\includegraphics[width=150px, height=150px]{preview-otwarcie-start.png}}}
+        \qquad
+        \subfloat[\centering]{{\includegraphics[width=150px, height=150px]{preview-otwarcie-end.png}}}
+        \caption
+        {
+            (\textit{Opracowanie własne}) Przykład operacji otwarcia.\\
+            (a) Przykładowy obraz zawierający jeden duży obiekt oraz szum.\\
+            (b) Obraz powstały w wyniku operacji otwarcia na obrazie przykładowym elementem strukturalnym o rozmiarach 3 na 3.
+            Szum został usunięty.
+        }
+    \end{figure}
+    \subsection{Przykład Zamknięcia}
+    \begin{figure}[H]
+        \centering
+        \subfloat[\centering]{{\includegraphics[width=150px, height=150px]{preview-zamkniecie-start.png}}}
+        \qquad
+        \subfloat[\centering]{{\includegraphics[width=150px, height=150px]{preview-zamkniecie- end.png}}}
+        \caption
+        {
+            (\textit{Opracowanie własne}) Przykład operacji zamknięcia.\\
+            (a) Przykładowy obraz.\\
+            (b) Obraz powstały w wyniku operacji zamknięcia na obrazie przykładowym elementem strukturalnym o rozmiarach 9 na 9.
+            Niektóre obiekty zostały połączone i zwiększyły swoją powierzchnię.
+        }
+    \end{figure}
+    \subsection{Przykład Dylatacji}
+    \begin{figure}[H]
+        \centering
+        \subfloat[\centering]{{\includegraphics[width=150px, height=150px]{preview-dilation-start.png}}}
+        \qquad
+        \subfloat[\centering]{{\includegraphics[width=150px, height=150px]{preview-dilation-end.png}}}
+        \caption
+        {
+            (\textit{Opracowanie własne}) Przykład operacji dylatacji.\\
+            (a) Przykładowy obraz.\\
+            (b) Obraz powstały w wyniku operacji dylatacji na obrazie przykładowym elementem strukturalnym o rozmiarach 9 na 9.
+            Wszystkie obiekty wyraźnie zwiększyły swoją powierzchnię.
+        }
+    \end{figure}
+    \subsection{Przykład Erozji}
+    \begin{figure}[H]
+        \centering
+        \subfloat[\centering]{{\includegraphics[width=150px, height=150px]{preview-erosion-start.png}}}
+        \qquad
+        \subfloat[\centering]{{\includegraphics[width=150px, height=150px]{preview-erosion-end.png}}}
+        \caption
+        {
+            (\textit{Opracowanie własne}) Przykład operacji erozji.\\
+            (a) Przykładowy obraz.\\
+            (b) Obraz powstały w wyniku operacji erozji na obrazie przykładowym elementem strukturalnym o rozmiarach 3 na 3.
+            Wszystkie obiekty wyraźnie zmniejszyły swoją powierzchnię, niektóre całkiem zniknęły.
+        }
+        \label{erozjaex}
+    \end{figure}
+    \subsection{Przykład Etykietowania}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=300px]{label-example.png}
+        \caption
+        {
+            (\textit{Opracowanie własne}) Przykładowy obraz.
+        }
+    \end{figure}
+    {
+        \label{przygotowaniekataloguglownego}
+        \Large
+        \justifying
+        \quad
+        Przykładowy obraz zawiera 44 elementy, co zostało policzone ręcznie.
+        Za pomocą matematycznych funkcji na pole prostokąta przybliżona suma pól powierzchni obiektów została wyestymowana na 26000 pikseli.
+    }
+    \begin{figure}[H]
+        \centering
+        \includegraphics{wynik-koniec-koniec.png}
+        \caption{\textit{(Opracowanie własne)} Zapis z pliku ``results.json''.}
+        \label{konieckoniec}
+    \end{figure}
+    {
+        \label{przygotowaniekataloguglownego}
+        \Large
+        \justifying
+        \quad
+        Zapis z pliku ``results.json'' wskazuje dużo dokładniejszą sumę pól powierzchni wszystkich obiektów.
+        Błąd wynosi mniej niz 12\%, przez co obydwa wyniki dałyby miarodajną ocenę adhezji składników komórkowych.
+        Z prostych przyczyn lepiej jednak skorzystać z dokładniejszego wyniku.
+        Aby obliczyć adhezję potrzebujemy jeszcze ilości wszystkich pikseli na obrazie.
+        Wszystkie obrazy wynikowe (powstałe w wyniku podzielenia obrazu głównego) mają rozmiar $1024 \times 1024$ pikseli,
+        stąd ich suma wynosi $1048576$ pikseli.
+        Ocena adhezji: $23049 / 1048576 = 0,022$.
+        Porównanie wyników z kolejnych obrazów ukazuje zmianę adhezji.
+        Ocena adhezji to jasna informacja na temat tego jak wiele komórek znalazło się na obrazie.
+    }
     \newpage
     \section{Wnioski}
+    {
+        \Large
+        \justifying
+        \quad
+        Opracowana biblioteka pozwala w łatwy sposób tworzyć spersonalizowane procesy przetwarzania obrazów cyfrowych.
+        Algorytmy działają szybko i poprawnie.
+        Istniejące mechanizmy wewnątrz biblioteki pozwalają na podgląd postepu zachodzących procesów.
+        Dzięki możliwości personalizacji procesu przetwarzania, poszczególne obrazy mogą mieć swój własny ``przepis''.
+        Możemy w łatwy sposób pozbyć się szumu, zmienić próg względem, którego przebiega proces binaryzacji czy też dostosować jasność obrazu.
+    }
+
+    \vspace{0.5cm}
+
+    {
+        \Large
+        \justifying
+        \quad
+        Wyniki zapisywane są starannie do plików, każdy przetwarzany obraz ma swój własny plik z wynikami.
+        Dzięki temu możemy w prosty sposób odczytać informacje na temat tego, z jakich pikseli składa się dana komórka.
+        Każdy piksel opisany został współrzędnymi $x$ oraz $y$.
+        Przez co łatwo możemy zlokalizować go na obrazie wynikowym.
+        Każdy plik z wynikami ma na końcu informacje o sumie pól powierzchni wszystkich komórek na obrazie, a także ile takich komórek zostało znalezionych.
+    }
+
+    \vspace{0.5cm}
+
+    {
+        \Large
+        \justifying
+        \quad
+        Wybór językia C++ okazał się być mieczem obosiecznym.
+        Dzięki niemu mamy bardzo sprawnie działające algorytmy, a przez niego kod źródłowy rozrósł się tak bardzo, że został dołączony jako załącznik do tej pracy.
+    }
+
+    \vspace{0.5cm}
+
+    {
+        \Large
+        \justifying
+        \quad
+        Opracowana biblioteka testowana była w warunkach rzeczywistych tzn. takich, w których przyjdzie jej pracować.
+        Pozwoliło to na poprawienie jej działania i usprawnienia niektórych funkcji i klas.
+        Dzięki temu wiemy, że wyzwania, które na nią czekają nie będą większe, niż to z czym do tej pory przyszło jej się zmagać.
+    }
+
+    \vspace{0.5cm}
+
+    {
+        \Large
+        \justifying
+        \quad
+        Stworzona aplikacja okienkowa pozwala na wykorzystanie części możliwości jakie niesie ze sobą biblioteka ``BIA.Core''.
+        Dobrym pomysłem na przyszłość byłoby rozwijanie tej aplikacji, aby mogła wykorzystać wszystkie funkcjonalności jakie wspomniana wcześniej biblioteka posiada.
+        Jednak przenoszenie funkcjonalności z języki C++ do C\# za pomocą C++/CLI jest bardzo czasochłonne.
+    }
+
     \newpage
     \section{Podsumowanie}
+    {
+        \Large
+        \justifying
+        \quad
+        Celem niniejszej pracy było stworzenie biblioteki zajmującej się analizą i przetwarzaniem obrazów cyfrowych.
+        Biblioteka miała za zadanie ocenę adhezji komórek krwi, co robi w stopniu zadawalającym wykorzystując szybkie algorytmy oraz proces personalizacji przetwarzania obrazów.
+        Dzięki zautomatyzowaniu procesów, które do tej pory były wykonywane ręcznie spełnia również drugi cel - usprawnienie pracy ludzi.
+        Utrzymywany kontakt z osobami, które będą z niej korzystały pozwoliło na stworzenie jej w wygodny do użycia sposób.
+    }
+
+    \vspace{0.5cm}
+
+    {
+        \Large
+        \justifying
+        \quad
+        Tworząc bibliotekę ``BIA.Core'' nie brano pod uwagę jej zastosowania na szerszą skalę.
+        Została napisana w jednym konkretnym celu i do jednego konkretnego zadania.
+        Rozwijanie jej jednak mogłoby okazać się dobrym pomysłem, gdyż część biblioteki napisana jest w sposób pozwalający na wykorzystanie jej w ogólnych przypadkach.
+    }
+
+    \vspace{0.5cm}
+
+    {
+        \Large
+        \justifying
+        \quad
+        Czasochłonność tworzenia oprogramowania, które za pomocą C++/CLI łączy funkcjonalności C++ oraz C\# jest trudna do wyestymowania.
+        Nauka jaka z tego płynie na pewno zostanie ze mną na zawsze.
+        Architektura oprogramowania jaką zastosowano w tym rozwiązaniu nie jest zbyt optymalna pod względem rozwoju i utrzymania kodu.
+    }
+
     \newpage
     \section{Bibliografia}
     \begin{thebibliography}{9}

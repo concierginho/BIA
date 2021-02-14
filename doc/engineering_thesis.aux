@@ -119,9 +119,62 @@
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {\centering }}}{17}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Omówienie implementacji}{18}{}\protected@file@percent }
 \newlabel{omowienieimplementacji}{{4.4}{18}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Wyniki i dyskusja}{20}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Wnioski}{21}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Podsumowanie}{22}{}\protected@file@percent }
+\newlabel{iprocessmanager}{{4.4}{20}}
+\newlabel{iexperimentmanager}{{4.4}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  (\textit  {Opracowanie własne}) Przykłady plików.  (a) Zbinaryzowany obraz wynikowy.  (b) Przykład pliku ``recipe.json''. Tablica ``OPERATIONS'' zawiera liste operacji, które mają zostać wykonane na danym obrazie. W tym przypadku zostaną wykonane dwie operacje: Otwarcie morfologiczne (rozdział \ref  {sec:otwarcie-morfologiczne}) elemntem strukturalnym o rozmiarach 3 na 3. Drugą operacją jest etykietowanie wykorzystując sąsiedztwo Vonneumann'a (rozdział \ref  {sec:sasiedztwo}). Zapisana w polu ``THRESHOLD'' wartość stanowi argument operacji binaryzacji.  (c) Przykład pliku ``results.json''. Na rysunku przedstawiony jest obiekt, któremu nadano etykietę ``265''. Piksele, z których dany obiekt się zkłada mają odpowiednio indeksy ``698367'', ``699390'', ``699391'', ``700414'', ``700415''. Każdy z nich posiada współrzędne zapisane w polach ``x'' oraz ``y''. Pole ``size'' zawiera informacje o tym jaki rozmiar ma dany obiekt.  (d) Przykład zakończenia pliku ``results.json''. Pole ``area'' zawiera sume powierzchni obiektów znalezionych na obrazie, Natomiast pole ``cells'' to liczba znalezionych obiektów (obiekty o etykietach ``96'', ``97'', ``98'', ``99'' mogą sugerować, że obiektów jest tylko 99 pomimo wartości ``cells'' 772. Należy jednak pamiętać o tym, że obiekty są zapisywane do pliku w kolejności losowej).  \relax }}{21}{}\protected@file@percent }
+\newlabel{przykladowepliki}{{9}{21}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\centering }}}{21}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {\centering }}}{21}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {\centering }}}{21}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {\centering }}}{21}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Omówienie interfejsu aplikacji okienkowej}{22}{}\protected@file@percent }
+\newlabel{iexperimentmanager}{{4.5}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces (Opracowanie własne) Widok aplikacji okienkowej tuż po jej uruchomieniu.\relax }}{22}{}\protected@file@percent }
+\newlabel{okienkowaapkastart}{{10}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces (Opracowanie własne) Widok aplikacji okienkowej po kliknięciu przycisku ``Initialize'' oraz wybraniu eksperymentu ``B372\_06 5 minut'' oraz kliknięciu prawym przyciskiem myszy na jeden z eksperymentów częściowych.\relax }}{22}{}\protected@file@percent }
+\newlabel{okienkowaapkacontextmenu}{{11}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces (Opracowanie własne) Widok aplikacji okienkowej po kliknięciu przycisku ``Prepare Process''. Poniżej napisu ``Prepare Process'' można obserwować postęp tego procesu.\relax }}{23}{}\protected@file@percent }
+\newlabel{okienkowaapkabiaa}{{12}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces (Opracowanie własne) Widok aplikacji okienkowej po kliknięciu przycisku ``Start Operations''. Poniżej napisu ``Perform Operations'' można obserwować postęp tego procesu.\relax }}{23}{}\protected@file@percent }
+\newlabel{okienkowaapkaoper}{{13}{23}}
+\newlabel{implementacjaokienko}{{4.5}{24}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Wyniki i dyskusja}{25}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Przygotowanie katalogu głównego}{25}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces  (\textit  {Opracowanie własne}) Przykłady przygotowania katalogu głównego.  (a) Folder ``vertical'' po przeprowadzeniu procesu przygotowania katalogu głównego.  (b) Folder ``horizontal'' po przeprowadzeniu procesu przygotowania katalogu głównego.  (c) Folder główny przed uruchomienie procesu przygotowania katalogu głównego.  \relax }}{25}{}\protected@file@percent }
+\newlabel{przygotowanie katalogu glownego}{{14}{25}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\centering }}}{25}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {\centering }}}{25}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {\centering }}}{25}{}\protected@file@percent }
+\newlabel{przygotowaniekataloguglownego}{{5.1}{25}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Przykład Binaryzacji}{26}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces  (\textit  {Opracowanie własne}) Przykład operacji binaryzacji.  (a) Obraz wynikowy (powstały po podzieleniu obrazu głównego)  (b) Obraz powstały w wyniku procesu binaryzacji obrazu wynikowego. Parametr binaryzacji odczytywany jest z pliku ``recipe.json'', który zapisany jest w sposób jaki pokazano na rysunku \ref  {przykladowepliki}(b). \relax }}{26}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\centering }}}{26}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {\centering }}}{26}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Przykład Otwarcia}{26}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces  (\textit  {Opracowanie własne}) Przykład operacji otwarcia.  (a) Przykładowy obraz zawierający jeden duży obiekt oraz szum.  (b) Obraz powstały w wyniku operacji otwarcia na obrazie przykładowym elementem strukturalnym o rozmiarach 3 na 3. Szum został usunięty. \relax }}{26}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\centering }}}{26}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {\centering }}}{26}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Przykład Zamknięcia}{27}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces  (\textit  {Opracowanie własne}) Przykład operacji zamknięcia.  (a) Przykładowy obraz.  (b) Obraz powstały w wyniku operacji zamknięcia na obrazie przykładowym elementem strukturalnym o rozmiarach 9 na 9. Niektóre obiekty zostały połączone i zwiększyły swoją powierzchnię. \relax }}{27}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\centering }}}{27}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {\centering }}}{27}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Przykład Dylatacji}{27}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces  (\textit  {Opracowanie własne}) Przykład operacji dylatacji.  (a) Przykładowy obraz.  (b) Obraz powstały w wyniku operacji dylatacji na obrazie przykładowym elementem strukturalnym o rozmiarach 9 na 9. Wszystkie obiekty wyraźnie zwiększyły swoją powierzchnię. \relax }}{27}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\centering }}}{27}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {\centering }}}{27}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Przykład Erozji}{28}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces  (\textit  {Opracowanie własne}) Przykład operacji erozji.  (a) Przykładowy obraz.  (b) Obraz powstały w wyniku operacji erozji na obrazie przykładowym elementem strukturalnym o rozmiarach 3 na 3. Wszystkie obiekty wyraźnie zmniejszyły swoją powierzchnię, niektóre całkiem zniknęły. \relax }}{28}{}\protected@file@percent }
+\newlabel{erozjaex}{{19}{28}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\centering }}}{28}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {\centering }}}{28}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Przykład Etykietowania}{28}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces  (\textit  {Opracowanie własne}) Przykładowy obraz. \relax }}{28}{}\protected@file@percent }
+\newlabel{przygotowaniekataloguglownego}{{5.7}{28}}
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces \textit  {(Opracowanie własne)} Zapis z pliku ``results.json''.\relax }}{29}{}\protected@file@percent }
+\newlabel{konieckoniec}{{21}{29}}
+\newlabel{przygotowaniekataloguglownego}{{5.7}{29}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Wnioski}{30}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Podsumowanie}{31}{}\protected@file@percent }
 \bibcite{msdocsmsbuild}{1}
 \bibcite{Molecular Biology of the Cell. 4th edition}{2}
 \bibcite{adhezja}{3}
@@ -136,8 +189,8 @@
 \bibcite{LaTeX}{12}
 \bibcite{VSCode}{13}
 \bibcite{.NET Framework}{14}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Bibliografia}{23}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Bibliografia}{32}{}\protected@file@percent }
 \bibcite{nlohmann.json 3.9.1}{15}
 \bibcite{OpenMP 5.1}{16}
 \bibcite{Building LibTiff}{17}
-\gdef \@abspage@last{26}
+\gdef \@abspage@last{37}

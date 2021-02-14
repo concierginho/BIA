@@ -265,5 +265,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="ClassDiagram3.cd" />
   </ItemGroup>
 </Project>

@@ -32,7 +32,15 @@
 \contentsline {subsection}{\numberline {4.2}Budowa oprogramowania}{16}{}%
 \contentsline {subsection}{\numberline {4.3}Diagramy klas}{17}{}%
 \contentsline {subsection}{\numberline {4.4}Omówienie implementacji}{18}{}%
-\contentsline {section}{\numberline {5}Wyniki i dyskusja}{20}{}%
-\contentsline {section}{\numberline {6}Wnioski}{21}{}%
-\contentsline {section}{\numberline {7}Podsumowanie}{22}{}%
-\contentsline {section}{\numberline {8}Bibliografia}{23}{}%
+\contentsline {subsection}{\numberline {4.5}Omówienie interfejsu aplikacji okienkowej}{22}{}%
+\contentsline {section}{\numberline {5}Wyniki i dyskusja}{25}{}%
+\contentsline {subsection}{\numberline {5.1}Przygotowanie katalogu głównego}{25}{}%
+\contentsline {subsection}{\numberline {5.2}Przykład Binaryzacji}{26}{}%
+\contentsline {subsection}{\numberline {5.3}Przykład Otwarcia}{26}{}%
+\contentsline {subsection}{\numberline {5.4}Przykład Zamknięcia}{27}{}%
+\contentsline {subsection}{\numberline {5.5}Przykład Dylatacji}{27}{}%
+\contentsline {subsection}{\numberline {5.6}Przykład Erozji}{28}{}%
+\contentsline {subsection}{\numberline {5.7}Przykład Etykietowania}{28}{}%
+\contentsline {section}{\numberline {6}Wnioski}{30}{}%
+\contentsline {section}{\numberline {7}Podsumowanie}{31}{}%
+\contentsline {section}{\numberline {8}Bibliografia}{32}{}%

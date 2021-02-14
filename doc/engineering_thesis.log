@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.18)  14 FEB 2021 11:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.18)  14 FEB 2021 16:32
 entering extended mode
 **d:/dev/BIA/doc/engineering_thesis.tex
 (d:/dev/BIA/doc/engineering_thesis.tex
@@ -247,7 +247,17 @@ LaTeX Warning: Command \underline  has changed.
 File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
 \l__kernel_color_stack_int=\count299
 \l__pdf_internal_box=\box54
-) (d:/dev\BIA\doc\engineering_thesis.aux)
+) (d:/dev\BIA\doc\engineering_thesis.aux
+
+LaTeX Warning: Label `iexperimentmanager' multiply defined.
+
+
+LaTeX Warning: Label `przygotowaniekataloguglownego' multiply defined.
+
+
+LaTeX Warning: Label `przygotowaniekataloguglownego' multiply defined.
+
+)
 \openout1 = `engineering_thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
@@ -479,60 +489,210 @@ File: ./images//GammaCorrection_Przyciemnienie110.png Graphic file (type png)
 Package pdftex.def Info: ./images//GammaCorrection_Przyciemnienie110.png  used on input line 471.
 (pdftex.def)             Requested size: 170.63812pt x 170.6378pt.
  [13 <./images//zamkniecie-morfologiczne-stan-poczatkowy.png> <./images//zamkniecie-morfologiczne-stan-po-dylatacji.png> <./images//zamkniecie-morfologiczne-stan-po-erozji.png>] [14 <./images//GammaCorrection_Start.png> <./images//GammaCorrection_Rozjasnienie085.png> <./images//GammaCorrection_Przyciemnienie110.png>] [15]
-<./images//MainClassDiagram.png, id=104, 781.41937pt x 609.02531pt>
+<./images//MainClassDiagram.png, id=104, 861.2175pt x 678.28406pt>
 File: ./images//MainClassDiagram.png Graphic file (type png)
 <use ./images//MainClassDiagram.png>
 Package pdftex.def Info: ./images//MainClassDiagram.png  used on input line 598.
-(pdftex.def)             Requested size: 443.57848pt x 345.71692pt.
+(pdftex.def)             Requested size: 443.57848pt x 349.36676pt.
 <./images//OperationClassDiagram.png, id=105, 945.5325pt x 357.58594pt>
 File: ./images//OperationClassDiagram.png Graphic file (type png)
 <use ./images//OperationClassDiagram.png>
 Package pdftex.def Info: ./images//OperationClassDiagram.png  used on input line 600.
 (pdftex.def)             Requested size: 443.57848pt x 167.75986pt.
- [16] [17 <./images//MainClassDiagram.png> <./images//OperationClassDiagram.png>] [18] [19] [20] [21] [22]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 693.
+ [16]
+<./images//preview.png, id=109, 770.88pt x 770.88pt>
+File: ./images//preview.png Graphic file (type png)
+<use ./images//preview.png>
+Package pdftex.def Info: ./images//preview.png  used on input line 704.
+(pdftex.def)             Requested size: 170.62924pt x 170.62924pt.
+<./images//recipejson.png, id=110, 220.57407pt x 243.91125pt>
+File: ./images//recipejson.png Graphic file (type png)
+<use ./images//recipejson.png>
+Package pdftex.def Info: ./images//recipejson.png  used on input line 706.
+(pdftex.def)             Requested size: 170.64357pt x 170.63994pt.
+<./images//resultsjson-wholeobj.png, id=111, 231.11343pt x 332.74312pt>
+File: ./images//resultsjson-wholeobj.png Graphic file (type png)
+<use ./images//resultsjson-wholeobj.png>
+Package pdftex.def Info: ./images//resultsjson-wholeobj.png  used on input line 708.
+(pdftex.def)             Requested size: 153.3817pt x 220.8258pt.
+<./images//resultsjson-ending.png, id=112, 188.95593pt x 203.25937pt>
+File: ./images//resultsjson-ending.png Graphic file (type png)
+<use ./images//resultsjson-ending.png>
+Package pdftex.def Info: ./images//resultsjson-ending.png  used on input line 710.
+(pdftex.def)             Requested size: 158.63539pt x 170.63812pt.
+
+Overfull \hbox (1.39566pt too wide) in paragraph at lines 614--728
+\T1/cmr/m/n/14.4 ``BIA.Core''. Sªu»¡ do tego funk-cje: ``Ge-tE-xpe-ri-ment-Ma-na-ger'', która zwraca
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 614--728
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 614--728
+
+ []
+
+[17 <./images//MainClassDiagram.png> <./images//OperationClassDiagram.png>] [18] [19] [20]
+<./images//okienkowa-start.png, id=128, 704.6325pt x 446.41782pt>
+File: ./images//okienkowa-start.png Graphic file (type png)
+<use ./images//okienkowa-start.png>
+Package pdftex.def Info: ./images//okienkowa-start.png  used on input line 735.
+(pdftex.def)             Requested size: 443.57848pt x 281.02673pt.
+<./images//context-menu.png, id=129, 704.6325pt x 446.41782pt>
+File: ./images//context-menu.png Graphic file (type png)
+<use ./images//context-menu.png>
+Package pdftex.def Info: ./images//context-menu.png  used on input line 740.
+(pdftex.def)             Requested size: 443.57848pt x 281.02673pt.
+ [21 <./images//preview.png> <./images//recipejson.png> <./images//resultsjson-wholeobj.png> <./images//resultsjson-ending.png>]
+<./images//okienkowa-biaa.png, id=137, 704.6325pt x 446.41782pt>
+File: ./images//okienkowa-biaa.png Graphic file (type png)
+<use ./images//okienkowa-biaa.png>
+Package pdftex.def Info: ./images//okienkowa-biaa.png  used on input line 745.
+(pdftex.def)             Requested size: 443.57848pt x 281.02673pt.
+<./images//okienkowa-oper.png, id=138, 704.6325pt x 446.41782pt>
+File: ./images//okienkowa-oper.png Graphic file (type png)
+<use ./images//okienkowa-oper.png>
+Package pdftex.def Info: ./images//okienkowa-oper.png  used on input line 751.
+(pdftex.def)             Requested size: 443.57848pt x 281.02673pt.
+ [22 <./images//okienkowa-start.png> <./images//context-menu.png>] [23 <./images//okienkowa-biaa.png> <./images//okienkowa-oper.png>] [24]
+<./images//poczatkowetreevertical.png, id=151, 171.64125pt x 243.91125pt>
+File: ./images//poczatkowetreevertical.png Graphic file (type png)
+<use ./images//poczatkowetreevertical.png>
+Package pdftex.def Info: ./images//poczatkowetreevertical.png  used on input line 778.
+(pdftex.def)             Requested size: 155.39757pt x 220.8258pt.
+<./images//poczatkowetreehorizontal.png, id=152, 184.43906pt x 258.9675pt>
+File: ./images//poczatkowetreehorizontal.png Graphic file (type png)
+<use ./images//poczatkowetreehorizontal.png>
+Package pdftex.def Info: ./images//poczatkowetreehorizontal.png  used on input line 780.
+(pdftex.def)             Requested size: 157.2805pt x 220.8258pt.
+<./images//poczatkowetree.png, id=153, 152.06813pt x 57.21375pt>
+File: ./images//poczatkowetree.png Graphic file (type png)
+<use ./images//poczatkowetree.png>
+Package pdftex.def Info: ./images//poczatkowetree.png  used on input line 782.
+(pdftex.def)             Requested size: 152.06775pt x 57.2136pt.
+<./images//horizontal_0.png, id=154, 770.88pt x 770.88pt>
+File: ./images//horizontal_0.png Graphic file (type png)
+<use ./images//horizontal_0.png>
+Package pdftex.def Info: ./images//horizontal_0.png  used on input line 809.
+(pdftex.def)             Requested size: 150.56213pt x 150.56213pt.
+File: ./images//preview.png Graphic file (type png)
+<use ./images//preview.png>
+Package pdftex.def Info: ./images//preview.png  used on input line 811.
+(pdftex.def)             Requested size: 150.56213pt x 150.56213pt.
+ [25 <./images//poczatkowetreevertical.png> <./images//poczatkowetreehorizontal.png> <./images//poczatkowetree.png>]
+<./images//preview-otwarcie-start.png, id=161, 770.88pt x 770.88pt>
+File: ./images//preview-otwarcie-start.png Graphic file (type png)
+<use ./images//preview-otwarcie-start.png>
+Package pdftex.def Info: ./images//preview-otwarcie-start.png  used on input line 823.
+(pdftex.def)             Requested size: 150.56213pt x 150.56213pt.
+<./images//preview-otwarcie-end.png, id=162, 770.88pt x 770.88pt>
+File: ./images//preview-otwarcie-end.png Graphic file (type png)
+<use ./images//preview-otwarcie-end.png>
+Package pdftex.def Info: ./images//preview-otwarcie-end.png  used on input line 825.
+(pdftex.def)             Requested size: 150.56213pt x 150.56213pt.
+<./images//preview-zamkniecie-start.png, id=163, 770.88pt x 770.88pt>
+File: ./images//preview-zamkniecie-start.png Graphic file (type png)
+<use ./images//preview-zamkniecie-start.png>
+Package pdftex.def Info: ./images//preview-zamkniecie-start.png  used on input line 837.
+(pdftex.def)             Requested size: 150.56213pt x 150.56213pt.
+<./images//preview-zamkniecie- end.png, id=164, 770.88pt x 770.88pt>
+File: ./images//preview-zamkniecie- end.png Graphic file (type png)
+<use ./images//preview-zamkniecie- end.png>
+Package pdftex.def Info: ./images//preview-zamkniecie- end.png  used on input line 839.
+(pdftex.def)             Requested size: 150.56213pt x 150.56213pt.
+ [26 <./images//horizontal_0.png> <./images//preview-otwarcie-start.png> <./images//preview-otwarcie-end.png>]
+<./images//preview-dilation-start.png, id=171, 770.88pt x 770.88pt>
+File: ./images//preview-dilation-start.png Graphic file (type png)
+<use ./images//preview-dilation-start.png>
+Package pdftex.def Info: ./images//preview-dilation-start.png  used on input line 851.
+(pdftex.def)             Requested size: 150.56213pt x 150.56213pt.
+<./images//preview-dilation-end.png, id=172, 770.88pt x 770.88pt>
+File: ./images//preview-dilation-end.png Graphic file (type png)
+<use ./images//preview-dilation-end.png>
+Package pdftex.def Info: ./images//preview-dilation-end.png  used on input line 853.
+(pdftex.def)             Requested size: 150.56213pt x 150.56213pt.
+<./images//preview-erosion-start.png, id=173, 770.88pt x 770.88pt>
+File: ./images//preview-erosion-start.png Graphic file (type png)
+<use ./images//preview-erosion-start.png>
+Package pdftex.def Info: ./images//preview-erosion-start.png  used on input line 865.
+(pdftex.def)             Requested size: 150.56213pt x 150.56213pt.
+<./images//preview-erosion-end.png, id=174, 770.88pt x 770.88pt>
+File: ./images//preview-erosion-end.png Graphic file (type png)
+<use ./images//preview-erosion-end.png>
+Package pdftex.def Info: ./images//preview-erosion-end.png  used on input line 867.
+(pdftex.def)             Requested size: 150.56213pt x 150.56213pt.
+ [27 <./images//preview-zamkniecie-start.png> <./images//preview-zamkniecie- end.png> <./images//preview-dilation-start.png> <./images//preview-dilation-end.png>]
+<./images//label-example.png, id=182, 770.88pt x 770.88pt>
+File: ./images//label-example.png Graphic file (type png)
+<use ./images//label-example.png>
+Package pdftex.def Info: ./images//label-example.png  used on input line 880.
+(pdftex.def)             Requested size: 301.1261pt x 301.12427pt.
+<./images//wynik-koniec-koniec.png, id=183, 173.14688pt x 103.13531pt>
+File: ./images//wynik-koniec-koniec.png Graphic file (type png)
+<use ./images//wynik-koniec-koniec.png>
+Package pdftex.def Info: ./images//wynik-koniec-koniec.png  used on input line 896.
+(pdftex.def)             Requested size: 173.14645pt x 103.13504pt.
+ [28 <./images//preview-erosion-start.png> <./images//preview-erosion-end.png> <./images//label-example.png>] [29 <./images//wynik-koniec-koniec.png>]
+Overfull \hbox (2.68141pt too wide) in paragraph at lines 920--927
+\T1/cmr/m/n/14.4 wane pro-cesy prze-twa-rza-nia ob-ra-zów cy-fro-wych. Al-go-rytmy dzia-ªaj¡ szybko
+ []
+
+[30]
+Overfull \hbox (8.42763pt too wide) in paragraph at lines 1001--1006
+[] \T1/cmr/m/n/14.4 Cza-so-chªon-no±¢ two-rze-nia opro-gra-mo-wa-nia, które za po-moc¡ C++/CLI
+ []
+
+[31]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1014.
  (C:\Users\konra\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 693.
+(Font)              <5> on input line 1014.
 
-Underfull \hbox (badness 10000) in paragraph at lines 691--695
+Underfull \hbox (badness 10000) in paragraph at lines 1012--1016
 []\T1/cmr/m/n/10 Microsoft Docs \T1/cmr/m/it/10 MSBu-ild $\T1/cmtt/m/n/10 https : / / docs . microsoft . com / en-[]us / visualstudio / msbuild /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 702--705
+Underfull \hbox (badness 10000) in paragraph at lines 1023--1026
 []\T1/cmr/m/it/10 Wikipedia $\T1/cmtt/m/n/10 https : / / en . wikipedia . org / wiki / Adhesion# : ~ : text = Adhesion % 20is % 20the %
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 717--720
+Underfull \hbox (badness 10000) in paragraph at lines 1038--1041
 []\T1/cmr/m/it/10 Cyforwe prze-twa-rza-nie ob-ra-zów bi-nar-nych $\T1/cmtt/m/n/10 https : / / pl . wikipedia . org / wiki / Cyfrowe _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 757--760
+Underfull \hbox (badness 10000) in paragraph at lines 1078--1081
 []\T1/cmr/m/it/10 What is .NET Fra-me-work? $\T1/cmtt/m/n/10 https : / / dotnet . microsoft . com / learn / dotnet /
  []
 
-[23] [24] (d:/dev\BIA\doc\engineering_thesis.lof)
+[32] [33] (d:/dev\BIA\doc\engineering_thesis.lof [34] [35])
 \tf@lof=\write4
 \openout4 = `engineering_thesis.lof'.
 
- [25] (d:/dev\BIA\doc\engineering_thesis.aux) ) 
+ [36] (d:/dev\BIA\doc\engineering_thesis.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 6182 strings out of 480236
- 98258 string characters out of 2880557
- 415590 words of memory out of 3000000
- 22630 multiletter control sequences out of 15000+200000
+ 6326 strings out of 480236
+ 102865 string characters out of 2880557
+ 432575 words of memory out of 3000000
+ 22752 multiletter control sequences out of 15000+200000
  549942 words of font info for 57 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,11n,70p,1158b,417s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 60i,11n,70p,1541b,417s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0800.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\konra\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/konra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on d:/dev\BIA\doc\engineering_thesis.pdf (26 pages, 1923219 bytes).
+Output written on d:/dev\BIA\doc\engineering_thesis.pdf (37 pages, 3409131 bytes).
 PDF statistics:
- 772 PDF objects out of 1000 (max. 8388607)
+ 884 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 106 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 216 words of extra memory for PDF output out of 10000 (max. 10000000)
 
