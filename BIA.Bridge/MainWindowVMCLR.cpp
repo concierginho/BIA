@@ -53,7 +53,7 @@ BIA::MainWindowVMCLR::!MainWindowVMCLR()
 /// <param name=""></param>
 void BIA::MainWindowVMCLR::OnInitializeBIA(Object^)
 {
-   char* rootPath = "D:\\env\\root";
+   char* rootPath = "X:\\dev\\environment\\root";
    _bia = new BIA(rootPath);
    _bia->Init();
 

@@ -26,7 +26,7 @@ BIA::TIFFImageSettings BIA::TIFFSettingsManager::ReadSettings(TIFF** tiff)
    TIFFGetField(*tiff, TIFFTAG_SAMPLESPERPIXEL, &settings.SamplesPerPixel);
    TIFFGetField(*tiff, TIFFTAG_RESOLUTIONUNIT, &settings.ResolutionUnit);
 
-   settings.ScanlineSize = TIFFScanlineSize(*tiff);
+   settings.ScanlineSize = static_cast<uint32>(TIFFScanlineSize(*tiff));
 
    return settings;
 }

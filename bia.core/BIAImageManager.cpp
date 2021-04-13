@@ -364,7 +364,7 @@ void BIA::BIAImageManager::ReadImageSettings(TIFF* tiffPtr, TIFFImage* tiffImage
    TIFFGetField(tiffPtr, TIFFTAG_SAMPLESPERPIXEL, &settings.SamplesPerPixel);
    TIFFGetField(tiffPtr, TIFFTAG_RESOLUTIONUNIT, &settings.ResolutionUnit);
 
-   uint32 scanlineSize = TIFFScanlineSize(tiffPtr);
+   uint32 scanlineSize = static_cast<uint32>(TIFFScanlineSize(tiffPtr));
    tiffImage->GetImageSettings().ScanlineSize = scanlineSize;
 }
 
@@ -561,7 +561,7 @@ void BIA::BIAImageManager::SaveResultsToFile(PartExperiment& partExperiment, std
    for (auto& it : map)
    {
       cells++;
-      area += it.second.size();
+      area += static_cast<int>(it.second.size());
 
       nlohmann::json part;
       int label = it.first;

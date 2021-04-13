@@ -87,17 +87,17 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\third-party\libtiff_4.2.0_win64\libtiff;../bia.core/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../third-party/tiff-4.2.0/libtiff/;../bia.core/;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <AdditionalDependencies>tiff.lib;bia.core.lib;</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>../third-party/libtiff_4.2.0_win64/libtiff/Release;$(SolutionDir)$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../third-party/tiff-4.2.0/libtiff/Release;$(SolutionDir)$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y "..\third-party\libtiff_4.2.0_win64\libtiff\Release\tiff.dll" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
+      <Command>xcopy /Y "..\third-party\tiff-4.2.0\libtiff\Release\tiff.dll" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
@@ -106,18 +106,18 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\third-party\libtiff_4.2.0_win32\libtiff;../bia.core/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../third-party/tiff-4.2.0/libtiff/;../bia.core/;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <AdditionalDependencies>tiff.lib;bia.core.lib;</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>../third-party/libtiff_4.2.0_win32/libtiff/release;$(SolutionDir)$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../third-party/tiff-4.2.0/libtiff/Release;$(SolutionDir)$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
       <CLRImageType>ForceSafeILImage</CLRImageType>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y "..\third-party\libtiff_4.2.0_win32\libtiff\Release\tiff.dll" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
+      <Command>xcopy /Y "..\third-party\tiff-4.2.0\libtiff\Release\tiff.dll" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
@@ -127,17 +127,17 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>..\third-party\libtiff_4.2.0_win32\libtiff;../bia.core/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../third-party/tiff-4.2.0/libtiff/;../bia.core/;</AdditionalIncludeDirectories>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <AdditionalDependencies>tiff.lib;bia.core.lib;</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>../third-party/libtiff_4.2.0_win32/libtiff/Release;..\bia.core\$(IntDir);</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../third-party/tiff-4.2.0/libtiff/Release;..\bia.core\$(IntDir);</AdditionalLibraryDirectories>
       <CLRImageType>ForceSafeILImage</CLRImageType>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y "..\third-party\libtiff_4.2.0_win32\libtiff\Release\tiff.dll" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
+      <Command>xcopy /Y "..\third-party\tiff-4.2.0\libtiff\Release\tiff.dll" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
@@ -147,16 +147,16 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>..\third-party\libtiff_4.2.0_win64\libtiff;../bia.core/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\third-party\tiff-4.2.0\libtiff;..\bia.core\</AdditionalIncludeDirectories>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <AdditionalDependencies>tiff.lib;bia.core.lib;</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>../third-party/libtiff_4.2.0_win64/libtiff/Release;$(SolutionDir)$(Platform)\$(Configuration)\;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\third-party\tiff-4.2.0\libtiff\Release;$(SolutionDir)$(Platform)\$(Configuration)\;</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y "..\third-party\libtiff_4.2.0_win64\libtiff\Release\tiff.dll" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
+      <Command>xcopy /Y "..\third-party\tiff-4.2.0\libtiff\Release\tiff.dll" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

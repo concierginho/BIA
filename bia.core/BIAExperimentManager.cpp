@@ -389,7 +389,7 @@ std::string BIA::BIAExperimentManager::GetExperimentName(int idx)
 /// <returns></returns>
 int BIA::BIAExperimentManager::GetExperimentsSize()
 {
-   return _experiments.size();
+   return static_cast<int>(_experiments.size());
 }
 
 /// <summary>

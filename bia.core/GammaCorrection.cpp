@@ -61,7 +61,7 @@ void BIA::GammaCorrection::PerformOperation(Bitmap* bitmap, nlohmann::json& json
       for (int j = 0; j < length; j++)
       {
          int index = bitmap->Index(i, j);
-         int new_value = std::pow(buffer[index], _arg);
+         int new_value = static_cast<int>(std::pow(buffer[index], _arg));
          if (new_value > 255)
             new_value = 255;
          buffer[index] = static_cast<unsigned char>(new_value);

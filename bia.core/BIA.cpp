@@ -44,7 +44,7 @@ void BIA::BIA::PrepareRoutine()
    std::atomic<int>& biaProgress = biaProcessManager->BiaProgress;
 
    biaProgress = 0;
-   biaProcessManager->BiaProgressCapacity = GetExperimentManager()->GetExperiments().size() * 80 * 2;
+   biaProcessManager->BiaProgressCapacity = static_cast<int>(GetExperimentManager()->GetExperiments().size() * 80 * 2);
 
    auto biaImageManager = std::dynamic_pointer_cast<BIAImageManager>(_keeper->GetImageManager());
 
@@ -77,7 +77,7 @@ void BIA::BIA::OperationRoutine()
    std::atomic<bool>& cancelled = biaProcessManager->Cancelled;
    std::atomic<int>& operationProgress = biaProcessManager->OperationProgress;
 
-   biaProcessManager->OperationProgressCapacity = GetExperimentManager()->GetExperiments().size() * 80;
+   biaProcessManager->OperationProgressCapacity = static_cast<int>(GetExperimentManager()->GetExperiments().size() * 80);
 
    biaImageManager->PerformOperations(cancelled, operationProgress);
 
