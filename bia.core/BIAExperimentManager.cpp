@@ -235,6 +235,10 @@ void BIA::BIAExperimentManager::PreparePartExperiments()
          auto path = experiment.GetPath(folder);
          auto directoryName = path.filename().string();
 
+         std::stringstream ss;
+         ss << path.string() << ".json";
+         fs::path commonResults = ss.str();
+
          for (int i = 0; i < 40; i++)
          {
             fs::path partExpPath = experiment.GetPartExperimentPathById(folder, i);
@@ -242,7 +246,7 @@ void BIA::BIAExperimentManager::PreparePartExperiments()
             if (!_fileManager->ExistsAtPath(partExpPath))
                _fileManager->CreateAtPath(partExpPath, EFileType::DIRECTORY);
 
-            PartExperiment partExperiment(partExpPath, directoryName, isHorizontal);
+            PartExperiment partExperiment(partExpPath, directoryName, isHorizontal, commonResults);
 
             experiment.GetPartExperiments(folder).push_back(partExperiment);
             InitializePartExperiment(partExperiment);

@@ -7,13 +7,14 @@
 /// <summary>
 /// Domyslny konstruktor.
 /// </summary>
-BIA::PartExperiment::PartExperiment(fs::path path, std::string parentName, bool isHorizontal)
+BIA::PartExperiment::PartExperiment(fs::path path, std::string parentName, bool isHorizontal, fs::path common)
 {
    _isHorizontal = isHorizontal;
 
     _path = path;
    _id = std::atoi(path.filename().string().c_str());
    _name = parentName + "_" + std::to_string(_id);
+   _common = common;
 
    _tiffImage = new TIFFImage();
    _tiffImage->SetImagePath(path.string() + "\\" + _name + ".tif");
@@ -55,6 +56,11 @@ fs::path BIA::PartExperiment::GetImagePath() const
 fs::path BIA::PartExperiment::GetPreviewImagePath() const
 {
    return _tiffImage->GetPreviewImagePath();
+}
+
+fs::path BIA::PartExperiment::GetResultsCommon() const
+{
+    return _common;
 }
 
 /// <summary>

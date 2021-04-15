@@ -17,6 +17,7 @@ namespace BIA
       bool _isHorizontal;
 
       fs::path _path;
+      fs::path _common;
       std::string _name;
 
       TIFFImage* _tiffImage = nullptr;
@@ -30,10 +31,11 @@ namespace BIA
       fs::path GetRecipeJsonPath() const;
       fs::path GetImagePath() const;
       fs::path GetPreviewImagePath() const;
+      fs::path GetResultsCommon() const;
 
       TIFFImage* GetTIFFImage();
 
-      explicit PartExperiment(fs::path path, std::string parentName, bool isHorizontal);
+      explicit PartExperiment(fs::path path, std::string parentName, bool isHorizontal, fs::path common);
    };
 }
 

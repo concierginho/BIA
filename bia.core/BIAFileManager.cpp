@@ -224,7 +224,7 @@ void BIA::BIAFileManager::WriteToJson(fs::path& path, nlohmann::json& json)
       std::ofstream o;
       try
       {
-         o.open(path.string());
+         o.open(path.string(), std::ios_base::app);
          o << std::setw(4) << json << std::endl;
          o.close();
       }

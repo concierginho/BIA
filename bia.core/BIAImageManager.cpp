@@ -552,7 +552,7 @@ void BIA::BIAImageManager::CopyVerticalPartImageToDestinationFile(TIFF** src, TI
 /// <param name="map"></param>
 void BIA::BIAImageManager::SaveResultsToFile(PartExperiment& partExperiment, std::unordered_map<int, std::vector<int>> map)
 {
-   auto jsonPath = partExperiment.GetResultsJsonPath();
+   auto jsonPath = partExperiment.GetResultsCommon();
    nlohmann::json json;
 
    int cells = 0;
